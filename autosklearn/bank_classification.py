@@ -14,6 +14,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import preprocessing
 ##################################################
+import pickle
 from DateTime import DateTime
 import time
 
@@ -21,11 +22,11 @@ current_time = DateTime(time.time(), 'US/Eastern')
 framework = 'autosklearn'
 datasetn = 'bankmarketing'
 foldn =  '3'
+dirt = '../'
 
-
-resultfile = framework + datasetn + foldn + \
-current_time.year() + current_time.amonth()+current_time.day() + \
-current_time.h_24() + current_time.mintue()  + time.time()+'.txt'
+resultfile = str(framework) + str(datasetn) + str(foldn) + \
+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
+str(current_time.h_24()) + str(current_time.minute())  + str(time.time())+'.txt'
 
 
 data =pd.read_csv("/home/test/bank.csv",delimiter=';')
@@ -58,4 +59,9 @@ clf.fit(X_train, y_train)
 #pattern = r"(?P<framework>[\w\-]+?)_(?P<task>[\w\-]+)_(?P<fold>\d+)(_(?P<datetime>\d{8}T\d{6}))?.csv"
 
 print("model score: %.3f" % clf.score(X_test, y_test))
-print(automl.show_models())
+def save_object(obj, filename):
+    with open(filename, 'wb') as output:  # Overwrites any existing file.
+        pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
+# sample usage
+save_object(automl.show_models(),dirt+"results/"+str("showmodels")+resultfile)
+save_object(automl.cv_results_,dirt+"results/"+str("cv_results")+resultfile)
