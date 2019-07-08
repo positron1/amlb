@@ -34,3 +34,7 @@
 
 - vritual environment with conda. (check: conda env list)
 - automl, h
+
+## Week of 070818
+- use show_model to interpret the model and parameter selection of autosklearn
+ 
