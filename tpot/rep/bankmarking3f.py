@@ -35,7 +35,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.compose import ColumnTransformer
 from xgboost import XGBClassifier
-import xgboost as xgb
+import xgboost 
 import sklearn
 ###### Read in data
 import pandas as pd
@@ -75,18 +75,21 @@ categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='co
 preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
      ('cat', categorical_transformer, categorical_features)])
 ################################################################################
-X_train, X_test, y_train, y_test = \
-sklearn.model_selection.train_test_split(X, y, random_state=1)
-
 
 def save_object(obj, filename):
     with open(filename, 'wb') as output:  # Overwrites any existing file.
         pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
-
-xgb.fit(X_train, y_train, eval_metric='auc')  # works fine
+xgb = XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,\
+       colsample_bynode=1, colsample_bytree=1, gamma=0, learning_rate=0.1,\
+       max_delta_step=0, max_depth=7, min_child_weight=6, missing=None,\
+       n_estimators=100, n_jobs=1, nthread=1, objective='binary:logistic',\
+       random_state=0, reg_alpha=0, reg_lambda=1, scale_pos_weight=1,\
+       seed=None, silent=None, subsample=0.6000000000000001, verbosity=1)
+#xgb.fit(X_train,y_train, eval_metric='auc')  # works fine
 
 # Making a pipeline with this classifier and a scaler:
-pipe = Pipeline([('scaler', StandardScaler()), ('classifier', XGBClassifier())])
+pipe = Pipeline([('preprocessor', preprocessor), ('classifier', xgb)])
+X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.35, random_state=1)
 
 # using the pipeline, but not optimizing for 'auc': 
 pipe.fit(X_train, y_train)  # works fine
