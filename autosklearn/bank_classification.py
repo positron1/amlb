@@ -13,6 +13,8 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import preprocessing
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
 ##################################################
 import pickle
 from DateTime import DateTime
@@ -77,7 +79,9 @@ def save_object(obj, filename):
         pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
 # sample usage
 save_object(automl.show_models(),str("showmodels")+resultfile)
-
+#kfold = KFold(n_splits=3, random_state=0)
+#results = cross_val_score(automl, X_train, y_train, cv=kfold)
+#print("Accuracy: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
 print("automodel1",automl.show_models())
 print(type(automl.show_models()))
 #print(automl.cv_results_)
@@ -85,7 +89,7 @@ print("automl.fit")
 print(automl.fit(X_test, y_test))
 finalmodel_file ='finalmodelemsenble.pkl'
 finalmodel = open(finalmodel_file,'wb')
-pickle.dump(automl.show_models(),finalmodel)
+pickle.dump((automl,X_train,y_train),finalmodel)
 finalmodel.close()
 
 #save_object(automl.cv_results_,str("cv_results")+resultfile)
