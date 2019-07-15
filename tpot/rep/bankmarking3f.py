@@ -102,3 +102,6 @@ y_pred = pipe.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 
 print("Accuracy: %.2f%%" % (accuracy * 100.0))
+kfold = KFold(n_splits=3, random_state=7)
+results = cross_val_score(model, X_train, y_train, cv=kfold)
+print("Accuracy: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))

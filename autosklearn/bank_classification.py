@@ -48,21 +48,28 @@ categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='co
 preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
      ('cat', categorical_transformer, categorical_features)])
 ################################################################################
+X = preprocessor.fit_transform(X)
+X_train, X_test, y_train, y_test = \
+sklearn.model_selection.train_test_split(X, y, random_state=1)
 
 
-
-
+#######################################################################################
 automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=360,\
         delete_tmp_folder_after_terminate=False,\
         resampling_strategy='cv',\
         resampling_strategy_arguments={'folds': int(foldn)},)
-clf = Pipeline(steps=[('preprocessor', preprocessor),
-                      ('classifier', automl)])
-X_train, X_test, y_train, y_test = \
-sklearn.model_selection.train_test_split(X, y, random_state=1)
 
-clf.fit(X_train, y_train)
+##########################################
 
+#clf = Pipeline(steps=[('preprocessor', preprocessor),
+                      #('classifier', automl)])
+
+automl.fit(X_train, y_train)
+automl.refit(X_train, y_train)
+y_pred = automl.predict(X_test)
+print("accuracy: ", sklearn.metrics.accuracy_score(y_test, y_pred))
+print(automl.sprint_statistics())
+print(automl.show_models())
 #pattern = r"(?P<framework>[\w\-]+?)_(?P<task>[\w\-]+)_(?P<fold>\d+)(_(?P<datetime>\d{8}T\d{6}))?.csv"
 
 def save_object(obj, filename):
@@ -74,11 +81,11 @@ save_object(automl.show_models(),str("showmodels")+resultfile)
 print("automodel1",automl.show_models())
 print(type(automl.show_models()))
 #print(automl.cv_results_)
-print("clf.fit")
-print(clf.fit(X_test, y_test))
+print("automl.fit")
+print(automl.fit(X_test, y_test))
 finalmodel_file ='finalmodelemsenble.pkl'
 finalmodel = open(finalmodel_file,'wb')
-pickle.dump(clf,finalmodel)
+pickle.dump(automl,finalmodel)
 finalmodel.close()
 
 #save_object(automl.cv_results_,str("cv_results")+resultfile)
