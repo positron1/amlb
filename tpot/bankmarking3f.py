@@ -93,16 +93,25 @@ xgb = XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,\
        random_state=0, reg_alpha=0, reg_lambda=1, scale_pos_weight=1,\
        seed=None, silent=None, subsample=0.6000000000000001, verbosity=1)
 #xgb.fit(X_train,y_train, eval_metric='auc')  # works fine
-kfold = KFold(n_splits=foldn, random_state=7)
+kfold = KFold(n_splits=int(foldn), random_state=7)
 # Making a pipeline with this classifier and a scaler:
 X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.120, random_state=0)
 results = cross_val_score(xgb, X_train, y_train, cv=kfold,scoring='roc_auc')
 
-pipe = Pipeline([('preprocessor', preprocessor), ('classifier', xgb)])
+pipe = Pipeline([('preprocessor', preprocessor), ('classifier', result)])
 
 pipe.fit(X_train, y_train)
 
-print roc_auc_score(y_test, rf.predict(X_test))
+finalmodel_file ='finalmodelemsenble.pkl'
+finalmodel = open(finalmodel_file,'wb')
+pickle.dump(pipe,finalmodel)
+finalmodel.close()
+
+
+
+
+
+print(roc_auc_score(y_test, rf.predict(X_test)))
 #tpot = TPOTClassifier(verbosity=1,max_time_mins=72, scoring= 'roc_auc', random_state=0,config_dict='TPOT sparse')
 #pipe = Pipeline([('preprocessor', preprocessor), ('classifier', tpot)])
 #pipe.fit(X_train, y_train)

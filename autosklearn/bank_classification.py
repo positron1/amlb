@@ -77,7 +77,7 @@ print(type(automl.show_models()))
 print("clf.fit")
 print(clf.fit(X_test, y_test))
 finalmodel_file ='finalmodelemsenble.pkl'
-finalmodel = open(finalmodel,'wb')
+finalmodel = open(finalmodel_file,'wb')
 pickle.dump(clf,finalmodel)
 finalmodel.close()
 
