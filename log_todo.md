@@ -62,3 +62,9 @@ Efficient and Robust Automated Machine Learning, Feurer et al., Advances in Neur
 
 
 
+- vritual environment with conda. (check: conda env list)
+- automl, h
+
+## Week of 070818
+- use show_model to interpret the model and parameter selection of autosklearn
+ 
