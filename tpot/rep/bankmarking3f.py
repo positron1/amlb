@@ -37,6 +37,7 @@ from sklearn.compose import ColumnTransformer
 from xgboost import XGBClassifier
 import xgboost 
 import sklearn
+from sklearn.model_selection import KFold
 ###### Read in data
 import pandas as pd
 import numpy as np

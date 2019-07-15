@@ -13,6 +13,8 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import preprocessing
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
 ##################################################
 import pickle
 from DateTime import DateTime
@@ -63,6 +65,7 @@ automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_tas
 
 automl.fit(X_train, y_train)
 y_pred = automl.predict(X_test)
+print("accuracy: ", sklearn.metrics.accuracy_score(automl.predict(X_train), y_train))
 print("accuracy: ", sklearn.metrics.accuracy_score(y_pred, y_test))
 print(automl.sprint_statistics())
 print(automl.show_models())
@@ -83,5 +86,7 @@ finalmodel_file ='finalmodelemsenble.pkl'
 finalmodel = open(finalmodel_file,'wb')
 pickle.dump(automl,finalmodel)
 finalmodel.close()
-
+kfold = KFold(n_splits=3, random_state=0)
+results = cross_val_score(automl, X_train, y_train, cv=kfold)
+print("Accuracy: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
 #save_object(automl.cv_results_,str("cv_results")+resultfile)

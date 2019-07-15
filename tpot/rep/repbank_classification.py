@@ -12,6 +12,8 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import preprocessing
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
 ##################################################
 import pickle
 from DateTime import DateTime
@@ -49,7 +51,7 @@ preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, nume
 ################################################################################
 X = preprocessor.fit_transform(X)
 X_train, X_test, y_train, y_test = \
-sklearn.model_selection.train_test_split(X, y, random_state=1)
+sklearn.model_selection.train_test_split(X, y, random_state=0)
 
 #######################################################################################
 automl = XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,\
@@ -62,6 +64,7 @@ automl = XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,\
 
 automl.fit(X_train, y_train)
 y_pred = automl.predict(X_test)
+print("accuracy: ", sklearn.metrics.accuracy_score(automl.predict(X_train), y_train))
 print("accuracy: ", sklearn.metrics.accuracy_score(y_pred, y_test))
 
 def save_object(obj, filename):
@@ -75,5 +78,8 @@ finalmodel_file ='finalmodelemsenble.pkl'
 finalmodel = open(finalmodel_file,'wb')
 pickle.dump(automl,finalmodel)
 finalmodel.close()
+kfold = KFold(n_splits=3, random_state=0)
+results = cross_val_score(automl, X_train, y_train, cv=kfold)
+print("Accuracy: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
 
 #save_object(automl.cv_results_,str("cv_results")+resultfile)

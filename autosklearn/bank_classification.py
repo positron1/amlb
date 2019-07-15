@@ -85,7 +85,7 @@ print("automl.fit")
 print(automl.fit(X_test, y_test))
 finalmodel_file ='finalmodelemsenble.pkl'
 finalmodel = open(finalmodel_file,'wb')
-pickle.dump(automl,finalmodel)
+pickle.dump(automl.show_models(),finalmodel)
 finalmodel.close()
 
 #save_object(automl.cv_results_,str("cv_results")+resultfile)
