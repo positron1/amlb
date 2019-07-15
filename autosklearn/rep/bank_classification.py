@@ -27,36 +27,50 @@ dirt = '../'
 resultfile = str(framework) + str(datasetn) + str(foldn) + \
 str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
 str(current_time.h_24()) + str(current_time.minute())  + str(time.time())+'.txt'
-
-
-data =pd.read_csv("/home/test/bank.csv",delimiter=';')
-column= data.columns.values
-X = data[column[:-1]]
-y = data[column[-1]]
-lb = preprocessing.LabelBinarizer()
-y= lb.fit_transform(y)
+def readin(pathtodata):
+    data =pd.read_csv(pathtodata,delimiter=';')
+    column= data.columns.values
+    X = data[column[:-1]]
+    y = data[column[-1]]
+    lb = preprocessing.LabelBinarizer()
+    y= lb.fit_transform(y)
+    return X,y
 ##################################################
-numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\
-    ('scaler', StandardScaler())])
-numeric_features = ['age','balance','day','duration','pdays','previous']
-numeric_transformer = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='median')),
-    ('scaler', StandardScaler())])
-categorical_features = ['job', 'marital', 'education', 'default','housing', 'loan', 'contact', 'month', 'campaign', 'poutcome']
-categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
-    ('onehot', OneHotEncoder(handle_unknown='ignore'))])
-preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
-     ('cat', categorical_transformer, categorical_features)])
+
+def preprocess(nimputer,nscaler,numeric_features,cimputer,categorical_features,encoder):
+    numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\
+        ('scaler', StandardScaler())])
+    numeric_transformer = Pipeline(steps=[
+        ('imputer', SimpleImputer(strategy='median')),
+        ('scaler', StandardScaler())])
+    categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
+        ('onehot', OneHotEncoder(handle_unknown='ignore'))])
+    preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
+         ('cat', categorical_transformer, categorical_features)])
+    return preprocessor
 ################################################################################
+def getpara():
+   ############## read from show_model 
+pathtodata = "/home/test/bank.csv"
+numeric_features = ['age','balance','day','duration','pdays','previous']
+categorical_features = ['job', 'marital', 'education', 'default','housing', 'loan', 'contact', 'month', 'campaign', 'poutcome']
+#### parameter of final models #######
+nimputer = ['median']
+nscaler = ['scaler']
+cimputer = ['constant']
+cscaler = ['']
+encoder = ['onehot']
+X,y = readin(pathtodata)
+for i,n in enumerate(nimputer):
+   preprocessor = preprocess(nimputer[i],nscaler[i],numeric_features,cimputer[i],categorical_features,encoder[])
+   clf = RandomForestClassifier(
 
-
-
-
-automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=360,\
-        delete_tmp_folder_after_terminate=False,\
-        resampling_strategy='cv',\
-        resampling_strategy_arguments={'folds': int(foldn)},)
-clf = Pipeline(steps=[('preprocessor', preprocessor),
+#
+#automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=72,\
+#        delete_tmp_folder_after_terminate=False,\
+#        resampling_strategy='cv',\
+#        resampling_strategy_arguments={'folds': int(foldn)},)
+   clf = Pipeline(steps=[('preprocessor', preprocessor),
                       ('classifier', automl)])
 X_train, X_test, y_train, y_test = \
 sklearn.model_selection.train_test_split(X, y, random_state=1)
@@ -70,15 +84,7 @@ def save_object(obj, filename):
         pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
 # sample usage
 save_object(automl.show_models(),str("showmodels")+resultfile)
-
-print("automodel1",automl.show_models())
-print(type(automl.show_models()))
-#print(automl.cv_results_)
+print(automl.cv_results_)
 print("clf.fit")
 print(clf.fit(X_test, y_test))
-finalmodel_file ='finalmodelemsenble.pkl'
-finalmodel = open(finalmodel,'wb')
-pickle.dump(clf,finalmodel)
-finalmodel.close()
-
 #save_object(automl.cv_results_,str("cv_results")+resultfile)

@@ -37,4 +37,7 @@
 
 ## Week of 070818
 - use show_model to interpret the model and parameter selection of autosklearn
- 
+## Week of 071519
+
+- use train data with 3 fold cross validation and test hold-out
+
