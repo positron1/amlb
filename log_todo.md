@@ -70,4 +70,4 @@ Efficient and Robust Automated Machine Learning, Feurer et al., Advances in Neur
 ## Week of 071519
 
 - use train data with 3 fold cross validation and test hold-out
-
+- add read data method in utils
