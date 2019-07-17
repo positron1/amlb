@@ -101,7 +101,7 @@ results = cross_validate(pipe, X_train, y_train, cv= 3, scoring='roc_auc')
 
 finalmodel_file ='finalmodelemsenble.pkl'
 finalmodel = open(finalmodel_file,'wb')
-pickle.dump(results,finalmodel)
+pickle.dump(,finalmodel)
 finalmodel.close()
 
 

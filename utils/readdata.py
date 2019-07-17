@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ############## Yongln Zhu #################
 ############ SAS Institute ################
 ########### July, 2019
@@ -65,3 +66,14 @@ if __name__ == '__main__':
     #    parser.print_help()
     #    sys.exit(1)
     main(options, args)
+=======
+from sas7bdat import SAS7BDAT
+
+dirt = 
+
+
+
+with SAS7BDAT('foo.sas7bdat') as f:
+    for row in f:
+        print row
+>>>>>>> 46ceb177fb32eb2001693832951e8bd88d8b5439
