@@ -24,50 +24,66 @@ current_time = DateTime(time.time(), 'US/Eastern')
 framework = 'autosklearn'
 datasetn = 'bankmarketing'
 foldn =  '3'
-dirt = '../'
+timeforjob=3600
+dirt = '/root/data/'
 
 resultfile = str(framework) + str(datasetn) + str(foldn) + \
 str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
 str(current_time.h_24()) + str(current_time.minute())  + str(time.time())+'.txt'
+dataset = "uci_bank_marketing_pd"
+dtrain = pd.read_csv(dirt+dataset+"train.csv")
+dvalid =pd.read_csv(dirt+dataset+"valid.csv")
+dtest =pd.read_csv(dirt+dataset+"test.csv")
 
+data_train = dtrain.append(dvalid)
 
-data =pd.read_csv("/home/test/bank.csv",delimiter=';')
-column= data.columns.values
-X = data[column[:-1]]
-y = data[column[-1]]
-lb = preprocessing.LabelBinarizer()
-y= lb.fit_transform(y)
+dtest = dtest.drop(['_dmIndex_','_PartInd_'],axis=1)
+data_train = data_train.drop(['_dmIndex_','_PartInd_'],axis=1)
+
+column= data_train.columns.values
+X_test = dtest[column[:-1]]
+y_test = dtest[column[-1]]
+X_train = data_train[column[:-1]]
+y_train = data_train[column[-1]]
 ##################################################
+
+print(column)
 numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\
     ('scaler', StandardScaler())])
-numeric_features = ['age','balance','day','duration','pdays','previous']
+
+numeric_features = ['age','duration','pdays','previous','emp_var_rate','cons_price_idx','cons_conf_idx','euribor3m','nr_employed']
 numeric_transformer = Pipeline(steps=[
     ('imputer', SimpleImputer(strategy='median')),
     ('scaler', StandardScaler())])
-categorical_features = ['job', 'marital', 'education', 'default','housing', 'loan', 'contact', 'month', 'campaign', 'poutcome']
+categorical_features = ['job', 'marital', 'education', 'default','housing', 'loan', 'contact', 'month','day_of_week', 'campaign', 'poutcome']
 categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
     ('onehot', OneHotEncoder(handle_unknown='ignore'))])
 preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
      ('cat', categorical_transformer, categorical_features)])
 ################################################################################
-X = preprocessor.fit_transform(X)
-X_train, X_test, y_train, y_test = \
-sklearn.model_selection.train_test_split(X, y, random_state=1)
+lb = preprocessing.LabelBinarizer()
+y_train = lb.fit_transform(y_train)
+y_test = lb.fit_transform(y_test)
+
+X_train = preprocessor.fit_transform(X_train)
+X_test = preprocessor.fit_transform(X_test)
 
 
 #######################################################################################
-automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=360,\
+automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
         delete_tmp_folder_after_terminate=False,\
+        n_jobs=4,\
         resampling_strategy='cv',\
         resampling_strategy_arguments={'folds': int(foldn)},)
 
 ##########################################
 
 #clf = Pipeline(steps=[('preprocessor', preprocessor),
-                      #('classifier', automl)])
-
+print(np.ndim(X_train))
 automl.fit(X_train, y_train)
+print(np.ndim(X_train))
 automl.refit(X_train, y_train)
+print(np.ndim(X_train))
 y_pred = automl.predict(X_test)
 print("accuracy: ", sklearn.metrics.accuracy_score(y_test, y_pred))
 print(automl.sprint_statistics())
