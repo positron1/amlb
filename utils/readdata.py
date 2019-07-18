@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ############## Yongln Zhu #################
 ############ SAS Institute ################
 ########### July, 2019
@@ -57,7 +56,7 @@ if __name__ == '__main__':
     defaults to the name of the input file with a csv extension. <pathtodata> can
     also be a glob expression in which case the [dataset] argument is ignored.
     Use --help for more details""")
-    parser.add_option('-v','--verbose',action='store_True',default=True)
+    parser.add_option('-v','--verbose',action='store_true',default=True)
     parser.add_option('-p','--path',action='store',default=dirt)
     parser.add_option('-d','--data',action='store',default=dataset)
     ##############################################
@@ -66,14 +65,3 @@ if __name__ == '__main__':
     #    parser.print_help()
     #    sys.exit(1)
     main(options, args)
-=======
-from sas7bdat import SAS7BDAT
-
-dirt = 
-
-
-
-with SAS7BDAT('foo.sas7bdat') as f:
-    for row in f:
-        print row
->>>>>>> 46ceb177fb32eb2001693832951e8bd88d8b5439

@@ -54,7 +54,7 @@ X_train, X_test, y_train, y_test = \
 sklearn.model_selection.train_test_split(X, y, random_state=1)
 X_train = preprocessor.fit_transform(X_train)
 X_test = preprocessor.fit_transform(X_test)
-
+print(X_test)
 #######################################################################################
 automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=360,\
         delete_tmp_folder_after_terminate=False,\
