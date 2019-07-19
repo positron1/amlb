@@ -64,11 +64,15 @@ preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, nume
      ('cat', categorical_transformer, categorical_features)])
 lb = preprocessing.LabelBinarizer()
 ################################################################################
-X = data.drop(['y'],axis=1)
+X = pd.DataFrame(data.drop(['y'],axis=1))
 data["y"]=data.where(data["y"]=='yes',1)
 data["y"]=data.where(data["y"]=='no',0)
-
-#y = lb.fit_transform(y)
+#for cf in categorical_features:
+#   labels,uniques= pd.factorize(data[cf])
+#   data[cf]=labels
+#
+#print(data[categorical_features])
+##y = lb.fit_transform(y)
 
 #y_test = lb.fit_transform(y_test)
 print("before",X)
