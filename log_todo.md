@@ -72,3 +72,23 @@ Efficient and Robust Automated Machine Learning, Feurer et al., Advances in Neur
 - use train data with 3 fold cross validation and test hold-out
 - add read data method in utils
 - one hot encoding for train and test: 
+- use pandas for onehotencoding
+## Week of 072219
+- Use vanilla_bank, let framework do the partition 
+- Use prepartitioned data for benchmarking
+-
+-
+-
+-
+-
+-
+-
+
+
+
+
+
+
+
+
+
