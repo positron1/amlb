@@ -1,1 +1,18 @@
-
+dataset	fold timelimit(second)	core	AUC
+bankmarketing,n/a,3600,8,0.9150279193979121
+dataset	fold	timelimit(second)	core	AUC
+bankmarketing,3,600,8,0.9099295945617868
+dataset	fold	timelimit(second)	core	AUC
+bankmarketing,3,7200,8,0.9157562515173586
+dataset	fold	timelimit(second)	core	AUC
+bankmarketing,3,1800,8,0.9163631949502307
+dataset	fold	timelimit(second)	core	prepartitioned	AUC
+bankmarketing,3,1800,8,True,1.0
+dataset	fold	timelimit(second)	core	prepartitioned	AUC
+bankmarketing,3,3600,8,True,1.0
+dataset	fold	timelimit(second)	core	prepartitioned	AUC
+bankmarketing,3,1800,8,True,1.0
+dataset	fold	timelimit(second)	core	prepartitioned	AUC
+bankmarketing,3,1800,8,True,1.0
+dataset	fold	timelimit(second)	core	prepartitioned	AUC
+bankmarketing,3,1800,8,True,1.0
