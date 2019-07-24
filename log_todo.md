@@ -59,10 +59,6 @@ Efficient and Robust Automated Machine Learning, Feurer et al., Advances in Neur
 ### autoweka
 
 ## Model Studio
-
-
-
-- vritual environment with conda. (check: conda env list)
 - automl, h
 
 ## Week of 070818
@@ -75,6 +71,10 @@ todo:
 try to do 3 fold and visualize
 
 score from autosklearn and tpot: avg(CV)
-
-
-
+=======
+- add read data method in utils
+- one hot encoding for train and test: 
+- use pandas for onehotencoding
+## Week of 072219
+- Use vanilla_bank, let framework do the partition 
+- Use prepartitioned data for benchmarking

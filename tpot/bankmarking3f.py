@@ -99,14 +99,6 @@ results = cross_validate(pipe, X_train, y_train, cv= 3, scoring='roc_auc')
 
 
 
-finalmodel_file ='finalmodelemsenble.pkl'
-finalmodel = open(finalmodel_file,'wb')
-pickle.dump(results,finalmodel)
-finalmodel.close()
-
-
-
-
 #tpot = TPOTClassifier(verbosity=1,max_time_mins=72, scoring= 'roc_auc', random_state=0,config_dict='TPOT sparse')
 #pipe = Pipeline([('preprocessor', preprocessor), ('classifier', tpot)])
 #pipe.fit(X_train, y_train)

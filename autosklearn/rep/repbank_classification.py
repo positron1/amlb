@@ -54,7 +54,7 @@ X_train, X_test, y_train, y_test = \
 sklearn.model_selection.train_test_split(X, y, random_state=1)
 X_train = preprocessor.fit_transform(X_train)
 X_test = preprocessor.fit_transform(X_test)
-
+print(X_test)
 #######################################################################################
 automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=360,\
         delete_tmp_folder_after_terminate=False,\
@@ -64,6 +64,7 @@ automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_tas
 ##########################################
 
 automl.fit(X_train, y_train)
+automl.refit(X_train, y_train)
 y_pred = automl.predict(X_test)
 print("accuracy: ", sklearn.metrics.accuracy_score(automl.predict(X_train), y_train))
 print("accuracy: ", sklearn.metrics.accuracy_score(y_pred, y_test))
@@ -82,11 +83,10 @@ print(type(automl.show_models()))
 #print(automl.cv_results_)
 print("automl.fit")
 print(automl.fit(X_test, y_test))
-finalmodel_file ='finalmodelemsenble.pkl'
-finalmodel = open(finalmodel_file,'wb')
-pickle.dump(automl,finalmodel)
-finalmodel.close()
 kfold = KFold(n_splits=3, random_state=0)
 results = cross_val_score(automl, X_train, y_train, cv=kfold)
 print("Accuracy: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
-#save_object(automl.cv_results_,str("cv_results")+resultfile)
+finalmodel_file ='finalmodelemsenble.pkl'
+finalmodel = open(finalmodel_file,'wb')
+pickle.dump((automl,X_train,y_train,results),finalmodel)
+finalmodel.close()
