@@ -68,6 +68,7 @@ data_cat = data[categorical_features].fillna('missing')
 data_cat=pd.get_dummies(data_cat)
 
 X = pd.concat([data[index],data_num,data_cat], axis=1)
+X.to_csv("X.csv")
 X_train =X[X['_PartInd_']>0]
 X_test =X[X['_PartInd_']==0]
 X_test = X_test.drop(columns=['_dmIndex_','_PartInd_'])

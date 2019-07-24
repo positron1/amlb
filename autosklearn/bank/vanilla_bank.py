@@ -67,7 +67,7 @@ y= lb.fit_transform(y)
 ##########################################################
 ##################################################################
 X=preprocessor.fit_transform(X)
-
+pd.DataFrame(X).to_csv('X_vanilla.csv')
 X_train, X_test, y_train, y_test = \
   sklearn.model_selection.train_test_split(X, y,test_size=0.2, random_state=1)
 pd.DataFrame(X_train).to_csv("xtrain_vanilla.csv")
