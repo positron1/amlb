@@ -59,36 +59,22 @@ Efficient and Robust Automated Machine Learning, Feurer et al., Advances in Neur
 ### autoweka
 
 ## Model Studio
-
-
-
-- vritual environment with conda. (check: conda env list)
 - automl, h
 
 ## Week of 070818
 - use show_model to interpret the model and parameter selection of autosklearn
 ## Week of 071519
-
+- use pickle(https://dataaspirant.com/2017/02/13/save-scikit-learn-models-with-python-pickle/) to save modeli
+- use netron to visualize final model???(https://github.com/lutzroeder/netron/tree/v3.2.8)
 - use train data with 3 fold cross validation and test hold-out
+todo: 
+try to do 3 fold and visualize
+
+score from autosklearn and tpot: avg(CV)
+=======
 - add read data method in utils
 - one hot encoding for train and test: 
 - use pandas for onehotencoding
 ## Week of 072219
 - Use vanilla_bank, let framework do the partition 
 - Use prepartitioned data for benchmarking
--
--
--
--
--
--
--
-
-
-
-
-
-
-
-
-
