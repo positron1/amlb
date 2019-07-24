@@ -35,7 +35,7 @@ current_time = DateTime(time.time(), 'US/Eastern')
 framework = 'autosklearn'
 datasetn = 'bankmarketing'
 foldn =  '3'
-timeforjob = 3600
+timeforjob = 2*3600
 ncore = 8
 dirt = '/root/data/'
 ############################################################################################################
@@ -70,7 +70,9 @@ X=preprocessor.fit_transform(X)
 
 X_train, X_test, y_train, y_test = \
   sklearn.model_selection.train_test_split(X, y,test_size=0.2, random_state=1)
-
+pd.DataFrame(X_train).to_csv("xtrain_vanilla.csv")
+pd.DataFrame(y_train).to_csv("ytrain_vanilla.csv")
+print(X_train)
 #################################################################################
 automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
         per_run_time_limit=int(timeforjob/10),\

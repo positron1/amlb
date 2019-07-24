@@ -45,6 +45,7 @@ str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) +
 str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] + str(framework)+'prepart.txt'
 dataset = "uci_bank_marketing_pd"
 data = pd.read_csv(dirt+dataset+".csv") # panda.DataFrame
+print(data.describe())
 #############################################################
 numeric_features = ['age','duration','pdays','previous','emp_var_rate','cons_price_idx','cons_conf_idx','euribor3m','nr_employed']
 categorical_features = ['job', 'marital', 'education', 'default','housing', 'loan', 'contact', 'month','day_of_week', 'campaign', 'poutcome']
@@ -79,6 +80,10 @@ y_test =y[y['_PartInd_']==0]
 y_train =y[y['_PartInd_']>0]
 y_train =y_train.drop(columns=['_dmIndex_','_PartInd_']).astype(int)
 y_test = y_test.drop(columns=['_dmIndex_','_PartInd_']).astype(int)
+X_train.to_csv("x_train.csv")
+y_train.to_csv("y_train.csv")
+print(X.describe())
+print(X_train.describe())
 #################################################################################
 automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
         per_run_time_limit=int(timeforjob/10),\

@@ -1,0 +1,76 @@
+0        0.722722
+2        0.722722
+5        0.722722
+6        0.722722
+7        0.722722
+8        0.722722
+10       0.722722
+12       0.722722
+14       0.722722
+15       0.722722
+16       0.722722
+17       0.722722
+18       0.722722
+20       0.722722
+22       0.722722
+23       0.722722
+24       0.722722
+25       0.722722
+26       0.722722
+27       0.722722
+29       0.722722
+30       0.722722
+31       0.722722
+32       0.722722
+33       0.722722
+34       0.722722
+39       0.722722
+41       0.722722
+42       0.722722
+43       0.722722
+           ...   
+41145    2.058168
+41147    2.058168
+41149    2.058168
+41150    2.058168
+41152    2.058168
+41153    2.058168
+41156    2.058168
+41157    2.058168
+41158    2.058168
+41159    2.058168
+41160    2.058168
+41161    2.058168
+41163    2.058168
+41164    2.058168
+41165    2.058168
+41166    2.058168
+41168    2.058168
+41169    2.058168
+41170    2.058168
+41171    2.058168
+41172    2.058168
+41173    2.058168
+41174    2.058168
+41176    2.058168
+41177    2.058168
+41179    2.058168
+41180    2.058168
+41182    2.058168
+41184    2.058168
+41185    2.058168
+Name: 5, Length: 32949, dtype: float64
+[WARNING] [2019-07-23 20:59:16,505:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
+[WARNING] [2019-07-23 20:59:16,526:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
+[WARNING] [2019-07-23 20:59:18,531:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
+[WARNING] [2019-07-23 20:59:20,534:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
+[WARNING] [2019-07-23 20:59:22,538:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
+[WARNING] [2019-07-23 20:59:24,542:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
+[WARNING] [2019-07-23 20:59:26,547:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
+[WARNING] [2019-07-23 20:59:28,551:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
+[WARNING] [2019-07-23 20:59:30,556:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
+[WARNING] [2019-07-23 20:59:32,560:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
+[WARNING] [2019-07-23 20:59:34,563:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
+[WARNING] [2019-07-23 20:59:36,568:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
+[WARNING] [2019-07-23 20:59:38,573:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
+[WARNING] [2019-07-23 20:59:40,576:EnsembleBuilder(1791095845):a9e74e5cf79b14d3f4888fc0bffa6d05] No models better than random - using Dummy Score!
