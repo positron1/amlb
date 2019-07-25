@@ -1,6 +1,6 @@
 ############## Yongln Zhu #################
-############ SAS Institute ################
-########### July, 2019
+############# SAS Institute ################
+############ July, 2019
 
 '''
 Transfer data from sas7bdat to csv
@@ -14,6 +14,7 @@ import optparse
 
 
 def sas_to_csv(dirt,dataset):
+##################################
     print("\n\nReading data from",dirt+"sasdat/" + dataset+".sas7bdat")
     with SAS7BDAT(dirt+"sasdat/" + dataset+".sas7bdat") as f:
         df = f.to_data_frame()
