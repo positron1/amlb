@@ -78,15 +78,25 @@ def save_object(obj, filename):
 # sample usage
 save_object(automl.show_models(),str("showmodels")+resultfile)
 
-print("automodel1",automl.show_models())
-print(type(automl.show_models()))
+finalmodel_file ='finalmodelemsenble.pkl'
+
+from sklearn.externals import joblib
+_ = joblib.dump(automl,finalmodel_file, compress=9)
+
+import coremltools
+import sklearn
+sklearn_model = sklearn.externals.joblib.load(finalmodel_file)
+coreml_model = coremltools.converters.sklearn.convert(sklearn_model)
+coreml_model.save(finalmodel_file + '.mlmodel')
+
+#print("automodel1",automl.show_models())
+#print(type(automl.show_models()))
 #print(automl.cv_results_)
 print("automl.fit")
 print(automl.fit(X_test, y_test))
 kfold = KFold(n_splits=3, random_state=0)
 results = cross_val_score(automl, X_train, y_train, cv=kfold)
 print("Accuracy: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
-finalmodel_file ='finalmodelemsenble.pkl'
-finalmodel = open(finalmodel_file,'wb')
-pickle.dump((automl,X_train,y_train,results),finalmodel)
-finalmodel.close()
+#finalmodel = open(finalmodel_file,'wb')
+#pickle.dump((automl,X_train,y_train,results),finalmodel)
+#finalmodel.close()

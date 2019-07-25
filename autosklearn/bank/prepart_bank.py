@@ -35,7 +35,7 @@ current_time = DateTime(time.time(), 'US/Eastern')
 framework = 'autosklearn'
 datasetn = 'bankmarketing'
 foldn =  '3'
-timeforjob= 360
+timeforjob= 30*60
 prepart = True
 ncore = 8
 dirt = '/root/data/'
@@ -164,7 +164,7 @@ automl.refit(X_train.copy(),y_train.copy())
 ###################################################################
 y_pred = automl.predict(X_test)
 ######################################################################
-briefout = open('result.csv','a')
+briefout = open('prepart_result.csv','a')
 briefout.write("dataset\t"+"fold\t"+"timelimit(second)\t"+"core\t"+"prepartitioned\t"+"AUC\n")
 briefout.write(str(datasetn)+","+str(foldn) +","+str(timeforjob)+","+ str(ncore)+","+str(prepart)+","+str(sklearn.metrics.accuracy_score(y_test, y_pred))+"\n")
 briefout.close()
