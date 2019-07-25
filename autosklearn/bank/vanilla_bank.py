@@ -35,7 +35,7 @@ current_time = DateTime(time.time(), 'US/Eastern')
 framework = 'autosklearn'
 datasetn = 'bankmarketing'
 foldn =  '3'
-timeforjob = 2*3600
+timeforjob = 360
 ncore = 8
 dirt = '/root/data/'
 ############################################################################################################
@@ -54,7 +54,7 @@ numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median
     ('scaler', StandardScaler())])
 
 categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
-    ('onehot', OneHotEncoder())])
+    ('onehot', OneHotEncoder(sparse=False))])
 
 preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
      ('cat', categorical_transformer, categorical_features)])
@@ -67,11 +67,11 @@ y= lb.fit_transform(y)
 ##########################################################
 ##################################################################
 X=preprocessor.fit_transform(X)
-pd.DataFrame(X).to_csv('X_vanilla.csv')
+#pd.DataFrame(X).to_csv('X_vanilla.csv')
 X_train, X_test, y_train, y_test = \
   sklearn.model_selection.train_test_split(X, y,test_size=0.2, random_state=1)
-pd.DataFrame(X_train).to_csv("xtrain_vanilla.csv")
-pd.DataFrame(y_train).to_csv("ytrain_vanilla.csv")
+#pd.DataFrame(X_train).to_csv("xtrain_vanilla.csv")
+#pd.DataFrame(y_train).to_csv("ytrain_vanilla.csv")
 print(X_train)
 #################################################################################
 automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
@@ -104,3 +104,21 @@ resultfileout.write(str(automl.cv_results_))
 resultfileout.close()
 
 
+
+finalmodel_file ='finalmodelemsenble.pkl'
+
+from sklearn.externals import joblib
+_ = joblib.dump(automl,finalmodel_file, compress=9)
+
+import coremltools
+import sklearn
+sklearn_model = sklearn.externals.joblib.load(finalmodel_file)
+coreml_model = coremltools.converters.sklearn.convert(sklearn_model)
+coreml_model.save(finalmodel_file + '.mlmodel')
+
+#print("automodel1",automl.show_models())
+#print(type(automl.show_models()))
+#print(automl.cv_results_)
+#finalmodel = open(finalmodel_file,'wb')
+#pickle.dump((automl,X_train,y_train,results),finalmodel)
+#finalmodel.close()

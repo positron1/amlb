@@ -12,7 +12,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import OneHotEncoder,OrdinalEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import preprocessing
@@ -44,58 +44,104 @@ resultfile = str(datasetn)+str(foldn) +"fold"+ str(timeforjob) + "seconds" + str
 str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
 str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] + str(framework)+'prepart.txt'
 dataset = "uci_bank_marketing_pd"
-data = pd.read_csv(dirt+dataset+".csv") # panda.DataFrame
-print(data.columns)
-#############################################################
 numeric_features = ['age','duration','pdays','previous','emp_var_rate','cons_price_idx','cons_conf_idx','euribor3m','nr_employed']
 categorical_features = ['job', 'marital', 'education', 'default','housing', 'loan', 'contact', 'month','day_of_week', 'campaign', 'poutcome']
 
-numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\
-    ('scaler', StandardScaler())])
+def prep(dataset,dirt,numeric_features,categorical_features,delim=',',indexdrop=False):
+    index_features = ['_dmIndex_','_PartInd_']          
+    data = pd.read_csv(dirt+dataset+'.csv',delimiter=delim) # panda.DataFrame
+    print(data.columns)
+    data= data.astype({'_dmIndex_':'int', '_PartInd_':'int'}) 
+  
+    ###############################
+    index_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1))])
+    y_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1)),\
+                                   ('orden', OrdinalEncoder())])
+    numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\
+        ('scaler', StandardScaler())])
 
-categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
-    ('onehot', OneHotEncoder())])
+    categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
+        ('onehot', OneHotEncoder(sparse=False))])
 
-preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
-     ('cat', categorical_transformer, categorical_features)])
-index = ['_dmIndex_','_PartInd_']
-######################################################################
-data_num = data[numeric_features]
-data_num = data_num.fillna(data_num.mean())
-data_num = pd.DataFrame(StandardScaler().fit_transform(data_num))
-##### ONEHOTENCODING in scikit learn do not keep column names, so use pandas.get_dummies
-data_cat = data[categorical_features].fillna('missing')
-data_cat=pd.get_dummies(data_cat)
+    preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
+         ('cat', categorical_transformer, categorical_features), ('y',y_transformer,['y']),('index',index_transformer, index_features)])
 
-X = pd.concat([data[index],data_num,data_cat], axis=1)
-X.to_csv("X.csv")
-print(X.columns)
-X_train =X[X['_PartInd_']>0]
-X_test =X[X['_PartInd_']==0]
-X_test = X_test.drop(columns=['_dmIndex_','_PartInd_'])
-X_train =X_train.drop(columns=['_dmIndex_','_PartInd_'])
-####################### Y ######################
-data["y"]=data.where(data["y"]=='yes',1)
-data["y"]=data.where(data["y"]=='no',0)
-y = data[index+['y']]
-y_test =y[y['_PartInd_']==0]
-y_train =y[y['_PartInd_']>0]
-y_train =y_train.drop(columns=['_dmIndex_','_PartInd_']).astype(int)
-y_test = y_test.drop(columns=['_dmIndex_','_PartInd_']).astype(int)
-print(X_train['y'])
-X_train.to_csv("x_train.csv")
-y_train.to_csv("y_train.csv")
-print(X.describe())
-print(X_train.describe())
-X_train_f, X_test_f, y_train_f, y_test_f = \
-  sklearn.model_selection.train_test_split(X_train, y_train,test_size=0.2, random_state=1)
-print(type(X_train_f))
-X_train = pd.concat([X_train_f,X_test_f])
-y_train = pd.concat([y_train_f,y_test_f])
-X_train_f, X_test_f, y_train_f, y_test_f = \
-  sklearn.model_selection.train_test_split(X_test, y_test,test_size=0.2, random_state=1)
-X_test = pd.concat([X_train_f,X_test_f])
-y_test = pd.concat([y_train_f,y_test_f])
+    ######################################################################
+    #X = data[index+categorical_features+numeric_features]
+    #X = data[['y']+index_features+categorical_features+numeric_features]
+    data=preprocessor.fit_transform(data)
+    data=pd.DataFrame(data)
+    col =data.columns.values
+    print(col)
+    X=data.drop(col[-3:],axis=1)
+    X_train = data[data[col[-1]]>0].drop(col[-3:],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
+    X_test = data[data[col[-1]]==0].drop(col[-3:],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
+    print(data.shape)
+
+####################################################################
+    #y= data["y"]
+    #lb = preprocessing.LabelBinarizer()
+    #y= lb.fit_transform(y)
+    #data["y"]=data.where(data["y"]=='yes',1)
+    #data["y"]=data.where(data["y"]=='no',0)
+    y=data[col[-3]]
+    y_train =data[data[col[-1]]>0][col[-3]]
+    y_test =data[data[col[-1]]==0][col[-3]]
+    ##########################################################
+    ##################################################################
+    
+    #X_train, X_test, y_train, y_test = \
+      #sklearn.model_selection.train_test_split(X, y,test_size=0.2, random_state=1)
+    return data,X,y,X_train, y_train,X_test, y_test
+
+#
+#numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\
+#    ('scaler', StandardScaler())])
+#
+#categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
+#    ('onehot', OneHotEncoder())])
+#
+#preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
+#     ('cat', categorical_transformer, categorical_features)])
+#index = ['_dmIndex_','_PartInd_']
+#######################################################################
+#data_num = data[numeric_features]
+#data_num = data_num.fillna(data_num.mean())
+#data_num = pd.DataFrame(StandardScaler().fit_transform(data_num))
+###### ONEHOTENCODING in scikit learn do not keep column names, so use pandas.get_dummies
+#data_cat = data[categorical_features].fillna('missing')
+#data_cat=pd.get_dummies(data_cat)
+#
+#X = pd.concat([data[index],data_num,data_cat], axis=1)
+#X.to_csv("X.csv")
+#print(X.columns)
+#X_train =X[X['_PartInd_']>0]
+#X_test =X[X['_PartInd_']==0]
+#X_test = X_test.drop(columns=['_dmIndex_','_PartInd_'])
+#X_train =X_train.drop(columns=['_dmIndex_','_PartInd_'])
+######################## Y ######################
+#data["y"]=data.where(data["y"]=='yes',1)
+#data["y"]=data.where(data["y"]=='no',0)
+#y = data[index+['y']]
+#y_test =y[y['_PartInd_']==0]
+#y_train =y[y['_PartInd_']>0]
+#y_train =y_train.drop(columns=['_dmIndex_','_PartInd_']).astype(int)
+#y_test = y_test.drop(columns=['_dmIndex_','_PartInd_']).astype(int)
+#print(X_train['y'])
+#X_train.to_csv("x_train.csv")
+#y_train.to_csv("y_train.csv")
+#print(X.describe())
+#print(X_train.describe())
+#X_train_f, X_test_f, y_train_f, y_test_f = \
+#  sklearn.model_selection.train_test_split(X_train, y_train,test_size=0.2, random_state=1)
+#print(type(X_train_f))
+#X_train = pd.concat([X_train_f,X_test_f])
+#y_train = pd.concat([y_train_f,y_test_f])
+#X_train_f, X_test_f, y_train_f, y_test_f = \
+#  sklearn.model_selection.train_test_split(X_test, y_test,test_size=0.2, random_state=1)
+#X_test = pd.concat([X_train_f,X_test_f])
+#y_test = pd.concat([y_train_f,y_test_f])
+data,X,y,X_train, y_train,X_test, y_test = prep(dataset,dirt,numeric_features,categorical_features,delim=',',indexdrop=False)
 #################################################################################
 automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
         per_run_time_limit=int(timeforjob/10),\

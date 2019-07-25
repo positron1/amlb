@@ -83,3 +83,5 @@ bankmarketing,3,360,8,True,1.0
 
 [8239 rows x 1 columns]dataset	fold	timelimit(second)	core	prepartitioned	AUC
 bankmarketing,3,360,8,True,1.0
+dataset	fold	timelimit(second)	core	prepartitioned	AUC
+bankmarketing,3,360,8,True,0.9149168588420925
