@@ -16,9 +16,11 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import preprocessing
+from sklearn.ensemble import AdaBoostClassifier
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
 ##################################################
+from sklearn.metrics import roc_auc_score
 import pickle
 from DateTime import DateTime
 import time
@@ -69,7 +71,6 @@ data_cat=pd.get_dummies(data_cat)
 
 X = pd.concat([data[index],data_num,data_cat], axis=1)
 X.to_csv("X.csv")
-print(X.columns)
 X_train =X[X['_PartInd_']>0]
 X_test =X[X['_PartInd_']==0]
 X_test = X_test.drop(columns=['_dmIndex_','_PartInd_'])
@@ -82,14 +83,10 @@ y_test =y[y['_PartInd_']==0]
 y_train =y[y['_PartInd_']>0]
 y_train =y_train.drop(columns=['_dmIndex_','_PartInd_']).astype(int)
 y_test = y_test.drop(columns=['_dmIndex_','_PartInd_']).astype(int)
-print(X_train['y'])
 X_train.to_csv("x_train.csv")
 y_train.to_csv("y_train.csv")
-print(X.describe())
-print(X_train.describe())
 X_train_f, X_test_f, y_train_f, y_test_f = \
   sklearn.model_selection.train_test_split(X_train, y_train,test_size=0.2, random_state=1)
-print(type(X_train_f))
 X_train = pd.concat([X_train_f,X_test_f])
 y_train = pd.concat([y_train_f,y_test_f])
 X_train_f, X_test_f, y_train_f, y_test_f = \
@@ -113,12 +110,18 @@ automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_tas
     # final ensemble on the whole dataset.
 #clf = Pipeline(steps=[('preprocessor', preprocessor),
 #                      ('classifier', automl)])
-automl.fit(X_train.copy(), y_train.copy())
-automl.refit(X_train.copy(),y_train.copy())
+clf = AdaBoostClassifier(n_estimators=100)
+clf.fit(X_train,y_train)
+y_pred = clf.predict(X_test)
+
+#automl.fit(X_train.copy(), y_train.copy())
+#automl.refit(X_train.copy(),y_train.copy())
 ###################################################################
-y_pred = automl.predict(X_test)
+#y_pred = automl.predict(X_test)
 ######################################################################
 briefout = open('result.csv','a')
+briefout.write(str(y_pred))
+briefout.write(str(y_test))
 briefout.write("dataset\t"+"fold\t"+"timelimit(second)\t"+"core\t"+"prepartitioned\t"+"AUC\n")
 briefout.write(str(datasetn)+","+str(foldn) +","+str(timeforjob)+","+ str(ncore)+","+str(prepart)+","+str(sklearn.metrics.accuracy_score(y_test, y_pred))+"\n")
 briefout.close()

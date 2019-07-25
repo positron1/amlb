@@ -16,3 +16,70 @@ dataset	fold	timelimit(second)	core	prepartitioned	AUC
 bankmarketing,3,1800,8,True,1.0
 dataset	fold	timelimit(second)	core	prepartitioned	AUC
 bankmarketing,3,1800,8,True,1.0
+dataset	fold	timelimit(second)	core	prepartitioned	AUC
+bankmarketing,3,360,8,True,1.0
+[0 0 0 ... 0 0 0]       y
+34723  0
+32561  0
+19181  0
+10169  0
+35513  0
+985    0
+22177  0
+27270  0
+39963  0
+28852  0
+1480   0
+25884  0
+25371  0
+12281  0
+12498  0
+20652  0
+3673   0
+36709  0
+7681   0
+6773   0
+9176   0
+24867  0
+34672  0
+30428  0
+30151  0
+18498  0
+21006  0
+9802   0
+7005   0
+671    0
+...   ..
+25633  0
+39038  0
+37542  0
+34201  0
+6662   0
+40135  0
+11722  0
+6839   0
+34907  0
+11758  0
+17274  0
+32995  0
+9135   0
+104    0
+18897  0
+18201  0
+37406  0
+16576  0
+16235  0
+16192  0
+11958  0
+7841   0
+40199  0
+21807  0
+2685   0
+34098  0
+21007  0
+12156  0
+21308  0
+35196  0
+
+[8239 rows x 1 columns]dataset	fold	timelimit(second)	core	prepartitioned	AUC
+bankmarketing,3,360,8,True,1.0

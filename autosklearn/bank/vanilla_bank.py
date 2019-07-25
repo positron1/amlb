@@ -46,7 +46,7 @@ str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] + 
 
 dataset = "uci_bank_marketing_pd"
 data = pd.read_csv(dirt+dataset+".csv") # panda.DataFrame
-
+print(data.columns)
 numeric_features = ['age','duration','pdays','previous','emp_var_rate','cons_price_idx','cons_conf_idx','euribor3m','nr_employed']
 categorical_features = ['job', 'marital', 'education', 'default','housing', 'loan', 'contact', 'month','day_of_week', 'campaign', 'poutcome']
 
