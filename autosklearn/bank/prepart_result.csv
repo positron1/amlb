@@ -1,0 +1,22 @@
+dataset	fold	timelimit(second)	core	prepartitioned	AUC
+bankmarketing,3,300,8,True,0.8871222235708217
+dataset	fold	timelimit(second)	core	prepartitioned	AUC
+bankmarketing,3,1800,8,True,0.9152809807015414
+dataset	fold	timelimit(second)	core	prepartitioned	AUC
+bankmarketing,3,900,8,True,0.9128535016385484
+dataset	fold	timelimit(second)	core	prepartitioned	AUC
+bankmarketing,3,3600,8,True,0.9152809807015414
+dataset	fold	timelimit(second)	core	prepartitioned	AUC
+bankmarketing,3,7200,8,True,0.9155237286078407
+dataset	fold	timelimit(second)	core	prepartitioned	ACC	AUC	log_loss
+dataset	fold	timelimit(second)	core	prepartitioned	ACC	AUC	log_loss
+dataset	fold	timelimit(second)	core	prepartitioned	ACC	AUC	log_loss
+bankmarketing,3,900,8,True,0.9128535016385484,0.7233080588521736,3.0099560332257687
+dataset	fold	timelimit(second)	core	prepartitioned	ACC	AUC	log_loss
+bankmarketing,3,7200,8,True,0.9174657118582352,0.7423304895864136,2.8506556446107796
+dataset	fold	timelimit(second)	core	prepartitioned	ACC	AUC	log_loss
+bankmarketing,3,3600,8,True,0.9158878504672897,0.7381565958598693,2.9051536286766146
+dataset	fold	timelimit(second)	core	prepartitioned	ACC	AUC	log_loss
+bankmarketing,7,1800,8,True,0.9121252579196505,0.7182053500103717,3.0351082919925787
+dataset	fold	timelimit(second)	core	prepartitioned	ACC	AUC	log_loss
+bankmarketing,5,1800,8,True,0.9099405267629567,0.7160355402162895,3.1105677857014356
