@@ -1,0 +1,4 @@
+dataset	fold	timelimit(second)	core	prepartitioned	ACC	AUC	log_loss
+bankmarketing,3,3600,4,False,0.8850828729281768,0.662988442487617,3.9691243454044725
+dataset	fold	timelimit(second)	core	prepartitioned	ACC	AUC	log_loss
+bankmarketing,3,3600,4,False,0.8806629834254144,0.6455971381397908,4.121781920630597

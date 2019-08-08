@@ -36,8 +36,8 @@ current_time = DateTime(time.time(), 'US/Eastern')
 
 framework = 'autosklearn'
 datasetn = 'bankmarketing'
-foldn =  '5'
-timeforjob= 7200 
+foldn =  0
+timeforjob= 3600 
 prepart = True
 ncore = 8
 dirt = '/root/data/'
@@ -59,8 +59,9 @@ def prep(dataset,dirt,numeric_features,categorical_features,delim=',',indexdrop=
     index_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1))])
     y_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1)),\
                                    ('orden', OrdinalEncoder())])
-    numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\
-        ('scaler', StandardScaler())])
+    numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median'))])
+    #numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\
+    #    ('scaler', StandardScaler())])
 
     categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
         ('onehot', OneHotEncoder(sparse=False))])
@@ -104,9 +105,9 @@ automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_tas
         ensemble_memory_limit=10240,
         seed=1,
         ml_memory_limit=30720,
-        n_jobs=ncore,\
-        resampling_strategy_arguments={'folds': int(foldn)},
-        resampling_strategy='cv',)
+        n_jobs=ncore,)
+        #resampling_strategy_arguments={'folds': int(foldn)},
+        #resampling_strategy='cv',)
     # fit() changes the data in place, but refit needs the original data. We
     # therefore copy the data. In practice, one should reload the data
     # During fit(), models are fit on individual cross-validation folds. To use
@@ -120,8 +121,8 @@ automl.refit(X_train.copy(),y_train.copy())
 y_pred = automl.predict(X_test)
 ######################################################################
 briefout = open('prepart_result.csv','a')
-briefout.write("dataset\t"+"fold\t"+"timelimit(second)\t"+"core\t"+"prepartitioned\t"+"ACC\t"+"AUC\t"+"log_loss\n")
-briefout.write(str(datasetn)+","+str(foldn) +","+str(timeforjob)+","+ str(ncore)+","+str(prepart)+","+str(sklearn.metrics.accuracy_score(y_test, y_pred))+","+str(roc_auc_score(y_test, y_pred))+","+str(log_loss(y_test, y_pred))+"\n")
+briefout.write("dataset\t"+"fold\t"+"timelimit(second)\t"+"core\t"+"prepartitioned\t"+"normalized\t"+"ACC\t"+"AUC\t"+"log_loss\n")
+briefout.write(str(datasetn)+"\t"+str(foldn) +"\t"+str(timeforjob)+"\t"+ str(ncore)+"\t"+str(prepart)+"\t"+str('True')+"\t"+str(sklearn.metrics.accuracy_score(y_test, y_pred))+"\t"+str(roc_auc_score(y_test, y_pred))+"\t"+str(log_loss(y_test, y_pred))+"\n")
 briefout.close()
 ##############################################################
 resultfileout = open(resultfile,'w')

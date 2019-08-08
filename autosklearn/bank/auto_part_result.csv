@@ -1,0 +1,2 @@
+dataset	fold	timelimit(second)	core	prepartitioned	normalized	ACC	AUC	log_loss
+bankmarketing	3	3600	8	True	True	0.9161204175770818	0.7354487726155233	2.897119495061657

@@ -1,0 +1,4 @@
+dataset	fold	timelimit(second)	core	AUC
+bankmarketing,3,360,8,0.8839779005524862
+dataset	fold	timelimit(second)	core	AUC
+bankmarketing,3,360,8,0.8850828729281768

@@ -7,7 +7,8 @@ import sklearn.metrics
 ###### Read in data
 import pandas as pd
 import numpy as np
-
+from sklearn.metrics import log_loss
+from sklearn.metrics import roc_auc_score,accuracy_score
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
@@ -34,9 +35,10 @@ current_time = DateTime(time.time(), 'US/Eastern')
 
 framework = 'autosklearn'
 datasetn = 'bankmarketing'
-foldn =  '3'
-timeforjob = 360
+foldn =  '0'
+timeforjob = 1800
 ncore = 8
+prepart=False
 dirt = '/root/data/'
 ############################################################################################################
 resultfile = str(datasetn)+str(foldn) +"fold"+ str(timeforjob) + "seconds" + str(ncore)+"core"+\
@@ -50,8 +52,7 @@ print(data.columns)
 numeric_features = ['age','duration','pdays','previous','emp_var_rate','cons_price_idx','cons_conf_idx','euribor3m','nr_employed']
 categorical_features = ['job', 'marital', 'education', 'default','housing', 'loan', 'contact', 'month','day_of_week', 'campaign', 'poutcome']
 
-numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\
-    ('scaler', StandardScaler())])
+numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median'))])
 
 categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
     ('onehot', OneHotEncoder(sparse=False))])
@@ -80,20 +81,20 @@ automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_tas
         ensemble_memory_limit=10240,
         seed=1,
         ml_memory_limit=30720,
-        n_jobs=ncore,\
-        resampling_strategy_arguments={'folds': int(foldn)},
-        resampling_strategy='cv',)
+        n_jobs=ncore)
+#        resampling_strategy_arguments={'folds': int(foldn)},
+#        resampling_strategy='cv',)
 
 #clf = Pipeline(steps=[('preprocessor', preprocessor),
 #                      ('classifier', automl)])
 automl.fit(X_train.copy(), y_train.copy())
-automl.refit(X_train.copy(),y_train.copy())
+#automl.refit(X_train.copy(),y_train.copy())
 ###################################################################
 y_pred = automl.predict(X_test)
 ######################################################################
 briefout = open('vanilla_bank_result.csv','a')
-briefout.write("dataset\t"+"fold\t"+"timelimit(second)\t"+"core\t"+"AUC\n")
-briefout.write(str(datasetn)+","+str(foldn) +","+str(timeforjob)+","+ str(ncore)+","+str(sklearn.metrics.accuracy_score(y_test, y_pred))+"\n")
+briefout.write("dataset\t"+"fold\t"+"timelimit(second)\t"+"core\t"+"ACC\t"+"AUC\t"+"logloss\t"+"\t"+"\n")
+briefout.write(str(datasetn)+"\t"+str(foldn) +"\t"+str(timeforjob)+"\t"+ str(ncore)+"\t"+str(prepart)+"\t"+str('True')+"\t"+str(sklearn.metrics.accuracy_score(y_test, y_pred))+"\t"+str(roc_auc_score(y_test, y_pred))+"\t"+str(log_loss(y_test, y_pred))+"\n")
 briefout.close()
 ##############################################################
 resultfileout = open(resultfile,'w')
@@ -103,22 +104,3 @@ resultfileout.write(str(automl.sprint_statistics()))
 resultfileout.write(str(automl.cv_results_))
 resultfileout.close()
 
-
-
-finalmodel_file ='finalmodelemsenble.pkl'
-
-from sklearn.externals import joblib
-_ = joblib.dump(automl,finalmodel_file, compress=9)
-
-import coremltools
-import sklearn
-sklearn_model = sklearn.externals.joblib.load(finalmodel_file)
-coreml_model = coremltools.converters.sklearn.convert(sklearn_model)
-coreml_model.save(finalmodel_file + '.mlmodel')
-
-#print("automodel1",automl.show_models())
-#print(type(automl.show_models()))
-#print(automl.cv_results_)
-#finalmodel = open(finalmodel_file,'wb')
-#pickle.dump((automl,X_train,y_train,results),finalmodel)
-#finalmodel.close()
