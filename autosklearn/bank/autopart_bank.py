@@ -37,7 +37,7 @@ current_time = DateTime(time.time(), 'US/Eastern')
 framework = 'autosklearn'
 datasetn = 'bankmarketing'
 foldn =  3
-timeforjob= 3600 
+timeforjob= 7200 
 prepart = True
 ncore = 8
 dirt = '/root/data/'
@@ -46,8 +46,8 @@ resultfile = str(datasetn)+str(foldn) +"fold"+ str(timeforjob) + "seconds" + str
 str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
 str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] + str(framework)+'prepart.txt'
 dataset = "uci_bank_marketing_pd"
-numeric_features = ['age','duration','pdays','previous','emp_var_rate','cons_price_idx','cons_conf_idx','euribor3m','nr_employed']
-categorical_features = ['job', 'marital', 'education', 'default','housing', 'loan', 'contact', 'month','day_of_week', 'campaign', 'poutcome']
+numeric_features = ['age','duration','pdays','previous','emp_var_rate','cons_price_idx','cons_conf_idx','euribor3m','nr_employed','campaign']
+categorical_features = ['job', 'marital', 'education', 'default','housing', 'loan', 'contact', 'month','day_of_week','poutcome']
 
 def prep(dataset,dirt,numeric_features,categorical_features,delim=',',indexdrop=False):
     index_features = ['_dmIndex_','_PartInd_']          

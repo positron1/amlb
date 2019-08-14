@@ -10,12 +10,13 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
-from sksurv.preprocessing import OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import preprocessing
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
+from sklearn.metrics import log_loss
+from sklearn.metrics import roc_auc_score,accuracy_score
 ##################################################
 import pickle
 from DateTime import DateTime
@@ -27,10 +28,12 @@ datasetn = 'kaggle_santander_pd'
 foldn =  '3'
 timeforjob=360
 dirt = '/root/data/'
-
-resultfile = str(framework) + str(datasetn) + str(foldn) + \
+ncore = 8 
+prepart = True
+resultfile = str(datasetn)+str(foldn) +"fold"+ str(timeforjob) + "seconds" + str(ncore)+"core"+\
 str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
-str(current_time.h_24()) + str(current_time.minute())  + str(time.time())+'.txt'
+str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] + str(framework)+'prepart.txt'
+
 dataset = 'kaggle_santander_pd'
 dtrain = pd.read_csv(dirt+dataset+"train.csv")
 dvalid =pd.read_csv(dirt+dataset+"valid.csv")
@@ -85,8 +88,18 @@ automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_tas
 automl.fit(X_train, y_train)
 automl.refit(X_train, y_train)
 y_pred = automl.predict(X_test)
-print("accuracy: ", sklearn.metrics.accuracy_score(y_test, y_pred))
-#pattern = r"(?P<framework>[\w\-]+?)_(?P<task>[\w\-]+)_(?P<fold>\d+)(_(?P<datetime>\d{8}T\d{6}))?.csv"
+
+briefout = open('prepart_result.csv','a')
+briefout.write("dataset\t"+"fold\t"+"timelimit(second)\t"+"core\t"+"prepartitioned\t"+"normalized\t"+"ACC\t"+"AUC\t"+"log_loss\n")
+briefout.write(str(datasetn)+"\t"+str(foldn) +"\t"+str(timeforjob)+"\t"+ str(ncore)+"\t"+str(prepart)+"\t"+str('True')+"\t"+str(sklearn.metrics.accuracy_score(y_test, y_pred))+"\t"+str(roc_auc_score(y_test, y_pred))+"\t"+str(log_loss(y_test, y_pred))+"\n")
+briefout.close()
+##############################################################
+resultfileout = open(resultfile,'w')
+resultfileout.write(str(sklearn.metrics.accuracy_score(y_test, y_pred))+"\n")
+resultfileout.write(str(automl.show_models()))
+resultfileout.write(str(automl.sprint_statistics()))
+resultfileout.write(str(automl.cv_results_))
+resultfileout.write(str(y_pred)+"\n"+str(y_test))
+resultfileout.close()
 
 
-print(automl.cv_results_)
