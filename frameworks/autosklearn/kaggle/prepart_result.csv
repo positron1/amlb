@@ -1,0 +1,4 @@
+dataset	fold	timelimit(second)	core	prepartitioned	normalized	ACC	AUC	log_loss
+dataset	fold	timelimit(second)	core	prepartitioned	normalized	ACC	AUC	log_loss
+dataset	fold	timelimit(second)	core	prepartitioned	normalized	ACC	AUC	log_loss
+kaggle_santander_pd	3	360	8	True	True	0.89945	0.5	3.4728739665082697

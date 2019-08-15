@@ -1,0 +1,17 @@
+dataset	fold	timelimit(second)	core	AUC
+bankmarketing,3,1800,8,0.9135712551590192
+dataset	fold	timelimit(second)	core	AUC
+bankmarketing,3,3600,8,0.9166059723233795
+dataset	fold	timelimit(second)	core	AUC
+bankmarketing,3,7200,8,0.9162418062636563
+dataset	fold	timelimit(second)	core	AUC
+bankmarketing,3,360,8,0.9161204175770818
+dataset	fold	timelimit(second)	core	ACC	AUC	logloss		
+dataset	fold	timelimit(second)	core	ACC	AUC	logloss		
+bankmarketing	3	1800	8	False	True	0.9174556931294003	0.7624861739158723	2.8510051761903012
+dataset	fold	timelimit(second)	core	ACC	AUC	logloss		
+bankmarketing	3	7200	8	False	True	0.9184268026219956	0.7473567780344188	2.8174601659631398
+dataset	fold	timelimit(second)	core	ACC	AUC	logloss		
+bankmarketing	0	200	8	False	True	0.9044671036659383	0.65601240048705	3.2996046806492694
+dataset	fold	timelimit(second)	core	ACC	AUC	logloss		
+bankmarketing	0	1800	8	False	True	0.9155134741442098	0.728650463812839	2.918081705015248
