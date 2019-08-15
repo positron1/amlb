@@ -69,26 +69,26 @@ def noprep(dataset,dirt,numeric_features,categorical_features,delim=',',indexdro
 
     data["income_flag"] = data["income_flag"].astype('category')
     data["income_flag"] = data["income_flag"].cat.codes
-
 #    data["income_flag"]=data.where(data["income_flag"]==,0)
 #    data["income_flag"]=data.where(data["income_flag"]==4,1)
+    col = data.columns.values
+    y=data[col[-3]]
+    y_train =data[data[col[-1]]>0][col[-3]]
+    y_test =data[data[col[-1]]==0][col[-3]]
 
-    data=preprocessor.fit_transform(data)
-    data=pd.DataFrame(data)
-    col =data.columns.values
+    pdata=preprocessor.fit_transform(data)
+    pdata=pd.DataFrame(pdata)
+    col =pdata.columns.values
     print(col)
-    X=data.drop(col[-3:],axis=1)
-    X_train = data[data[col[-1]]>0].drop(col[-3:],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
-    X_test = data[data[col[-1]]==0].drop(col[-3:],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
-    print(data.shape)
+    X=pdata.drop(col[-3:],axis=1)
+    X_train = pdata[pdata[col[-1]]>0].drop(col[-3:],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
+    X_test = pdata[pdata[col[-1]]==0].drop(col[-3:],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
+    print(pdata.shape,data.shape)
 
 ####################################################################
     #y= data["y"]
     #lb = preprocessing.LabelBinarizer()
     #y= lb.fit_transform(y)
-    y=data[col[-3]]
-    y_train =data[data[col[-1]]>0][col[-3]]
-    y_test =data[data[col[-1]]==0][col[-3]]
     ##########################################################
     ##################################################################
     feat_type = []#dict()
@@ -104,8 +104,7 @@ def noprep(dataset,dirt,numeric_features,categorical_features,delim=',',indexdro
     return data,X,y,X_train, y_train,X_test, y_test,feat_type
 #################################################################################
 data,X,y,X_train, y_train,X_test, y_test,categorical_indicator = noprep(dataset,dirt,numeric_features,categorical_features,delim=',',indexdrop=False)
-print(X_train)
-print(y_train)
+print(sum(y_test))
 automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
         per_run_time_limit=int(timeforjob/10),\
         delete_tmp_folder_after_terminate=False,\

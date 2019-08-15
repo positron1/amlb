@@ -36,8 +36,8 @@ current_time = DateTime(time.time(), 'US/Eastern')
 
 framework = 'autosklearn'
 datasetn = 'bankmarketing'
-foldn = 3 
-timeforjob= 6*1800 
+foldn =  '5'
+timeforjob= 7200 
 prepart = True
 ncore = 8
 dirt = '/root/data/'
@@ -46,22 +46,21 @@ resultfile = str(datasetn)+str(foldn) +"fold"+ str(timeforjob) + "seconds" + str
 str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
 str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] + str(framework)+'prepart.txt'
 dataset = "uci_bank_marketing_pd"
-numeric_features =[] 
-categorical_features =[] 
+numeric_features = ['age','duration','pdays','previous','emp_var_rate','cons_price_idx','cons_conf_idx','euribor3m','nr_employed']
+categorical_features = ['job', 'marital', 'education', 'default','housing', 'loan', 'contact', 'month','day_of_week', 'campaign', 'poutcome']
+
 def prep(dataset,dirt,numeric_features,categorical_features,delim=',',indexdrop=False):
     index_features = ['_dmIndex_','_PartInd_']          
     data = pd.read_csv(dirt+dataset+'.csv',delimiter=delim) # panda.DataFrame
     print(data.columns)
     data= data.astype({'_dmIndex_':'int', '_PartInd_':'int'}) 
-    numeric_features = list(set(data.select_dtypes(include=["number"]))-set(index_features)-set(['y']))
-    categorical_features = list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set(['y']))
+  
     ###############################
     index_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1))])
     y_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1)),\
                                    ('orden', OrdinalEncoder())])
-    numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median'))])
-    #numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\
-    #    ('scaler', StandardScaler())])
+    numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\
+        ('scaler', StandardScaler())])
 
     categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
         ('onehot', OneHotEncoder(sparse=False))])
@@ -105,8 +104,7 @@ automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_tas
         ensemble_memory_limit=10240,
         seed=1,
         ml_memory_limit=30720,
-        ensemble_size=5,
-        n_jobs=ncore,
+        n_jobs=ncore,\
         resampling_strategy_arguments={'folds': int(foldn)},
         resampling_strategy='cv',)
     # fit() changes the data in place, but refit needs the original data. We
@@ -122,8 +120,8 @@ automl.refit(X_train.copy(),y_train.copy())
 y_pred = automl.predict(X_test)
 ######################################################################
 briefout = open('prepart_result.csv','a')
-briefout.write("dataset\t"+"fold\t"+"timelimit(second)\t"+"core\t"+"prepartitioned\t"+"normalized\t"+"ACC\t"+"AUC\t"+"log_loss\n")
-briefout.write(str(datasetn)+"\t"+str(foldn) +"\t"+str(timeforjob)+"\t"+ str(ncore)+"\t"+str(prepart)+"\t"+str('True')+"\t"+str(sklearn.metrics.accuracy_score(y_test, y_pred))+"\t"+str(roc_auc_score(y_test, y_pred))+"\t"+str(log_loss(y_test, y_pred))+"\n")
+briefout.write("dataset\t"+"fold\t"+"timelimit(second)\t"+"core\t"+"prepartitioned\t"+"ACC\t"+"AUC\t"+"log_loss\n")
+briefout.write(str(datasetn)+","+str(foldn) +","+str(timeforjob)+","+ str(ncore)+","+str(prepart)+","+str(sklearn.metrics.accuracy_score(y_test, y_pred))+","+str(roc_auc_score(y_test, y_pred))+","+str(log_loss(y_test, y_pred))+"\n")
 briefout.close()
 ##############################################################
 resultfileout = open(resultfile,'w')

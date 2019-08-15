@@ -95,5 +95,6 @@ score from autosklearn and tpot: avg(CV)
 - lightgbm with banking, ~ validate 0.94
 - exfold_bank -- metric auc
 - adult with auto detect 1800
- 
+081519
+does automlbenchmark time for each fold? 
 - 
