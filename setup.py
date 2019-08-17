@@ -10,11 +10,10 @@ with open('LICENSE') as f:
 setup(
     name='AMLP',
     version='0.1.0',
-    description='Sample package for Python-Guide.org',
+    description='Automated Machine Learning Pipeline',
     long_description=readme,
     author='Yonglin Zhu',
     author_email='zhuygln@gmail.com',
     url='https://github.com/zhuygln/amlp',
-    license=license,
-    packages=find_packages(exclude=('tests', 'docs'))
-)
+    license=MIT
+    )
