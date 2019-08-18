@@ -63,5 +63,5 @@ See [the contributing file](CONTRIBUTING.md)!
 
 ## License
 
-[MIT © Yonglin Zhu.](LICENSE)
+[MIT](LICENSE)  © zhuygln
 
