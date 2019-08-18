@@ -1,14 +1,10 @@
 # Automated Machine Learning Pipeline
 
-![banner]()
-
-![badge]()
-![badge]()
-
 [![license](https://img.shields.io/github/license/zhuygln/amlp)](LICENSE)
 
 > This is an example file with maximal choices selected.
 
+Automated Machine Learning Pipeline
 This is a long description.
 
 ## Table of Contents
@@ -40,6 +36,12 @@ This module depends upon a knowledge of [Markdown]().
 
 ## Usage
 
+### Examples of run open source automated machine learning frameworks
+
+### Baseline model building with automated machine learning frameworks
+
+### Automated benchmarking with selected frameoworks/datasets
+
 ```
 ```
 
@@ -67,8 +69,3 @@ Small note: If editing the Readme, please conform to the [standard-readme](https
 
 [MIT © Richard McRichface.](../LICENSE)
 
-## Examples of run open source automated machine learning frameworks
-
-## Baseline model building with automated machine learning frameworks
-
-## Automated benchmarking with selected frameoworks/datasets
