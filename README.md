@@ -30,6 +30,7 @@ This is a long description.
 This module depends upon a knowledge of [Markdown]().
 
 ```
+https://github.com/zhuygln/AMLP.git
 ```
 
 ### Any optional sections
