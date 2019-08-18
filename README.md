@@ -22,13 +22,12 @@ This is a long description.
 
 ## Install
 
-This module depends upon a knowledge of [Markdown]().
+clone to local
 
 ```
-https://github.com/zhuygln/AMLP.git
+git clone https://github.com/zhuygln/AMLP.git
 ```
 
-### Any optional sections
 
 ## Usage
 
