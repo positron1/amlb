@@ -56,7 +56,7 @@ Note: The `license` badge image link at the top of this file should be updated w
 ## More optional sections
 
 ## Learning Notes
-See [Machine Learning Basics](mlbasics.md)!
+See [Machine Learning Basics](doc/mlbasics.md)!
 
 ## Contributing
 
@@ -67,5 +67,5 @@ See [the contributing file](CONTRIBUTING.md)!
 
 ## License
 
-[MIT © Yonglin Zhu.](../LICENSE)
+[MIT © Yonglin Zhu.](LICENSE)
 
