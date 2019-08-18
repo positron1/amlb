@@ -9,17 +9,12 @@ This is a long description.
 
 ## Table of Contents
 
-- [Security](#security)
 - [Background](#background)
 - [Install](#install)
 - [Usage](#usage)
 - [API](#api)
 - [Contributing](#contributing)
 - [License](#license)
-
-## Security
-
-### Any optional sections
 
 ## Background
 
