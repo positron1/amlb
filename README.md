@@ -1,4 +1,4 @@
-# Automated Machine Learning Pipeline
+# Automated Machine Learning Classifier Pipeline
 
 [![license](https://img.shields.io/github/license/zhuygln/amlp)](LICENSE)
 
