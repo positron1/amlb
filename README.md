@@ -6,6 +6,7 @@
 
 Ensembling Automated Machine Learning Toolkits
 This is a long description.
+atool
 
 ## Table of Contents
 
