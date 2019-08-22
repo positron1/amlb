@@ -1,10 +1,10 @@
-# Automated Machine Learning Classifier Pipeline
+# Ensembling Automated Machine Learning Toolkits
 
 [![license](https://img.shields.io/github/license/zhuygln/amlp)](LICENSE)
 
 > This is an example file with maximal choices selected.
 
-Automated Machine Learning Pipeline
+Ensembling Automated Machine Learning Toolkits
 This is a long description.
 
 ## Table of Contents
