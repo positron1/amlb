@@ -26,7 +26,7 @@ atool
 clone to local
 
 ```
-git clone https://github.com/zhuygln/AMLP.git
+git clone https://github.com/zhuygln/atoml.git
 ```
 
 
