@@ -1,6 +1,6 @@
 # Ensembling Automated Machine Learning Toolkits
 
-[![license](https://img.shields.io/github/license/zhuygln/amlp)](LICENSE)
+[![license](https://img.shields.io/github/license/zhuygln/atoml)](LICENSE)
 
 > This is an example file with maximal choices selected.
 
