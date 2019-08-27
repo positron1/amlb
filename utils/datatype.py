@@ -12,59 +12,75 @@ import sys
 import logging
 import optparse
 
+class data: 
+'''
+'''
+    def __init__(self,dataset,metadata=True,dirt='/root/data/'):
+        self.dataset = dataset
+        self.metadata = metadata
+        self.dirt = dirt
 
-def sas_to_csv(dirt,dataset):
-    print("\n\nReading data from",dirt+"sasdat/" + dataset+".sas7bdat")
-    with SAS7BDAT(dirt+"sasdat/" + dataset+".sas7bdat") as f:
-        df = f.to_data_frame()
-    print("\n\nData description:\n\n",df.describe())
-    cols = df.columns
-    df.to_csv(dirt+dataset+'d.csv',encoding = 'utf-8',index = False,header =True)
-    print("\n\nCheck column\n\n",cols)
-    return df
+    def sas_to_csv(self,dirt,dataset):
+        print("\n\nReading data from",dirt+"sasdat/" + dataset+".sas7bdat")
+        with SAS7BDAT(dirt+"sasdat/" + dataset+".sas7bdat") as f:
+            df = f.to_data_frame()
+        print("\n\nData description:\n\n",df.describe())
+        cols = df.columns
+        df.to_csv(dirt+dataset+'d.csv',encoding = 'utf-8',index = False,header =True)
+        print("\n\nCheck column\n\n",cols)
+        return df
 
-def load_partition(dirt,dataset):
-    df = sas_to_csv(dirt,dataset)
-    #### last column _PartInd_ for train-1/validation-2/test-0/
-    cols = df.columns
-    df._PartInd_.astype(int)
-    dtrain = df.loc[df[cols[-1]]==1]
-    dvalidate = df.loc[df[cols[-1]]==2]
-    dtest = df.loc[df[cols[-1]]==0]
-    print("Train\n",dtrain.shape)
-    print("Validate\n",dvalidate.shape)
-    print("Test\n",dtest.shape)
-    return dtrain,dvalidate,dtest
-
-def partition_to_csv(dirt,dataset,dtrain,dvalidate,dtest)
-    dtrain,dvalidate,dtest = load_partition(dirt,dataset)
-    dtrain.to_csv(dirt+dataset+'dtrain.csv',encoding = 'utf-8',index= False,header =True)
-    dtest.to_csv(dirt+dataset+'dtest.csv',encoding = 'utf-8',index = False,header =True)
-    dvalidate.to_csv(dirt+dataset+'dvalid.csv',encoding = 'utf-8',index=False,header =True)
-
-def main(options,args):
-    dirt = options.path
-    dataset = options.data
-    load_partition(dirt,dataset)
-
-
-
-def read_df(dirt,dataset):
-    dtrain,dvalidate,dtest = load_partition(dirt,dataset)
-    find_cat()
-
-    return df
-
-def find_cat(df):
-    #### inspired by pds from https://stackoverflow.com/questions/29803093/check-which-columns-in-dataframe-are-categorical
-    df_cat=df.select_dtypes(exclude=["number","bool_","object_"])
-    df_cat.drop(columns=['_dmIndex_','_PartInd_'])
-    return df_cat,num_feats
-
-def find_num(df):
-    df_num =  df.select_dtypes(include=["number"])
-    df_num.drop(columns=['_dmIndex_','_PartInd_'])
-    return df_num,num_feats
+    def get_type(self,metadata):
+        if metadata:
+          metaf = pd.read_csv(dirt+""+dataset)
+        else:
+          df = sas_to_csv(self,dirt,dataset)
+          _, catlist = self.find_cat(self, df)
+          _, numlist = self.find_num(self, df)
+        return catlist,numlist
+    
+    def load_partition(self,dirt,dataset):
+        df = sas_to_csv(dirt,dataset)
+        #### last column _PartInd_ for train-1/validation-2/test-0/
+        cols = df.columns
+        df._PartInd_.astype(int)
+        dtrain = df.loc[df[cols[-1]]==1]
+        dvalidate = df.loc[df[cols[-1]]==2]
+        dtest = df.loc[df[cols[-1]]==0]
+        print("Train\n",dtrain.shape)
+        print("Validate\n",dvalidate.shape)
+        print("Test\n",dtest.shape)
+        return dtrain,dvalidate,dtest
+    
+    def partition_to_csv(self,dirt,dataset,dtrain,dvalidate,dtest)
+        dtrain,dvalidate,dtest = load_partition(dirt,dataset)
+        dtrain.to_csv(dirt+dataset+'dtrain.csv',encoding = 'utf-8',index= False,header =True)
+        dtest.to_csv(dirt+dataset+'dtest.csv',encoding = 'utf-8',index = False,header =True)
+        dvalidate.to_csv(dirt+dataset+'dvalid.csv',encoding = 'utf-8',index=False,header =True)
+    
+    def main(self,options,args):
+        dirt = options.path
+        dataset = options.data
+        load_partition(dirt,dataset)
+    
+    
+    
+    def read_df(self,dirt,dataset):
+        dtrain,dvalidate,dtest = load_partition(dirt,dataset)
+        find_cat()
+    
+        return df
+    
+    def find_cat(self,df):
+        #### inspired by pds from https://stackoverflow.com/questions/29803093/check-which-columns-in-dataframe-are-categorical
+        df_cat=df.select_dtypes(exclude=["number","bool_","object_"])
+        df_cat.drop(columns=['_dmIndex_','_PartInd_'])
+        return df_cat,num_feats
+    
+    def find_num(self,df):
+        df_num =  df.select_dtypes(include=["number"])
+        df_num.drop(columns=['_dmIndex_','_PartInd_'])
+        return df_num,num_feats
 
 if __name__ == '__main__':
     # default path and data
@@ -87,4 +103,5 @@ if __name__ == '__main__':
     #if len(args) < 1:
     #    parser.print_help()
     #    sys.exit(1)
-    main(options, args)
+    
+    data.main(options, args)
