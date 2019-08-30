@@ -63,12 +63,15 @@ for im,meta in enumerate(metalist):
         automl.refit(X_train.copy(),y_train.copy())
         ###################################################################
         y_pred = automl.predict(X_test)
+        y_pred_prob = automl.predict_proba(X_test)
         briefout = dataset+framework+foldn+'result.csv'
         with open(briefout, 'w') as f:
             for item in y_pred:
                 f.write("%s\n" % item)
+        f.close()
         print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
         print(y_pred) 
+        print(y_pred_prob)
     except:
         print("\nfail in:\t",dataset)
         traceback.print_exc(file=sys.stdout)
