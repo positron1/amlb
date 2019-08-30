@@ -37,31 +37,28 @@ current_time = DateTime(time.time(), 'US/Eastern')
 framework = 'autosklearn'
 datasetn = 'bankmarketing'
 foldn =  3
-timeforjob= 3600*foldn 
+timeforjob= 600*foldn 
 prepart = True
-ncore = 8
+ncore = 4
 dirt = '/root/data/'
 ############################################################################################################
 resultfile = str(datasetn)+str(foldn) +"fold"+ str(timeforjob) + "seconds" + str(ncore)+"core"+\
 str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
 str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] + str(framework)+'prepart.txt'
 dataset = "uci_bank_marketing_pd"
+
 numeric_features = ['age','duration','pdays','previous','emp_var_rate','cons_price_idx','cons_conf_idx','euribor3m','nr_employed','campaign']
 categorical_features = ['job', 'marital', 'education', 'default','housing', 'loan', 'contact', 'month','day_of_week','poutcome']
 
 def prep(dataset,dirt,numeric_features,categorical_features,delim=',',indexdrop=False):
     index_features = ['_dmIndex_','_PartInd_']          
     data = pd.read_csv(dirt+dataset+'.csv',delimiter=delim) # panda.DataFrame
-    print(data.columns)
     data= data.astype({'_dmIndex_':'int', '_PartInd_':'int'}) 
-  
     ###############################
     index_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1))])
     y_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1)),\
                                    ('orden', OrdinalEncoder())])
     numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median'))])
-    #numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\
-    #    ('scaler', StandardScaler())])
 
     categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
         ('onehot', OneHotEncoder(sparse=False))])
@@ -69,28 +66,17 @@ def prep(dataset,dirt,numeric_features,categorical_features,delim=',',indexdrop=
     preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
          ('cat', categorical_transformer, categorical_features), ('y',y_transformer,['y']),('index',index_transformer, index_features)])
 
-    ######################################################################
-    #X = data[index+categorical_features+numeric_features]
-    #X = data[['y']+index_features+categorical_features+numeric_features]
     data=preprocessor.fit_transform(data)
     data=pd.DataFrame(data)
     col =data.columns.values
-    print(col)
     X=data.drop(col[-3:],axis=1)
     X_train = data[data[col[-1]]>0].drop(col[-3:],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
     X_test = data[data[col[-1]]==0].drop(col[-3:],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
-    print(data.shape)
 
-####################################################################
-    #y= data["y"]
-    #lb = preprocessing.LabelBinarizer()
-    #y= lb.fit_transform(y)
-    #data["y"]=data.where(data["y"]=='yes',1)
-    #data["y"]=data.where(data["y"]=='no',0)
+    ####################################################################
     y=data[col[-3]]
     y_train =data[data[col[-1]]>0][col[-3]]
     y_test =data[data[col[-1]]==0][col[-3]]
-    ##########################################################
     ##################################################################
     
     X_train_auto, X_test_auto, y_train_auto, y_test_auto = \
@@ -108,13 +94,7 @@ automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_tas
         n_jobs=ncore,\
         resampling_strategy_arguments={'folds': int(foldn)},
         resampling_strategy='cv',)
-    # fit() changes the data in place, but refit needs the original data. We
-    # therefore copy the data. In practice, one should reload the data
-    # During fit(), models are fit on individual cross-validation folds. To use
-    # all available data, we call refit() which trains all models in the
-    # final ensemble on the whole dataset.
-#clf = Pipeline(steps=[('preprocessor', preprocessor),
-#                      ('classifier', automl)])
+
 automl.fit(X_train.copy(), y_train.copy())
 automl.refit(X_train.copy(),y_train.copy())
 ###################################################################

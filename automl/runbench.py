@@ -14,5 +14,11 @@ Class auto_binary_classification:
       default framework: auto-sklearn
       default benchmark: bank marking from UCI
    '''
+   def get_read():
+       # input: Bool: sasdat, String: datafile, String: Metafile
+       # output: dataframe, catlist, numlist
 
+   def run():
+       # read data
+       
 

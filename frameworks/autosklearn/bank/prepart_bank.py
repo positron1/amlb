@@ -37,9 +37,9 @@ current_time = DateTime(time.time(), 'US/Eastern')
 framework = 'autosklearn'
 datasetn = 'bankmarketing'
 foldn = 3 
-timeforjob= 6*1800 
+timeforjob= foldn*2*1800 
 prepart = True
-ncore = 8
+ncore = 4
 dirt = '/root/data/'
 ############################################################################################################
 resultfile = str(datasetn)+str(foldn) +"fold"+ str(timeforjob) + "seconds" + str(ncore)+"core"+\
@@ -48,10 +48,10 @@ str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] + 
 dataset = "uci_bank_marketing_pd"
 numeric_features =[] 
 categorical_features =[] 
+
 def prep(dataset,dirt,numeric_features,categorical_features,delim=',',indexdrop=False):
     index_features = ['_dmIndex_','_PartInd_']          
     data = pd.read_csv(dirt+dataset+'.csv',delimiter=delim) # panda.DataFrame
-    print(data.columns)
     data= data.astype({'_dmIndex_':'int', '_PartInd_':'int'}) 
     numeric_features = list(set(data.select_dtypes(include=["number"]))-set(index_features)-set(['y']))
     categorical_features = list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set(['y']))
@@ -69,32 +69,16 @@ def prep(dataset,dirt,numeric_features,categorical_features,delim=',',indexdrop=
     preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
          ('cat', categorical_transformer, categorical_features), ('y',y_transformer,['y']),('index',index_transformer, index_features)])
 
-    ######################################################################
-    #X = data[index+categorical_features+numeric_features]
-    #X = data[['y']+index_features+categorical_features+numeric_features]
     data=preprocessor.fit_transform(data)
     data=pd.DataFrame(data)
     col =data.columns.values
-    print(col)
     X=data.drop(col[-3:],axis=1)
-    X_train = data[data[col[-1]]>0].drop(col[-3:],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
-    X_test = data[data[col[-1]]==0].drop(col[-3:],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
-    print(data.shape)
-
-####################################################################
-    #y= data["y"]
-    #lb = preprocessing.LabelBinarizer()
-    #y= lb.fit_transform(y)
-    #data["y"]=data.where(data["y"]=='yes',1)
-    #data["y"]=data.where(data["y"]=='no',0)
+    X_train = data[data[col[-1]]<2].drop(col[-3:],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
+    X_test = data[data[col[-1]]==2].drop(col[-3:],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
     y=data[col[-3]]
-    y_train =data[data[col[-1]]>0][col[-3]]
-    y_test =data[data[col[-1]]==0][col[-3]]
+    y_train =data[data[col[-1]]<2][col[-3]]
+    y_test =data[data[col[-1]]==2][col[-3]]
     ##########################################################
-    ##################################################################
-    
-    #X_train, X_test, y_train, y_test = \
-      #sklearn.model_selection.train_test_split(X, y,test_size=0.2, random_state=1)
     return data,X,y,X_train, y_train,X_test, y_test
 
 data,X,y,X_train, y_train,X_test, y_test = prep(dataset,dirt,numeric_features,categorical_features,delim=',',indexdrop=False)
@@ -106,17 +90,12 @@ automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_tas
         seed=1,
         ml_memory_limit=30720,
         ensemble_size=5,
-        n_jobs=ncore,
-        resampling_strategy_arguments={'folds': int(foldn)},
-        resampling_strategy='cv',)
-    # fit() changes the data in place, but refit needs the original data. We
-    # therefore copy the data. In practice, one should reload the data
-    # During fit(), models are fit on individual cross-validation folds. To use
-    # all available data, we call refit() which trains all models in the
-    # final ensemble on the whole dataset.
-#clf = Pipeline(steps=[('preprocessor', preprocessor),
-#                      ('classifier', automl)])
-automl.fit(X_train.copy(), y_train.copy())
+        n_jobs=ncore)
+#,
+ #       resampling_strategy_arguments={'folds': int(foldn)},
+  #      resampling_strategy='cv',)
+###################################################################
+automl.fit(X_train.copy(), y_train.copy(),metric=autosklearn.metrics.roc_auc)
 automl.refit(X_train.copy(),y_train.copy())
 ###################################################################
 y_pred = automl.predict(X_test)
