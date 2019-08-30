@@ -18,6 +18,7 @@ from sklearn.model_selection import KFold
 from sklearn.metrics import roc_auc_score,accuracy_score,log_loss,f1_score
 from sklearn.model_selection import cross_val_score
 ##################################################
+import json
 
 from sas7bdat import SAS7BDAT
 import pandas as pd
@@ -70,7 +71,7 @@ for im,meta in enumerate(metalist):
         ###################################################################
         y_pred = automl.predict(X_test)
         y_pred_prob = automl.predict_proba(X_test)
-        briefout = dataset+framework+foldn+'result.csv'
+        briefout = dataset+framework+str(foldn)+'result.csv'
         with open(briefout, 'w') as f:
             for item in y_pred:
                 f.write("%s\n" % item)
@@ -80,6 +81,10 @@ for im,meta in enumerate(metalist):
         print(y_pred_prob)
         metrics = metric(y_test,y_pred,y_pred_prob)
         print(metrics)
+        json = json.dumps(metrics)
+        f = open(dataset+framework+str(foldn)+"metrics.json","w")
+        f.write(json)
+        f.close()
     except:
         print("\nfail in:\t",dataset)
         traceback.print_exc(file=sys.stdout)
