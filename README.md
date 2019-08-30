@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/github/license/zhuygln/atoml)](LICENSE)
 
-> This is an example file with maximal choices selected.
+> Learn, test, and benchmark -- get best automl frameworks in one. 
 
 Ensembling Automated Machine Learning Toolkits
 This is a long description.
