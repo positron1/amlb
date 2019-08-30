@@ -70,7 +70,7 @@ for im,meta in enumerate(metalist):
         ###################################################################
         y_pred = automl.predict(X_test)
         y_pred_prob = automl.predict_proba(X_test)
-        briefout = dataset+framework+foldn+'result.csv'
+        briefout = dataset+framework+str(foldn)+'result.csv'
         with open(briefout, 'w') as f:
             for item in y_pred:
                 f.write("%s\n" % item)
