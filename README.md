@@ -1,4 +1,4 @@
-# Ensembling Automated Machine Learning Toolkits
+# Ensembling Automated Machine Learning Frameworks
 
 [![license](https://img.shields.io/github/license/zhuygln/atoml)](LICENSE)
 
