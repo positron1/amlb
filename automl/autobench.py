@@ -33,7 +33,7 @@ if not sys.warnoptions:
 
 framework = 'autosklearn'
 foldn = 0
-timeforjob= 3600
+timeforjob= 100
 prepart = True
 ncore = 8
 
