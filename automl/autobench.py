@@ -15,8 +15,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import preprocessing
 from sklearn.model_selection import KFold
-from sklearn.metrics import log_loss
-from sklearn.metrics import roc_auc_score,accuracy_score
+from sklearn.metrics import roc_auc_score,accuracy_score,log_loss,f1_score
 from sklearn.model_selection import cross_val_score
 ##################################################
 
@@ -37,6 +36,13 @@ timeforjob= 3600
 prepart = True
 ncore = 8
 
+def metric(y_test,y_pred,y_pred_prob):
+    metrics = dict()
+    metrics['logloss']=log_loss(y_test,y_pred_prob)
+    metrics['AUC']=roc_auc_score(y_test,y_pred)
+    metrics['f1']=f1_score(y_test,y_pred)
+    metrics['ACC']=accuracy_score(y_test,y_pred)
+    return metrics
 
 numeric_features =[]
 categorical_features =[]
@@ -72,6 +78,8 @@ for im,meta in enumerate(metalist):
         print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
         print(y_pred) 
         print(y_pred_prob)
+        metrics = metric(y_test,y_pred,y_pred_prob)
+        print(metrics)
     except:
         print("\nfail in:\t",dataset)
         traceback.print_exc(file=sys.stdout)
