@@ -31,13 +31,19 @@ if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
 
+
 framework = 'autosklearn'
 foldn = 3
 timeforjob= 100
 prepart = True
 ncore = 4
 
+def kaggledata(dataset,dirt,nfeature,cfeature,target,indexfrop):
 
+
+
+  return  data,X,y,X_train, y_train,X_test, y_test
+#######################################################
 numeric_features =[]
 categorical_features =[]
 dirt = '/root/data/'
