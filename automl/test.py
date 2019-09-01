@@ -37,10 +37,14 @@ foldn = 3
 timeforjob= 100
 prepart = True
 ncore = 4
+dirt ='/home/yzhu14/atoml/data/fraudkaggle/'
+dataset = 'ieeefraud'
 
 def kaggledata(dataset,dirt,nfeature,cfeature,target,indexfrop):
-
-
+  trainn = pd.read_csv()
+  trainc = pd.read_csv()
+  testn = pd.read_csv()
+  testc = pd.read_csv()
 
   return  data,X,y,X_train, y_train,X_test, y_test
 #######################################################
