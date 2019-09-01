@@ -38,10 +38,10 @@ current_time = DateTime(time.time(), 'US/Eastern')
 
 
 framework = 'autosklearn'
-foldn = 0
-timeforjob= 900
+foldn = 5
+timeforjob= 4*900
 prepart = True
-ncore = 8
+ncore = 4
 
 def metric(y_test,y_pred,y_pred_prob):
     metrics = dict()
@@ -59,7 +59,7 @@ def autoprep(dirt,dataset,targetname):
     return nfeatures,cfeatures,target
 numeric_features =[]
 categorical_features =[]
-dirt = '/root/data/'
+dirt = '../data/'
 datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
@@ -99,7 +99,7 @@ for im,meta in enumerate(metalist):
         runs['para']['framework']=framework
         y_pred = automl.predict(X_test)
         y_pred_prob = automl.predict_proba(X_test)
-        briefout = open('results/'+str(timeforjob)+'s/'+dataset+framework+str(foldn)+'result.csv','w')
+        briefout = open('results/'+str(timeforjob)+'s/'+dataset+resultsfile+str(foldn)+'fresult.csv','w')
         briefout.write("#ypred\typred_prob\n")
         for i,y in enumerate(y_pred):
            briefout.write(str(y)+'\t'+str(y_pred_prob[i])+'\n')
@@ -110,7 +110,7 @@ for im,meta in enumerate(metalist):
         metrics = metric(y_test,y_pred,y_pred_prob)
         runs['results']=metrics
         jsonf = json.dumps(runs)
-        f = open('results/'+str(timeforjob)+'s/'+dataset+framework+resultsfile+".json","w")
+        f = open('results/'+str(timeforjob)+'s/'+dataset+resultsfile+".json","w")
         f.write(jsonf)
         f.close()
     except:
