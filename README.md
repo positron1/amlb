@@ -5,8 +5,6 @@
 > Learn, test, and benchmark -- get best automl frameworks in one. 
 
 Ensembling Automated Machine Learning Toolkits
-This is a long description.
-atool
 
 ## Table of Contents
 
