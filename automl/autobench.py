@@ -38,11 +38,16 @@ current_time = DateTime(time.time(), 'US/Eastern')
 
 
 framework = 'autosklearn'
-foldn = 0
+foldn = 5 
 timeforjob= 900
 prepart = True
-ncore = 8
-
+ncore = 4
+def savemodel(resultfile,automl):
+    resultfileout = open('finalmodels'+resultfile,'w')
+    resultfileout.write(str(automl.show_models()))
+    resultfileout.write(str(automl.sprint_statistics()))
+    resultfileout.write(str(automl.cv_results_))
+    resultfileout.close()
 def metric(y_test,y_pred,y_pred_prob):
     metrics = dict()
     metrics['logloss']=log_loss(y_test,y_pred_prob)
@@ -65,12 +70,12 @@ metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
 metalist = remove_dirt(metalist,dirt+'/meta/')
 for im,meta in enumerate(metalist):
-    resultsfile = str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
-    str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] + str(framework)
     runs = dict()
     dataset = datalist[im]# "uci_bank_marketing_pd"
     print("\ndataset:\t",dataset)
     print("\nmetadata information:\t",meta)
+    resultsfile = dataset[:3]+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
+    str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
     if not os.path.exists(dirt+'opentest/'+dataset):
         load_partition(dirt+'opentest/',dataset)
     runs['data']=dataset
@@ -86,7 +91,9 @@ for im,meta in enumerate(metalist):
                 delete_tmp_folder_after_terminate=False,\
                 seed=1,\
                 ensemble_memory_limit=10240,\
-                ml_memory_limit=30720,\
+                ml_memory_limit=30720/3,\
+                resampling_strategy_arguments={'folds': int(foldn)},
+                resampling_strategy='cv',
                 n_jobs=ncore)
         
         automl.fit(X_train.copy(), y_train.copy(),metric=autosklearn.metrics.roc_auc)
@@ -99,7 +106,7 @@ for im,meta in enumerate(metalist):
         runs['para']['framework']=framework
         y_pred = automl.predict(X_test)
         y_pred_prob = automl.predict_proba(X_test)
-        briefout = open('results/'+str(timeforjob)+'s/'+dataset+framework+str(foldn)+'result.csv','w')
+        briefout = open('results/'+str(timeforjob)+'s/predict_'+resultsfile+'.csv','w')
         briefout.write("#ypred\typred_prob\n")
         for i,y in enumerate(y_pred):
            briefout.write(str(y)+'\t'+str(y_pred_prob[i])+'\n')
@@ -110,7 +117,7 @@ for im,meta in enumerate(metalist):
         metrics = metric(y_test,y_pred,y_pred_prob)
         runs['results']=metrics
         jsonf = json.dumps(runs)
-        f = open('results/'+str(timeforjob)+'s/'+dataset+framework+resultsfile+".json","w")
+        f = open('results/'+str(timeforjob)+'s/result_'+resultsfile+".json","w")
         f.write(jsonf)
         f.close()
     except:

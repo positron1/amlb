@@ -1,0 +1,1 @@
+{"data": "id1_uci_diabetes_p.sas7bdat", "para": {"time": 3600, "cores": 8, "folds": 10, "framework": "autosklearn"}, "results": {"logloss": 0.6895528320988301, "AUC": 0.4999747747122228, "f1": 0.00014212620807276864, "ACC": 0.5390814387735046}}
