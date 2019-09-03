@@ -64,7 +64,7 @@ def autoprep(dirt,dataset,targetname):
     return nfeatures,cfeatures,target
 numeric_features =[]
 categorical_features =[]
-dirt = '/root/data/'
+dirt = '../data/'
 datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
@@ -106,7 +106,7 @@ for im,meta in enumerate(metalist):
         runs['para']['framework']=framework
         y_pred = automl.predict(X_test)
         y_pred_prob = automl.predict_proba(X_test)
-        briefout = open('results/'+str(timeforjob)+'s/predict_'+resultsfile+'.csv','w')
+        briefout = open('results/'+str(timeforjob)+'s/'+dataset+resultsfile+str(foldn)+'fresult.csv','w')
         briefout.write("#ypred\typred_prob\n")
         for i,y in enumerate(y_pred):
            briefout.write(str(y)+'\t'+str(y_pred_prob[i])+'\n')

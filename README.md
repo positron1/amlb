@@ -1,12 +1,12 @@
 # Ensembling Automated Machine Learning Frameworks
 
+Learn, test, and benchmark -- get best automl frameworks in one. 
+
 [![license](https://img.shields.io/github/license/zhuygln/atoml)](LICENSE)
 
 > Learn, test, and benchmark -- get best automl frameworks in one. 
 
 Ensembling Automated Machine Learning Toolkits
-This is a long description.
-atool
 
 ## Table of Contents
 
@@ -52,6 +52,7 @@ Note: The `license` badge image link at the top of this file should be updated w
 ## More optional sections
 
 ## Learning Notes
+
 See [Machine Learning Basics](doc/mlbasics.md)!
 
 ## Contributing

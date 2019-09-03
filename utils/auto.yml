@@ -1,4 +1,4 @@
-name: autosklearn
+name: auto
 channels:
   - conda-forge
   - defaults
