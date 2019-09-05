@@ -64,7 +64,7 @@ def autoprep(dirt,dataset,targetname):
     return nfeatures,cfeatures,target
 numeric_features =[]
 categorical_features =[]
-dirt = '../data/'
+dirt = '/root/data/'
 datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
@@ -118,6 +118,7 @@ for im,meta in enumerate(metalist):
         runs['results']=metrics
         jsonf = json.dumps(runs)
         f = open('results/'+str(timeforjob)+'s/result_'+resultsfile+".json","w")
+        savemodel(resultsfile,automl)
         f.write(jsonf)
         f.close()
     except:
