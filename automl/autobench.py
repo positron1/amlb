@@ -43,7 +43,7 @@ timeforjob= 900
 prepart = True
 ncore = 4
 def savemodel(resultfile,automl):
-    resultfileout = open('finalmodels'+resultfile,'w')
+    resultfileout = open('results/'+str(timeforjob)+'s/finalmodels'+resultfile,'w')
     resultfileout.write(str(automl.show_models()))
     resultfileout.write(str(automl.sprint_statistics()))
     resultfileout.write(str(automl.cv_results_))
@@ -97,10 +97,13 @@ for im,meta in enumerate(metalist):
                 n_jobs=ncore)
         
         automl.fit(X_train.copy(), y_train.copy(),metric=autosklearn.metrics.roc_auc)
-        automl.refit(X_train.copy(),y_train.copy())
+        automl.refit(X_train.copy(), y_train.copy(),metric=autosklearn.metrics.roc_auc)
+        #utoml.refit(X_train.copy(),y_train.copy())
         ###################################################################
         runs['para']=dict()
         runs['para']['time']=timeforjob
+        runs['para']['fitmetrics']='auc'
+        runs['para']['refitmetrics']='auc'
         runs['para']['cores']=ncore
         runs['para']['folds']=foldn
         runs['para']['framework']=framework
