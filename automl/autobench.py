@@ -38,7 +38,7 @@ current_time = DateTime(time.time(), 'US/Eastern')
 
 
 framework = 'autosklearn'
-foldn = 5 
+foldn = 5/7
 timeforjob= 900
 prepart = True
 ncore = 4
@@ -69,6 +69,7 @@ datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
 metalist = remove_dirt(metalist,dirt+'/meta/')
+print(datalist)
 for im,meta in enumerate(metalist):
     runs = dict()
     dataset = datalist[im]# "uci_bank_marketing_pd"
@@ -90,20 +91,21 @@ for im,meta in enumerate(metalist):
         automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
                 delete_tmp_folder_after_terminate=False,\
                 seed=1,\
-                ensemble_memory_limit=10240,\
-                ml_memory_limit=30720/3,\
-                resampling_strategy_arguments={'folds': int(foldn)},
-                resampling_strategy='cv',
+                resampling_strategy='holdout',
+                ml_memory_limit=100720,\
+                resampling_strategy_arguments={'train_size': float(5/7)},
+           #     resampling_strategy_arguments={'folds': int(foldn)},
+           #     resampling_strategy='cv',
                 n_jobs=ncore)
         
         automl.fit(X_train.copy(), y_train.copy(),metric=autosklearn.metrics.roc_auc)
-        automl.refit(X_train.copy(), y_train.copy(),metric=autosklearn.metrics.roc_auc)
+        automl.refit(X_train.copy(), y_train.copy())#,metric=autosklearn.metrics.roc_auc)
         #utoml.refit(X_train.copy(),y_train.copy())
         ###################################################################
         runs['para']=dict()
         runs['para']['time']=timeforjob
-        runs['para']['fitmetrics']='auc'
-        runs['para']['refitmetrics']='auc'
+        runs['para']['fitmetrics']='AUC'
+        runs['para']['refitmetrics']='def'
         runs['para']['cores']=ncore
         runs['para']['folds']=foldn
         runs['para']['framework']=framework

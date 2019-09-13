@@ -73,7 +73,7 @@ datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
 metalist = remove_dirt(metalist,dirt+'/meta/')
-if __name__ == '__main__'
+if __name__ == '__main__':
     try:
         data,X,y,X_train, y_train,X_test, y_test = kaggledata(dataset,dirt,nfeatures,cfeatures,target,indexdrop=False)
         print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
