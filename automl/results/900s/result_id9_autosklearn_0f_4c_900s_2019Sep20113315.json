@@ -1,0 +1,1 @@
+{"data": "id9_bank_raw2_p.sas7bdat", "para": {"time": 900, "fitmetrics": "AUC", "refitmetrics": "def", "cores": 4, "folds": 0, "framework": "autosklearn"}, "results": {"logloss": 0.2222853525116634, "AUC": 0.9026865081972985, "f1": 0.7831652259078141, "ACC": 0.8997383466780721}}
