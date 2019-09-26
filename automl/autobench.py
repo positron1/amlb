@@ -39,6 +39,7 @@ current_time = DateTime(time.time(), 'US/Eastern')
 
 
 
+
 numeric_features =[]
 categorical_features =[]
 dirt = '/root/data/'
@@ -48,14 +49,13 @@ datalist = remove_dirt(datalist,dirt+'/opentest/')
 metalist = remove_dirt(metalist,dirt+'/meta/')
 print(datalist)
 for im,meta in enumerate(metalist):
-  framework = 'autosklearn'
-  prepart = True
-  ncore = 4
-  dataset = datalist[im]# "uci_bank_marketing_pd"
-  print("\ndataset:\t",dataset)
-  print("\nmetadata information:\t",meta)
-  for foldn in [0,3,10]:
-    foldn = 0#5/7
-    for timeforjob in [900,3600]:
-      runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta)
+    framework = 'autosklearn'
+    prepart = True
+    ncore = 4
+    dataset = datalist[im]# "uci_bank_marketing_pd"
+    print("\ndataset:\t",dataset)
+    print("\nmetadata information:\t",meta)
+    for foldn in [0]:
+      for timeforjob in [3600]:
+        runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta)
 

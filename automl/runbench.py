@@ -65,7 +65,8 @@ def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train):
            delete_tmp_folder_after_terminate=False,\
            seed=1,\
            resampling_strategy='holdout',\
-           ml_memory_limit=100720,\
+           ml_memory_limit=30720,\
+           ensemble_memory_limit=30000,\
            resampling_strategy_arguments={'train_size': float(5/7)},
            n_jobs=ncore)
         automl.fit(X_train.copy(), y_train.copy(),metric=autosklearn.metrics.roc_auc)
@@ -75,7 +76,8 @@ def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train):
            delete_tmp_folder_after_terminate=False,\
            seed=1,\
            per_run_time_limit=timeforjob, \
-           ml_memory_limit=100720,\
+           ml_memory_limit=30720,\
+           ensemble_memory_limit=30000,\
            resampling_strategy_arguments={'folds': int(foldn)},
            resampling_strategy='cv',
            n_jobs=ncore) 
