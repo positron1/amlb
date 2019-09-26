@@ -1,0 +1,1 @@
+{"data": "id2_uci_default_credit_card_p.sas7bdat", "para": {"time": 900, "fitmetrics": "AUC", "refitmetrics": "def", "cores": 4, "folds": 0, "framework": "autosklearn"}, "results": {"logloss": 0.47258523203267605, "AUC": 0.6677624201918618, "f1": 0.49193548387096775, "ACC": 0.8180202199755583}}

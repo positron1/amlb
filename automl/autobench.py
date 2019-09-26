@@ -40,7 +40,6 @@ metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
 metalist = remove_dirt(metalist,dirt+'/meta/')
 print(datalist)
-
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")

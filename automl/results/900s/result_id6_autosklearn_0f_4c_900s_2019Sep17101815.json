@@ -1,0 +1,1 @@
+{"data": "id6_kdd_sm_trn_churn_p.sas7bdat", "para": {"time": 900, "fitmetrics": "AUC", "refitmetrics": "def", "cores": 4, "folds": 0, "framework": "autosklearn"}, "results": {"logloss": 0.5871422264148916, "AUC": 0.5201974703144148, "f1": 0.08112582781456955, "ACC": 0.9260049330044664}}
