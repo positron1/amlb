@@ -31,31 +31,53 @@ if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
 
+
 framework = 'autosklearn'
 foldn = 3
 timeforjob= 100
 prepart = True
 ncore = 4
-
-
+dirt ='/home/yzhu14/atoml/data/fraudkaggle/'
+dataset = 'ieeefraud'
+target = 'isFraud'
+def kaggledata(dataset,dirt,nfeature,cfeature,target,indexdrop=False):
+  trainn = pd.read_csv(dirt+'train_transaction.csv')
+  trainc = pd.read_csv(dirt+'train_identity.csv')
+  testn = pd.read_csv(dirt+'test_trainsaction.csv')
+  testc = pd.read_csv(dirt+'test_identity.csv')
+  nfeature = trainn.columns.values
+  cfeature = trainc.columns.values
+  train=trainc.merge(trainn)
+  test = testc.merge(testc)
+  data = pd.concat(train,test)
+  index_features = ['TransactionID']
+  index_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1))])
+  y_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1)),\
+                       ('orden', OrdinalEncoder())])
+  numeric_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='median'))])
+  categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
+        ('onehot', OneHotEncoder(sparse=False))])
+  preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
+         ('cat', categorical_transformer, categorical_features), ('y',y_transformer,[target]),('index',index_transformer, index_features)])
+  data=preprocessor.fit_transform(data)
+  data=pd.DataFrame(data)
+  y = data[target]
+  X = data.drop([target],axis=1)
+  X_train_auto, X_test_auto, y_train_auto, y_test_auto = \
+      sklearn.model_selection.train_test_split(X, y,test_size=0.2, random_state=1)
+  return  data,X,y,X_train, y_train,X_test, y_test
+#######################################################
 numeric_features =[]
 categorical_features =[]
-dirt = '/root/data/'
 datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
 metalist = remove_dirt(metalist,dirt+'/meta/')
-for im,meta in enumerate(metalist):
-    dataset = datalist[im]# "uci_bank_marketing_pd"
-    print("\ndataset:\t",dataset)
-    print("\nmetadata information:\t",meta)
-    load_partition(dirt+'opentest/',dataset)
+if __name__ == '__main__':
     try:
-        nfeatures,cfeatures,target = meta_info(dirt,meta)
-        data,X,y,X_train, y_train,X_test, y_test = prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False)
+        data,X,y,X_train, y_train,X_test, y_test = kaggledata(dataset,dirt,nfeatures,cfeatures,target,indexdrop=False)
         print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
         automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
-                per_run_time_limit=int(timeforjob/10),\
                 delete_tmp_folder_after_terminate=False,\
                 ensemble_memory_limit=10240,
                 seed=1,

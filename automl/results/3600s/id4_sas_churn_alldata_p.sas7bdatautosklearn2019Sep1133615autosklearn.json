@@ -1,0 +1,1 @@
+{"data": "id4_sas_churn_alldata_p.sas7bdat", "para": {"time": 3600, "cores": 8, "folds": 5, "framework": "autosklearn"}, "results": {"logloss": 0.2670687327481173, "AUC": 0.854539993343004, "f1": 0.7229111608050418, "ACC": 0.9519816804650344}}

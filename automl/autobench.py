@@ -27,10 +27,12 @@ import sys
 import logging
 import optparse
 from utils import *
+from runbench import *
 
 from DateTime import DateTime
 import time
 
+<<<<<<< HEAD
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
@@ -42,21 +44,9 @@ foldn = 5
 timeforjob= 900
 prepart = True
 ncore = 8
+=======
+>>>>>>> ac61d93f884229dd2ff968f3c106fde9b8ea0cae
 
-def metric(y_test,y_pred,y_pred_prob):
-    metrics = dict()
-    metrics['logloss']=log_loss(y_test,y_pred_prob)
-    metrics['AUC']=roc_auc_score(y_test,y_pred)
-    metrics['f1']=f1_score(y_test,y_pred)
-    metrics['ACC']=accuracy_score(y_test,y_pred)
-    return metrics
-def autoprep(dirt,dataset,targetname):
-    if targetname:
-        targetname = dataset
-    else:
-        dirt = dataset
-        # use the last one as target and print it out
-    return nfeatures,cfeatures,target
 numeric_features =[]
 categorical_features =[]
 dirt = '../data/'
@@ -64,22 +54,13 @@ datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
 metalist = remove_dirt(metalist,dirt+'/meta/')
-for im,meta in enumerate(metalist):
-    resultsfile = str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
-    str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] + str(framework)
-    runs = dict()
-    dataset = datalist[im]# "uci_bank_marketing_pd"
-    print("\ndataset:\t",dataset)
-    print("\nmetadata information:\t",meta)
-    if not os.path.exists(dirt+'opentest/'+dataset):
-        load_partition(dirt+'opentest/',dataset)
-    runs['data']=dataset
-    try:
-        if os.path.exists(dirt+"meta/"+meta):
-            nfeatures,cfeatures,target = meta_info(dirt,meta)
-        else:
-            nfeatures,cfeatures,target = autoprep(dirt,dataset,targetname) 
+print(datalist)
 
+if not sys.warnoptions:
+    import warnings
+    warnings.simplefilter("ignore")
+
+<<<<<<< HEAD
         data,X,y,X_train, y_train,X_test, y_test = prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False)
         print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
         automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
@@ -116,3 +97,19 @@ for im,meta in enumerate(metalist):
     except:
         print("\nfail in:\t",dataset)
         traceback.print_exc(file=sys.stdout)
+=======
+for _ in range(2):
+  current_time = DateTime(time.time(), 'US/Eastern')
+  for im,meta in enumerate(metalist):
+    if im ==7:
+      framework = 'autosklearn'
+      prepart = True
+      ncore = 4
+      dataset = datalist[im]# "uci_bank_marketing_pd"
+      print("\ndataset:\t",dataset)
+      print("\nmetadata information:\t",meta)
+      for foldn in [0]:
+        for timeforjob in [900]:
+          runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta)
+    
+>>>>>>> ac61d93f884229dd2ff968f3c106fde9b8ea0cae
