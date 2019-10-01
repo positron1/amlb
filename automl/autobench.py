@@ -19,7 +19,7 @@ from sklearn.metrics import roc_auc_score,accuracy_score,log_loss,f1_score
 from sklearn.model_selection import cross_val_score
 ##################################################
 import json
-
+import jsonpickle
 from sas7bdat import SAS7BDAT
 import pandas as pd
 import os

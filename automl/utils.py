@@ -90,23 +90,34 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
         ('onehot', OneHotEncoder(sparse=False))])
 
-    preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
-         ('cat', categorical_transformer, categorical_features), ('y',y_transformer,[target]),('index',index_transformer, index_features)])
-
+    preprocessor = ColumnTransformer(transformers=[('index',index_transformer, index_features),('y',y_transformer,[target]),('num', numeric_transformer, numeric_features),\
+         ('cat', categorical_transformer, categorical_features)])
     newcols = index_features + [target] + numeric_features + categorical_features
     print(newcols)
-    newdata = data.reindex([newcols],axis=1)
+    newdata = data[newcols]
+    print(newdata)
     pdata=preprocessor.fit_transform(newdata)
     pddata=pd.DataFrame(pdata)
     col =pddata.columns.values
-    print(pddata[col])
+    print(col)
     X=pddata.drop(col[:3],axis=1)
     X_train = pddata[pddata[col[1]]<2].drop(col[:3],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
     X_test = pddata[pddata[col[1]]==2].drop(col[:3],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
     y=pddata[col[2]]
     y_train =pddata[pddata[col[1]]<2][col[2]]
     y_test =pddata[pddata[col[1]]==2][col[2]]
-##########################################################
+    print(set(y_train))
+#    data=preprocessor.fit_transform(data)
+#    data=pd.DataFrame(data)
+#    col =data.columns.values
+#    print(col)
+#    X=data.drop('_dmIndex_',axis=1)
+#    X_train = data[data['_PartInd_']<2].drop(['_dmIndex_','_PartInd_',target],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
+#    X_test = data[data['_PartInd_']==2].drop(['_dmIndex_','_PartInd_',target],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
+#    y=data[target]
+#    y_train =data[data['_PartInd_']<2][target]
+#    y_test =data[data['_PartInd_']==2][target]
+#    ##########################################################
     return data,X,y,X_train, y_train,X_test, y_test
 def remove_dirt(dlist,dirt):
     for i,d in enumerate(sorted(dlist)):
