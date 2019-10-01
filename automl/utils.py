@@ -71,6 +71,9 @@ import glob
 def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     index_features = ['_dmIndex_','_PartInd_']
     data = pd.read_csv(dirt+"opentest/"+dataset+'.csv',delimiter=delim) # panda.DataFrame
+    col =data.columns.values
+    print(col)
+
     data= data.astype({'_dmIndex_':'int', '_PartInd_':'int'})
     numeric_features = nfeatures #list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
     categorical_features = cfeatures#list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
@@ -94,6 +97,7 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     data=preprocessor.fit_transform(data)
     data=pd.DataFrame(data)
     col =data.columns.values
+    print(col)
     X=data.drop(col[-3:],axis=1)
     X_train = data[data[col[-1]]<2].drop(col[-3:],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
     X_test = data[data[col[-1]]==2].drop(col[-3:],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')

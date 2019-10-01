@@ -46,17 +46,17 @@ if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
 
-for _ in range(2):
+for im,meta in enumerate(metalist):
   current_time = DateTime(time.time(), 'US/Eastern')
-  for im,meta in enumerate(metalist):
-    if im ==7:
+  if im in [0,1,4]:
+    for _ in range(5):
       framework = 'autosklearn'
       prepart = True
       ncore = 4
       dataset = datalist[im]# "uci_bank_marketing_pd"
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)
-      for foldn in [0]:
+      for foldn in [3]:
         for timeforjob in [900]:
           runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta)
-    
+   
