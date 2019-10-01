@@ -26,10 +26,10 @@ class data:
         print("\n\nData description:\n\n",df.describe())
         cols = df.columns
         df.to_csv(dirt+dataset+'d.csv',encoding = 'utf-8',index = False,header =True)
-        arfffile=open(dirt+dataset+'.arff','w')
+     #   arfffile=open(dirt+dataset+'.arff','w')
    #     arfffile.write(arff.dumps(df))
     #    arfffile.close()
-        print(arff.dumps(df))   
+    #    print(arff.dumps(df))   
      #print("\n\nCheck column\n\n",cols)
         return df
 
@@ -101,7 +101,8 @@ if __name__ == '__main__':
     # default path and data
     dirt ="/root/data/"
     dataset = "uci_bank_marketing_p" 
-
+    datasetlist = ['college_abt_binary_','hmeq_','cust_cibc_sas_','cust_olb_acti_','cust_paypal_','donations_']
+    dataset = datasetlist[0]+'p'
     ######################################################
     parser = optparse.OptionParser()
     parser.set_usage("""%prog -p <pathtodata> -d [dataset]
@@ -120,6 +121,8 @@ if __name__ == '__main__':
     #    sys.exit(1)
     data=data(dataset,metadata=True) 
     _,_,_ = data.main(options,args)
-    catlist,numlist = data.get_type('uci_bank_marketing_meta.csv')
+    print(dataset[:-1])
+    catlist,numlist = data.get_type(dataset[:-1]+'meta.csv')
     print(catlist)
     print(numlist)
+    print(dataset)

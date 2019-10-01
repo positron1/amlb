@@ -32,10 +32,9 @@ from runbench import *
 from DateTime import DateTime
 import time
 
-
 numeric_features =[]
 categorical_features =[]
-dirt = '/root/data/'
+dirt = '../data/'
 datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
