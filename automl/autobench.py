@@ -19,7 +19,7 @@ from sklearn.metrics import roc_auc_score,accuracy_score,log_loss,f1_score
 from sklearn.model_selection import cross_val_score
 ##################################################
 import json
-
+import jsonpickle
 from sas7bdat import SAS7BDAT
 import pandas as pd
 import os
@@ -34,7 +34,7 @@ import time
 
 numeric_features =[]
 categorical_features =[]
-dirt = '../data/'
+dirt = '/root/data/'
 datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
@@ -56,7 +56,7 @@ for im,meta in enumerate(metalist):
       dataset = datalist[im]# "uci_bank_marketing_pd"
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)
-      for foldn in [10]:
+      for foldn in [0,3,10]:
         for timeforjob in [900]:
           runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
     
