@@ -69,9 +69,9 @@ class data:
         #### last column _PartInd_ for train-1/validation-2/test-0/
         cols = df.columns
         df._PartInd_.astype(int)
-        dtrain = df.loc[df[cols[-1]]==1]
-        dvalidate = df.loc[df[cols[-1]]==0]
-        dtest = df.loc[df[cols[-1]]==2]
+        dtrain = df.loc[df['_PartInd_']==1]
+        dvalidate = df.loc[df['_PartInd_']==0]
+        dtest = df.loc[df['_PartInd_']==2]
         print("Train\n",dtrain.shape)
         print("Validate\n",dvalidate.shape)
         print("Test\n",dtest.shape)

@@ -39,14 +39,14 @@ datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
 metalist = remove_dirt(metalist,dirt+'/meta/')
-print(datalist)
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
 
-for _ in range(2):
-  current_time = DateTime(time.time(), 'US/Eastern')
-  for im,meta in enumerate(metalist):
+for im,meta in enumerate(metalist):
+ # for _ in range(5):
+      print(datalist)
+      current_time = DateTime(time.time(), 'US/Eastern')
       framework = 'autosklearn'
       prepart = True
       ncore = 4

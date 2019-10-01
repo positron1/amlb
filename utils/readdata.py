@@ -30,8 +30,8 @@ def load_partition(dirt,dataset):
     cols = df.columns
     df._PartInd_.astype(int)
     dtrain = df.loc[df['_PartInd_']==1]
-    dvalidate = df.loc[df['_PartInd_']==2]
-    dtest = df.loc[df['_PartInd_']==0]
+    dvalidate = df.loc[df['_PartInd_']==0]
+    dtest = df.loc[df['_PartInd_']==2]
     print("Train\n",dtrain.shape)
     print("Validate\n",dvalidate.shape)
     print("Test\n",dtest.shape)
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     dirt ="/root/data/"
     dataset = "uci_bank_marketing_p" 
 
-    datasetlist = ['college_abt_binary_','hmeq_','cust_cibc_sas_','cust_olb_acti_','cust_paypal_','donations_']######################################################
+    #datasetlist = ['college_abt_binary_','hmeq_','cust_cibc_sas_','cust_olb_acti_','cust_paypal_','donations_']######################################################
     dataset = datasetlist[4]+'p'
     parser = optparse.OptionParser()
     parser.set_usage("""%prog -p <pathtodata> -d [dataset]
