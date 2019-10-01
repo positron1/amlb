@@ -19,6 +19,7 @@ from sklearn.metrics import roc_auc_score,accuracy_score,log_loss,f1_score
 from sklearn.model_selection import cross_val_score
 ##################################################
 import json
+import jsonpickle      
 
 from sas7bdat import SAS7BDAT
 import pandas as pd
@@ -36,7 +37,11 @@ if not sys.warnoptions:
     warnings.simplefilter("ignore")
 current_time = DateTime(time.time(), 'US/Eastern')
 
-
+def getfitmetrics(fitmetrics):
+    if fitmetrics == autosklearn.metrics.roc_auc:
+       return 'AUC'
+    elif fitmetrics == autosklearn.metrics.log_loss:
+       return 'LogLoss'
 def savemodel(timeforjob,resultfile,automl):
     resultfileout = open('results/'+str(timeforjob)+'s/finalmodels'+resultfile,'w')
     resultfileout.write(str(automl.show_models()))
@@ -57,7 +62,7 @@ def autoprep(dirt,dataset,targetname):
         dirt = dataset
         # use the last one as target and print it out
     return nfeatures,cfeatures,target
-def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train):
+def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
     print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
     if foldn ==0:
         automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
@@ -69,7 +74,7 @@ def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train):
            ml_memory_limit=20720,\
            resampling_strategy_arguments={'train_size': float(5/7)},
            n_jobs=ncore)
-        automl.fit(X_train.copy(), y_train.copy(),metric=autosklearn.metrics.roc_auc)
+        automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics)
         automl.refit(X_train.copy(), y_train.copy())#,metric=autosklearn.metrics.roc_auc)
     else:
         automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
@@ -81,23 +86,24 @@ def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train):
            resampling_strategy_arguments={'folds': int(foldn)},
            resampling_strategy='cv',
            n_jobs=ncore) 
-        automl.fit(X_train.copy(), y_train.copy(),metric=autosklearn.metrics.roc_auc)
+        automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics)
         automl.refit(X_train.copy(), y_train.copy())#,metric=autosklearn.metrics.roc_auc)
     return automl
 
-def get_run_info(automl,dataset,timeforjob,fitmetrics,ncore,foldn,framework,metrics,resultsfile):
+def get_run_info(automl,dataset,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics):
     runs = dict()
     runs['data']=dataset
     runs['para']=dict()
     runs['para']['time']=timeforjob
-    runs['para']['fitmetrics']='AUC'
+    runs['para']['fitmetrics']=fitmetrics
     runs['para']['refitmetrics']='def'
     runs['para']['cores']=ncore
     runs['para']['folds']=foldn
     runs['para']['framework']=framework
     runs['results']=metrics
-    jsonf = json.dumps(runs)
-    f = open('results/'+str(timeforjob)+'s/result_'+resultsfile+".json","w")
+    print(runs)
+    jsonf = json.dumps(jsonpickle.encode(runs))
+    f = open('results/'+str(timeforjob)+'s/result_'+getfitmetrics(fitmetrics)+resultsfile+".json","w")
     savemodel(timeforjob,resultsfile,automl)
     f.write(jsonf)
     f.close()
@@ -108,7 +114,7 @@ def save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob):
        briefout.write(str(y)+'\t'+str(y_pred_prob[i])+'\n')
     briefout.close() 
 
-def runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta):
+def runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
     resultsfile = dataset[:3]+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
     str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
     if not os.path.exists(dirt+'opentest/'+dataset):
@@ -121,15 +127,14 @@ def runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta):
 
         data,X,y,X_train, y_train,X_test, y_test = prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False)
 
-        automl = autoclf(framework,timeforjob,foldn,ncore,X_train,y_train) 
+        automl = autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics) 
         ###################################################################
         y_pred = automl.predict(X_test)
         y_pred_prob = automl.predict_proba(X_test)
         save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob)
         print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
         metrics = metric(y_test,y_pred,y_pred_prob)
-        fitmetrics = 'AUC'
-        get_run_info(automl,dataset,timeforjob,fitmetrics,ncore,foldn,framework,metrics,resultsfile)
+        get_run_info(automl,dataset,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics)
     except:
         print("\nfail in:\t",dataset)
         traceback.print_exc(file=sys.stdout)

@@ -19,7 +19,7 @@ from sklearn.metrics import roc_auc_score,accuracy_score,log_loss,f1_score
 from sklearn.model_selection import cross_val_score
 ##################################################
 import json
-
+import jsonpickle
 from sas7bdat import SAS7BDAT
 import pandas as pd
 import os
@@ -34,26 +34,29 @@ import time
 
 numeric_features =[]
 categorical_features =[]
-dirt = '../data/'
+dirt = '/root/data/'
 datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
 metalist = remove_dirt(metalist,dirt+'/meta/')
+print(datalist)
+fitmetrics = autosklearn.metrics.log_loss
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
 
 for im,meta in enumerate(metalist):
- # for _ in range(5):
-      print(datalist)
-      current_time = DateTime(time.time(), 'US/Eastern')
+  current_time = DateTime(time.time(), 'US/Eastern')
+  if im in [0,1,4]:
+    for _ in range(5):
       framework = 'autosklearn'
+      current_time = DateTime(time.time(), 'US/Eastern')
       prepart = True
       ncore = 4
       dataset = datalist[im]# "uci_bank_marketing_pd"
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)
-      for foldn in [0]:
+      for foldn in [0,3,10]:
         for timeforjob in [900]:
-          runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta)
+          runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
     
