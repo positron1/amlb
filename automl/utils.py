@@ -45,9 +45,9 @@ def load_partition(dirt,dataset):
     #### last column _PartInd_ for train-1/validation-2/test-0/
     cols = df.columns
     df._PartInd_.astype(int)
-    dtrain = df.loc[df['_PartInd_']==1]
-    dvalidate = df.loc[df['_PartInd_']==0]
-    dtest = df.loc[df['_PartInd_']==2]
+    dtrain = df.loc[df[col[1]]==1]
+    dvalidate = df.loc[df[col[1]]==0]
+    dtest = df.loc[df[col[1]]==2]
     print("Train\n",dtrain.shape)
     print("Validate\n",dvalidate.shape)
     print("Test\n",dtest.shape)
@@ -67,13 +67,13 @@ def main(options,args):
     load_partition(dirt,dataset)
 
 import glob
+def checkindex(before,after):
+    indexb = before['_dmIndex_']
+     
 
 def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     index_features = ['_dmIndex_','_PartInd_']
     data = pd.read_csv(dirt+"opentest/"+dataset+'.csv',delimiter=delim) # panda.DataFrame
-    col =data.columns.values
-    print(col)
-
     data= data.astype({'_dmIndex_':'int', '_PartInd_':'int'})
     numeric_features = nfeatures #list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
     categorical_features = cfeatures#list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
@@ -91,19 +91,22 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
         ('onehot', OneHotEncoder(sparse=False))])
 
     preprocessor = ColumnTransformer(transformers=[('num', numeric_transformer, numeric_features),\
-         ('cat', categorical_transformer, categorical_features), ('y',y_transformer,[target]),('index',index_transformer
-, index_features)])
+         ('cat', categorical_transformer, categorical_features), ('y',y_transformer,[target]),('index',index_transformer, index_features)])
 
-    data=preprocessor.fit_transform(data)
-    data=pd.DataFrame(data)
-    col =data.columns.values
-    X=data.drop('_dmIndex_',axis=1)
-    X_train = data[data['_PartInd_']<2].drop(['_dmIndex_','_PartInd_',target],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
-    X_test = data[data['_PartInd_']==2].drop(['_dmIndex_','_PartInd_',target],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
-    y=data[target]
-    y_train =data[data['_PartInd_']<2][target]
-    y_test =data[data['_PartInd_']==2][target]
-    ##########################################################
+    newcols = index_features + [target] + numeric_features + categorical_features
+    print(newcols)
+    newdata = data.reindex([newcols],axis=1)
+    pdata=preprocessor.fit_transform(newdata)
+    pddata=pd.DataFrame(pdata)
+    col =pddata.columns.values
+    print(pddata[col])
+    X=pddata.drop(col[:3],axis=1)
+    X_train = pddata[pddata[col[1]]<2].drop(col[:3],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
+    X_test = pddata[pddata[col[1]]==2].drop(col[:3],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
+    y=pddata[col[2]]
+    y_train =pddata[pddata[col[1]]<2][col[2]]
+    y_test =pddata[pddata[col[1]]==2][col[2]]
+##########################################################
     return data,X,y,X_train, y_train,X_test, y_test
 def remove_dirt(dlist,dirt):
     for i,d in enumerate(sorted(dlist)):
