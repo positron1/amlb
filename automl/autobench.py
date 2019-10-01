@@ -46,7 +46,7 @@ if not sys.warnoptions:
     warnings.simplefilter("ignore")
 
 for im,meta in enumerate(metalist):
-  for im in [0,1,4]:
+  if im in [0,1,4]:
     for _ in range(5):
       framework = 'autosklearn'
       current_time = DateTime(time.time(), 'US/Eastern')
