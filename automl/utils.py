@@ -71,6 +71,9 @@ import glob
 def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     index_features = ['_dmIndex_','_PartInd_']
     data = pd.read_csv(dirt+"opentest/"+dataset+'.csv',delimiter=delim) # panda.DataFrame
+    col =data.columns.values
+    print(col)
+
     data= data.astype({'_dmIndex_':'int', '_PartInd_':'int'})
     numeric_features = nfeatures #list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
     categorical_features = cfeatures#list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
