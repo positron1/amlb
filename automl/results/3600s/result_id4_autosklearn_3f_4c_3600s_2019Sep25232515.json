@@ -1,0 +1,1 @@
+{"data": "id4_sas_churn_alldata_p.sas7bdat", "para": {"time": 3600, "fitmetrics": "AUC", "refitmetrics": "def", "cores": 4, "folds": 3, "framework": "autosklearn"}, "results": {"logloss": 0.12619743659187413, "AUC": 0.7735691321623126, "f1": 0.6646928201332347, "ACC": 0.9521225999647701}}

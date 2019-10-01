@@ -1,0 +1,9 @@
+[(1.000000, SimpleClassificationPipeline({'balancing:strategy': 'weighting', 'categorical_encoding:__choice__': 'one_hot_encoding', 'classifier:__choice__': 'decision_tree', 'imputation:strategy': 'median', 'preprocessor:__choice__': 'select_rates', 'rescaling:__choice__': 'none', 'categorical_encoding:one_hot_encoding:use_minimum_fraction': 'False', 'classifier:decision_tree:criterion': 'gini', 'classifier:decision_tree:max_depth_factor': 1.6678532274370363, 'classifier:decision_tree:max_features': 1.0, 'classifier:decision_tree:max_leaf_nodes': 'None', 'classifier:decision_tree:min_impurity_decrease': 0.0, 'classifier:decision_tree:min_samples_leaf': 8, 'classifier:decision_tree:min_samples_split': 10, 'classifier:decision_tree:min_weight_fraction_leaf': 0.0, 'preprocessor:select_rates:alpha': 0.2210932646345492, 'preprocessor:select_rates:mode': 'fdr', 'preprocessor:select_rates:score_func': 'chi2'},
+dataset_properties={
+  'task': 1,
+  'sparse': False,
+  'multilabel': False,
+  'multiclass': False,
+  'target_type': 'classification',
+  'signed': False})),
+]
