@@ -45,9 +45,9 @@ def load_partition(dirt,dataset):
     #### last column _PartInd_ for train-1/validation-2/test-0/
     cols = df.columns
     df._PartInd_.astype(int)
-    dtrain = df.loc[df[cols[-1]]==1]
-    dvalidate = df.loc[df[cols[-1]]==0]
-    dtest = df.loc[df[cols[-1]]==2]
+    dtrain = df.loc[df['_PartInd_']==1]
+    dvalidate = df.loc[df['_PartInd_']==0]
+    dtest = df.loc[df['_PartInd_']==2]
     print("Train\n",dtrain.shape)
     print("Validate\n",dvalidate.shape)
     print("Test\n",dtest.shape)
@@ -97,13 +97,12 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     data=preprocessor.fit_transform(data)
     data=pd.DataFrame(data)
     col =data.columns.values
-    print(col)
-    X=data.drop(col[-3:],axis=1)
-    X_train = data[data[col[-1]]<2].drop(col[-3:],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
-    X_test = data[data[col[-1]]==2].drop(col[-3:],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
-    y=data[col[-3]]
-    y_train =data[data[col[-1]]<2][col[-3]]
-    y_test =data[data[col[-1]]==2][col[-3]]
+    X=data.drop('_dmIndex_',axis=1)
+    X_train = data[data['_PartInd_']<2].drop(['_dmIndex_','_PartInd_',target],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
+    X_test = data[data['_PartInd_']==2].drop(['_dmIndex_','_PartInd_',target],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
+    y=data[target]
+    y_train =data[data['_PartInd_']<2][target]
+    y_test =data[data['_PartInd_']==2][target]
     ##########################################################
     return data,X,y,X_train, y_train,X_test, y_test
 def remove_dirt(dlist,dirt):
