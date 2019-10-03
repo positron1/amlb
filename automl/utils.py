@@ -74,7 +74,14 @@ def checkindex(before,after):
 def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     index_features = ['_dmIndex_','_PartInd_']
     data = pd.read_csv(dirt+"opentest/"+dataset+'.csv',delimiter=delim) # panda.DataFrame
+<<<<<<< HEAD
     data= data.astype({'_dmIndex_':'int', '_PartInd_':'int'})
+=======
+    col =data.columns.values
+    print(col)
+
+    data= data.astype({'_PartInd_':'int'})
+>>>>>>> c9737eba08635da153694ed9182076e06bcc0aab
     numeric_features = nfeatures #list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
     categorical_features = cfeatures#list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
     print("\nCheck numerical features:\t",numeric_features)

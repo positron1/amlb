@@ -58,6 +58,6 @@ for im,meta in enumerate(metalist):
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)
       for foldn in [10]:
-        for timeforjob in [3600]:
+        for timeforjob in [900]:
           runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
-    
+      

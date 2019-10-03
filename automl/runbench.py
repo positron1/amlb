@@ -31,6 +31,8 @@ from utils import *
 
 from DateTime import DateTime
 import time
+import time
+
 
 if not sys.warnoptions:
     import warnings
@@ -65,6 +67,7 @@ def autoprep(dirt,dataset,targetname):
 def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
     print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
     if foldn ==0:
+        
         automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
            per_run_time_limit=timeforjob, \
            delete_tmp_folder_after_terminate=False,\
@@ -90,20 +93,22 @@ def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
         automl.refit(X_train.copy(), y_train.copy())#,metric=autosklearn.metrics.roc_auc)
     return automl
 
-def get_run_info(automl,dataset,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics):
+def get_run_info(automl,dataset,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend):
     runs = dict()
-    runs['data']=dataset
+    runs['data']=str(dataset)
     runs['para']=dict()
     runs['para']['time']=timeforjob
-    runs['para']['fitmetrics']=fitmetrics
+    runs['para']['fitmetrics']=str(fitmetrics)
     runs['para']['refitmetrics']='def'
-    runs['para']['cores']=ncore
-    runs['para']['folds']=foldn
-    runs['para']['framework']=framework
-    runs['results']=metrics
+    runs['para']['cores']=str(ncore)
+    runs['para']['folds']=str(foldn)
+    runs['para']['framework']=str(framework)
+    runs['timespend'] = timespend
+    runs['results']=dict(metrics)
     print(runs)
-    jsonf = json.dumps(jsonpickle.encode(runs))
-    f = open('results/'+str(timeforjob)+'s/result_'+getfitmetrics(fitmetrics)+resultsfile+".json","w")
+    #jsonf = json.dumps(jsonpickle.encode(runs))
+    jsonf = json.dumps(runs)
+    f = open('results/'+str(timeforjob)+'s/result_'+str(getfitmetrics(fitmetrics))+resultsfile+".json","w")
     savemodel(timeforjob,resultsfile,automl)
     f.write(jsonf)
     f.close()
@@ -127,14 +132,17 @@ def runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
 
         data,X,y,X_train, y_train,X_test, y_test = prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False)
 
+        start = time.time()
         automl = autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics) 
         ###################################################################
         y_pred = automl.predict(X_test)
         y_pred_prob = automl.predict_proba(X_test)
+        end = time.time()
+        timespend =float(end - start)
         save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob)
         print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
         metrics = metric(y_test,y_pred,y_pred_prob)
-        get_run_info(automl,dataset,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics)
+        get_run_info(automl,dataset,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend)
     except:
         print("\nfail in:\t",dataset)
         traceback.print_exc(file=sys.stdout)
