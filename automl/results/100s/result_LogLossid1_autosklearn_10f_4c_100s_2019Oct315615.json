@@ -1,0 +1,1 @@
+{"data": "id14_cust_olb_acti_p.sas7bdat", "para": {"time": 100, "fitmetrics": "log_loss", "refitmetrics": "def", "cores": "4", "folds": "10", "framework": "autosklearn"}, "timespend": 95.83929252624512, "results": {"logloss": 0.6931471805599453, "AUC": 0.5, "f1": 0.0, "ACC": 0.850620493373719}}

@@ -1,2 +1,4 @@
+./automl/__*
+./automl/results/*
 ./data/*
 data/*

@@ -31,6 +31,8 @@ from utils import *
 
 from DateTime import DateTime
 import time
+import time
+
 
 if not sys.warnoptions:
     import warnings
@@ -45,7 +47,7 @@ def getfitmetrics(fitmetrics):
 def savemodel(timeforjob,resultfile,automl):
     resultfileout = open('results/'+str(timeforjob)+'s/finalmodels'+resultfile,'w')
     resultfileout.write(str(automl.show_models()))
-    resultfileout.write(str(automl.sprint_statistics()))
+    #resultfileout.write(str(automl.sprint_statistics()))
     resultfileout.write(str(automl.cv_results_))
     resultfileout.close()
 def metric(y_test,y_pred,y_pred_prob):
@@ -65,13 +67,14 @@ def autoprep(dirt,dataset,targetname):
 def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
     print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
     if foldn ==0:
+        
         automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
            per_run_time_limit=timeforjob, \
            delete_tmp_folder_after_terminate=False,\
            seed=1,\
            ensemble_memory_limit=20720,\
            resampling_strategy='holdout',\
-           ml_memory_limit=20720,\
+           ml_memory_limit=20720*2,\
            resampling_strategy_arguments={'train_size': float(5/7)},
            n_jobs=ncore)
         automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics)
@@ -82,7 +85,7 @@ def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
            seed=1,\
            per_run_time_limit=timeforjob, \
            ensemble_memory_limit=20720,\
-           ml_memory_limit=20720,\
+           ml_memory_limit=20720*2,\
            resampling_strategy_arguments={'folds': int(foldn)},
            resampling_strategy='cv',
            n_jobs=ncore) 
@@ -90,9 +93,14 @@ def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
         automl.refit(X_train.copy(), y_train.copy())#,metric=autosklearn.metrics.roc_auc)
     return automl
 
-def get_run_info(automl,dataset,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics):
+def get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend):
     runs = dict()
     runs['data']=str(dataset)
+    runs['shape']=dict()
+    runs['shape']['xtrain']=shape[0]
+    runs['shape']['ytrain']=shape[1]
+    runs['shape']['xtest']=shape[2]
+    runs['shape']['ytest']=shape[3]
     runs['para']=dict()
     runs['para']['time']=timeforjob
     runs['para']['fitmetrics']=str(fitmetrics)
@@ -100,6 +108,7 @@ def get_run_info(automl,dataset,timeforjob,ncore,foldn,framework,resultsfile,fit
     runs['para']['cores']=str(ncore)
     runs['para']['folds']=str(foldn)
     runs['para']['framework']=str(framework)
+    runs['timespend'] = timespend
     runs['results']=dict(metrics)
     print(runs)
     #jsonf = json.dumps(jsonpickle.encode(runs))
@@ -127,15 +136,19 @@ def runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
             nfeatures,cfeatures,target = autoprep(dirt,dataset,targetname) 
 
         data,X,y,X_train, y_train,X_test, y_test = prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False)
-
+        shape = []
+        shape = [X_train.shape, y_train.shape,X_test.shape, y_test.shape] 
+        start = time.time()
         automl = autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics) 
         ###################################################################
         y_pred = automl.predict(X_test)
         y_pred_prob = automl.predict_proba(X_test)
+        end = time.time()
+        timespend =float(end - start)
         save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob)
         print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
         metrics = metric(y_test,y_pred,y_pred_prob)
-        get_run_info(automl,dataset,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics)
+        get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend)
     except:
         print("\nfail in:\t",dataset)
         traceback.print_exc(file=sys.stdout)
