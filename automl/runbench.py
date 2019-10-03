@@ -100,9 +100,9 @@ def get_run_info(automl,dataset,timeforjob,ncore,foldn,framework,resultsfile,fit
     runs['para']['cores']=ncore
     runs['para']['folds']=foldn
     runs['para']['framework']=framework
-    runs['results']=metrics
+    runs['results']=dict(metrics)
     print(runs)
-    jsonf = json.dumps(jsonpickle.encode(runs))
+    jsonf = json.dumps(runs)
     f = open('results/'+str(timeforjob)+'s/result_'+getfitmetrics(fitmetrics)+resultsfile+".json","w")
     savemodel(timeforjob,resultsfile,automl)
     f.write(jsonf)

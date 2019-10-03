@@ -34,7 +34,7 @@ import time
 
 numeric_features =[]
 categorical_features =[]
-dirt = '/root/data/'
+dirt = '../data/'
 datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
@@ -46,8 +46,8 @@ if not sys.warnoptions:
     warnings.simplefilter("ignore")
 
 for im,meta in enumerate(metalist):
-  current_time = DateTime(time.time(), 'US/Eastern')
-  if im not in [0,1,4]:
+    current_time = DateTime(time.time(), 'US/Eastern')
+#  if im not in [0,1,4]:
     for _ in range(5):
       framework = 'autosklearn'
       current_time = DateTime(time.time(), 'US/Eastern')
@@ -56,7 +56,7 @@ for im,meta in enumerate(metalist):
       dataset = datalist[im]# "uci_bank_marketing_pd"
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)
-      for foldn in [10]:
-        for timeforjob in [900]:
+      for foldn in [0,3,10]:
+        for timeforjob in [100]:
           runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
     

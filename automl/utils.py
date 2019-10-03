@@ -108,7 +108,7 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     y=pddata[col[2]]
     y_train =pddata[pddata[col[1]]<2][col[2]]
     y_test =pddata[pddata[col[1]]==2][col[2]]
-    print(y_train)
+    print(set(y_train))
 #    data=preprocessor.fit_transform(data)
 #    data=pd.DataFrame(data)
 #    col =data.columns.values
