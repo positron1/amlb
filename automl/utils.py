@@ -118,6 +118,7 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     print(set(y_train))
 #    ##########################################################
     return data,X,y,X_train, y_train,X_test, y_test
+
 def remove_dirt(dlist,dirt):
     for i,d in enumerate(sorted(dlist)):
         dlist[i]=os.path.relpath(d,dirt)
