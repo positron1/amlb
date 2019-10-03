@@ -47,10 +47,10 @@ metalist = sorted(metalist)
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
-for _ in range(5):
-  for im,meta in enumerate(metalist):
-      current_time = DateTime(time.time(), 'US/Eastern')
-    #if meta[:4]=='id14':
+#for _ in range(5):
+for im,meta in enumerate(metalist):
+    current_time = DateTime(time.time(), 'US/Eastern')
+    if meta[:4]=='id15':
       framework = 'autosklearn'
       current_time = DateTime(time.time(), 'US/Eastern')
       prepart = True
@@ -59,6 +59,6 @@ for _ in range(5):
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)
       for foldn in [10]:
-        for timeforjob in [900]:
+        for timeforjob in [100]:
           runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
       

@@ -74,7 +74,7 @@ def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
            seed=1,\
            ensemble_memory_limit=20720,\
            resampling_strategy='holdout',\
-           ml_memory_limit=20720,\
+           ml_memory_limit=20720*2,\
            resampling_strategy_arguments={'train_size': float(5/7)},
            n_jobs=ncore)
         automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics)
@@ -85,7 +85,7 @@ def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
            seed=1,\
            per_run_time_limit=timeforjob, \
            ensemble_memory_limit=20720,\
-           ml_memory_limit=20720,\
+           ml_memory_limit=20720*2,\
            resampling_strategy_arguments={'folds': int(foldn)},
            resampling_strategy='cv',
            n_jobs=ncore) 
