@@ -1,0 +1,1 @@
+{"data": "id3_uci_adult_income_p.sas7bdat", "para": {"time": 100, "fitmetrics": "log_loss", "refitmetrics": "def", "cores": "4", "folds": "10", "framework": "autosklearn"}, "timespend": 95.88401079177856, "results": {"logloss": 0.48877406487511665, "AUC": 0.5886762883427952, "f1": 0.30166787527193617, "ACC": 0.8028255528255528}}

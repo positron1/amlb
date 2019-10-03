@@ -47,7 +47,7 @@ def getfitmetrics(fitmetrics):
 def savemodel(timeforjob,resultfile,automl):
     resultfileout = open('results/'+str(timeforjob)+'s/finalmodels'+resultfile,'w')
     resultfileout.write(str(automl.show_models()))
-    resultfileout.write(str(automl.sprint_statistics()))
+    #resultfileout.write(str(automl.sprint_statistics()))
     resultfileout.write(str(automl.cv_results_))
     resultfileout.close()
 def metric(y_test,y_pred,y_pred_prob):
@@ -74,7 +74,7 @@ def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
            seed=1,\
            ensemble_memory_limit=20720,\
            resampling_strategy='holdout',\
-           ml_memory_limit=20720,\
+           ml_memory_limit=20720*2,\
            resampling_strategy_arguments={'train_size': float(5/7)},
            n_jobs=ncore)
         automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics)
@@ -85,7 +85,7 @@ def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
            seed=1,\
            per_run_time_limit=timeforjob, \
            ensemble_memory_limit=20720,\
-           ml_memory_limit=20720,\
+           ml_memory_limit=20720*2,\
            resampling_strategy_arguments={'folds': int(foldn)},
            resampling_strategy='cv',
            n_jobs=ncore) 
@@ -93,9 +93,14 @@ def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
         automl.refit(X_train.copy(), y_train.copy())#,metric=autosklearn.metrics.roc_auc)
     return automl
 
-def get_run_info(automl,dataset,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend):
+def get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend):
     runs = dict()
     runs['data']=str(dataset)
+    runs['shape']=dict()
+    runs['shape']['xtrain']=shape[0]
+    runs['shape']['ytrain']=shape[1]
+    runs['shape']['xtest']=shape[2]
+    runs['shape']['ytest']=shape[3]
     runs['para']=dict()
     runs['para']['time']=timeforjob
     runs['para']['fitmetrics']=str(fitmetrics)
@@ -131,7 +136,8 @@ def runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
             nfeatures,cfeatures,target = autoprep(dirt,dataset,targetname) 
 
         data,X,y,X_train, y_train,X_test, y_test = prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False)
-
+        shape = []
+        shape = [X_train.shape, y_train.shape,X_test.shape, y_test.shape] 
         start = time.time()
         automl = autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics) 
         ###################################################################
@@ -142,7 +148,7 @@ def runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
         save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob)
         print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
         metrics = metric(y_test,y_pred,y_pred_prob)
-        get_run_info(automl,dataset,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend)
+        get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend)
     except:
         print("\nfail in:\t",dataset)
         traceback.print_exc(file=sys.stdout)

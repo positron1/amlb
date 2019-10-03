@@ -40,15 +40,17 @@ metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
 metalist = remove_dirt(metalist,dirt+'/meta/')
 print(datalist)
+print(metalist)
 fitmetrics = autosklearn.metrics.log_loss
+datalist =sorted(datalist)
+metalist = sorted(metalist)
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
-
+#for _ in range(5):
 for im,meta in enumerate(metalist):
-  current_time = DateTime(time.time(), 'US/Eastern')
-  if im in [2]:
-#    for _ in range(5):
+    current_time = DateTime(time.time(), 'US/Eastern')
+    if meta[:4]=='id15':
       framework = 'autosklearn'
       current_time = DateTime(time.time(), 'US/Eastern')
       prepart = True
@@ -57,6 +59,6 @@ for im,meta in enumerate(metalist):
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)
       for foldn in [10]:
-        for timeforjob in [900]:
+        for timeforjob in [100]:
           runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
       
