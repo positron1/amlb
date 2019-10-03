@@ -81,8 +81,11 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     print(set(data[target]))
     numeric_features = nfeatures #list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
     categorical_features = cfeatures#list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
-    data[nfeatures] = data[nfeatures].astype('float32')
+    data = data[data[target].notna()]
     data[cfeatures] = data[cfeatures].astype('str')
+    data[nfeatures] = data[nfeatures].astype('float32')
+    data[target] = data[target].astype('str')
+    print(set(data[target]))
     print("\nCheck numerical features:\t",numeric_features,data[nfeatures].dtypes)
     print("\nCheck catogorical features:\t",categorical_features)
     ###############################
