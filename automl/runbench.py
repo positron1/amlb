@@ -92,18 +92,19 @@ def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
 
 def get_run_info(automl,dataset,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics):
     runs = dict()
-    runs['data']=dataset
+    runs['data']=str(dataset)
     runs['para']=dict()
     runs['para']['time']=timeforjob
-    runs['para']['fitmetrics']=fitmetrics
+    runs['para']['fitmetrics']=str(fitmetrics)
     runs['para']['refitmetrics']='def'
-    runs['para']['cores']=ncore
-    runs['para']['folds']=foldn
-    runs['para']['framework']=framework
+    runs['para']['cores']=str(ncore)
+    runs['para']['folds']=str(foldn)
+    runs['para']['framework']=str(framework)
     runs['results']=dict(metrics)
     print(runs)
+    #jsonf = json.dumps(jsonpickle.encode(runs))
     jsonf = json.dumps(runs)
-    f = open('results/'+str(timeforjob)+'s/result_'+getfitmetrics(fitmetrics)+resultsfile+".json","w")
+    f = open('results/'+str(timeforjob)+'s/result_'+str(getfitmetrics(fitmetrics))+resultsfile+".json","w")
     savemodel(timeforjob,resultsfile,automl)
     f.write(jsonf)
     f.close()
