@@ -30,8 +30,8 @@ def load_partition(dirt,dataset):
     cols = df.columns
     df._PartInd_.astype(int)
     dtrain = df.loc[df['_PartInd_']==1]
-    dvalidate = df.loc[df['_PartInd_']==2]
-    dtest = df.loc[df['_PartInd_']==0]
+    dvalidate = df.loc[df['_PartInd_']==0]
+    dtest = df.loc[df['_PartInd_']==2]
     print("Train\n",dtrain.shape)
     print("Validate\n",dvalidate.shape)
     print("Test\n",dtest.shape)

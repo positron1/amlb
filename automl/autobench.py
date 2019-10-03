@@ -42,13 +42,15 @@ metalist = remove_dirt(metalist,dirt+'/meta/')
 print(datalist)
 print(metalist)
 fitmetrics = autosklearn.metrics.log_loss
+datalist =sorted(datalist)
+metalist = sorted(metalist)
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
 
 for im,meta in enumerate(metalist):
     current_time = DateTime(time.time(), 'US/Eastern')
-    if im in [3]:
+    if meta[:4]=='id15':
     #for _ in range(5):
       framework = 'autosklearn'
       current_time = DateTime(time.time(), 'US/Eastern')

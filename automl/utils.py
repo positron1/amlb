@@ -20,6 +20,7 @@ from sklearn.metrics import roc_auc_score,accuracy_score
 from sklearn.model_selection import cross_val_score
 ##################################################
 
+import glob
 from sas7bdat import SAS7BDAT
 import os
 import sys,traceback
@@ -58,22 +59,15 @@ def partition_to_csv(dirt,dataset,dtrain,dvalidate,dtest):
     dtrain.to_csv(dirt+dataset+'dtrain.csv',encoding = 'utf-8',index= False,header =True)
     dtest.to_csv(dirt+dataset+'dtest.csv',encoding = 'utf-8',index = False,header =True)
     dvalidate.to_csv(dirt+dataset+'dvalid.csv',encoding = 'utf-8',index=False,header =True)
-def get_metrics(y_test,y_pred):
-    metrics = dict()
-     
-def main(options,args):
-    dirt = options.path
-    dataset = options.data
-    load_partition(dirt,dataset)
-
-import glob
-def checkindex(before,after):
-    indexb = before['_dmIndex_']
      
 
 def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     index_features = ['_dmIndex_','_PartInd_']
-    data = pd.read_csv(dirt+"opentest/"+dataset+'.csv',delimiter=delim) # panda.DataFrame
+    try:
+      data = pd.read_csv(dirt+"opentest/"+dataset+'.csv',delimiter=delim) # panda.DataFrame
+    except:
+      df = sas_to_csv(dirt+"opentest/",dataset)
+      data = pd.read_csv(dirt+"opentest/"+dataset+'.csv',delimiter=delim) # panda.DataFrame
     col =data.columns.values
     print(col)
 
@@ -122,16 +116,6 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     X_train= X_train.astype('float32')
     print(X_train.dtypes,X_train)
     print(set(y_train))
-#    data=preprocessor.fit_transform(data)
-#    data=pd.DataFrame(data)
-#    col =data.columns.values
-#    print(col)
-#    X=data.drop('_dmIndex_',axis=1)
-#    X_train = data[data['_PartInd_']<2].drop(['_dmIndex_','_PartInd_',target],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
-#    X_test = data[data['_PartInd_']==2].drop(['_dmIndex_','_PartInd_',target],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
-#    y=data[target]
-#    y_train =data[data['_PartInd_']<2][target]
-#    y_test =data[data['_PartInd_']==2][target]
 #    ##########################################################
     return data,X,y,X_train, y_train,X_test, y_test
 def remove_dirt(dlist,dirt):

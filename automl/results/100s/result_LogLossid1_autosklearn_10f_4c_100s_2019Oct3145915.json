@@ -1,0 +1,1 @@
+{"data": "id12_hmeq_p.sas7bdat", "para": {"time": 100, "fitmetrics": "log_loss", "refitmetrics": "def", "cores": "4", "folds": "10", "framework": "autosklearn"}, "timespend": 97.70894742012024, "results": {"logloss": 0.19480051275420388, "AUC": 0.8340707791496487, "f1": 0.7713841368584758, "ACC": 0.917831190609279}}
