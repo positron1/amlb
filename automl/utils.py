@@ -74,17 +74,15 @@ def checkindex(before,after):
 def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     index_features = ['_dmIndex_','_PartInd_']
     data = pd.read_csv(dirt+"opentest/"+dataset+'.csv',delimiter=delim) # panda.DataFrame
-<<<<<<< HEAD
-    data= data.astype({'_dmIndex_':'int', '_PartInd_':'int'})
-=======
     col =data.columns.values
     print(col)
 
     data= data.astype({'_PartInd_':'int'})
->>>>>>> c9737eba08635da153694ed9182076e06bcc0aab
     numeric_features = nfeatures #list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
     categorical_features = cfeatures#list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
-    print("\nCheck numerical features:\t",numeric_features)
+    data[nfeatures] = data[nfeatures].astype('float32')
+    data[cfeatures] = data[cfeatures].astype('str')
+    print("\nCheck numerical features:\t",numeric_features,data[nfeatures].dtypes)
     print("\nCheck catogorical features:\t",categorical_features)
     ###############################
     index_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1))])
@@ -113,6 +111,11 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     y=pddata[col[2]]
     y_train =pddata[pddata[col[1]]<2][col[2]]
     y_test =pddata[pddata[col[1]]==2][col[2]]
+    y_test= y_test.astype('float32')
+    y_train= y_train.astype('float32')
+    X_test= X_test.astype('float32')
+    X_train= X_train.astype('float32')
+    print(X_train.dtypes,X_train)
     print(set(y_train))
 #    data=preprocessor.fit_transform(data)
 #    data=pd.DataFrame(data)
@@ -166,7 +169,8 @@ if __name__ == '__main__':
         nfeatures,cfeatures,target = meta_info(dirt,meta) 
         try:
             data,X,y,X_train, y_train,X_test, y_test = prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False)
-            
+
+            print(X_train,y_train)            
             automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
                     per_run_time_limit=int(timeforjob),\
                     delete_tmp_folder_after_terminate=False,\

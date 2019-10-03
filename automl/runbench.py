@@ -131,7 +131,7 @@ def runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
             nfeatures,cfeatures,target = autoprep(dirt,dataset,targetname) 
 
         data,X,y,X_train, y_train,X_test, y_test = prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False)
-
+        print(X_train.dtypes,set(y_train))
         start = time.time()
         automl = autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics) 
         ###################################################################
