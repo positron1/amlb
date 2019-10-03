@@ -96,6 +96,7 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     print(newcols)
     newdata = data[newcols]
     print(newdata)
+    print(set(newdata[target]))
     pdata=preprocessor.fit_transform(newdata)
     pddata=pd.DataFrame(pdata)
     col =pddata.columns.values
