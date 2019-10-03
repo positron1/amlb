@@ -47,16 +47,16 @@ if not sys.warnoptions:
 
 for im,meta in enumerate(metalist):
   current_time = DateTime(time.time(), 'US/Eastern')
-  if im in [7]:
-   # for _ in range(5):
-    framework = 'autosklearn'
-    current_time = DateTime(time.time(), 'US/Eastern')
-    prepart = True
-    ncore = 4
-    dataset = datalist[im]# "uci_bank_marketing_pd"
-    print("\ndataset:\t",dataset)
-    print("\nmetadata information:\t",meta)
-    for foldn in [0,3,10]:
-      for timeforjob in [100]:
-        runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
-    
+  if im in [0,1,4]:
+    for _ in range(5):
+      framework = 'autosklearn'
+      current_time = DateTime(time.time(), 'US/Eastern')
+      prepart = True
+      ncore = 4
+      dataset = datalist[im]# "uci_bank_marketing_pd"
+      print("\ndataset:\t",dataset)
+      print("\nmetadata information:\t",meta)
+      for foldn in [10]:
+        for timeforjob in [900]:
+          runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
+      

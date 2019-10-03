@@ -74,7 +74,7 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     col =data.columns.values
     print(col)
 
-    data= data.astype({'_dmIndex_':'int', '_PartInd_':'int'})
+    data= data.astype({'_PartInd_':'int'})
     numeric_features = nfeatures #list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
     categorical_features = cfeatures#list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
     print("\nCheck numerical features:\t",numeric_features)
