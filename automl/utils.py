@@ -78,6 +78,7 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     print(col)
 
     data= data.astype({'_PartInd_':'int'})
+    print(set(data[target]))
     numeric_features = nfeatures #list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
     categorical_features = cfeatures#list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
     data[nfeatures] = data[nfeatures].astype('float32')
@@ -101,6 +102,7 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     print(newcols)
     newdata = data[newcols]
     print(newdata)
+    print(set(newdata[target]))
     pdata=preprocessor.fit_transform(newdata)
     pddata=pd.DataFrame(pdata)
     col =pddata.columns.values

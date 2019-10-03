@@ -48,7 +48,7 @@ if not sys.warnoptions:
 
 for im,meta in enumerate(metalist):
     current_time = DateTime(time.time(), 'US/Eastern')
-    if im in [7]:
+    if im in [3]:
     #for _ in range(5):
       framework = 'autosklearn'
       current_time = DateTime(time.time(), 'US/Eastern')

@@ -47,7 +47,7 @@ def getfitmetrics(fitmetrics):
 def savemodel(timeforjob,resultfile,automl):
     resultfileout = open('results/'+str(timeforjob)+'s/finalmodels'+resultfile,'w')
     resultfileout.write(str(automl.show_models()))
-    resultfileout.write(str(automl.sprint_statistics()))
+    #resultfileout.write(str(automl.sprint_statistics()))
     resultfileout.write(str(automl.cv_results_))
     resultfileout.close()
 def metric(y_test,y_pred,y_pred_prob):
