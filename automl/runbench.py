@@ -37,7 +37,6 @@ import time
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
-current_time = DateTime(time.time(), 'US/Eastern')
 
 def getfitmetrics(fitmetrics):
     if fitmetrics == autosklearn.metrics.roc_auc:
@@ -125,8 +124,13 @@ def save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob):
     briefout.close() 
 
 def runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
-    resultsfile = dataset[:3]+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
+    mylist = dataset.split("_")
+    myid = mylist[0]
+    current_time = DateTime(time.time(), 'US/Eastern')
+    
+    resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
     str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
+    print(resultsfile)
     if not os.path.exists(dirt+'opentest/'+dataset):
         load_partition(dirt+'opentest/',dataset)
     try:
