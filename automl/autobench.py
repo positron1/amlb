@@ -50,6 +50,7 @@ if not sys.warnoptions:
 for _ in range(1):
   for im,meta in enumerate(metalist):
     current_time = DateTime(time.time(), 'US/Eastern')
+
     if meta[2:4] in ['10','11','12','13','14']:
       framework = 'autosklearn'
       current_time = DateTime(time.time(), 'US/Eastern')
@@ -59,6 +60,6 @@ for _ in range(1):
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)
       for foldn in [10]:
-        for timeforjob in [100]:
+        for timeforjob in [900]:
           runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
       
