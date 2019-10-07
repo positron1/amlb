@@ -32,9 +32,12 @@ from runbench import *
 from DateTime import DateTime
 import time
 
+orig_stdout = sys.stdout
+current_time = DateTime(time.time(), 'US/Eastern')
+
 numeric_features =[]
 categorical_features =[]
-dirt = '/root/data/'
+dirt = '../data/'
 datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
@@ -48,8 +51,16 @@ if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
 runlist =['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14']
-for _ in range(1):
-  for im,meta in enumerate(metalist):
+runlist =['0','1','2','3','4']
+runlist = ['10','11','12','13','14']
+rep= 2
+timelist = [900]
+foldlist = [10]
+timestamp = str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
+        str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2]
+logfile = open('results/log_'+str(len(runlist))+'dataset'+str(timelist[0])+str(foldlist[0])+"rep"+str(rep)+str(timestamp)+".txt",'w')
+sys.stdout = logfile
+for im,meta in enumerate(metalist):
     myid = meta.split('_')[0]
     if myid[2:] in runlist:
       print(myid[2:])
@@ -59,7 +70,7 @@ for _ in range(1):
       dataset = datalist[im]# "uci_bank_marketing_pd"
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)
-      for foldn in [10]:
-        for timeforjob in [3600]:
-          runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
-      
+      runbenchmark(dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile)
+     
+sys.stdout = orig_stdout
+logfile.close()

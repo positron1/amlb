@@ -64,7 +64,6 @@ def autoprep(dirt,dataset,targetname):
         # use the last one as target and print it out
     return nfeatures,cfeatures,target
 def autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
-    print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
     if foldn ==0:
         
         automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
@@ -123,13 +122,25 @@ def save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob):
        briefout.write(str(y)+'\t'+str(y_pred_prob[i])+'\n')
     briefout.close() 
 
-def runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
+def biclassifier(X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
+
+    shape = []
+    shape = [X_train.shape, y_train.shape,X_test.shape, y_test.shape] 
+    start = time.time()
+    automl = autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics) 
+    ###################################################################
+    y_pred = automl.predict(X_test)
+    y_pred_prob = automl.predict_proba(X_test)
+    end = time.time()
+    timespend =float(end - start)
+    save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob)
+    metrics = metric(y_test,y_pred,y_pred_prob)
+    get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend)
+
+
+def runbenchmark(dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile):
     mylist = dataset.split("_")
     myid = mylist[0]
-    current_time = DateTime(time.time(), 'US/Eastern')
-    resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
-    str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
-    print(resultsfile)
     if not os.path.exists(dirt+'opentest/'+dataset):
         load_partition(dirt+'opentest/',dataset)
     try:
@@ -139,19 +150,15 @@ def runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
             nfeatures,cfeatures,target = autoprep(dirt,dataset,targetname) 
 
         data,X,y,X_train, y_train,X_test, y_test = prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False)
-        shape = []
-        shape = [X_train.shape, y_train.shape,X_test.shape, y_test.shape] 
-        start = time.time()
-        automl = autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics) 
-        ###################################################################
-        y_pred = automl.predict(X_test)
-        y_pred_prob = automl.predict_proba(X_test)
-        end = time.time()
-        timespend =float(end - start)
-        save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob)
-        print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
-        metrics = metric(y_test,y_pred,y_pred_prob)
-        get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend)
+        for timeforjob in timelist:
+            for foldn in foldlist:
+                for _ in range(rep):
+                    current_time = DateTime(time.time(), 'US/Eastern')
+                    resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
+                    str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
+                    print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n',file=logfile)
+                    biclassifier(X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
+                    print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
     except:
         print("\nfail in:\t",dataset)
         traceback.print_exc(file=sys.stdout)

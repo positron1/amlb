@@ -92,7 +92,6 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
 
     categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
         ('onehot', OneHotEncoder(sparse=False))])
-
     preprocessor = ColumnTransformer(transformers=[('index',index_transformer, index_features),('y',y_transformer,[target]),('num', numeric_transformer, numeric_features),\
          ('cat', categorical_transformer, categorical_features)])
     newcols = index_features + [target] + numeric_features + categorical_features
