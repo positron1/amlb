@@ -127,7 +127,6 @@ def runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
     mylist = dataset.split("_")
     myid = mylist[0]
     current_time = DateTime(time.time(), 'US/Eastern')
-    
     resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
     str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
     print(resultsfile)
