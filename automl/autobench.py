@@ -37,7 +37,7 @@ current_time = DateTime(time.time(), 'US/Eastern')
 
 numeric_features =[]
 categorical_features =[]
-dirt = '../data/'
+dirt = '/root/data/'
 datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
@@ -51,9 +51,10 @@ if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
 runlist =['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14']
+runlist =['5','6','7','8','9']
 runlist =['0','1','2','3','4']
 runlist = ['10','11','12','13','14']
-rep= 2
+rep= 5
 timelist = [900]
 foldlist = [10]
 timestamp = str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
