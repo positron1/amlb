@@ -60,18 +60,6 @@ def partition_to_csv(dirt,dataset,dtrain,dvalidate,dtest):
     dtest.to_csv(dirt+dataset+'dtest.csv',encoding = 'utf-8',index = False,header =True)
     dvalidate.to_csv(dirt+dataset+'dvalid.csv',encoding = 'utf-8',index=False,header =True)
      
-<<<<<<< HEAD
-def main(options,args):
-    dirt = options.path
-    dataset = options.data
-    load_partition(dirt,dataset)
-
-import glob
-def checkindex(before,after):
-    indexb = before['_dmIndex_']
-     
-=======
->>>>>>> 765de8a0c2d1fc43a769cccf7556d574f102bbb4
 
 def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     index_features = ['_dmIndex_','_PartInd_']
