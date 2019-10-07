@@ -19,7 +19,7 @@ from sklearn.metrics import roc_auc_score,accuracy_score,log_loss,f1_score
 from sklearn.model_selection import cross_val_score
 ##################################################
 import json
-
+import jsonpickle
 from sas7bdat import SAS7BDAT
 import pandas as pd
 import os
@@ -32,31 +32,47 @@ from runbench import *
 from DateTime import DateTime
 import time
 
+orig_stdout = sys.stdout
+current_time = DateTime(time.time(), 'US/Eastern')
+
 numeric_features =[]
 categorical_features =[]
-dirt = '../data/'
+dirt = '/root/data/'
 datalist = glob.glob(dirt+"opentest/*sas7bdat")
 metalist = glob.glob(dirt+"meta/*csv")
 datalist = remove_dirt(datalist,dirt+'/opentest/')
 metalist = remove_dirt(metalist,dirt+'/meta/')
 print(datalist)
+print(metalist)
 fitmetrics = autosklearn.metrics.roc_auc
+datalist =sorted(datalist)
+metalist = sorted(metalist)
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
-
+runlist =['5','6','7','8','9']
+runlist =['0','1','2','3','4']
+runlist = ['10','11']
+runlist =['0','1','2','3','4','5','6','7']
+runlist = ['8','9','10','11','12','13','14']
+rep= 5
+timelist = [900]
+foldlist = [10]
+timestamp = str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
+        str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2]
+logfile = open('results/log_'+str(len(runlist))+'dataset'+str(timelist[0])+str(foldlist[0])+"rep"+str(rep)+str(timestamp)+".txt",'w')
+sys.stdout = logfile
 for im,meta in enumerate(metalist):
-  current_time = DateTime(time.time(), 'US/Eastern')
-  #if im in []:
-  for _ in range(5):
+    myid = meta.split('_')[0]
+    if myid[2:] in runlist:
+      print(myid[2:])
       framework = 'autosklearn'
-      current_time = DateTime(time.time(), 'US/Eastern')
       prepart = True
       ncore = 4
       dataset = datalist[im]# "uci_bank_marketing_pd"
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)
-      for foldn in [0,3,10]:
-        for timeforjob in [900]:
-          runbenchmark(dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
-    
+      runbenchmark(dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile)
+     
+sys.stdout = orig_stdout
+logfile.close()

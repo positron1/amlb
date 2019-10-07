@@ -52,7 +52,11 @@ if not sys.warnoptions:
     warnings.simplefilter("ignore")
 runlist =['0','1','2','3','4','10','11','12','13','14']
 runlist =['12','13','14']
-rep= 4 
+runlist =['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14']
+runlist =['5','6','7','8','9']
+runlist =['0','1','2','3','4']
+runlist = ['10','11']
+rep= 5
 timelist = [900]
 foldlist = [10]
 timestamp = str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
