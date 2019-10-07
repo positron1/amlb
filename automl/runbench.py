@@ -122,7 +122,7 @@ def save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob):
        briefout.write(str(y)+'\t'+str(y_pred_prob[i])+'\n')
     briefout.close() 
 
-def biclassifier(X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
+def biclassifier(resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
 
     shape = []
     shape = [X_train.shape, y_train.shape,X_test.shape, y_test.shape] 
@@ -157,7 +157,7 @@ def runbenchmark(dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,
                     resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
                     str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
                     print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n',file=logfile)
-                    biclassifier(X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
+                    biclassifier(resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
                     print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
     except:
         print("\nfail in:\t",dataset)
