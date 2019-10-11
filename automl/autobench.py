@@ -31,8 +31,12 @@ from runbench import *
 
 from DateTime import DateTime
 import time
-
-orig_stdout = sys.stdout
+debugmode = False
+#True 
+if debugmode:
+  pass
+else:
+  orig_stdout = sys.stdout
 current_time = DateTime(time.time(), 'US/Eastern')
 
 numeric_features =[]
@@ -50,30 +54,42 @@ metalist = sorted(metalist)
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
+runlist =['0','1','2','3','4','10','11','12','13','14']
+runlist =['12','13','14']
 runlist =['5','6','7','8','9']
 runlist =['0','1','2','3','4']
-runlist = ['9']
-rep= 5
-runlist =['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14']
 timelist = [900]
-runlist = ['10','12']
 foldlist = [0]
-corelist = [16,32]
+
+rep= 5
+prep = False 
+runlist = ['4','5','6','10']
+runlist =['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14']
 timestamp = str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
         str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2]
 logfile = open('results/log_'+str(len(runlist))+'dataset'+str(timelist[0])+str(foldlist[0])+"rep"+str(rep)+str(timestamp)+".txt",'w')
-sys.stdout = logfile
+
+if debugmode:
+  pass
+else:
+  sys.stdout = logfile
+
 for im,meta in enumerate(metalist):
     myid = meta.split('_')[0]
     if myid[2:] in runlist:
       print(myid[2:])
       framework = 'autosklearn'
-      prepart = True
-      for ncore in corelist:
-        dataset = datalist[im]# "uci_bank_marketing_pd"
-        print("\ndataset:\t",dataset)
-        print("\nmetadata information:\t",meta)
-        runbenchmark(dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile)
-     
-sys.stdout = orig_stdout
-logfile.close()
+      ncore = 1
+      dataset = datalist[im]# "uci_bank_marketing_pd"
+      print("\ndataset:\t",dataset)
+      print("\nmetadata information:\t",meta)
+      try:
+        runbenchmark(prep,dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile)
+      except:
+        print('Failed:\t',myid,dataset)
+        continue
+if debugmode:
+  pass
+else:   
+  sys.stdout = orig_stdout
+  logfile.close()

@@ -50,11 +50,11 @@ metalist = sorted(metalist)
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
-runlist =['0','1','2','3','4']
+runlist =['5','6','7','8','9']
 runlist = ['10','11']
-runlist = ['8','9','10','11','12','13','14']
 runlist =['0','1','2','3','4','5','6','7']
-runlist =['5','6','7']
+runlist = ['9']#,'10','11','12','13','14']
+runlist =['2','3','4']
 rep= 5
 timelist = [900]
 foldlist = [10]
