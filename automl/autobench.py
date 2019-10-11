@@ -31,8 +31,11 @@ from runbench import *
 
 from DateTime import DateTime
 import time
-
-orig_stdout = sys.stdout
+debugmode = True 
+if debugmode:
+  pass
+else:
+  orig_stdout = sys.stdout
 current_time = DateTime(time.time(), 'US/Eastern')
 
 numeric_features =[]
@@ -52,28 +55,38 @@ if not sys.warnoptions:
     warnings.simplefilter("ignore")
 runlist =['0','1','2','3','4','10','11','12','13','14']
 runlist =['12','13','14']
-runlist =['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14']
 runlist =['5','6','7','8','9']
 runlist =['0','1','2','3','4']
-runlist = ['10','11']
-rep= 5
-timelist = [900]
-foldlist = [10]
+rep= 1
+timelist = [100]
+foldlist = [0]
+
+prep = False 
+runlist = ['3']
+runlist =['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14']
+runlist = ['4']
 timestamp = str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
         str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2]
 logfile = open('results/log_'+str(len(runlist))+'dataset'+str(timelist[0])+str(foldlist[0])+"rep"+str(rep)+str(timestamp)+".txt",'w')
-sys.stdout = logfile
+
+if debugmode:
+  pass
+else:
+  sys.stdout = logfile
+
 for im,meta in enumerate(metalist):
     myid = meta.split('_')[0]
     if myid[2:] in runlist:
       print(myid[2:])
       framework = 'autosklearn'
-      prepart = True
       ncore = 4
       dataset = datalist[im]# "uci_bank_marketing_pd"
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)
-      runbenchmark(dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile)
-     
-sys.stdout = orig_stdout
-logfile.close()
+      runbenchmark(prep,dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile)
+
+if debugmode:
+  pass
+else:   
+  sys.stdout = orig_stdout
+  logfile.close()

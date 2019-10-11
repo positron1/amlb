@@ -61,7 +61,62 @@ def partition_to_csv(dirt,dataset,dtrain,dvalidate,dtest):
     dvalidate.to_csv(dirt+dataset+'dvalid.csv',encoding = 'utf-8',index=False,header =True)
      
 
-def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
+def noprep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
+    index_features = ['_dmIndex_','_PartInd_']
+    try:
+      data = pd.read_csv(dirt+"opentest/"+dataset+'.csv',delimiter=delim) # panda.DataFrame
+    except:
+      df = sas_to_csv(dirt+"opentest/",dataset)
+      data = pd.read_csv(dirt+"opentest/"+dataset+'.csv',delimiter=delim) # panda.DataFrame
+    col =data.columns.tolist()
+    data= data.astype({'_PartInd_':'int'})
+    print(set(data[target]))
+
+    numeric_features = list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
+    categorical_features = list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
+    data = data[data[target].notna()]
+    data[cfeatures] = data[cfeatures].astype('str')
+    data[nfeatures] = data[nfeatures].astype('float32')
+    data[target] = data[target].astype('str')
+    print(set(data[target]))
+    print("\nCheck numerical features:\t",numeric_features,data[nfeatures].dtypes)
+    print("\nCheck catogorical features:\t",categorical_features)
+    ###############################
+    index_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1))])
+    y_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1)),\
+                                   ('orden', OrdinalEncoder())])
+
+    categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
+        ('onehot', OneHotEncoder(sparse=False))])
+    preprocessor = ColumnTransformer(transformers=[('index',index_transformer, index_features),('y',y_transformer,[target]), ('cat', categorical_transformer, categorical_features)])
+    newcols = index_features + [target] + numeric_features + categorical_features
+    print(newcols)
+    newdata = data[newcols]
+    print(newdata)
+    print(set(newdata[target]))
+    pdata=preprocessor.fit_transform(newdata)
+    pddata=pd.DataFrame(pdata)
+    col =pddata.columns.values
+    print(col)
+    X=pddata.drop(col[:3],axis=1)
+    X_train = pddata[pddata[col[1]]<2].drop(col[:3],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
+    X_test = pddata[pddata[col[1]]==2].drop(col[:3],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
+    y=pddata[col[2]]
+    y_train =pddata[pddata[col[1]]<2][col[2]]
+    y_test =pddata[pddata[col[1]]==2][col[2]]
+
+    feat_type =[]
+    y_test= y_test.astype('float32')
+    y_train= y_train.astype('float32')
+    X_test= X_test.astype('float32')
+    X_train= X_train.astype('float32')
+    print(X_train.dtypes,X_train)
+    print(set(y_train))
+#    ##########################################################
+    return data,X,y,X_train, y_train,X_test, y_test,feat_type
+
+
+def miniprep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     index_features = ['_dmIndex_','_PartInd_']
     try:
       data = pd.read_csv(dirt+"opentest/"+dataset+'.csv',delimiter=delim) # panda.DataFrame
@@ -73,8 +128,8 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
 
     data= data.astype({'_PartInd_':'int'})
     print(set(data[target]))
-    numeric_features = nfeatures #list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
-    categorical_features = cfeatures#list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
+    numeric_features = list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
+    categorical_features = list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
     data = data[data[target].notna()]
     data[cfeatures] = data[cfeatures].astype('str')
     data[nfeatures] = data[nfeatures].astype('float32')
@@ -82,6 +137,64 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     print(set(data[target]))
     print("\nCheck numerical features:\t",numeric_features,data[nfeatures].dtypes)
     print("\nCheck catogorical features:\t",categorical_features)
+    ###############################
+    index_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1))])
+    y_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1)),\
+                                   ('orden', OrdinalEncoder())])
+
+    categorical_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant', fill_value='missing')),\
+        ('onehot', OneHotEncoder(sparse=False))])
+    preprocessor = ColumnTransformer(transformers=[('index',index_transformer, index_features),('y',y_transformer,[target]), ('cat', categorical_transformer, categorical_features)])
+    newcols = index_features + [target] + numeric_features + categorical_features
+    print(newcols)
+    newdata = data[newcols]
+    print(newdata)
+    print(set(newdata[target]))
+    pdata=preprocessor.fit_transform(newdata)
+    pddata=pd.DataFrame(pdata)
+    col =pddata.columns.values
+    print(col)
+    X=pddata.drop(col[:3],axis=1)
+    feat_type =[]
+    X_train = pddata[pddata[col[1]]<2].drop(col[:3],axis=1)  #pd.DataFrame(X).to_csv('X_vanilla.csv')
+    X_test = pddata[pddata[col[1]]==2].drop(col[:3],axis=1)    #pd.DataFrame(X).to_csv('X_vanilla.csv')
+    y=pddata[col[2]]
+    y_train =pddata[pddata[col[1]]<2][col[2]]
+    y_test =pddata[pddata[col[1]]==2][col[2]]
+    y_test= y_test.astype('float32')
+    y_train= y_train.astype('float32')
+    X_test= X_test.astype('float32')
+    X_train= X_train.astype('float32')
+    print(X_train.dtypes,X_train)
+    print(set(y_train))
+#    ##########################################################
+    return data,X,y,X_train, y_train,X_test, y_test,feat_type
+
+def prep(prepb,dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
+    index_features = ['_dmIndex_','_PartInd_']
+    try:
+      data = pd.read_csv(dirt+"opentest/"+dataset+'.csv',delimiter=delim) # panda.DataFrame
+    except:
+      df = sas_to_csv(dirt+"opentest/",dataset)
+      data = pd.read_csv(dirt+"opentest/"+dataset+'.csv',delimiter=delim) # panda.DataFrame
+    col =data.columns.values
+    print(col)
+
+    data= data.astype({'_PartInd_':'int'})
+    print(set(data[target]))
+    if prepb:    
+        numeric_features = nfeatures #list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
+        categorical_features = cfeatures#list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
+    else:
+        numeric_features = list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
+        categorical_features = list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
+    data = data[data[target].notna()]
+    data[categorical_features] = data[categorical_features].astype('str')
+    data[numeric_features] = data[numeric_features].astype('float32')
+    data[target] = data[target].astype('str')
+    print(set(data[target]))
+    print("\nCheck numerical features:\t",numeric_features,data[numeric_features].dtypes)
+    print("\nCheck catogorical features:\t",categorical_features,data[categorical_features].dtypes)
     ###############################
     index_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1))])
     y_transformer = Pipeline(steps=[('imputer', SimpleImputer(strategy='constant',fill_value=-1)),\
@@ -115,8 +228,12 @@ def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     X_train= X_train.astype('float32')
     print(X_train.dtypes,X_train)
     print(set(y_train))
+    if prepb:
+       feat_type = ['Numerical']*len(numeric_features)+ ['Categorical']*len(categorical_features)
+    else:
+       feat_type = []
 #    ##########################################################
-    return data,X,y,X_train, y_train,X_test, y_test
+    return data,X,y,X_train, y_train,X_test, y_test,feat_type
 
 def remove_dirt(dlist,dirt):
     for i,d in enumerate(sorted(dlist)):
