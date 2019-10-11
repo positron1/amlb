@@ -60,7 +60,10 @@ def partition_to_csv(dirt,dataset,dtrain,dvalidate,dtest):
     dtest.to_csv(dirt+dataset+'dtest.csv',encoding = 'utf-8',index = False,header =True)
     dvalidate.to_csv(dirt+dataset+'dvalid.csv',encoding = 'utf-8',index=False,header =True)
      
-
+def get_train_valid(df):
+   df = sas_to_csv(dirt+"opentest/",dataset)
+    
+   
 def prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False):
     index_features = ['_dmIndex_','_PartInd_']
     try:
@@ -158,7 +161,7 @@ if __name__ == '__main__':
         nfeatures,cfeatures,target = meta_info(dirt,meta) 
         try:
             data,X,y,X_train, y_train,X_test, y_test = prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False)
-
+            
             print(X_train,y_train)            
             automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
                     per_run_time_limit=int(timeforjob),\

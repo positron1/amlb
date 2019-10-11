@@ -150,6 +150,7 @@ def runbenchmark(dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,
             nfeatures,cfeatures,target = autoprep(dirt,dataset,targetname) 
 
         data,X,y,X_train, y_train,X_test, y_test = prep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False)
+        print(type(X_train),X_train, y_train,X_test, y_test)
         for timeforjob in timelist:
             for foldn in foldlist:
                 for _ in range(rep):
