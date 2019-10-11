@@ -31,7 +31,7 @@ from runbench import *
 
 from DateTime import DateTime
 import time
-debugmode = True 
+debugmode = False
 if debugmode:
   pass
 else:
@@ -41,10 +41,18 @@ current_time = DateTime(time.time(), 'US/Eastern')
 numeric_features =[]
 categorical_features =[]
 dirt = '/root/data/'
-datalist = glob.glob(dirt+"opentest/*sas7bdat")
-metalist = glob.glob(dirt+"meta/*csv")
-datalist = remove_dirt(datalist,dirt+'/opentest/')
-metalist = remove_dirt(metalist,dirt+'/meta/')
+task ='bre'
+if task=='bt':
+   datalist = glob.glob(dirt+"opentest/*sas7bdat")
+   metalist = glob.glob(dirt+"meta/*csv")
+   datalist = remove_dirt(datalist,dirt+'/opentest/')
+   metalist = remove_dirt(metalist,dirt+'/meta/')
+elif task=='bre':
+   datalist = glob.glob(dirt+"binaryRareEvent/data/*sas7bdat")
+   metalist = glob.glob(dirt+"binaryRareEvent/meta/*csv")
+   datalist = remove_dirt(datalist,dirt+'/binaryRareEvent/data/')
+   metalist = remove_dirt(metalist,dirt+'/binaryRareEvent/meta/')
+   dirt = dirt+'binaryRareEvent/'
 print(datalist)
 print(metalist)
 fitmetrics = autosklearn.metrics.log_loss
@@ -56,15 +64,16 @@ if not sys.warnoptions:
 runlist =['0','1','2','3','4','10','11','12','13','14']
 runlist =['12','13','14']
 runlist =['5','6','7','8','9']
-runlist =['0','1','2','3','4']
-rep= 1
-timelist = [100]
+rep= 5
+timelist = [900]
 foldlist = [0]
 
-prep = False 
+prep = False
 runlist = ['3']
 runlist =['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14']
 runlist = ['4']
+
+runlist =['0','1','2','3','4']
 timestamp = str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
         str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2]
 logfile = open('results/log_'+str(len(runlist))+'dataset'+str(timelist[0])+str(foldlist[0])+"rep"+str(rep)+str(timestamp)+".txt",'w')
@@ -79,7 +88,7 @@ for im,meta in enumerate(metalist):
     if myid[2:] in runlist:
       print(myid[2:])
       framework = 'autosklearn'
-      ncore = 4
+      ncore = 15
       dataset = datalist[im]# "uci_bank_marketing_pd"
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)

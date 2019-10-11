@@ -149,8 +149,8 @@ def runbenchmark(prepb,dataset,framework,foldlist,ncore,timelist,dirt,meta,fitme
     mylist = dataset.split("_")
     myid = mylist[0]
     feat_type = []
-    if not os.path.exists(dirt+'opentest/'+dataset):
-        load_partition(dirt+'opentest/',dataset)
+    if not os.path.exists(dirt+'data/'+dataset):
+        load_partition(dirt+'data/',dataset)
     try:
         if os.path.exists(dirt+"meta/"+meta):
             nfeatures,cfeatures,target = meta_info(dirt,meta)
