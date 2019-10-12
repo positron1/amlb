@@ -76,9 +76,10 @@ def autoclf(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetric
            resampling_strategy_arguments={'train_size': float(5/7)},
            n_jobs=ncore)
         if len(feat_type)>0:
-            automl.fit(X_train, y_train,metric=fitmetrics,feat_type=feat_type)
+            automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics,feat_type = feat_type)
         else:
-            automl.fit(X_train, y_train,metric=fitmetrics)
+            automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics)#,feat_type = feat_type)
+
     else:
         automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
            delete_tmp_folder_after_terminate=False,\
@@ -167,7 +168,7 @@ def runbenchmark(prepb,dataset,framework,foldlist,corelist,timelist,dirt,meta,fi
                     resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
                     str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
                     print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n',file=logfile)
-                    biclassifier(prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics,outputdir)
+                    biclassifier(prepb,feat_type,resultsfile,X_train.copy(), y_train.copy(),X_test.copy(), y_test.copy(),dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics,outputdir)
                     print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
     except:
         print("\nfail in:\t",dataset)

@@ -42,14 +42,14 @@ numeric_features =[]
 categorical_features =[]
 dirt = '/root/data/'
 outputdir = './results/'#'/run/user/yozhuz/automl/results/'
-task ='bre'
+task ='bt'
 if task=='bt':
    datalist = glob.glob(dirt+"binaryTarget/data/*sas7bdat*")
    metalist = glob.glob(dirt+"binaryTarget/meta/*csv")
    datalist = remove_dirt(datalist,dirt+'/binaryTarget/data/')
    metalist = remove_dirt(metalist,dirt+'/binaryTarget/meta/')
    dirt = dirt+'binaryTarget/'
-   outputdir = outputdir+'binaryTarget/'
+#   outputdir = outputdir+'binaryTarget/'
 elif task=='bre':
    datalist = glob.glob(dirt+"binaryRareEvent/data/*sas7bdat*")
    metalist = glob.glob(dirt+"binaryRareEvent/meta/*csv")
@@ -80,8 +80,8 @@ runlist =['0','1','2','3','4']
 timestamp = str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
         str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2]
 runlist = ['9']
-rep= 5
-timelist = [900]
+rep= 2
+timelist = [100]
 foldlist = [0]
 runlist =['0','1','2','3','4']
 runlist =['0','1','2','3','4','5','6','7']

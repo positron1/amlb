@@ -1045,3 +1045,96 @@ Time limit for a single run is higher than total time limit. Capping the limit f
 [WARNING] [2019-10-12 21:05:12,061:EnsembleBuilder(1791095845):465cd73f86fb38a4a3e9474c674f824a] No models better than random - using Dummy Score!
 [WARNING] [2019-10-12 21:05:14,064:EnsembleBuilder(1791095845):465cd73f86fb38a4a3e9474c674f824a] No models better than random - using Dummy Score!
 [WARNING] [2019-10-12 21:05:16,069:EnsembleBuilder(1791095845):465cd73f86fb38a4a3e9474c674f824a] No models better than random - using Dummy Score!
+-1
+['/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000000.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000001.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000002.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000003.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000004.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000005.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000006.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000007.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000008.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000009.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000010.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000011.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000012.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000013.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000014.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000015.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000016.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000017.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000018.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000019.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000020.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000021.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000022.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000023.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000024.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000025.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000026.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000027.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000028.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000029.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000030.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000031.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000032.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000033.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000034.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000035.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000036.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000037.ensemble', '/tmp/autosklearn_tmp_25804_706/.auto-sklearn/ensembles/1791095845.0000000038.ensemble']
+[22:05:04] WARNING: /workspace/src/objective/regression_obj.cu:152: reg:linear is now deprecated in favor of reg:squarederror.
+[22:05:05] WARNING: /workspace/src/objective/regression_obj.cu:152: reg:linear is now deprecated in favor of reg:squarederror.
+{'data': 'id5_solarfarm_p.sas7bdat', 'shape': {'xtrain': (3129, 78), 'ytrain': (3129,), 'xtest': (1341, 78), 'ytest': (1341,)}, 'para': {'prep_data': False, 'time': 3600, 'fitmetrics': 'mean_squared_error', 'refitmetrics': 'def', 'cores': '4', 'folds': '0', 'framework': 'autosklearn'}, 'timespend': 3600.0472226142883, 'results': {'r2': 0.9914423293554941, 'MSE': 1291.3176504946955, 'MAE1': 4.905810957920363, 'MAE2': 2.188594970703093}}
+Finishing:	 autosklearn 	 0  fold	 4  core	 3600  seconds
+
+6
+
+dataset:	 id6_uci_abalone_p.sas7bdat
+
+metadata information:	 id6_uci_abalone_meta.csv
+['sex' 'ab_length' 'ab_diameter' 'ab_height' 'whole_weight'
+ 'shucked_weight' 'viscera_weight' 'shell_weight' 'rings' '_dmIndex_'
+ '_PartInd_']
+
+check Target	 rings
+
+check numerical features:	 ['ab_height', 'shucked_weight', 'shell_weight', 'viscera_weight', 'ab_length', 'ab_diameter', 'whole_weight'] ab_height         float32
+shucked_weight    float32
+shell_weight      float32
+viscera_weight    float32
+ab_length         float32
+ab_diameter       float32
+whole_weight      float32
+dtype: object
+
+Check catogorical features:	 ['sex'] sex    object
+dtype: object
+
+
+newcols ['_dmIndex_', '_PartInd_', 'rings', 'ab_height', 'shucked_weight', 'shell_weight', 'viscera_weight', 'ab_length', 'ab_diameter', 'whole_weight', 'sex']
+
+
+column [ 0  1  2  3  4  5  6  7  8  9 10]
+3     float32
+4     float32
+5     float32
+6     float32
+7     float32
+8     float32
+9     float32
+10    float32
+dtype: object          3       4       5       6      7      8       9    10
+1     0.090  0.0995  0.0700  0.0485  0.350  0.265  0.2255  2.0
+3     0.125  0.2155  0.1550  0.1140  0.440  0.365  0.5160  2.0
+4     0.080  0.0895  0.0550  0.0395  0.330  0.255  0.2050  1.0
+5     0.095  0.1410  0.1200  0.0775  0.425  0.300  0.3515  1.0
+7     0.125  0.2940  0.2600  0.1495  0.545  0.425  0.7680  0.0
+...     ...     ...     ...     ...    ...    ...     ...  ...
+4170  0.130  0.3155  0.2405  0.1955  0.550  0.430  0.8395  2.0
+4171  0.155  0.4000  0.2290  0.1720  0.560  0.430  0.8675  2.0
+4172  0.165  0.3700  0.2490  0.2390  0.565  0.450  0.8870  0.0
+4173  0.135  0.4390  0.2605  0.2145  0.590  0.440  0.9660  2.0
+4176  0.195  0.9455  0.4950  0.3765  0.710  0.555  1.9485  2.0
+
+[2924 rows x 8 columns]
+{0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 24.0, 25.0, 26.0, 27.0}
+
+starting:	 autosklearn 	 0  fold	 4  core	 3600  seconds
+
+         3       4       5       6      7      8       9    10
+1     0.090  0.0995  0.0700  0.0485  0.350  0.265  0.2255  2.0
+3     0.125  0.2155  0.1550  0.1140  0.440  0.365  0.5160  2.0
+4     0.080  0.0895  0.0550  0.0395  0.330  0.255  0.2050  1.0
+5     0.095  0.1410  0.1200  0.0775  0.425  0.300  0.3515  1.0
+7     0.125  0.2940  0.2600  0.1495  0.545  0.425  0.7680  0.0
+...     ...     ...     ...     ...    ...    ...     ...  ...
+4170  0.130  0.3155  0.2405  0.1955  0.550  0.430  0.8395  2.0
+4171  0.155  0.4000  0.2290  0.1720  0.560  0.430  0.8675  2.0
+4172  0.165  0.3700  0.2490  0.2390  0.565  0.450  0.8870  0.0
+4173  0.135  0.4390  0.2605  0.2145  0.590  0.440  0.9660  2.0
+4176  0.195  0.9455  0.4950  0.3765  0.710  0.555  1.9485  2.0
+
+[2924 rows x 8 columns] 1        6.0
+3        9.0
+4        6.0
+5        7.0
+7       15.0
+        ... 
+4170     9.0
+4171     7.0
+4172    10.0
+4173     9.0
+4176    11.0
+Name: 2, Length: 2924, dtype: float32
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3599.413284)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3599.339660)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3599.378953)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3599.279173)
+[WARNING] [2019-10-12 22:05:08,376:AutoMLSMBO(1791095845)::a0f0e2552197605b717fb06eac7c3e2f] Could not find meta-data directory /root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/metalearning/files/r2_regression_dense
+[WARNING] [2019-10-12 22:05:08,379:EnsembleBuilder(1791095845):a0f0e2552197605b717fb06eac7c3e2f] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 22:05:08,400:EnsembleBuilder(1791095845):a0f0e2552197605b717fb06eac7c3e2f] No models better than random - using Dummy Score!
