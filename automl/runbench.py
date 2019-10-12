@@ -75,8 +75,10 @@ def autoclf(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetric
            ml_memory_limit=20720*2,\
            resampling_strategy_arguments={'train_size': float(5/7)},
            n_jobs=ncore)
-#        automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics,feat_type=feat_type)
-#        automl.refit(X_train.copy(), y_train.copy())#,feat_type=feat_type)#,metric=autosklearn.metrics.roc_auc)
+        if len(feat_type)>0:
+            automl.fit(X_train, y_train,metric=fitmetrics,feat_type=feat_type)
+        else:
+            automl.fit(X_train, y_train,metric=fitmetrics)
     else:
         automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
            delete_tmp_folder_after_terminate=False,\
@@ -87,15 +89,15 @@ def autoclf(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetric
            resampling_strategy_arguments={'folds': int(foldn)},
            resampling_strategy='cv',
            n_jobs=ncore) 
-    if len(feat_type)>0:
-        automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics,feat_type = feat_type)
-    else:
-        automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics)#,feat_type = feat_type)
-        
-    automl.refit(X_train.copy(), y_train.copy())#,feat_type = feat_type)#,metric=autosklearn.metrics.roc_auc)
+        if len(feat_type)>0:
+            automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics,feat_type = feat_type)
+        else:
+            automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics)#,feat_type = feat_type)
+            
+        automl.refit(X_train.copy(), y_train.copy())#,feat_type = feat_type)#,metric=autosklearn.metrics.roc_auc)
     return automl
 
-def get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend,prepb):
+def get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend,prepb,outputdir):
     runs = dict()
     runs['data']=str(dataset)
     runs['shape']=dict()
@@ -116,18 +118,18 @@ def get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfi
     print(runs)
     #jsonf = json.dumps(jsonpickle.encode(runs))
     jsonf = json.dumps(runs)
-    f = open('results/'+str(timeforjob)+'s/result_'+str(getfitmetrics(fitmetrics))+resultsfile+".json","w")
+    f = open(outputdir+'/'+str(timeforjob)+'s/result_'+str(getfitmetrics(fitmetrics))+resultsfile+".json","w")
     savemodel(timeforjob,resultsfile,automl)
     f.write(jsonf)
     f.close()
-def save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob):
-    briefout = open('results/'+str(timeforjob)+'s/'+dataset+resultsfile+str(foldn)+'fresult.csv','w')
+def save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob,outputdir):
+    briefout = open(outputdir+'/'+str(timeforjob)+'s/'+dataset+resultsfile+str(foldn)+'fresult.csv','w')
     briefout.write("#ypred\typred_prob\n")
     for i,y in enumerate(y_pred):
        briefout.write(str(y)+'\t'+str(y_pred_prob[i])+'\n')
     briefout.close() 
 
-def biclassifier(prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics):
+def biclassifier(prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics,outputdir):
 
     shape = []
     shape = [X_train.shape, y_train.shape,X_test.shape, y_test.shape] 
@@ -138,14 +140,14 @@ def biclassifier(prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dat
     y_pred_prob = automl.predict_proba(X_test)
     end = time.time()
     timespend =float(end - start)
-    save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob)
+    save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob,outputdir)
     metrics = metric(y_test,y_pred,y_pred_prob)
-    get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend,prepb)
+    get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend,prepb,outputdir)
         
 def get_train_test(myid,X_train, y_train,X_test, y_test):
     print(myid,type(X_train), y_train,X_test, y_test,feat_type)
 
-def runbenchmark(prepb,dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile):
+def runbenchmark(prepb,dataset,framework,foldlist,corelist,timelist,dirt,meta,fitmetrics,rep,logfile,outputdir):
     mylist = dataset.split("_")
     myid = mylist[0]
     feat_type = []
@@ -156,20 +158,16 @@ def runbenchmark(prepb,dataset,framework,foldlist,ncore,timelist,dirt,meta,fitme
             nfeatures,cfeatures,target = meta_info(dirt,meta)
         else:
             nfeatures,cfeatures,target = autoprep(dirt,dataset,targetname) 
-#        if prepb:
         data,X,y,X_train, y_train,X_test, y_test,feat_type = prep(prepb,dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False)
- #       else:
-  #        data,X,y,X_train, y_train,X_test, y_test,feat_type = miniprep(dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False)
-   #     print(feat_type)
-       # get_train_test(myid,X_train, y_train,X_test, y_test)
         for timeforjob in timelist:
+          for ncore in corelist:
             for foldn in foldlist:
                 for _ in range(rep):
                     current_time = DateTime(time.time(), 'US/Eastern')
                     resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
                     str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
                     print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n',file=logfile)
-                    biclassifier(prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
+                    biclassifier(prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics,outputdir)
                     print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
     except:
         print("\nfail in:\t",dataset)

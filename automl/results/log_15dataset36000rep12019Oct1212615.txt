@@ -1,0 +1,437 @@
+0
+
+dataset:	 id0_kdd_sm_trn_appent_p.sas7bdat.csv
+
+metadata information:	 id0_kdd_sm_trn_appent_meta.csv
+['id' 'appent' 'var1' 'var2' 'var3' 'var4' 'var5' 'var6' 'var7' 'var8'
+ 'var9' 'var10' 'var11' 'var12' 'var13' 'var14' 'var15' 'var16' 'var17'
+ 'var18' 'var19' 'var20' 'var21' 'var22' 'var23' 'var24' 'var25' 'var26'
+ 'var27' 'var28' 'var29' 'var30' 'var31' 'var32' 'var33' 'var34' 'var35'
+ 'var36' 'var37' 'var38' 'var39' 'var40' 'var41' 'var42' 'var43' 'var44'
+ 'var45' 'var46' 'var47' 'var48' 'var49' 'var50' 'var51' 'var52' 'var53'
+ 'var54' 'var55' 'var56' 'var57' 'var58' 'var59' 'var60' 'var61' 'var62'
+ 'var63' 'var64' 'var65' 'var66' 'var67' 'var68' 'var69' 'var70' 'var71'
+ 'var72' 'var73' 'var74' 'var75' 'var76' 'var77' 'var78' 'var79' 'var80'
+ 'var81' 'var82' 'var83' 'var84' 'var85' 'var86' 'var87' 'var88' 'var89'
+ 'var90' 'var91' 'var92' 'var93' 'var94' 'var95' 'var96' 'var97' 'var98'
+ 'var99' 'var100' 'var101' 'var102' 'var103' 'var104' 'var105' 'var106'
+ 'var107' 'var108' 'var109' 'var110' 'var111' 'var112' 'var113' 'var114'
+ 'var115' 'var116' 'var117' 'var118' 'var119' 'var120' 'var121' 'var122'
+ 'var123' 'var124' 'var125' 'var126' 'var127' 'var128' 'var129' 'var130'
+ 'var131' 'var132' 'var133' 'var134' 'var135' 'var136' 'var137' 'var138'
+ 'var139' 'var140' 'var141' 'var142' 'var143' 'var144' 'var145' 'var146'
+ 'var147' 'var148' 'var149' 'var150' 'var151' 'var152' 'var153' 'var154'
+ 'var155' 'var156' 'var157' 'var158' 'var159' 'var160' 'var161' 'var162'
+ 'var163' 'var164' 'var165' 'var166' 'var167' 'var168' 'var169' 'var170'
+ 'var171' 'var172' 'var173' 'var174' 'var175' 'var176' 'var177' 'var178'
+ 'var179' 'var180' 'var181' 'var182' 'var183' 'var184' 'var185' 'var186'
+ 'var187' 'var188' 'var189' 'var190' 'var191' 'var192' 'var193' 'var194'
+ 'var195' 'var196' 'var197' 'var198' 'var199' 'var200' 'var201' 'var202'
+ 'var203' 'var204' 'var205' 'var206' 'var207' 'var208' 'var209' 'var210'
+ 'var212' 'var213' 'var214' 'var215' 'var216' 'var217' 'var219' 'var220'
+ 'var221' 'var222' 'var223' 'var224' 'var225' 'var226' 'var227' 'var228'
+ 'var229' 'var230' '_dmIndex_' '_PartInd_']
+{1.0, -1.0}
+{'-1.0', '1.0'}
+
+Check numerical features:	 ['var179', 'var4', 'var185', 'var53', 'var30', 'var110', 'var44', 'var140', 'var152', 'var25', 'var24', 'var14', 'var135', 'var50', 'var90', 'var156', 'var66', 'var134', 'var27', 'var87', 'var55', 'var1', 'var122', 'var155', 'id', 'var105', 'var141', 'var78', 'var154', 'var144', 'var57', 'var36', 'var127', 'var64', 'var65', 'var82', 'var100', 'var41', 'var28', 'var128', 'var51', 'var7', 'var18', 'var81', 'var186', 'var126', 'var183', 'var12', 'var136', 'var132', 'var184', 'var165', 'var10', 'var209', 'var17', 'var113', 'var75', 'var175', 'var162', 'var160', 'var123', 'var119', 'var137', 'var167', 'var111', 'var182', 'var166', 'var89', 'var153', 'var35', 'var69', 'var38', 'var79', 'var61', 'var20', 'var190', 'var176', 'var47', 'var19', 'var88', 'var26', 'var32', 'var40', 'var58', 'var8', 'var60', 'var33', 'var67', 'var174', 'var71', 'var45', 'var230', 'var164', 'var171', 'var161', 'var83', 'var6', 'var62', 'var169', 'var21', 'var187', 'var13', 'var124', 'var9', 'var92', 'var101', 'var103', 'var143', 'var11', 'var99', 'var63', 'var131', 'var97', 'var68', 'var178', 'var150', 'var98', 'var16', 'var118', 'var115', 'var42', 'var147', 'var159', 'var173', 'var31', 'var43', 'var149', 'var52', 'var29', 'var54', 'var15', 'var139', 'var109', 'var70', 'var121', 'var102', 'var85', 'var2', 'var46', 'var112', 'var37', 'var93', 'var107', 'var138', 'var120', 'var125', 'var189', 'var116', 'var177', 'var133', 'var157', 'var158', 'var80', 'var84', 'var86', 'var23', 'var181', 'var145', 'var49', 'var56', 'var74', 'var146', 'var72', 'var39', 'var96', 'var188', 'var91', 'var3', 'var95', 'var130', 'var48', 'var129', 'var76', 'var106', 'var151', 'var22', 'var77', 'var5', 'var142', 'var73', 'var59', 'var170', 'var163', 'var180', 'var94', 'var114', 'var34', 'var108', 'var148', 'var104', 'var117', 'var168', 'var172'] var179    float32
+var4      float32
+var185    float32
+var53     float32
+var30     float32
+           ...   
+var148    float32
+var104    float32
+var117    float32
+var168    float32
+var172    float32
+Length: 193, dtype: object
+
+Check catogorical features:	 ['var223', 'var198', 'var221', 'var199', 'var207', 'var205', 'var226', 'var215', 'var228', 'var224', 'var220', 'var225', 'var192', 'var201', 'var200', 'var203', 'var208', 'var214', 'var222', 'var206', 'var229', 'var193', 'var191', 'var202', 'var213', 'var217', 'var219', 'var195', 'var197', 'var210', 'var216', 'var194', 'var212', 'var204', 'var196', 'var227'] var223    object
+var198    object
+var221    object
+var199    object
+var207    object
+var205    object
+var226    object
+var215    object
+var228    object
+var224    object
+var220    object
+var225    object
+var192    object
+var201    object
+var200    object
+var203    object
+var208    object
+var214    object
+var222    object
+var206    object
+var229    object
+var193    object
+var191    object
+var202    object
+var213    object
+var217    object
+var219    object
+var195    object
+var197    object
+var210    object
+var216    object
+var194    object
+var212    object
+var204    object
+var196    object
+var227    object
+dtype: object
+['_dmIndex_', '_PartInd_', 'appent', 'var179', 'var4', 'var185', 'var53', 'var30', 'var110', 'var44', 'var140', 'var152', 'var25', 'var24', 'var14', 'var135', 'var50', 'var90', 'var156', 'var66', 'var134', 'var27', 'var87', 'var55', 'var1', 'var122', 'var155', 'id', 'var105', 'var141', 'var78', 'var154', 'var144', 'var57', 'var36', 'var127', 'var64', 'var65', 'var82', 'var100', 'var41', 'var28', 'var128', 'var51', 'var7', 'var18', 'var81', 'var186', 'var126', 'var183', 'var12', 'var136', 'var132', 'var184', 'var165', 'var10', 'var209', 'var17', 'var113', 'var75', 'var175', 'var162', 'var160', 'var123', 'var119', 'var137', 'var167', 'var111', 'var182', 'var166', 'var89', 'var153', 'var35', 'var69', 'var38', 'var79', 'var61', 'var20', 'var190', 'var176', 'var47', 'var19', 'var88', 'var26', 'var32', 'var40', 'var58', 'var8', 'var60', 'var33', 'var67', 'var174', 'var71', 'var45', 'var230', 'var164', 'var171', 'var161', 'var83', 'var6', 'var62', 'var169', 'var21', 'var187', 'var13', 'var124', 'var9', 'var92', 'var101', 'var103', 'var143', 'var11', 'var99', 'var63', 'var131', 'var97', 'var68', 'var178', 'var150', 'var98', 'var16', 'var118', 'var115', 'var42', 'var147', 'var159', 'var173', 'var31', 'var43', 'var149', 'var52', 'var29', 'var54', 'var15', 'var139', 'var109', 'var70', 'var121', 'var102', 'var85', 'var2', 'var46', 'var112', 'var37', 'var93', 'var107', 'var138', 'var120', 'var125', 'var189', 'var116', 'var177', 'var133', 'var157', 'var158', 'var80', 'var84', 'var86', 'var23', 'var181', 'var145', 'var49', 'var56', 'var74', 'var146', 'var72', 'var39', 'var96', 'var188', 'var91', 'var3', 'var95', 'var130', 'var48', 'var129', 'var76', 'var106', 'var151', 'var22', 'var77', 'var5', 'var142', 'var73', 'var59', 'var170', 'var163', 'var180', 'var94', 'var114', 'var34', 'var108', 'var148', 'var104', 'var117', 'var168', 'var172', 'var223', 'var198', 'var221', 'var199', 'var207', 'var205', 'var226', 'var215', 'var228', 'var224', 'var220', 'var225', 'var192', 'var201', 'var200', 'var203', 'var208', 'var214', 'var222', 'var206', 'var229', 'var193', 'var191', 'var202', 'var213', 'var217', 'var219', 'var195', 'var197', 'var210', 'var216', 'var194', 'var212', 'var204', 'var196', 'var227']
+       _dmIndex_  _PartInd_ appent  var179  var4  var185  var53  var30  var110  var44  var140  var152  var25  var24  ...  var191  var202  var213  var217  var219    var195  var197  var210   var216  var194    var212  var204  var196   var227
+0            1.0          1   -1.0     NaN   NaN     NaN    NaN    NaN     NaN    0.0   185.0     NaN  128.0   14.0  ...     nan    dXGu     nan    sH5Z    FzaX      taul    lK27    uKAI  XTbPUYD     nan  XfqtO3Ud    FbIm    1K8T     RAYp
+1            2.0          0   -1.0     NaN   NaN     NaN    NaN    NaN     NaN    0.0     0.0     NaN   24.0    2.0  ...     nan    lg1t     nan     nan    FzaX      taul    2Ix5    uKAI  kZJyVg2     nan   NhsEn4L    k13i    1K8T     RAYp
+2            3.0          1   -1.0     NaN   NaN     NaN    NaN    NaN     NaN    0.0   800.0     NaN  816.0   26.0  ...     nan    4bTR     nan    bHR7    FzaX      taul    ffXs    uKAI  pMWAe2U    SEuy   UbxQ8lZ    MGOA    1K8T  02N6s8f
+3            4.0          0   -1.0     NaN   NaN     NaN    NaN    NaN     NaN    0.0     0.0     NaN    0.0    NaN  ...     nan    W8mQ     nan    eKej    FzaX      taul    ssAy    uKAI  kq0dQfu     nan   NhsEn4L    YULl    1K8T     RAYp
+4            5.0          0   -1.0     NaN   NaN     NaN    NaN    NaN     NaN    0.0  3255.0     NaN   64.0    4.0  ...     nan    xklU     nan    H3p7    FzaX      taul    uNkU    uKAI  11p4mKe    SEuy  XfqtO3Ud    RVjC    1K8T     RAYp
+...          ...        ...    ...     ...   ...     ...    ...    ...     ...    ...     ...     ...    ...    ...  ...     ...     ...     ...     ...     ...       ...     ...     ...      ...     ...       ...     ...     ...      ...
+49995    49996.0          1    1.0     NaN   NaN     NaN    NaN    NaN     NaN    0.0     0.0     NaN    0.0    2.0  ...     nan    bIER     nan    XXsx    FzaX      taul    ZNsX    uKAI  kZJyVg2     nan   NhsEn4L    ZKJc    1K8T     RAYp
+49996    49997.0          0    1.0     NaN   NaN     NaN    NaN    NaN     NaN    0.0     0.0     NaN   88.0    2.0  ...     nan    P9KQ     nan    4a9J    FzaX  I9xt3GBD    JLbT    uKAI  beK4AFX    SEuy   NhsEn4L    RVjC    1K8T     RAYp
+49997    49998.0          1   -1.0     NaN   NaN     NaN    NaN    NaN     NaN    0.0   675.0     NaN  328.0    4.0  ...     nan    TKnx     nan    DV70    FzaX      taul    0Xwj    uKAI  _JdcICD     nan  XfqtO3Ud    k13i    1K8T     RAYp
+49998    49999.0          1   -1.0     0.0   0.0     NaN    NaN    NaN     NaN    NaN     NaN     0.0    NaN    NaN  ...    r__I    HJ88     nan    8Mfr    FzaX      taul    AHgj    uKAI  mAj3FSW     nan   NhsEn4L    mTeA    1K8T     RAYp
+49999    50000.0          0   -1.0     NaN   NaN     NaN    NaN    NaN     NaN    0.0  3350.0     NaN   48.0    0.0  ...     nan    e9dM     nan    k0HX    FzaX      taul    TIPl    uKAI  mAjbk_S     nan   NhsEn4L    vzJD    1K8T     RAYp
+
+[50000 rows x 232 columns]
+{'-1.0', '1.0'}
+[  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125
+ 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
+ 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161
+ 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179
+ 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197
+ 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213]
+3      float32
+4      float32
+5      float32
+6      float32
+7      float32
+        ...   
+209    float32
+210    float32
+211    float32
+212    float32
+213    float32
+Length: 211, dtype: object        3    4        5    6    7    8       9    10     11    12   13          14   15   16    17    18        19   20   ...     196   197  198   199  200     201  202      203   204   205    206  207     208  209   210   211  212  213
+0      0.0  0.0  74884.5  5.0  6.0  0.0   185.0  6.0  128.0  14.0  0.0  225.679993  0.0  0.0  70.0  40.0   69134.0  0.0  ...  2964.0  11.0  2.0  25.0  0.0  3682.0  1.0  12237.0  11.0  22.0  177.0  5.0   788.0  3.0  44.0  28.0  0.0  2.0
+1      0.0  0.0  74884.5  5.0  6.0  0.0     0.0  6.0   24.0   2.0  0.0  225.679993  0.0  0.0  70.0  40.0  357038.0  0.0  ...   125.0  21.0  2.0  25.0  0.0  4422.0  1.0  11249.0  11.0  22.0   13.0  5.0  1317.0  3.0  33.0  79.0  0.0  2.0
+2      0.0  0.0  74884.5  5.0  6.0  0.0   800.0  6.0  816.0  26.0  0.0  225.679993  0.0  0.0  70.0  40.0  248932.0  0.0  ...  1610.0  11.0  0.0   5.0  0.0   448.0  1.0   8473.0  11.0  22.0  157.0  5.0  1612.0  1.0  42.0  37.0  0.0  0.0
+3      0.0  0.0  74884.5  5.0  6.0  0.0     0.0  6.0    0.0   2.0  0.0  225.679993  0.0  0.0  70.0  40.0       0.0  0.0  ...   817.0  16.0  2.0  25.0  0.0  2953.0  1.0   9161.0  11.0  22.0  203.0  5.0  1425.0  3.0  33.0  57.0  0.0  2.0
+4      0.0  0.0  74884.5  5.0  6.0  0.0  3255.0  6.0   64.0   4.0  0.0  225.679993  0.0  0.0  70.0  40.0   66046.0  0.0  ...    65.0   3.0  1.0  25.0  0.0  5512.0  1.0   3834.0  11.0  22.0  209.0  5.0     6.0  1.0  44.0  43.0  0.0  2.0
+...    ...  ...      ...  ...  ...  ...     ...  ...    ...   ...  ...         ...  ...  ...   ...   ...       ...  ...  ...     ...   ...  ...   ...  ...     ...  ...      ...   ...   ...    ...  ...     ...  ...   ...   ...  ...  ...
+49995  0.0  0.0  74884.5  5.0  6.0  0.0     0.0  6.0    0.0   2.0  0.0  225.679993  0.0  0.0  70.0  40.0       0.0  0.0  ...   969.0  21.0  2.0  25.0  0.0  3489.0  1.0   7428.0  11.0  22.0  138.0  5.0  1317.0  3.0  33.0  60.0  0.0  2.0
+49996  0.0  0.0  74884.5  5.0  6.0  0.0     0.0  6.0   88.0   2.0  0.0  225.679993  0.0  0.0  70.0  40.0   39652.0  0.0  ...  1125.0  18.0  0.0   0.0  0.0  2353.0  1.0   1060.0  11.0   8.0   73.0  5.0   895.0  1.0  33.0  43.0  0.0  2.0
+49997  0.0  0.0  74884.5  5.0  6.0  0.0   675.0  6.0  328.0   4.0  0.0  225.679993  0.0  0.0  70.0  40.0  131588.0  0.0  ...  2834.0  14.0  2.0   0.0  0.0  2692.0  1.0   3040.0  11.0  22.0    2.0  5.0   858.0  3.0  44.0  79.0  0.0  2.0
+49998  0.0  0.0  74884.5  5.0  6.0  0.0   220.0  0.0   48.0   2.0  0.0  291.619995  0.0  0.0  70.0  40.0  208928.0  0.0  ...   142.0  16.0  2.0  25.0  1.0  1652.0  1.0   1874.0  11.0  22.0   34.0  5.0  1472.0  3.0  33.0  83.0  0.0  2.0
+49999  0.0  0.0  74884.5  5.0  6.0  0.0  3350.0  6.0   48.0   0.0  0.0  225.679993  0.0  0.0  70.0  40.0   95728.0  0.0  ...  1262.0   6.0  2.0  25.0  0.0  3736.0  1.0  10438.0  11.0  22.0  109.0  5.0  1548.0  3.0  33.0  93.0  0.0  2.0
+
+[40005 rows x 211 columns]
+{0.0, 1.0}
+
+starting:	 autosklearn 	 0  fold	 4  core	 3600  seconds
+
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3595.139144)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3594.524300)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3593.576872)
+[WARNING] [2019-10-12 16:07:14,994:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:15,209:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3593.264301)
+[WARNING] [2019-10-12 16:07:17,214:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:19,220:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:21,224:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:23,230:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:25,243:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:27,247:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:29,265:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:31,269:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:33,277:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:35,297:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:37,328:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:39,334:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:41,338:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:43,347:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:45,364:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:47,369:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:49,374:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:51,379:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:53,383:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:55,389:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 16:07:57,393:EnsembleBuilder(1791095845):3238b24540ee40a10441269b91c61e37] No models better than random - using Dummy Score!
+-1
+['/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000000.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000001.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000002.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000003.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000004.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000005.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000006.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000007.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000008.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000009.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000010.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000011.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000012.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000013.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000014.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000015.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000016.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000017.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000018.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000019.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000020.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000021.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000022.ensemble', '/tmp/autosklearn_tmp_2899_5704/.auto-sklearn/ensembles/1791095845.0000000023.ensemble']
+
+fail in:	 id0_kdd_sm_trn_appent_p.sas7bdat.csv
+Traceback (most recent call last):
+  File "/root/atoml/automl/runbench.py", line 170, in runbenchmark
+    biclassifier(prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics,outputdir)
+  File "/root/atoml/automl/runbench.py", line 145, in biclassifier
+    get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend,prepb)
+TypeError: get_run_info() missing 1 required positional argument: 'outputdir'
+1
+
+dataset:	 id1_uci_aps_failure_intrucks_p.sas7bdat.csv
+
+metadata information:	 id1_uci_aps_failure_intrucks_meta.csv
+['class' 'aa_000' 'ab_000' 'ac_000' 'ad_000' 'ae_000' 'af_000' 'ag_000'
+ 'ag_001' 'ag_002' 'ag_003' 'ag_004' 'ag_005' 'ag_006' 'ag_007' 'ag_008'
+ 'ag_009' 'ah_000' 'ai_000' 'aj_000' 'ak_000' 'al_000' 'am_0' 'an_000'
+ 'ao_000' 'ap_000' 'aq_000' 'ar_000' 'as_000' 'at_000' 'au_000' 'av_000'
+ 'ax_000' 'ay_000' 'ay_001' 'ay_002' 'ay_003' 'ay_004' 'ay_005' 'ay_006'
+ 'ay_007' 'ay_008' 'ay_009' 'az_000' 'az_001' 'az_002' 'az_003' 'az_004'
+ 'az_005' 'az_006' 'az_007' 'az_008' 'az_009' 'ba_000' 'ba_001' 'ba_002'
+ 'ba_003' 'ba_004' 'ba_005' 'ba_006' 'ba_007' 'ba_008' 'ba_009' 'bb_000'
+ 'bc_000' 'bd_000' 'be_000' 'bf_000' 'bg_000' 'bh_000' 'bi_000' 'bj_000'
+ 'bk_000' 'bl_000' 'bm_000' 'bn_000' 'bo_000' 'bp_000' 'bq_000' 'br_000'
+ 'bs_000' 'bt_000' 'bu_000' 'bv_000' 'bx_000' 'by_000' 'bz_000' 'ca_000'
+ 'cb_000' 'cc_000' 'cd_000' 'ce_000' 'cf_000' 'cg_000' 'ch_000' 'ci_000'
+ 'cj_000' 'ck_000' 'cl_000' 'cm_000' 'cn_000' 'cn_001' 'cn_002' 'cn_003'
+ 'cn_004' 'cn_005' 'cn_006' 'cn_007' 'cn_008' 'cn_009' 'co_000' 'cp_000'
+ 'cq_000' 'cr_000' 'cs_000' 'cs_001' 'cs_002' 'cs_003' 'cs_004' 'cs_005'
+ 'cs_006' 'cs_007' 'cs_008' 'cs_009' 'ct_000' 'cu_000' 'cv_000' 'cx_000'
+ 'cy_000' 'cz_000' 'da_000' 'db_000' 'dc_000' 'dd_000' 'de_000' 'df_000'
+ 'dg_000' 'dh_000' 'di_000' 'dj_000' 'dk_000' 'dl_000' 'dm_000' 'dn_000'
+ 'do_000' 'dp_000' 'dq_000' 'dr_000' 'ds_000' 'dt_000' 'du_000' 'dv_000'
+ 'dx_000' 'dy_000' 'dz_000' 'ea_000' 'eb_000' 'ec_00' 'ed_000' 'ee_000'
+ 'ee_001' 'ee_002' 'ee_003' 'ee_004' 'ee_005' 'ee_006' 'ee_007' 'ee_008'
+ 'ee_009' 'ef_000' 'eg_000' '_dmIndex_' '_PartInd_']
+{'neg', 'pos'}
+{'neg', 'pos'}
+
+Check numerical features:	 ['ec_00', 'dt_000', 'bi_000', 'ea_000', 'az_002', 'do_000', 'ax_000', 'bx_000', 'cs_002', 'be_000', 'cj_000', 'ef_000', 'an_000', 'ba_003', 'bs_000', 'cx_000', 'cs_007', 'ag_008', 'ay_002', 'az_006', 'ee_003', 'az_009', 'ai_000', 'cs_005', 'dx_000', 'au_000', 'aq_000', 'bg_000', 'ck_000', 'cp_000', 'ag_000', 'bd_000', 'cs_001', 'bn_000', 'ba_000', 'ee_004', 'ee_006', 'cg_000', 'ba_006', 'db_000', 'az_003', 'bj_000', 'cn_006', 'af_000', 'ag_007', 'ce_000', 'co_000', 'bp_000', 'cs_003', 'az_000', 'ag_004', 'di_000', 'az_007', 'at_000', 'cs_000', 'bc_000', 'cy_000', 'cq_000', 'bm_000', 'dd_000', 'ba_005', 'ae_000', 'df_000', 'cn_003', 'ci_000', 'cn_004', 'cn_008', 'ba_007', 'cd_000', 'az_001', 'cs_006', 'ca_000', 'dm_000', 'dg_000', 'eb_000', 'ee_008', 'ay_006', 'bl_000', 'al_000', 'bo_000', 'bz_000', 'cm_000', 'bu_000', 'bf_000', 'ap_000', 'cs_004', 'dc_000', 'dq_000', 'ag_009', 'ar_000', 'ba_002', 'bk_000', 'cs_008', 'ed_000', 'ba_008', 'dr_000', 'ay_003', 'dh_000', 'av_000', 'dj_000', 'eg_000', 'du_000', 'cs_009', 'az_004', 'ag_001', 'ee_002', 'as_000', 'dp_000', 'az_005', 'dz_000', 'dy_000', 'by_000', 'ag_002', 'ag_003', 'ay_009', 'ab_000', 'ch_000', 'da_000', 'ee_000', 'ay_004', 'bh_000', 'br_000', 'ds_000', 'ah_000', 'ay_005', 'am_0', 'cc_000', 'bq_000', 'cz_000', 'ee_005', 'ct_000', 'cv_000', 'ag_005', 'dl_000', 'cn_000', 'ay_007', 'aa_000', 'ba_001', 'ba_004', 'cn_005', 'de_000', 'ay_001', 'cf_000', 'cr_000', 'dv_000', 'ay_000', 'aj_000', 'cu_000', 'ba_009', 'ag_006', 'bb_000', 'ak_000', 'ad_000', 'cn_001', 'cn_002', 'cn_009', 'cl_000', 'ac_000', 'ao_000', 'ee_001', 'az_008', 'bt_000', 'ee_007', 'ee_009', 'ay_008', 'cn_007', 'dk_000', 'cb_000', 'dn_000', 'bv_000'] ec_00     float32
+dt_000    float32
+bi_000    float32
+ea_000    float32
+az_002    float32
+           ...   
+cn_007    float32
+dk_000    float32
+cb_000    float32
+dn_000    float32
+bv_000    float32
+Length: 170, dtype: object
+
+Check catogorical features:	 [] Series([], dtype: object)
+['_dmIndex_', '_PartInd_', 'class', 'ec_00', 'dt_000', 'bi_000', 'ea_000', 'az_002', 'do_000', 'ax_000', 'bx_000', 'cs_002', 'be_000', 'cj_000', 'ef_000', 'an_000', 'ba_003', 'bs_000', 'cx_000', 'cs_007', 'ag_008', 'ay_002', 'az_006', 'ee_003', 'az_009', 'ai_000', 'cs_005', 'dx_000', 'au_000', 'aq_000', 'bg_000', 'ck_000', 'cp_000', 'ag_000', 'bd_000', 'cs_001', 'bn_000', 'ba_000', 'ee_004', 'ee_006', 'cg_000', 'ba_006', 'db_000', 'az_003', 'bj_000', 'cn_006', 'af_000', 'ag_007', 'ce_000', 'co_000', 'bp_000', 'cs_003', 'az_000', 'ag_004', 'di_000', 'az_007', 'at_000', 'cs_000', 'bc_000', 'cy_000', 'cq_000', 'bm_000', 'dd_000', 'ba_005', 'ae_000', 'df_000', 'cn_003', 'ci_000', 'cn_004', 'cn_008', 'ba_007', 'cd_000', 'az_001', 'cs_006', 'ca_000', 'dm_000', 'dg_000', 'eb_000', 'ee_008', 'ay_006', 'bl_000', 'al_000', 'bo_000', 'bz_000', 'cm_000', 'bu_000', 'bf_000', 'ap_000', 'cs_004', 'dc_000', 'dq_000', 'ag_009', 'ar_000', 'ba_002', 'bk_000', 'cs_008', 'ed_000', 'ba_008', 'dr_000', 'ay_003', 'dh_000', 'av_000', 'dj_000', 'eg_000', 'du_000', 'cs_009', 'az_004', 'ag_001', 'ee_002', 'as_000', 'dp_000', 'az_005', 'dz_000', 'dy_000', 'by_000', 'ag_002', 'ag_003', 'ay_009', 'ab_000', 'ch_000', 'da_000', 'ee_000', 'ay_004', 'bh_000', 'br_000', 'ds_000', 'ah_000', 'ay_005', 'am_0', 'cc_000', 'bq_000', 'cz_000', 'ee_005', 'ct_000', 'cv_000', 'ag_005', 'dl_000', 'cn_000', 'ay_007', 'aa_000', 'ba_001', 'ba_004', 'cn_005', 'de_000', 'ay_001', 'cf_000', 'cr_000', 'dv_000', 'ay_000', 'aj_000', 'cu_000', 'ba_009', 'ag_006', 'bb_000', 'ak_000', 'ad_000', 'cn_001', 'cn_002', 'cn_009', 'cl_000', 'ac_000', 'ao_000', 'ee_001', 'az_008', 'bt_000', 'ee_007', 'ee_009', 'ay_008', 'cn_007', 'dk_000', 'cb_000', 'dn_000', 'bv_000']
+       _dmIndex_  _PartInd_ class        ec_00   dt_000    bi_000  ea_000   az_002    do_000  ax_000     bx_000  ...     ee_001  az_008        bt_000    ee_007   ee_009     ay_008   cn_007  dk_000    cb_000   dn_000     bv_000
+0            1.0          1   neg  2445.800049  37928.0  947550.0     0.0   4114.0   85908.0   268.0  6599892.0  ...  1706908.0     0.0  76698.078125  157956.0      0.0   755876.0  98822.0     0.0  638360.0  62282.0  6700214.0
+1            2.0          0   neg  2211.760010  16254.0  688314.0     0.0  13776.0   36946.0     0.0  3582034.0  ...   824154.0     0.0  33057.511719   81140.0   1500.0    99560.0  36294.0     0.0    6900.0  33736.0  3646660.0
+2            3.0          1   neg  1018.640015  10534.0  160176.0     0.0   1228.0   38182.0   110.0  2678534.0  ...   453378.0     0.0  41040.078125  158022.0    514.0  1450312.0  10260.0     0.0  248240.0  13876.0  2673338.0
+3            4.0          0   neg     1.080000     18.0    7632.0     0.0      6.0       0.0     6.0    21772.0  ...     1566.0     0.0     12.690000       0.0      0.0     5596.0      0.0     0.0   21400.0    232.0    21614.0
+4            5.0          0   neg  1116.060059  35154.0  653692.0     0.0    562.0   62648.0   642.0  4283332.0  ...   904230.0     0.0  60874.031250  311560.0   1218.0   584074.0  10482.0     0.0  654700.0  44946.0  4289260.0
+...          ...        ...   ...          ...      ...       ...     ...      ...       ...     ...        ...  ...        ...     ...           ...       ...      ...        ...      ...     ...       ...      ...        ...
+75995    75996.0          1   neg  1546.739990  23350.0  475928.0     0.0   2176.0   58588.0  1194.0  5510074.0  ...   983308.0     0.0  81851.773438  317840.0  25566.0   351926.0  67132.0     0.0  674580.0  40386.0  5522314.0
+75996    75997.0          0   neg     0.980000     28.0    2932.0     0.0     10.0       0.0    96.0    24920.0  ...     2746.0     0.0     18.410000       0.0      0.0    10358.0      0.0     0.0   22860.0    264.0    23062.0
+75997    75998.0          2   neg  3644.600098  29150.0  817038.0     0.0   2580.0  114166.0  1130.0  5733332.0  ...  1073658.0     0.0  79635.968750  222866.0  19548.0    14816.0  26948.0     0.0  947380.0  40850.0  5802262.0
+75998    75999.0          0   neg   133.839996     66.0   46216.0     0.0    292.0       0.0    66.0    85224.0  ...     5698.0     0.0    109.519997    1338.0      0.0    17646.0    162.0     0.0   86460.0    602.0    87120.0
+75999    76000.0          0   neg    76.220001      8.0    4428.0     0.0      8.0       0.0     0.0    17784.0  ...      954.0     0.0      7.770000      46.0      0.0     5804.0      0.0     0.0   16940.0    112.0    17070.0
+
+[76000 rows x 173 columns]
+{'neg', 'pos'}
+[  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125
+ 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
+ 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161
+ 162 163 164 165 166 167 168 169 170 171 172]
+3      float32
+4      float32
+5      float32
+6      float32
+7      float32
+        ...   
+168    float32
+169    float32
+170    float32
+171    float32
+172    float32
+Length: 170, dtype: object                3        4          5    6        7        8       9           10         11      12         13   14   ...         161        162  163            164       165      166        167      168  169       170       171         172
+0      2445.800049  37928.0   947550.0  0.0   4114.0  85908.0   268.0   6599892.0   267998.0   108.0       0.00  0.0  ...   3655166.0  1706908.0  0.0   76698.078125  157956.0      0.0   755876.0  98822.0  0.0  638360.0   62282.0   6700214.0
+1      2211.760010  16254.0   688314.0  0.0  13776.0  36946.0     0.0   3582034.0   164860.0   364.0       0.00  0.0  ...   2127150.0   824154.0  0.0   33057.511719   81140.0   1500.0    99560.0  36294.0  0.0    6900.0   33736.0   3646660.0
+2      1018.640015  10534.0   160176.0  0.0   1228.0  38182.0   110.0   2678534.0    56362.0   576.0       0.00  0.0  ...   2173634.0   453378.0  0.0   41040.078125  158022.0    514.0  1450312.0  10260.0  0.0  248240.0   13876.0   2673338.0
+3         1.080000     18.0     7632.0  0.0      6.0      0.0     6.0     21772.0       24.0     0.0       0.00  4.0  ...      7554.0     1566.0  0.0      12.690000       0.0      0.0     5596.0      0.0  0.0   21400.0     232.0     21614.0
+4      1116.060059  35154.0   653692.0  0.0    562.0  62648.0   642.0   4283332.0    80950.0   642.0       0.00  0.0  ...   2618878.0   904230.0  0.0   60874.031250  311560.0   1218.0   584074.0  10482.0  0.0  654700.0   44946.0   4289260.0
+...            ...      ...        ...  ...      ...      ...     ...         ...        ...     ...        ...  ...  ...         ...        ...  ...            ...       ...      ...        ...      ...  ...       ...       ...         ...
+75994  4206.979980  55734.0  1648190.0  0.0  40232.0  61382.0  1118.0  15238166.0  1383172.0  1996.0  783210.25  0.0  ...  10153144.0  1370722.0  0.0  215219.953125  337916.0      0.0  9492140.0  15094.0  0.0  724260.0  115228.0  15262400.0
+75995  1546.739990  23350.0   475928.0  0.0   2176.0  58588.0  1194.0   5510074.0   357990.0  1626.0       0.00  0.0  ...   3779700.0   983308.0  0.0   81851.773438  317840.0  25566.0   351926.0  67132.0  0.0  674580.0   40386.0   5522314.0
+75996     0.980000     28.0     2932.0  0.0     10.0      0.0    96.0     24920.0       16.0    34.0       0.00  0.0  ...     12242.0     2746.0  0.0      18.410000       0.0      0.0    10358.0      0.0  0.0   22860.0     264.0     23062.0
+75998   133.839996     66.0    46216.0  0.0    292.0      0.0    66.0     85224.0       84.0    18.0       0.00  0.0  ...     13504.0     5698.0  0.0     109.519997    1338.0      0.0    17646.0    162.0  0.0   86460.0     602.0     87120.0
+75999    76.220001      8.0     4428.0  0.0      8.0      0.0     0.0     17784.0        6.0     0.0       0.00  0.0  ...      9796.0      954.0  0.0       7.770000      46.0      0.0     5804.0      0.0  0.0   16940.0     112.0     17070.0
+
+[60808 rows x 170 columns]
+{0.0, 1.0}
+
+starting:	 autosklearn 	 0  fold	 4  core	 3600  seconds
+
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3597.927655)
+[WARNING] [2019-10-12 17:07:39,823:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:07:39,850:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3597.548055)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3597.701553)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3596.869865)
+[WARNING] [2019-10-12 17:07:41,856:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:07:43,866:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:07:45,904:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:07:47,929:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:07:49,934:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:07:51,939:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:07:53,946:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:07:55,951:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:07:57,955:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:07:59,961:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:08:01,970:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:08:03,976:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:08:05,982:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 17:08:07,992:EnsembleBuilder(1791095845):c4b8ea8f5003553438e04c627ae9d6d2] No models better than random - using Dummy Score!
+-1
+['/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000000.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000001.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000002.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000003.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000004.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000005.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000006.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000007.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000008.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000009.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000010.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000011.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000012.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000013.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000014.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000015.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000016.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000017.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000018.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000019.ensemble', '/tmp/autosklearn_tmp_2899_4450/.auto-sklearn/ensembles/1791095845.0000000020.ensemble']
+
+fail in:	 id1_uci_aps_failure_intrucks_p.sas7bdat.csv
+Traceback (most recent call last):
+  File "/root/atoml/automl/runbench.py", line 170, in runbenchmark
+    biclassifier(prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics,outputdir)
+  File "/root/atoml/automl/runbench.py", line 145, in biclassifier
+    get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend,prepb)
+TypeError: get_run_info() missing 1 required positional argument: 'outputdir'
+2
+
+dataset:	 id2_kaggle_creditcard_fraud_p.sas7bdat.csv
+
+metadata information:	 id2_kaggle_creditcard_fraud_meta.csv
+['Time' 'V1' 'V2' 'V3' 'V4' 'V5' 'V6' 'V7' 'V8' 'V9' 'V10' 'V11' 'V12'
+ 'V13' 'V14' 'V15' 'V16' 'V17' 'V18' 'V19' 'V20' 'V21' 'V22' 'V23' 'V24'
+ 'V25' 'V26' 'V27' 'V28' 'Amount' 'Class' '_dmIndex_' '_PartInd_']
+{0, 1}
+{'1', '0'}
+
+Check numerical features:	 ['V20', 'V23', 'V7', 'V22', 'V18', 'V12', 'V27', 'V5', 'V24', 'V28', 'V10', 'V3', 'V8', 'V26', 'Time', 'Amount', 'V4', 'V11', 'V15', 'V14', 'V2', 'V17', 'V13', 'V1', 'V16', 'V9', 'V21', 'V25', 'V6', 'V19'] V20       float32
+V23       float32
+V7        float32
+V22       float32
+V18       float32
+V12       float32
+V27       float32
+V5        float32
+V24       float32
+V28       float32
+V10       float32
+V3        float32
+V8        float32
+V26       float32
+Time      float32
+Amount    float32
+V4        float32
+V11       float32
+V15       float32
+V14       float32
+V2        float32
+V17       float32
+V13       float32
+V1        float32
+V16       float32
+V9        float32
+V21       float32
+V25       float32
+V6        float32
+V19       float32
+dtype: object
+
+Check catogorical features:	 [] Series([], dtype: object)
+['_dmIndex_', '_PartInd_', 'Class', 'V20', 'V23', 'V7', 'V22', 'V18', 'V12', 'V27', 'V5', 'V24', 'V28', 'V10', 'V3', 'V8', 'V26', 'Time', 'Amount', 'V4', 'V11', 'V15', 'V14', 'V2', 'V17', 'V13', 'V1', 'V16', 'V9', 'V21', 'V25', 'V6', 'V19']
+        _dmIndex_  _PartInd_ Class       V20       V23        V7       V22       V18       V12       V27        V5  ...       V14         V2       V17       V13         V1       V16        V9       V21       V25        V6       V19
+0             1.0          1     0  0.251412 -0.110474  0.239599  0.277838  0.025791 -0.617801  0.133558 -0.338321  ... -0.311169  -0.072781  0.207971 -0.991390  -1.359807 -0.470401  0.363787 -0.018307  0.128539  0.462388  0.403993
+1             2.0          0     0 -0.069083  0.101288 -0.078803 -0.638672 -0.183361  1.065235 -0.008983  0.060018  ... -0.143772   0.266151 -0.114805  0.489095   1.191857  0.463917 -0.255425 -0.225775  0.167170 -0.082361 -0.145783
+2             3.0          1     0  0.524980  0.909412  0.791461  0.771679 -0.121359  0.066084 -0.055353 -0.503198  ... -0.165946  -1.340163  1.109969  0.717293  -1.358354 -2.890083 -1.514654  0.247998 -0.327642  1.800499 -2.261857
+3             4.0          0     0 -0.208038 -0.190321  0.237609  0.005274  1.965775  0.178228  0.062723 -0.010309  ... -0.287924  -0.185226 -0.684093  0.507757  -0.966272 -1.059647 -1.387024 -0.108300  0.647376  1.247203 -1.232622
+4             5.0          0     0  0.408542 -0.137458  0.592941  0.798279 -0.038195  0.538196  0.219422 -0.407193  ... -1.119670   0.877737 -0.237033  1.345852  -1.158233 -0.451449  0.817739 -0.009431 -0.206010  0.095921  0.803487
+...           ...        ...   ...       ...       ...       ...       ...       ...       ...       ...       ...  ...       ...        ...       ...       ...        ...       ...       ...       ...       ...       ...       ...
+284802   284803.0          0     0  1.475829  1.014480 -4.918215  0.111864  0.510632  2.711941  0.943651 -5.364473  ...  4.626942  10.071785  1.991691 -0.689256 -11.881118  1.107641  1.914428  0.213454  1.436807 -2.606837 -0.682920
+284803   284804.0          1     0  0.059616  0.012463  0.024330  0.924384 -1.221179  0.915802  0.068472  0.868229  ... -0.675143  -0.055080 -0.025693  1.214756  -0.732789 -0.711757  0.584800  0.214205 -0.606624  1.058415 -1.545556
+284804   284805.0          2     0  0.001396 -0.037501 -0.296827  0.578229  0.395652  0.063119  0.004455  2.630515  ... -0.510602  -0.301254  0.313502 -0.183699   1.919565  0.140716  0.432454  0.232045  0.265745  3.031260 -0.577252
+284805   284806.0          1     0  0.127434 -0.163298 -0.686180  0.800049  1.113981 -0.962886  0.108821 -0.377961  ...  0.449624   0.530483  0.509928 -1.042082  -0.240440 -0.608577  0.392087  0.265245 -0.569159  0.623708  2.897849
+284806   284807.0          0     0  0.382948  0.376777  1.577006  0.643078  0.167430 -0.031513 -0.002415 -0.012546  ... -0.084316  -0.189733 -0.660377 -0.188093  -0.533413 -0.302620  0.486180  0.261057 -0.473649 -0.649617 -0.256117
+
+[284807 rows x 33 columns]
+{'1', '0'}
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+ 24 25 26 27 28 29 30 31 32]
+3     float32
+4     float32
+5     float32
+6     float32
+7     float32
+8     float32
+9     float32
+10    float32
+11    float32
+12    float32
+13    float32
+14    float32
+15    float32
+16    float32
+17    float32
+18    float32
+19    float32
+20    float32
+21    float32
+22    float32
+23    float32
+24    float32
+25    float32
+26    float32
+27    float32
+28    float32
+29    float32
+30    float32
+31    float32
+32    float32
+dtype: object               3         4         5         6         7         8         9         10        11        12        13  ...        22         23        24        25         26        27        28        29        30        31        32
+0       0.251412 -0.110474  0.239599  0.277838  0.025791 -0.617801  0.133558 -0.338321  0.066928 -0.021053  0.090794  ... -0.311169  -0.072781  0.207971 -0.991390  -1.359807 -0.470401  0.363787 -0.018307  0.128539  0.462388  0.403993
+1      -0.069083  0.101288 -0.078803 -0.638672 -0.183361  1.065235 -0.008983  0.060018 -0.339846  0.014724 -0.166974  ... -0.143772   0.266151 -0.114805  0.489095   1.191857  0.463917 -0.255425 -0.225775  0.167170 -0.082361 -0.145783
+2       0.524980  0.909412  0.791461  0.771679 -0.121359  0.066084 -0.055353 -0.503198 -0.689281 -0.059752  0.207643  ... -0.165946  -1.340163  1.109969  0.717293  -1.358354 -2.890083 -1.514654  0.247998 -0.327642  1.800499 -2.261857
+3      -0.208038 -0.190321  0.237609  0.005274  1.965775  0.178228  0.062723 -0.010309 -1.175575  0.061458 -0.054952  ... -0.287924  -0.185226 -0.684093  0.507757  -0.966272 -1.059647 -1.387024 -0.108300  0.647376  1.247203 -1.232622
+4       0.408542 -0.137458  0.592941  0.798279 -0.038195  0.538196  0.219422 -0.407193  0.141267  0.215153  0.753074  ... -1.119670   0.877737 -0.237033  1.345852  -1.158233 -0.451449  0.817739 -0.009431 -0.206010  0.095921  0.803487
+...          ...       ...       ...       ...       ...       ...       ...       ...       ...       ...       ...  ...       ...        ...       ...       ...        ...       ...       ...       ...       ...       ...       ...
+284801  0.000676  0.050343  0.812722 -0.808520  0.373110  0.190916  0.217940  1.130314  0.102800  0.068803 -0.657422  ... -0.731707   0.931005  0.070441 -0.546329   0.120316  0.599628 -0.204064 -0.314205 -0.435870 -0.235973  0.128904
+284802  1.475829  1.014480 -4.918215  0.111864  0.510632  2.711941  0.943651 -5.364473 -0.509348  0.823731  4.356170  ...  4.626942  10.071785  1.991691 -0.689256 -11.881118  1.107641  1.914428  0.213454  1.436807 -2.606837 -0.682920
+284803  0.059616  0.012463  0.024330  0.924384 -1.221179  0.915802  0.068472  0.868229 -1.016226 -0.053527 -0.975926  ... -0.675143  -0.055080 -0.025693  1.214756  -0.732789 -0.711757  0.584800  0.214205 -0.606624  1.058415 -1.545556
+284805  0.127434 -0.163298 -0.686180  0.800049  1.113981 -0.962886  0.108821 -0.377961  0.123205  0.104533 -0.399126  ...  0.449624   0.530483  0.509928 -1.042082  -0.240440 -0.608577  0.392087  0.265245 -0.569159  0.623708  2.897849
+284806  0.382948  0.376777  1.577006  0.643078  0.167430 -0.031513 -0.002415 -0.012546  0.008797  0.013649 -0.915427  ... -0.084316  -0.189733 -0.660377 -0.188093  -0.533413 -0.302620  0.486180  0.261057 -0.473649 -0.649617 -0.256117
+
+[227875 rows x 30 columns]
+{0.0, 1.0}
+
+starting:	 autosklearn 	 0  fold	 4  core	 3600  seconds
+
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3595.225140)
+[WARNING] [2019-10-12 18:38:25,570:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 18:38:25,657:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3593.990277)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3593.814077)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3594.717628)
+[WARNING] [2019-10-12 18:38:27,662:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 18:38:29,667:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 18:38:31,673:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 18:38:33,678:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 18:38:35,683:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 18:38:37,688:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 18:38:39,770:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 18:38:41,776:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 18:38:43,782:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 18:38:45,837:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 18:38:47,990:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 18:38:49,995:EnsembleBuilder(1791095845):43e84ca6705c2bca149ad31d84ff483c] No models better than random - using Dummy Score!

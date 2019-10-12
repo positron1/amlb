@@ -1,1 +1,0 @@
-{"data": "id0_uci_bank_marketing_p.sas7bdat", "para": {"time": 3600, "cores": 8, "folds": 5, "framework": "autosklearn"}, "results": {"logloss": 0.5792806742618498, "AUC": 0.8147662232495244, "f1": 0.6351931330472104, "ACC": 0.9105770008901837}}

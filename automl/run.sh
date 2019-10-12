@@ -1,2 +1,2 @@
-sleep 2h
-python autobench3f.py 
+sleep 8h
+python autobench.py 
