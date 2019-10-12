@@ -733,3 +733,328 @@ Time limit for a single run is higher than total time limit. Capping the limit f
 Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3596.542259)
 [WARNING] [2019-10-12 18:45:13,253:EnsembleBuilder(1791095845):3497a88b94c7bc4b5adc22115c88243b] No models better than random - using Dummy Score!
 [WARNING] [2019-10-12 18:45:15,277:EnsembleBuilder(1791095845):3497a88b94c7bc4b5adc22115c88243b] No models better than random - using Dummy Score!
+-1
+['/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000000.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000001.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000002.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000003.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000004.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000005.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000006.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000007.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000008.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000009.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000010.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000011.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000012.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000013.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000014.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000015.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000016.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000017.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000018.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000019.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000020.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000021.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000022.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000023.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000024.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000025.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000026.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000027.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000028.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000029.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000030.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000031.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000032.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000033.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000034.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000035.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000036.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000037.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000038.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000039.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000040.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000041.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000042.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000043.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000044.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000045.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000046.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000047.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000048.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000049.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000050.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000051.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000052.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000053.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000054.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000055.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000056.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000057.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000058.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000059.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000060.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000061.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000062.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000063.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000064.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000065.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000066.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000067.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000068.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000069.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000070.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000071.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000072.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000073.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000074.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000075.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000076.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000077.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000078.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000079.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000080.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000081.ensemble', '/tmp/autosklearn_tmp_1097_8753/.auto-sklearn/ensembles/1791095845.0000000082.ensemble']
+{'data': 'id12_hmeq_p.sas7bdat.csv', 'shape': {'xtrain': (4171, 12), 'ytrain': (4171,), 'xtest': (1789, 12), 'ytest': (1789,)}, 'para': {'prep_data': False, 'time': 3600, 'fitmetrics': 'log_loss', 'refitmetrics': 'def', 'cores': '4', 'folds': '0', 'framework': 'autosklearn'}, 'timespend': 3621.5210790634155, 'results': {'logloss': 0.18472047781693648, 'AUC': 0.8329998200397478, 'f1': 0.7857142857142857, 'ACC': 0.9262157629960872}}
+Finishing:	 autosklearn 	 0  fold	 4  core	 3600  seconds
+
+13
+
+dataset:	 id13_cust_cibc_sas_p.sas7bdat.csv
+
+metadata information:	 id13_cust_cibc_sas_meta.csv
+['lncnt1' 'pccnt1' 'cccnt1' 'dpbal1' 'ivbal1' 'age' 'tenure' 'ITCNT1'
+ 'GCCNT1' 'MGCNT1' 'MFCNT1' 'PLCNT1' 'VSCNT1' 'NSERV1' 'PRBAL1' 'RTBAL1'
+ 'LDBAL1' 'PLCBAL1' 'VSBAL1' 'MGBAL1' 'FUNDS1' 'TIF1' 'LNCNT2' 'PCCNT2'
+ 'CCCNT2' 'ITCNT2' 'GCCNT2' 'MGCNT2' 'MFCNT2' 'PLCNT2' 'VSCNT2' 'NSERV2'
+ 'DPBAL2' 'IVBAL2' 'PRBAL2' 'RTBAL2' 'LDBAL2' 'PLCBAL2' 'VSBAL2' 'MGBAL2'
+ 'FUNDS2' 'TIF2' 'LNCNT3' 'PCCNT3' 'CCCNT3' 'ITCNT3' 'GCCNT3' 'MGCNT3'
+ 'MFCNT3' 'PLCNT3' 'VSCNT3' 'NSERV3' 'DPBAL3' 'IVBAL3' 'PRBAL3' 'RTBAL3'
+ 'LDBAL3' 'PLCBAL3' 'VSBAL3' 'MGBAL3' 'FUNDS3' 'TIF3' 'LNCNT4' 'PCCNT4'
+ 'CCCNT4' 'ITCNT4' 'GCCNT4' 'MGCNT4' 'MFCNT4' 'PLCNT4' 'VSCNT4' 'NSERV4'
+ 'DPBAL4' 'IVBAL4' 'PRBAL4' 'RTBAL4' 'LDBAL4' 'PLCBAL4' 'VSBAL4' 'MGBAL4'
+ 'FUNDS4' 'TIF4' 'LNCNT5' 'PCCNT5' 'CCCNT5' 'ITCNT5' 'GCCNT5' 'MGCNT5'
+ 'MFCNT5' 'PLCNT5' 'VSCNT5' 'NSERV5' 'DPBAL5' 'IVBAL5' 'PRBAL5' 'RTBAL5'
+ 'LDBAL5' 'PLCBAL5' 'VSBAL5' 'MGBAL5' 'FUNDS5' 'TIF5' 'LNCNT6' 'PCCNT6'
+ 'CCCNT6' 'ITCNT6' 'GCCNT6' 'MGCNT6' 'MFCNT6' 'PLCNT6' 'VSCNT6' 'NSERV6'
+ 'DPBAL6' 'IVBAL6' 'PRBAL6' 'RTBAL6' 'LDBAL6' 'PLCBAL6' 'VSBAL6' 'MGBAL6'
+ 'FUNDS6' 'TIF6' 'SLCNT1' 'SLBAL1' 'SLCNT2' 'SLBAL2' 'SLCNT3' 'SLBAL3'
+ 'SLCNT4' 'SLBAL4' 'SLCNT5' 'SLBAL5' 'SLCNT6' 'SLBAL6' 'SPLLMT1'
+ 'SPLCRBAL1' 'SPLDBBAL1' 'SPLLMT2' 'SPLCRBAL2' 'SPLDBBAL2' 'SPLLMT3'
+ 'SPLCRBAL3' 'SPLDBBAL3' 'SPLLMT4' 'SPLCRBAL4' 'SPLDBBAL4' 'SPLLMT5'
+ 'SPLCRBAL5' 'SPLDBBAL5' 'SPLLMT6' 'SPLCRBAL6' 'SPLDBBAL6' 'TXNELECNT6'
+ 'CTXCNT6' 'TXNABMAMT6' 'TXNELECNT5' 'CTXCNT5' 'TXNABMAMT5' 'TXNELECNT4'
+ 'CTXCNT4' 'TXNABMAMT4' 'TXNELECNT3' 'CTXCNT3' 'TXNABMAMT3' 'TXNELECNT2'
+ 'CTXCNT2' 'TXNABMAMT2' 'TXNELECNT1' 'CTXCNT1' 'TXNABMAMT1' 'mtgadv_dur'
+ 'mtgopen_dur' 'ind_insur_mtg' 'PCABAL6' 'PCAMNBAL6' 'PCAMXBAL6' 'PCABAL5'
+ 'PCAMNBAL5' 'PCAMXBAL5' 'PCABAL4' 'PCAMNBAL4' 'PCAMXBAL4' 'PCABAL3'
+ 'PCAMNBAL3' 'PCAMXBAL3' 'PCABAL2' 'PCAMNBAL2' 'PCAMXBAL2' 'PCABAL1'
+ 'PCAMNBAL1' 'PCAMXBAL1' 'ind_odprot' 'pca_dur' 'SVCGAMT6' 'BLPYAMT6'
+ 'SVCGAMT5' 'BLPYAMT5' 'SVCGAMT4' 'BLPYAMT4' 'SVCGAMT3' 'BLPYAMT3'
+ 'SVCGAMT2' 'BLPYAMT2' 'SVCGAMT1' 'BLPYAMT1' 'e_cr' 'VISA_AVEBL6'
+ 'VISA_AVEBL5' 'VISA_AVEBL4' 'VISA_AVEBL3' 'VISA_AVEBL2' 'VISA_AVEBL1'
+ 'lstappl' 'BEHAVIOUR_SCORE_NUM' 'CREDIT_BUREAU_SCORE' 'VSINTEREST_AMT1'
+ 'VSCASH_ADVANCE_AMT1' 'VSPAYMENT_AMT1' 'VSSPEND_AMT1' 'VSINTEREST_AMT2'
+ 'VSCASH_ADVANCE_AMT2' 'VSPAYMENT_AMT2' 'VSSPEND_AMT2' 'VSINTEREST_AMT3'
+ 'VSCASH_ADVANCE_AMT3' 'VSPAYMENT_AMT3' 'VSSPEND_AMT3' 'VSINTEREST_AMT4'
+ 'VSCASH_ADVANCE_AMT4' 'VSPAYMENT_AMT4' 'VSSPEND_AMT4' 'VSINTEREST_AMT5'
+ 'VSCASH_ADVANCE_AMT5' 'VSPAYMENT_AMT5' 'VSSPEND_AMT5' 'VSINTEREST_AMT6'
+ 'VSCASH_ADVANCE_AMT6' 'VSPAYMENT_AMT6' 'VSSPEND_AMT6' 'CONN_FUNDMGD1'
+ 'CONN_LDBAL1' 'CONN_FUNDMGD2' 'CONN_LDBAL2' 'CONN_FUNDMGD3' 'CONN_LDBAL3'
+ 'CONN_FUNDMGD4' 'CONN_LDBAL4' 'CONN_FUNDMGD5' 'CONN_LDBAL5'
+ 'CONN_FUNDMGD6' 'CONN_LDBAL6' 'target' 'BEACON_40_SCORE' 'BNI_20_SCORE'
+ 'GIPR_N_INQ_PAST_3_M' 'GIPR_AGE_MOST_RECENT_INQ'
+ 'GIPR_AGE_MOST_RECENT_DEROG_PR' 'GIPR_BANKRUPTCY' 'GAIAT_AGE_OLDEST_T'
+ 'GAIAT_NT_EVER_60_D_WORSE' 'GAIAT_NT_CURR_PAST_DUE'
+ 'GAIAT_NT_BAD_DEBT_PAST_12_M' 'GAIAT_NT_30_D_WORSE_PAST_12_M'
+ 'GAIAG_NT_SATISFACTORY' 'GAIAT_NT_OPENED_LAST_6_M' 'GBI_AGE_NEWEST_T'
+ 'GBR_AGE_NEWEST_T' 'GRE_AGE_NEWEST_T' 'GRE_AGE_OLDEST_T'
+ 'PRDAS_UNSATISFY_JDGMNT' 'CAIAT_TB_OT_BAL_GE_0'
+ 'CAIAT_TOT_HC_OT_BAL_GE_0' 'CAIAT_OT_PCT_USE_BAL_GE_0'
+ 'CAIAT_NT_BAL_GT_0_BAL_GT_0' 'CBR_NOT_BAL_GE_0' 'CBR_TB_OT_BAL_GE_0'
+ 'CBR_TOT_HC_OT_BAL_GE_0' 'CNC_TOT_HC_OT_BAL_GE_0'
+ 'CNC_OT_PCT_USE_BAL_GE_0' 'CRE_OT_PCT_USE_BAL_GE_0' 'CC_comp_bal'
+ 'CC_comp_lmt' 'Age_Of_Newest_UPLC_Comp_Trd' 'Age_Of_Oldest_UPLC_Comp_Trd'
+ 'tl_comp_cnt_fi' 'tl_comp_bal_fi' 'TD_bal' 'BNS_cnt' 'BNS_bal'
+ 'tl_CC_comp_bal_fi' 'tl_CC_comp_lmt_fi' 'CC_FI_OTHR_cnt'
+ 'tl_LOAN_comp_lmt_fi' 'LOAN_FI_OTHR_cnt' 'LOAN_FI_OTHR_lmt'
+ 'tl_UPLC_comp_cnt_fi' 'action' 'decile' 'ID' '_dmIndex_' '_PartInd_']
+{0.0, 1.0}
+{'0.0', '1.0'}
+
+Check numerical features:	 ['SPLDBBAL1', 'TIF6', 'CREDIT_BUREAU_SCORE', 'PLCNT3', 'VSINTEREST_AMT2', 'MGCNT5', 'CONN_LDBAL3', 'CAIAT_OT_PCT_USE_BAL_GE_0', 'PCCNT6', 'SPLDBBAL4', 'SLBAL2', 'GCCNT3', 'VSSPEND_AMT1', 'SLCNT6', 'TXNELECNT5', 'TXNABMAMT4', 'MGCNT3', 'ITCNT3', 'ITCNT5', 'GRE_AGE_OLDEST_T', 'pccnt1', 'DPBAL2', 'VSBAL6', 'tl_CC_comp_bal_fi', 'TXNELECNT1', 'BLPYAMT6', 'PCABAL2', 'CC_FI_OTHR_cnt', 'SVCGAMT4', 'LOAN_FI_OTHR_lmt', 'lncnt1', 'VSBAL2', 'VSPAYMENT_AMT6', 'TXNELECNT2', 'LOAN_FI_OTHR_cnt', 'TXNABMAMT2', 'PCAMXBAL3', 'GCCNT4', 'BNI_20_SCORE', 'BLPYAMT4', 'decile', 'IVBAL2', 'RTBAL1', 'ITCNT1', 'TIF4', 'RTBAL5', 'MGCNT6', 'PCAMNBAL2', 'PCAMXBAL1', 'PCCNT4', 'VSINTEREST_AMT1', 'CONN_FUNDMGD3', 'CTXCNT4', 'tl_comp_cnt_fi', 'GBR_AGE_NEWEST_T', 'SPLCRBAL6', 'LDBAL1', 'VSPAYMENT_AMT3', 'VSCASH_ADVANCE_AMT2', 'VSSPEND_AMT6', 'GAIAT_NT_OPENED_LAST_6_M', 'MGBAL1', 'CONN_FUNDMGD5', 'FUNDS4', 'VISA_AVEBL4', 'LDBAL4', 'TXNABMAMT6', 'VSCNT2', 'VSINTEREST_AMT6', 'BNS_cnt', 'SLBAL6', 'CCCNT6', 'CCCNT2', 'SPLCRBAL5', 'LNCNT2', 'VISA_AVEBL2', 'CNC_TOT_HC_OT_BAL_GE_0', 'SLBAL4', 'GAIAT_NT_CURR_PAST_DUE', 'SLCNT2', 'CC_comp_bal', 'VSINTEREST_AMT5', 'SPLLMT1', 'TD_bal', 'FUNDS2', 'NSERV5', 'LNCNT3', 'CONN_LDBAL1', 'VISA_AVEBL3', 'MFCNT1', 'MGBAL4', 'MGCNT2', 'PCABAL5', 'MFCNT3', 'CONN_LDBAL5', 'VSPAYMENT_AMT2', 'PLCNT1', 'SLCNT5', 'VSINTEREST_AMT4', 'PCAMXBAL6', 'CTXCNT1', 'SPLDBBAL2', 'mtgadv_dur', 'GAIAT_AGE_OLDEST_T', 'VSINTEREST_AMT3', 'SLCNT3', 'FUNDS6', 'LDBAL6', 'CONN_FUNDMGD2', 'PCAMXBAL5', 'SVCGAMT2', 'PLCNT2', 'VSCNT6', 'GAIAT_NT_EVER_60_D_WORSE', 'GAIAG_NT_SATISFACTORY', 'TXNELECNT3', 'CCCNT3', 'SPLCRBAL3', 'NSERV1', 'VSBAL3', 'LNCNT5', 'PCCNT2', 'e_cr', 'PRBAL5', 'VSPAYMENT_AMT5', 'MFCNT2', 'VISA_AVEBL5', 'BLPYAMT3', 'PRBAL3', 'CONN_FUNDMGD4', 'VSBAL5', 'NSERV6', 'TXNABMAMT3', 'PCAMNBAL3', 'PLCBAL1', 'CBR_TB_OT_BAL_GE_0', 'CCCNT5', 'PLCBAL4', 'DPBAL4', 'CTXCNT5', 'FUNDS1', 'SPLDBBAL6', 'dpbal1', 'ITCNT4', 'mtgopen_dur', 'CAIAT_NT_BAL_GT_0_BAL_GT_0', 'CBR_TOT_HC_OT_BAL_GE_0', 'Age_Of_Oldest_UPLC_Comp_Trd', 'VSPAYMENT_AMT1', 'VSCNT1', 'lstappl', 'GCCNT5', 'IVBAL6', 'SPLLMT5', 'RTBAL4', 'CBR_NOT_BAL_GE_0', 'GRE_AGE_NEWEST_T', 'GCCNT2', 'LDBAL2', 'PRBAL6', 'VSSPEND_AMT2', 'PCABAL3', 'NSERV4', 'VSCASH_ADVANCE_AMT3', 'SVCGAMT3', 'tl_UPLC_comp_cnt_fi', 'CONN_LDBAL4', 'DPBAL3', 'CTXCNT2', 'CNC_OT_PCT_USE_BAL_GE_0', 'CONN_LDBAL6', 'VSCNT3', 'CONN_LDBAL2', 'PCABAL6', 'SPLDBBAL3', 'MGBAL5', 'PLCNT4', 'CTXCNT6', 'TIF3', 'MGBAL3', 'GAIAT_NT_BAD_DEBT_PAST_12_M', 'SVCGAMT5', 'CONN_FUNDMGD1', 'NSERV2', 'CRE_OT_PCT_USE_BAL_GE_0', 'VSSPEND_AMT4', 'BNS_bal', 'PCCNT3', 'tenure', 'ITCNT2', 'LDBAL3', 'PCABAL1', 'CCCNT4', 'GBI_AGE_NEWEST_T', 'PLCNT5', 'MGCNT4', 'MGBAL6', 'pca_dur', 'tl_LOAN_comp_lmt_fi', 'RTBAL3', 'PLCBAL6', 'ivbal1', 'MGCNT1', 'GIPR_AGE_MOST_RECENT_INQ', 'VSBAL1', 'GCCNT6', 'VISA_AVEBL6', 'SLBAL5', 'VSCASH_ADVANCE_AMT4', 'PRBAL4', 'VSSPEND_AMT3', 'RTBAL2', 'NSERV3', 'VSCNT5', 'MFCNT6', 'PCAMXBAL4', 'LNCNT6', 'ID', 'PCAMXBAL2', 'SPLDBBAL5', 'BLPYAMT2', 'PLCNT6', 'GIPR_N_INQ_PAST_3_M', 'CONN_FUNDMGD6', 'tl_comp_bal_fi', 'LDBAL5', 'MFCNT4', 'PLCBAL2', 'SPLLMT4', 'VSCASH_ADVANCE_AMT1', 'SPLCRBAL1', 'TXNABMAMT5', 'BEACON_40_SCORE', 'ITCNT6', 'SVCGAMT6', 'GCCNT1', 'BEHAVIOUR_SCORE_NUM', 'DPBAL5', 'DPBAL6', 'RTBAL6', 'CAIAT_TOT_HC_OT_BAL_GE_0', 'PRBAL2', 'TIF5', 'VISA_AVEBL1', 'SPLLMT3', 'MFCNT5', 'SLBAL3', 'BLPYAMT5', 'CC_comp_lmt', 'PCAMNBAL5', 'GAIAT_NT_30_D_WORSE_PAST_12_M', 'IVBAL3', 'VSBAL4', 'TXNABMAMT1', 'TXNELECNT6', 'SLCNT1', 'tl_CC_comp_lmt_fi', 'PCAMNBAL4', 'PCABAL4', 'CTXCNT3', 'SLBAL1', 'CAIAT_TB_OT_BAL_GE_0', 'LNCNT4', 'VSCASH_ADVANCE_AMT5', 'SPLCRBAL4', 'PLCBAL5', 'IVBAL5', 'SPLLMT6', 'TXNELECNT4', 'VSPAYMENT_AMT4', 'ind_insur_mtg', 'SPLLMT2', 'BLPYAMT1', 'FUNDS5', 'IVBAL4', 'cccnt1', 'FUNDS3', 'VSCNT4', 'PRBAL1', 'PLCBAL3', 'age', 'VSCASH_ADVANCE_AMT6', 'Age_Of_Newest_UPLC_Comp_Trd', 'ind_odprot', 'SVCGAMT1', 'GIPR_AGE_MOST_RECENT_DEROG_PR', 'MGBAL2', 'VSSPEND_AMT5', 'PCCNT5', 'PCAMNBAL1', 'SPLCRBAL2', 'SLCNT4', 'TIF1', 'TIF2', 'PCAMNBAL6'] SPLDBBAL1              float32
+TIF6                   float32
+CREDIT_BUREAU_SCORE    float32
+PLCNT3                 float32
+VSINTEREST_AMT2        float32
+                        ...   
+SPLCRBAL2              float32
+SLCNT4                 float32
+TIF1                   float32
+TIF2                   float32
+PCAMNBAL6              float32
+Length: 295, dtype: object
+
+Check catogorical features:	 ['GIPR_BANKRUPTCY', 'PRDAS_UNSATISFY_JDGMNT', 'action'] GIPR_BANKRUPTCY           object
+PRDAS_UNSATISFY_JDGMNT    object
+action                    object
+dtype: object
+['_dmIndex_', '_PartInd_', 'target', 'SPLDBBAL1', 'TIF6', 'CREDIT_BUREAU_SCORE', 'PLCNT3', 'VSINTEREST_AMT2', 'MGCNT5', 'CONN_LDBAL3', 'CAIAT_OT_PCT_USE_BAL_GE_0', 'PCCNT6', 'SPLDBBAL4', 'SLBAL2', 'GCCNT3', 'VSSPEND_AMT1', 'SLCNT6', 'TXNELECNT5', 'TXNABMAMT4', 'MGCNT3', 'ITCNT3', 'ITCNT5', 'GRE_AGE_OLDEST_T', 'pccnt1', 'DPBAL2', 'VSBAL6', 'tl_CC_comp_bal_fi', 'TXNELECNT1', 'BLPYAMT6', 'PCABAL2', 'CC_FI_OTHR_cnt', 'SVCGAMT4', 'LOAN_FI_OTHR_lmt', 'lncnt1', 'VSBAL2', 'VSPAYMENT_AMT6', 'TXNELECNT2', 'LOAN_FI_OTHR_cnt', 'TXNABMAMT2', 'PCAMXBAL3', 'GCCNT4', 'BNI_20_SCORE', 'BLPYAMT4', 'decile', 'IVBAL2', 'RTBAL1', 'ITCNT1', 'TIF4', 'RTBAL5', 'MGCNT6', 'PCAMNBAL2', 'PCAMXBAL1', 'PCCNT4', 'VSINTEREST_AMT1', 'CONN_FUNDMGD3', 'CTXCNT4', 'tl_comp_cnt_fi', 'GBR_AGE_NEWEST_T', 'SPLCRBAL6', 'LDBAL1', 'VSPAYMENT_AMT3', 'VSCASH_ADVANCE_AMT2', 'VSSPEND_AMT6', 'GAIAT_NT_OPENED_LAST_6_M', 'MGBAL1', 'CONN_FUNDMGD5', 'FUNDS4', 'VISA_AVEBL4', 'LDBAL4', 'TXNABMAMT6', 'VSCNT2', 'VSINTEREST_AMT6', 'BNS_cnt', 'SLBAL6', 'CCCNT6', 'CCCNT2', 'SPLCRBAL5', 'LNCNT2', 'VISA_AVEBL2', 'CNC_TOT_HC_OT_BAL_GE_0', 'SLBAL4', 'GAIAT_NT_CURR_PAST_DUE', 'SLCNT2', 'CC_comp_bal', 'VSINTEREST_AMT5', 'SPLLMT1', 'TD_bal', 'FUNDS2', 'NSERV5', 'LNCNT3', 'CONN_LDBAL1', 'VISA_AVEBL3', 'MFCNT1', 'MGBAL4', 'MGCNT2', 'PCABAL5', 'MFCNT3', 'CONN_LDBAL5', 'VSPAYMENT_AMT2', 'PLCNT1', 'SLCNT5', 'VSINTEREST_AMT4', 'PCAMXBAL6', 'CTXCNT1', 'SPLDBBAL2', 'mtgadv_dur', 'GAIAT_AGE_OLDEST_T', 'VSINTEREST_AMT3', 'SLCNT3', 'FUNDS6', 'LDBAL6', 'CONN_FUNDMGD2', 'PCAMXBAL5', 'SVCGAMT2', 'PLCNT2', 'VSCNT6', 'GAIAT_NT_EVER_60_D_WORSE', 'GAIAG_NT_SATISFACTORY', 'TXNELECNT3', 'CCCNT3', 'SPLCRBAL3', 'NSERV1', 'VSBAL3', 'LNCNT5', 'PCCNT2', 'e_cr', 'PRBAL5', 'VSPAYMENT_AMT5', 'MFCNT2', 'VISA_AVEBL5', 'BLPYAMT3', 'PRBAL3', 'CONN_FUNDMGD4', 'VSBAL5', 'NSERV6', 'TXNABMAMT3', 'PCAMNBAL3', 'PLCBAL1', 'CBR_TB_OT_BAL_GE_0', 'CCCNT5', 'PLCBAL4', 'DPBAL4', 'CTXCNT5', 'FUNDS1', 'SPLDBBAL6', 'dpbal1', 'ITCNT4', 'mtgopen_dur', 'CAIAT_NT_BAL_GT_0_BAL_GT_0', 'CBR_TOT_HC_OT_BAL_GE_0', 'Age_Of_Oldest_UPLC_Comp_Trd', 'VSPAYMENT_AMT1', 'VSCNT1', 'lstappl', 'GCCNT5', 'IVBAL6', 'SPLLMT5', 'RTBAL4', 'CBR_NOT_BAL_GE_0', 'GRE_AGE_NEWEST_T', 'GCCNT2', 'LDBAL2', 'PRBAL6', 'VSSPEND_AMT2', 'PCABAL3', 'NSERV4', 'VSCASH_ADVANCE_AMT3', 'SVCGAMT3', 'tl_UPLC_comp_cnt_fi', 'CONN_LDBAL4', 'DPBAL3', 'CTXCNT2', 'CNC_OT_PCT_USE_BAL_GE_0', 'CONN_LDBAL6', 'VSCNT3', 'CONN_LDBAL2', 'PCABAL6', 'SPLDBBAL3', 'MGBAL5', 'PLCNT4', 'CTXCNT6', 'TIF3', 'MGBAL3', 'GAIAT_NT_BAD_DEBT_PAST_12_M', 'SVCGAMT5', 'CONN_FUNDMGD1', 'NSERV2', 'CRE_OT_PCT_USE_BAL_GE_0', 'VSSPEND_AMT4', 'BNS_bal', 'PCCNT3', 'tenure', 'ITCNT2', 'LDBAL3', 'PCABAL1', 'CCCNT4', 'GBI_AGE_NEWEST_T', 'PLCNT5', 'MGCNT4', 'MGBAL6', 'pca_dur', 'tl_LOAN_comp_lmt_fi', 'RTBAL3', 'PLCBAL6', 'ivbal1', 'MGCNT1', 'GIPR_AGE_MOST_RECENT_INQ', 'VSBAL1', 'GCCNT6', 'VISA_AVEBL6', 'SLBAL5', 'VSCASH_ADVANCE_AMT4', 'PRBAL4', 'VSSPEND_AMT3', 'RTBAL2', 'NSERV3', 'VSCNT5', 'MFCNT6', 'PCAMXBAL4', 'LNCNT6', 'ID', 'PCAMXBAL2', 'SPLDBBAL5', 'BLPYAMT2', 'PLCNT6', 'GIPR_N_INQ_PAST_3_M', 'CONN_FUNDMGD6', 'tl_comp_bal_fi', 'LDBAL5', 'MFCNT4', 'PLCBAL2', 'SPLLMT4', 'VSCASH_ADVANCE_AMT1', 'SPLCRBAL1', 'TXNABMAMT5', 'BEACON_40_SCORE', 'ITCNT6', 'SVCGAMT6', 'GCCNT1', 'BEHAVIOUR_SCORE_NUM', 'DPBAL5', 'DPBAL6', 'RTBAL6', 'CAIAT_TOT_HC_OT_BAL_GE_0', 'PRBAL2', 'TIF5', 'VISA_AVEBL1', 'SPLLMT3', 'MFCNT5', 'SLBAL3', 'BLPYAMT5', 'CC_comp_lmt', 'PCAMNBAL5', 'GAIAT_NT_30_D_WORSE_PAST_12_M', 'IVBAL3', 'VSBAL4', 'TXNABMAMT1', 'TXNELECNT6', 'SLCNT1', 'tl_CC_comp_lmt_fi', 'PCAMNBAL4', 'PCABAL4', 'CTXCNT3', 'SLBAL1', 'CAIAT_TB_OT_BAL_GE_0', 'LNCNT4', 'VSCASH_ADVANCE_AMT5', 'SPLCRBAL4', 'PLCBAL5', 'IVBAL5', 'SPLLMT6', 'TXNELECNT4', 'VSPAYMENT_AMT4', 'ind_insur_mtg', 'SPLLMT2', 'BLPYAMT1', 'FUNDS5', 'IVBAL4', 'cccnt1', 'FUNDS3', 'VSCNT4', 'PRBAL1', 'PLCBAL3', 'age', 'VSCASH_ADVANCE_AMT6', 'Age_Of_Newest_UPLC_Comp_Trd', 'ind_odprot', 'SVCGAMT1', 'GIPR_AGE_MOST_RECENT_DEROG_PR', 'MGBAL2', 'VSSPEND_AMT5', 'PCCNT5', 'PCAMNBAL1', 'SPLCRBAL2', 'SLCNT4', 'TIF1', 'TIF2', 'PCAMNBAL6', 'GIPR_BANKRUPTCY', 'PRDAS_UNSATISFY_JDGMNT', 'action']
+       _dmIndex_  _PartInd_ target  SPLDBBAL1          TIF6  CREDIT_BUREAU_SCORE  PLCNT3  VSINTEREST_AMT2  MGCNT5  ...     PCAMNBAL1  SPLCRBAL2  SLCNT4          TIF1          TIF2    PCAMNBAL6  GIPR_BANKRUPTCY  PRDAS_UNSATISFY_JDGMNT  action
+0            1.0          2    0.0        NaN           NaN                  NaN     0.0              NaN     0.0  ...   3712.919922        NaN     NaN    778.000000    615.000000  1649.150024               NO                       N       U
+1            2.0          0    0.0        NaN   4965.479980                710.0     0.0              0.0     0.0  ...   -845.750000        NaN     NaN   4969.180176   3005.110107  -856.049988               NO                       N       T
+2            3.0          2    0.0        NaN  19596.720703                791.0     0.0              0.0     0.0  ...   8007.080078        NaN     NaN  15249.320312  18230.960938  2500.169922               NO                       N       T
+3            4.0          0    0.0        NaN           NaN                  NaN     0.0              NaN     0.0  ...    743.169983        NaN     NaN           NaN    387.000000  1130.170044               NO                       N       U
+4            5.0          0    1.0        NaN   3333.969971                  NaN     0.0              NaN     0.0  ...     30.510000        NaN     1.0   2753.889893   2637.280029   728.929993               NO                       N       T
+...          ...        ...    ...        ...           ...                  ...     ...              ...     ...  ...           ...        ...     ...           ...           ...          ...              ...                     ...     ...
+40068    40069.0          2    0.0        NaN   4899.209961                792.0     0.0              0.0     0.0  ...  16498.449219        NaN     NaN   5360.060059  10341.639648  9499.379883               NO                       N       T
+40069    40070.0          1    0.0        NaN    694.559998                805.0     0.0              0.0     0.0  ...   5344.560059        NaN     NaN   1128.599976   1394.170044  4600.649902               NO                       N       T
+40070    40071.0          1    0.0        NaN   4806.259766                744.0     0.0             11.3     0.0  ...   3709.050049        NaN     NaN   3006.250000   4306.240234  2927.030029               NO                       N       U
+40071    40072.0          2    0.0        NaN   4406.589844                827.0     0.0              0.0     0.0  ...   1714.310059        NaN     NaN   3985.770020   3574.189941  1712.300049               NO                       N       T
+40072    40073.0          0    0.0        NaN   4700.000000                719.0     0.0              0.0     1.0  ...    270.510010        NaN     NaN  14561.019531  14904.509766  -518.359985               NO                       N       T
+
+[40073 rows x 301 columns]
+{'0.0', '1.0'}
+[  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125
+ 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
+ 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161
+ 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179
+ 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197
+ 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215
+ 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233
+ 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251
+ 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269
+ 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287
+ 288 289 290 291 292]
+3      float32
+4      float32
+5      float32
+6      float32
+7      float32
+        ...   
+288    float32
+289    float32
+290    float32
+291    float32
+292    float32
+Length: 290, dtype: object                3             4      5    6      7    8              9     10   11           12            13   14   ...            281          282  283           284   285  286           287           288           289  290  291  292
+1      6451.839844   4965.479980  710.0  0.0   0.00  0.0    2455.995117  12.0  1.0  2723.300049   5835.604980  0.0  ...  101846.359375   533.380005  1.0   -845.750000  0.00  1.0   4969.180176   3005.110107   -856.049988  0.0  0.0  1.0
+3      6451.839844   2559.250000  766.0  0.0   0.00  0.0      -0.910000   6.0  1.0  2723.300049   5835.604980  0.0  ...  101846.359375   164.524994  1.0    743.169983  0.00  1.0   2645.040039    387.000000   1130.170044  0.0  0.0  2.0
+4      6451.839844   3333.969971  766.0  0.0   0.00  0.0   21681.980469  83.0  1.0  2723.300049  21742.560547  0.0  ...  101846.359375   164.524994  1.0     30.510000  0.00  1.0   2753.889893   2637.280029    728.929993  0.0  0.0  1.0
+5         0.000000  30130.490234  821.0  1.0   0.00  0.0    1011.500000   4.0  5.0     0.000000   5835.604980  0.0  ...  101846.359375  2247.419922  5.0  17904.359375  4.94  1.0  10046.900391  11627.740234  10696.320312  0.0  0.0  1.0
+7      6451.839844    138.210007  751.0  0.0   2.76  0.0     510.649994   0.0  1.0  2723.300049   5835.604980  0.0  ...  101846.359375   267.359985  1.0     41.279999  0.00  1.0   1088.339966   1884.660034     16.290001  0.0  0.0  1.0
+...            ...           ...    ...  ...    ...  ...            ...   ...  ...          ...           ...  ...  ...            ...          ...  ...           ...   ...  ...           ...           ...           ...  ...  ...  ...
+40066  6451.839844   2559.250000  766.0  0.0   0.00  1.0  162774.265625  69.0  1.0  2723.300049   5835.604980  0.0  ...  244485.218750   164.524994  1.0   1042.729980  0.00  1.0   2855.000000   9855.000000   2291.850098  0.0  0.0  0.0
+40067  6451.839844   2112.679932  766.0  0.0   0.00  0.0     -30.549999  28.0  1.0  2723.300049   5835.604980  0.0  ...  101846.359375   164.524994  1.0    -18.490000  0.00  1.0   2783.760010   2312.449951   -309.070007  2.0  1.0  1.0
+40069  6451.839844    694.559998  805.0  0.0   0.00  0.0     911.679993   1.0  1.0  2723.300049   5835.604980  0.0  ...  101846.359375   694.179993  1.0   5344.560059  0.00  1.0   1128.599976   1394.170044   4600.649902  0.0  0.0  1.0
+40070  6451.839844   4806.259766  744.0  0.0  11.30  0.0    1669.579956  15.0  2.0  2723.300049   5835.604980  0.0  ...  101846.359375  1010.419983  2.0   3709.050049  0.00  1.0   3006.250000   4306.240234   2927.030029  0.0  0.0  2.0
+40072  6451.839844   4700.000000  719.0  0.0   0.00  1.0  180599.312500  66.0  2.0  2723.300049   5835.604980  0.0  ...  173659.515625  1554.819946  2.0    270.510010  0.00  1.0  14561.019531  14904.509766   -518.359985  0.0  0.0  1.0
+
+[28051 rows x 290 columns]
+{0.0, 1.0}
+
+starting:	 autosklearn 	 0  fold	 4  core	 3600  seconds
+
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3593.878593)
+[WARNING] [2019-10-12 19:46:26,558:EnsembleBuilder(1791095845):605b606498d399cc80adeedc83876756] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 19:46:26,623:EnsembleBuilder(1791095845):605b606498d399cc80adeedc83876756] No models better than random - using Dummy Score!
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3593.739381)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3593.307614)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3592.291198)
+[WARNING] [2019-10-12 19:46:28,654:EnsembleBuilder(1791095845):605b606498d399cc80adeedc83876756] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 19:46:30,660:EnsembleBuilder(1791095845):605b606498d399cc80adeedc83876756] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 19:46:32,683:EnsembleBuilder(1791095845):605b606498d399cc80adeedc83876756] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 19:46:34,702:EnsembleBuilder(1791095845):605b606498d399cc80adeedc83876756] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 19:46:36,719:EnsembleBuilder(1791095845):605b606498d399cc80adeedc83876756] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 19:46:38,724:EnsembleBuilder(1791095845):605b606498d399cc80adeedc83876756] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 19:46:40,730:EnsembleBuilder(1791095845):605b606498d399cc80adeedc83876756] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 19:46:42,833:EnsembleBuilder(1791095845):605b606498d399cc80adeedc83876756] No models better than random - using Dummy Score!
+-1
+['/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000000.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000001.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000002.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000003.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000004.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000005.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000006.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000007.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000008.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000009.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000010.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000011.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000012.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000013.ensemble', '/tmp/autosklearn_tmp_1097_9953/.auto-sklearn/ensembles/1791095845.0000000014.ensemble']
+{'data': 'id13_cust_cibc_sas_p.sas7bdat.csv', 'shape': {'xtrain': (28051, 290), 'ytrain': (28051,), 'xtest': (12022, 290), 'ytest': (12022,)}, 'para': {'prep_data': False, 'time': 3600, 'fitmetrics': 'log_loss', 'refitmetrics': 'def', 'cores': '4', 'folds': '0', 'framework': 'autosklearn'}, 'timespend': 3600.191473722458, 'results': {'logloss': 0.038136252519240264, 'AUC': 0.9915413533834587, 'f1': 0.938858695652174, 'ACC': 0.9850274496755947}}
+Finishing:	 autosklearn 	 0  fold	 4  core	 3600  seconds
+
+14
+
+dataset:	 id14_cust_olb_acti_p.sas7bdat.csv
+
+metadata information:	 id14_cust_olb_acti_meta.csv
+['conv_targ' 'cust_age_inmo' 'bus_flg' 'emp_flg' 'cons_flg' 'con_dep_alrt'
+ 'HI_VAL_CD' 'OWN_RNT_CD' 'LST_LGN_days' 'LST_ONLN_XFR_days'
+ 'LST_BP_PMT_days' 'in_footprint' 'mdss_profit_amt' 'emails_last30_days'
+ 'clicked_last30' 'emails_last31to90_days' 'clicked_last31to90' 'cust_tob'
+ 'OLB_num_accts' 'CHK_num_accts' 'DCC_num_accts' 'SAV_num_accts'
+ 'BPY_num_accts' 'MTG_num_accts' 'CCD_num_accts' 'WFF_num_accts'
+ 'PMA_num_accts' 'AFG_num_accts' 'HEQ_num_accts' 'DCA_num_accts'
+ 'EFS_num_accts' 'PLL_num_accts' 'CDD_num_accts' 'IID_num_accts'
+ 'WTR_num_accts' 'IRF_num_accts' 'INS_num_accts' 'FSB_num_accts'
+ 'QNM_num_accts' 'OTH_num_accts' 'CHK_acct_sum' 'SAV_acct_sum'
+ 'MTG_acct_sum' 'CCD_acct_sum' 'WFF_acct_sum' 'PMA_acct_sum'
+ 'AFG_acct_sum' 'HEQ_acct_sum' 'EFS_acct_sum' 'PLL_acct_sum'
+ 'CDD_acct_sum' 'WTR_acct_sum' 'IRF_acct_sum' 'FSB_acct_sum'
+ 'OTH_acct_sum' 'OLB_yngst_acct' 'CHK_yngst_acct' 'DCC_yngst_acct'
+ 'SAV_yngst_acct' 'BPY_yngst_acct' 'MTG_yngst_acct' 'CCD_yngst_acct'
+ 'WFF_yngst_acct' 'PMA_yngst_acct' 'AFG_yngst_acct' 'HEQ_yngst_acct'
+ 'DCA_yngst_acct' 'EFS_yngst_acct' 'PLL_yngst_acct' 'CDD_yngst_acct'
+ 'IID_yngst_acct' 'WTR_yngst_acct' 'IRF_yngst_acct' 'INS_yngst_acct'
+ 'FSB_yngst_acct' 'QNM_yngst_acct' 'OTH_yngst_acct' 'OLB_oldst_acct'
+ 'CHK_oldst_acct' 'DCC_oldst_acct' 'SAV_oldst_acct' 'BPY_oldst_acct'
+ 'MTG_oldst_acct' 'CCD_oldst_acct' 'WFF_oldst_acct' 'PMA_oldst_acct'
+ 'AFG_oldst_acct' 'HEQ_oldst_acct' 'DCA_oldst_acct' 'EFS_oldst_acct'
+ 'PLL_oldst_acct' 'CDD_oldst_acct' 'IID_oldst_acct' 'WTR_oldst_acct'
+ 'IRF_oldst_acct' 'INS_oldst_acct' 'FSB_oldst_acct' 'QNM_oldst_acct'
+ 'OTH_oldst_acct' 'OLB_rcnt_cls' 'CHK_rcnt_cls' 'DCC_rcnt_cls'
+ 'SAV_rcnt_cls' 'BPY_rcnt_cls' 'MTG_rcnt_cls' 'CCD_rcnt_cls'
+ 'WFF_rcnt_cls' 'PMA_rcnt_cls' 'AFG_rcnt_cls' 'HEQ_rcnt_cls'
+ 'DCA_rcnt_cls' 'PLL_rcnt_cls' 'CDD_rcnt_cls' 'IID_rcnt_cls'
+ 'IRF_rcnt_cls' 'INS_rcnt_cls' 'OTH_rcnt_cls' 'record_key' '_dmIndex_'
+ '_PartInd_']
+{0.0, 1.0}
+{'0.0', '1.0'}
+
+Check numerical features:	 ['IID_num_accts', 'HEQ_oldst_acct', 'cons_flg', 'CCD_rcnt_cls', 'PLL_acct_sum', 'OLB_rcnt_cls', 'AFG_yngst_acct', 'IRF_oldst_acct', 'QNM_oldst_acct', 'cust_tob', 'CDD_num_accts', 'IRF_num_accts', 'HEQ_num_accts', 'SAV_rcnt_cls', 'FSB_acct_sum', 'WFF_yngst_acct', 'clicked_last31to90', 'IID_yngst_acct', 'MTG_num_accts', 'DCA_oldst_acct', 'BPY_rcnt_cls', 'LST_BP_PMT_days', 'MTG_yngst_acct', 'EFS_yngst_acct', 'OLB_num_accts', 'SAV_yngst_acct', 'EFS_oldst_acct', 'WTR_oldst_acct', 'CCD_acct_sum', 'FSB_oldst_acct', 'FSB_yngst_acct', 'emails_last30_days', 'DCA_num_accts', 'CHK_oldst_acct', 'DCA_rcnt_cls', 'MTG_oldst_acct', 'emails_last31to90_days', 'SAV_acct_sum', 'OLB_yngst_acct', 'HEQ_rcnt_cls', 'AFG_oldst_acct', 'BPY_oldst_acct', 'CHK_num_accts', 'BPY_yngst_acct', 'SAV_oldst_acct', 'IRF_rcnt_cls', 'PMA_num_accts', 'HEQ_acct_sum', 'OTH_rcnt_cls', 'HEQ_yngst_acct', 'LST_LGN_days', 'emp_flg', 'PMA_yngst_acct', 'in_footprint', 'BPY_num_accts', 'clicked_last30', 'MTG_rcnt_cls', 'OTH_acct_sum', 'WFF_num_accts', 'IID_rcnt_cls', 'WFF_rcnt_cls', 'CHK_rcnt_cls', 'CDD_yngst_acct', 'DCC_num_accts', 'DCC_yngst_acct', 'cust_age_inmo', 'CCD_num_accts', 'MTG_acct_sum', 'CHK_yngst_acct', 'AFG_rcnt_cls', 'PLL_rcnt_cls', 'PLL_oldst_acct', 'CDD_rcnt_cls', 'IRF_yngst_acct', 'bus_flg', 'PMA_rcnt_cls', 'PMA_acct_sum', 'PLL_num_accts', 'PLL_yngst_acct', 'IRF_acct_sum', 'OTH_num_accts', 'CDD_acct_sum', 'EFS_num_accts', 'WTR_acct_sum', 'DCA_yngst_acct', 'INS_oldst_acct', 'DCC_oldst_acct', 'con_dep_alrt', 'CDD_oldst_acct', 'AFG_acct_sum', 'DCC_rcnt_cls', 'INS_rcnt_cls', 'OTH_oldst_acct', 'CHK_acct_sum', 'FSB_num_accts', 'INS_yngst_acct', 'QNM_yngst_acct', 'SAV_num_accts', 'QNM_num_accts', 'WFF_acct_sum', 'LST_ONLN_XFR_days', 'WTR_num_accts', 'EFS_acct_sum', 'WTR_yngst_acct', 'OLB_oldst_acct', 'PMA_oldst_acct', 'CCD_yngst_acct', 'WFF_oldst_acct', 'AFG_num_accts', 'OTH_yngst_acct', 'mdss_profit_amt', 'INS_num_accts', 'IID_oldst_acct', 'CCD_oldst_acct', 'record_key'] IID_num_accts      float32
+HEQ_oldst_acct     float32
+cons_flg           float32
+CCD_rcnt_cls       float32
+PLL_acct_sum       float32
+                    ...   
+mdss_profit_amt    float32
+INS_num_accts      float32
+IID_oldst_acct     float32
+CCD_oldst_acct     float32
+record_key         float32
+Length: 115, dtype: object
+
+Check catogorical features:	 ['OWN_RNT_CD', 'HI_VAL_CD'] OWN_RNT_CD    object
+HI_VAL_CD     object
+dtype: object
+['_dmIndex_', '_PartInd_', 'conv_targ', 'IID_num_accts', 'HEQ_oldst_acct', 'cons_flg', 'CCD_rcnt_cls', 'PLL_acct_sum', 'OLB_rcnt_cls', 'AFG_yngst_acct', 'IRF_oldst_acct', 'QNM_oldst_acct', 'cust_tob', 'CDD_num_accts', 'IRF_num_accts', 'HEQ_num_accts', 'SAV_rcnt_cls', 'FSB_acct_sum', 'WFF_yngst_acct', 'clicked_last31to90', 'IID_yngst_acct', 'MTG_num_accts', 'DCA_oldst_acct', 'BPY_rcnt_cls', 'LST_BP_PMT_days', 'MTG_yngst_acct', 'EFS_yngst_acct', 'OLB_num_accts', 'SAV_yngst_acct', 'EFS_oldst_acct', 'WTR_oldst_acct', 'CCD_acct_sum', 'FSB_oldst_acct', 'FSB_yngst_acct', 'emails_last30_days', 'DCA_num_accts', 'CHK_oldst_acct', 'DCA_rcnt_cls', 'MTG_oldst_acct', 'emails_last31to90_days', 'SAV_acct_sum', 'OLB_yngst_acct', 'HEQ_rcnt_cls', 'AFG_oldst_acct', 'BPY_oldst_acct', 'CHK_num_accts', 'BPY_yngst_acct', 'SAV_oldst_acct', 'IRF_rcnt_cls', 'PMA_num_accts', 'HEQ_acct_sum', 'OTH_rcnt_cls', 'HEQ_yngst_acct', 'LST_LGN_days', 'emp_flg', 'PMA_yngst_acct', 'in_footprint', 'BPY_num_accts', 'clicked_last30', 'MTG_rcnt_cls', 'OTH_acct_sum', 'WFF_num_accts', 'IID_rcnt_cls', 'WFF_rcnt_cls', 'CHK_rcnt_cls', 'CDD_yngst_acct', 'DCC_num_accts', 'DCC_yngst_acct', 'cust_age_inmo', 'CCD_num_accts', 'MTG_acct_sum', 'CHK_yngst_acct', 'AFG_rcnt_cls', 'PLL_rcnt_cls', 'PLL_oldst_acct', 'CDD_rcnt_cls', 'IRF_yngst_acct', 'bus_flg', 'PMA_rcnt_cls', 'PMA_acct_sum', 'PLL_num_accts', 'PLL_yngst_acct', 'IRF_acct_sum', 'OTH_num_accts', 'CDD_acct_sum', 'EFS_num_accts', 'WTR_acct_sum', 'DCA_yngst_acct', 'INS_oldst_acct', 'DCC_oldst_acct', 'con_dep_alrt', 'CDD_oldst_acct', 'AFG_acct_sum', 'DCC_rcnt_cls', 'INS_rcnt_cls', 'OTH_oldst_acct', 'CHK_acct_sum', 'FSB_num_accts', 'INS_yngst_acct', 'QNM_yngst_acct', 'SAV_num_accts', 'QNM_num_accts', 'WFF_acct_sum', 'LST_ONLN_XFR_days', 'WTR_num_accts', 'EFS_acct_sum', 'WTR_yngst_acct', 'OLB_oldst_acct', 'PMA_oldst_acct', 'CCD_yngst_acct', 'WFF_oldst_acct', 'AFG_num_accts', 'OTH_yngst_acct', 'mdss_profit_amt', 'INS_num_accts', 'IID_oldst_acct', 'CCD_oldst_acct', 'record_key', 'OWN_RNT_CD', 'HI_VAL_CD']
+        _dmIndex_  _PartInd_ conv_targ  IID_num_accts  HEQ_oldst_acct  cons_flg  CCD_rcnt_cls  PLL_acct_sum  ...  OTH_yngst_acct  mdss_profit_amt  INS_num_accts  IID_oldst_acct  CCD_oldst_acct  record_key  OWN_RNT_CD  HI_VAL_CD
+0             1.0          2       0.0            0.0             NaN       1.0           NaN           NaN  ...             NaN            227.0            0.0             NaN             NaN         1.0         nan        nan
+1             2.0          0       0.0            0.0             NaN       1.0           NaN           NaN  ...          1690.0            474.0            0.0             NaN             NaN         2.0         nan       HV02
+2             3.0          2       0.0            0.0             NaN       1.0           NaN           NaN  ...             NaN            160.0            0.0             NaN             NaN         3.0         nan        nan
+3             4.0          0       0.0            0.0          1969.0       1.0           NaN           NaN  ...             NaN            432.0            0.0             NaN             NaN         4.0         nan       HV02
+4             5.0          0       0.0            0.0             NaN       1.0           NaN           NaN  ...             NaN            265.0            0.0             NaN             NaN         5.0         nan        nan
+...           ...        ...       ...            ...             ...       ...           ...           ...  ...             ...              ...            ...             ...             ...         ...         ...        ...
+419323   419324.0          0       0.0            0.0             NaN       1.0           NaN           NaN  ...             NaN            -25.0            0.0             NaN             NaN    419324.0         nan        nan
+419324   419325.0          0       1.0            0.0             NaN       1.0           NaN           NaN  ...            28.0            -54.0            0.0             NaN             NaN    419325.0         nan        nan
+419325   419326.0          2       0.0            0.0             NaN       1.0           NaN           NaN  ...             NaN           -192.0            0.0             NaN             NaN    419326.0         nan        nan
+419326   419327.0          1       0.0            0.0             NaN       1.0           NaN           NaN  ...             NaN            -83.0            0.0             NaN             NaN    419327.0         nan        nan
+419327   419328.0          0       0.0            0.0             NaN       1.0           NaN           NaN  ...             NaN           -109.0            0.0             NaN             NaN    419328.0         nan        nan
+
+[419328 rows x 120 columns]
+{'0.0', '1.0'}
+[  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 112 113 114 115 116 117 118 119]
+3      float32
+4      float32
+5      float32
+6      float32
+7      float32
+        ...   
+115    float32
+116    float32
+117    float32
+118    float32
+119    float32
+Length: 117, dtype: object         3       4    5      6            7     8      9       10      11      12   13   14   15     16            17     18   ...  104     105     106     107    108    109    110  111     112    113  114    115    116       117  118  119
+1       0.0   579.0  1.0  372.0  2274.459961  89.0  517.0  2248.0  3040.0  5460.0  1.0  0.0  0.0  160.0  74679.335938  591.0  ...  0.0  3663.0  1870.0   146.0  162.0  846.0  705.0  0.0  1690.0  474.0  0.0  260.0  885.0       2.0  2.0  1.0
+3       0.0  1969.0  1.0  372.0  2274.459961  89.0  517.0  2248.0  3040.0  1975.0  0.0  0.0  1.0  160.0  74679.335938  591.0  ...  0.0  3663.0  1870.0  1975.0  966.0  846.0  705.0  0.0  1777.0  432.0  0.0  260.0  885.0       4.0  2.0  1.0
+4       0.0   579.0  1.0  372.0  2274.459961  89.0  517.0  2248.0  3040.0  1746.0  0.0  0.0  0.0  160.0  74679.335938  591.0  ...  0.0  3663.0  1870.0   130.0  966.0  846.0  705.0  0.0  1777.0  265.0  0.0  260.0  885.0       5.0  2.0  4.0
+5       0.0   579.0  1.0  372.0  2274.459961  89.0  517.0  2248.0  3040.0   843.0  0.0  0.0  0.0  160.0  74679.335938  591.0  ...  0.0  3663.0  1870.0   276.0  966.0  846.0  705.0  0.0  1777.0  -21.0  0.0  260.0  885.0       6.0  2.0  4.0
+7       0.0   579.0  1.0  372.0  2274.459961  89.0  517.0  2248.0  3040.0  1548.0  0.0  0.0  0.0  160.0  74679.335938  591.0  ...  0.0  3663.0  1870.0   388.0  966.0  846.0  705.0  0.0  1777.0  231.0  0.0  260.0  885.0       8.0  2.0  4.0
+...     ...     ...  ...    ...          ...   ...    ...     ...     ...     ...  ...  ...  ...    ...           ...    ...  ...  ...     ...     ...     ...    ...    ...    ...  ...     ...    ...  ...    ...    ...       ...  ...  ...
+419322  0.0   579.0  1.0  372.0  2274.459961  89.0  517.0  2248.0  3040.0   397.0  0.0  0.0  0.0  312.0  74679.335938  591.0  ...  0.0  3663.0  1870.0   397.0  966.0  846.0  705.0  0.0  1777.0  -88.0  0.0  260.0  885.0  419323.0  2.0  4.0
+419323  0.0   579.0  1.0  372.0  2274.459961  89.0  517.0  2248.0  3040.0   485.0  0.0  0.0  0.0  160.0  74679.335938  591.0  ...  0.0  3663.0  1870.0   485.0  966.0  846.0  705.0  0.0  1777.0  -25.0  0.0  260.0  885.0  419324.0  2.0  4.0
+419324  0.0   579.0  1.0  372.0  2274.459961  89.0  517.0  2248.0  3040.0  1469.0  0.0  0.0  0.0  160.0  74679.335938  591.0  ...  0.0  3663.0  1870.0  1088.0  966.0  846.0  705.0  0.0    28.0  -54.0  0.0  260.0  885.0  419325.0  2.0  4.0
+419326  0.0   579.0  1.0  372.0  2274.459961  89.0  517.0  2248.0  3040.0    89.0  0.0  0.0  0.0  160.0  74679.335938  591.0  ...  0.0  3663.0  1870.0    89.0  966.0  846.0  705.0  0.0  1777.0  -83.0  0.0  260.0  885.0  419327.0  2.0  4.0
+419327  0.0   579.0  1.0  372.0  2274.459961  89.0  517.0  2248.0  3040.0   283.0  0.0  0.0  0.0  160.0  74679.335938  591.0  ...  0.0  3663.0  1870.0   283.0  966.0  846.0  705.0  0.0  1777.0 -109.0  0.0  260.0  885.0  419328.0  2.0  4.0
+
+[293541 rows x 117 columns]
+{0.0, 1.0}
+
+starting:	 autosklearn 	 0  fold	 4  core	 3600  seconds
+
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3590.953296)
+[WARNING] [2019-10-12 20:50:29,063:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:29,166:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3588.298536)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3586.089692)
+[WARNING] [2019-10-12 20:50:31,172:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3584.566619)
+[WARNING] [2019-10-12 20:50:33,177:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:35,183:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:37,189:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:39,224:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:41,290:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:43,301:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:45,312:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:47,318:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:49,324:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:51,330:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:53,356:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:55,361:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:57,366:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:50:59,372:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:01,378:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:03,405:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:05,454:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:07,461:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:09,466:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:11,471:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:13,476:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:15,484:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:17,489:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:19,494:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:21,500:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:23,505:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:25,510:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:27,516:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:29,522:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:31,534:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:33,540:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:35,548:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:37,554:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:39,560:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:41,650:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:43,655:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:45,660:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:47,666:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:49,682:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:51,689:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:53,695:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:55,701:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:57,709:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:51:59,714:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!
+[WARNING] [2019-10-12 20:52:01,776:EnsembleBuilder(1791095845):9e8bf27441e371cc10a70d9c1c50ba59] No models better than random - using Dummy Score!

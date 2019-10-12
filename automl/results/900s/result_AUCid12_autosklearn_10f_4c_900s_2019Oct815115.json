@@ -1,0 +1,1 @@
+{"data": "id12_hmeq_p.sas7bdat", "shape": {"xtrain": [4171, 20], "ytrain": [4171], "xtest": [1789, 20], "ytest": [1789]}, "para": {"time": 900, "fitmetrics": "roc_auc", "refitmetrics": "def", "cores": "4", "folds": "10", "framework": "autosklearn"}, "timespend": 927.5899233818054, "results": {"logloss": 0.517335578708082, "AUC": 0.5, "f1": 0.0, "ACC": 0.8004471771939631}}

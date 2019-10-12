@@ -1,0 +1,1 @@
+{"data": "id8_donor_raw_data2_p.sas7bdat", "shape": {"xtrain": [13560, 67], "ytrain": [13560], "xtest": [5812, 67], "ytest": [5812]}, "para": {"time": 900, "fitmetrics": "roc_auc", "refitmetrics": "def", "cores": "4", "folds": "10", "framework": "autosklearn"}, "timespend": 953.0933656692505, "results": {"logloss": 0.575920686506315, "AUC": 0.5, "f1": 0.0, "ACC": 0.75}}

@@ -1,0 +1,186 @@
+6
+
+dataset:	 id6_uci_abalone_p.sas7bdat
+
+metadata information:	 id6_uci_abalone_meta.csv
+
+
+Reading data from /root/data/intervalTarget/data/id6_uci_abalone_p.sas7bdat
+
+
+Data description:
+
+          ab_length  ab_diameter    ab_height  whole_weight  shucked_weight  viscera_weight  shell_weight        rings    _dmIndex_    _PartInd_
+count  4177.000000  4177.000000  4177.000000   4177.000000     4177.000000     4177.000000   4177.000000  4177.000000  4177.000000  4177.000000
+mean      0.523992     0.407881     0.139516      0.828742        0.359367        0.180594      0.238831     9.933684  2089.000000     1.100072
+std       0.120093     0.099240     0.041827      0.490389        0.221963        0.109614      0.139203     3.224169  1205.940366     0.699988
+min       0.075000     0.055000     0.000000      0.002000        0.001000        0.000500      0.001500     1.000000     1.000000     0.000000
+25%       0.450000     0.350000     0.115000      0.441500        0.186000        0.093500      0.130000     8.000000  1045.000000     1.000000
+50%       0.545000     0.425000     0.140000      0.799500        0.336000        0.171000      0.234000     9.000000  2089.000000     1.000000
+75%       0.615000     0.480000     0.165000      1.153000        0.502000        0.253000      0.329000    11.000000  3133.000000     2.000000
+max       0.815000     0.650000     1.130000      2.825500        1.488000        0.760000      1.005000    29.000000  4177.000000     2.000000
+
+
+Check column
+
+ Index(['sex', 'ab_length', 'ab_diameter', 'ab_height', 'whole_weight',
+       'shucked_weight', 'viscera_weight', 'shell_weight', 'rings',
+       '_dmIndex_', '_PartInd_'],
+      dtype='object')
+['sex' 'ab_length' 'ab_diameter' 'ab_height' 'whole_weight'
+ 'shucked_weight' 'viscera_weight' 'shell_weight' 'rings' '_dmIndex_'
+ '_PartInd_']
+{'25.0', '24.0', '21.0', '3.0', '26.0', '18.0', '12.0', '7.0', '13.0', '9.0', '11.0', '17.0', '15.0', '19.0', '5.0', '2.0', '14.0', '8.0', '6.0', '1.0', '27.0', '23.0', '4.0', '16.0', '22.0', '10.0', '20.0', '29.0'}
+
+Check numerical features:	 ['shucked_weight', 'viscera_weight', 'ab_length', 'whole_weight', 'ab_height', 'ab_diameter', 'shell_weight'] shucked_weight    float32
+viscera_weight    float32
+ab_length         float32
+whole_weight      float32
+ab_height         float32
+ab_diameter       float32
+shell_weight      float32
+dtype: object
+
+Check catogorical features:	 ['sex'] sex    object
+dtype: object
+['_dmIndex_', '_PartInd_', 'rings', 'shucked_weight', 'viscera_weight', 'ab_length', 'whole_weight', 'ab_height', 'ab_diameter', 'shell_weight', 'sex']
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12]
+3     float32
+4     float32
+5     float32
+6     float32
+7     float32
+8     float32
+9     float32
+10    float32
+11    float32
+12    float32
+dtype: object           3       4      5       6      7      8       9    10   11   12
+1     0.0995  0.0485  0.350  0.2255  0.090  0.265  0.0700  0.0  0.0  1.0
+3     0.2155  0.1140  0.440  0.5160  0.125  0.365  0.1550  0.0  0.0  1.0
+4     0.0895  0.0395  0.330  0.2050  0.080  0.255  0.0550  0.0  1.0  0.0
+5     0.1410  0.0775  0.425  0.3515  0.095  0.300  0.1200  0.0  1.0  0.0
+7     0.2940  0.1495  0.545  0.7680  0.125  0.425  0.2600  1.0  0.0  0.0
+...      ...     ...    ...     ...    ...    ...     ...  ...  ...  ...
+4170  0.3155  0.1955  0.550  0.8395  0.130  0.430  0.2405  0.0  0.0  1.0
+4171  0.4000  0.1720  0.560  0.8675  0.155  0.430  0.2290  0.0  0.0  1.0
+4172  0.3700  0.2390  0.565  0.8870  0.165  0.450  0.2490  1.0  0.0  0.0
+4173  0.4390  0.2145  0.590  0.9660  0.135  0.440  0.2605  0.0  0.0  1.0
+4176  0.9455  0.3765  0.710  1.9485  0.195  0.555  0.4950  0.0  0.0  1.0
+
+[2924 rows x 10 columns]
+{0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0, 25.0, 26.0, 27.0}
+
+starting:	 autosklearn 	 0  fold	 -1  core	 100  seconds
+
+
+fail in:	 id6_uci_abalone_p.sas7bdat
+Traceback (most recent call last):
+  File "/root/atoml/automl/intervalT/runbench.py", line 208, in runbenchmark
+    biclassifier(prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
+  File "/root/atoml/automl/intervalT/runbench.py", line 171, in biclassifier
+    automl = autoclf(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetrics)
+  File "/root/atoml/automl/intervalT/runbench.py", line 129, in autoclf
+    automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics)#,feat_type = feat_type)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/estimators.py", line 664, in fit
+    dataset_name=dataset_name,
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/estimators.py", line 397, in fit
+    automl=self._automl[0],
+IndexError: list index out of range
+7
+
+dataset:	 id7_uci_winequality_p.sas7bdat
+
+metadata information:	 id7_uci_winequality_meta.csv
+
+
+Reading data from /root/data/intervalTarget/data/id7_uci_winequality_p.sas7bdat
+
+
+Data description:
+
+        fixed_acidity  volatile_acidity  citric_acid  residual_sugar    chlorides  free_sulfur_dioxide  total_sulfur_dioxide      density           pH    sulphates      alcohol      quality    _dmIndex_    _PartInd_
+count    6497.000000       6497.000000  6497.000000     6497.000000  6497.000000          6497.000000           6497.000000  6497.000000  6497.000000  6497.000000  6497.000000  6497.000000  6497.000000  6497.000000
+mean        7.215307          0.339666     0.318633        5.443235     0.056034            30.525319            115.744574     0.994697     3.218501     0.531268    10.491801     5.818378  3249.000000     1.100046
+std         1.296434          0.164636     0.145318        4.757804     0.035034            17.749400             56.521855     0.002999     0.160787     0.148806     1.192712     0.873255  1875.666681     0.699992
+min         3.800000          0.080000     0.000000        0.600000     0.009000             1.000000              6.000000     0.987110     2.720000     0.220000     8.000000     3.000000     1.000000     0.000000
+25%         6.400000          0.230000     0.250000        1.800000     0.038000            17.000000             77.000000     0.992340     3.110000     0.430000     9.500000     5.000000  1625.000000     1.000000
+50%         7.000000          0.290000     0.310000        3.000000     0.047000            29.000000            118.000000     0.994890     3.210000     0.510000    10.300000     6.000000  3249.000000     1.000000
+75%         7.700000          0.400000     0.390000        8.100000     0.065000            41.000000            156.000000     0.996990     3.320000     0.600000    11.300000     6.000000  4873.000000     2.000000
+max        15.900000          1.580000     1.660000       65.800000     0.611000           289.000000            440.000000     1.038980     4.010000     2.000000    14.900000     9.000000  6497.000000     2.000000
+
+
+Check column
+
+ Index(['fixed_acidity', 'volatile_acidity', 'citric_acid', 'residual_sugar',
+       'chlorides', 'free_sulfur_dioxide', 'total_sulfur_dioxide', 'density',
+       'pH', 'sulphates', 'alcohol', 'quality', 'color', '_dmIndex_',
+       '_PartInd_'],
+      dtype='object')
+['fixed_acidity' 'volatile_acidity' 'citric_acid' 'residual_sugar'
+ 'chlorides' 'free_sulfur_dioxide' 'total_sulfur_dioxide' 'density' 'pH'
+ 'sulphates' 'alcohol' 'quality' 'color' '_dmIndex_' '_PartInd_']
+{'8.0', '6.0', '5.0', '3.0', '4.0', '7.0', '9.0'}
+
+Check numerical features:	 ['density', 'volatile_acidity', 'fixed_acidity', 'pH', 'citric_acid', 'free_sulfur_dioxide', 'chlorides', 'total_sulfur_dioxide', 'alcohol', 'sulphates', 'residual_sugar'] density                 float32
+volatile_acidity        float32
+fixed_acidity           float32
+pH                      float32
+citric_acid             float32
+free_sulfur_dioxide     float32
+chlorides               float32
+total_sulfur_dioxide    float32
+alcohol                 float32
+sulphates               float32
+residual_sugar          float32
+dtype: object
+
+Check catogorical features:	 ['color'] color    object
+dtype: object
+['_dmIndex_', '_PartInd_', 'quality', 'density', 'volatile_acidity', 'fixed_acidity', 'pH', 'citric_acid', 'free_sulfur_dioxide', 'chlorides', 'total_sulfur_dioxide', 'alcohol', 'sulphates', 'residual_sugar', 'color']
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15]
+3     float32
+4     float32
+5     float32
+6     float32
+7     float32
+8     float32
+9     float32
+10    float32
+11    float32
+12    float32
+13    float32
+14    float32
+15    float32
+dtype: object            3     4     5     6     7     8      9      10    11    12   13   14   15
+1     0.99680  0.88   7.8  3.20  0.00  25.0  0.098   67.0   9.8  0.68  2.6  1.0  0.0
+3     0.99800  0.28  11.2  3.16  0.56  17.0  0.075   60.0   9.8  0.58  1.9  1.0  0.0
+4     0.99780  0.70   7.4  3.51  0.00  11.0  0.076   34.0   9.4  0.56  1.9  1.0  0.0
+5     0.99780  0.66   7.4  3.51  0.00  13.0  0.075   40.0   9.4  0.56  1.8  1.0  0.0
+7     0.99460  0.65   7.3  3.39  0.00  15.0  0.065   21.0  10.0  0.47  1.2  1.0  0.0
+...       ...   ...   ...   ...   ...   ...    ...    ...   ...   ...  ...  ...  ...
+6492  0.99114  0.21   6.2  3.27  0.29  24.0  0.039   92.0  11.2  0.50  1.6  0.0  1.0
+6493  0.99490  0.32   6.6  3.15  0.36  57.0  0.047  168.0   9.6  0.46  8.0  0.0  1.0
+6494  0.99254  0.24   6.5  2.99  0.19  30.0  0.041  111.0   9.4  0.46  1.2  0.0  1.0
+6495  0.98869  0.29   5.5  3.34  0.30  20.0  0.022  110.0  12.8  0.38  1.1  0.0  1.0
+6496  0.98941  0.21   6.0  3.26  0.38  22.0  0.020   98.0  11.8  0.32  0.8  0.0  1.0
+
+[4548 rows x 13 columns]
+{0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0}
+
+starting:	 autosklearn 	 0  fold	 -1  core	 100  seconds
+
+
+fail in:	 id7_uci_winequality_p.sas7bdat
+Traceback (most recent call last):
+  File "/root/atoml/automl/intervalT/runbench.py", line 208, in runbenchmark
+    biclassifier(prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
+  File "/root/atoml/automl/intervalT/runbench.py", line 171, in biclassifier
+    automl = autoclf(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetrics)
+  File "/root/atoml/automl/intervalT/runbench.py", line 129, in autoclf
+    automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics)#,feat_type = feat_type)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/estimators.py", line 664, in fit
+    dataset_name=dataset_name,
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/estimators.py", line 397, in fit
+    automl=self._automl[0],
+IndexError: list index out of range
