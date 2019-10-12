@@ -1,0 +1,271 @@
+0
+
+dataset:	 id0_uci_bank_marketing_p.sas7bdat
+
+metadata information:	 id0_uci_bank_marketing_meta.csv
+['age', 'job', 'marital', 'education', 'default', 'housing', 'loan', 'contact', 'month', 'day_of_week', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'emp_var_rate', 'cons_price_idx', 'cons_conf_idx', 'euribor3m', 'nr_employed', 'y', '_dmIndex_', '_PartInd_'] <class 'list'>
+['age', 'job', 'marital', 'education', 'default', 'housing', 'loan', 'contact', 'month', 'day_of_week', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'emp_var_rate', 'cons_price_idx', 'cons_conf_idx', 'euribor3m', 'nr_employed']
+{'yes', 'no'}
+age               float64
+job                object
+marital            object
+education          object
+default            object
+housing            object
+loan               object
+contact            object
+month              object
+day_of_week        object
+duration          float64
+campaign          float64
+pdays             float64
+previous          float64
+poutcome           object
+emp_var_rate      float64
+cons_price_idx    float64
+cons_conf_idx     float64
+euribor3m         float64
+nr_employed       float64
+dtype: object         age          job  marital            education  ... cons_price_idx cons_conf_idx euribor3m nr_employed
+1      57.0     services  married          high.school  ...         93.994         -36.4     4.857      5191.0
+3      40.0       admin.  married             basic.6y  ...         93.994         -36.4     4.857      5191.0
+4      56.0     services  married          high.school  ...         93.994         -36.4     4.857      5191.0
+5      45.0     services  married             basic.9y  ...         93.994         -36.4     4.857      5191.0
+7      41.0  blue-collar  married              unknown  ...         93.994         -36.4     4.857      5191.0
+...     ...          ...      ...                  ...  ...            ...           ...       ...         ...
+41181  37.0       admin.  married    university.degree  ...         94.767         -50.8     1.028      4963.6
+41183  73.0      retired  married  professional.course  ...         94.767         -50.8     1.028      4963.6
+41184  46.0  blue-collar  married  professional.course  ...         94.767         -50.8     1.028      4963.6
+41186  44.0   technician  married  professional.course  ...         94.767         -50.8     1.028      4963.6
+41187  74.0      retired  married  professional.course  ...         94.767         -50.8     1.028      4963.6
+
+[28831 rows x 20 columns]
+{'yes', 'no'}
+
+starting:	 autosklearn 	 0  fold	 4  core	 900  seconds
+
+
+fail in:	 id0_uci_bank_marketing_p.sas7bdat
+Traceback (most recent call last):
+  File "/root/atoml/automl/runbench.py", line 163, in runbenchmark
+    biclassifier(prep,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
+  File "/root/atoml/automl/runbench.py", line 131, in biclassifier
+    automl = autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics)
+  File "/root/atoml/automl/runbench.py", line 78, in autoclf
+    automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/estimators.py", line 664, in fit
+    dataset_name=dataset_name,
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/estimators.py", line 399, in fit
+    load_models=True,
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/estimators.py", line 15, in _fit_automl
+    return automl.fit(load_models=load_models, **kwargs)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/automl.py", line 953, in fit
+    X, y = self._perform_input_checks(X, y)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/automl.py", line 885, in _perform_input_checks
+    X = self._check_X(X)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/automl.py", line 892, in _check_X
+    force_all_finite=False)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/sklearn/utils/validation.py", line 567, in check_array
+    array = array.astype(np.float64)
+ValueError: could not convert string to float: 'services'
+10
+
+dataset:	 id10_donations_p.sas7bdat
+
+metadata information:	 id10_donations_meta.csv
+['school_city', 'State', 'school_zip', 'school_metro', 'school_district', 'school_county', 'school_charter', 'school_magnet', 'school_year_round', 'school_nlns', 'school_kipp', 'school_charter_ready_promise', 'teacher_prefix', 'teacher_teach_for_america', 'teacher_ny_teaching_fellow', 'primary_focus_subject', 'primary_focus_area', 'secondary_focus_subject', 'secondary_focus_area', 'resource_type', 'poverty_level', 'grade_level', 'fulfillment_labor_materials', 'total_price_excluding_optional_s', 'total_price_including_optional_s', 'students_reached', 'eligible_double_your_impact_matc', 'eligible_almost_home_match', 'Exciting_project', 'n_donations', 'sum_donation_to_project', 'sum_donation_optional_support', 'sum_donation_total', 'n_teacher_donations', 'n_corporate_match', 'n_honoree', '_dmIndex_', '_PartInd_'] <class 'list'>
+['school_city', 'State', 'school_zip', 'school_metro', 'school_district', 'school_county', 'school_charter', 'school_magnet', 'school_year_round', 'school_nlns', 'school_kipp', 'school_charter_ready_promise', 'teacher_prefix', 'teacher_teach_for_america', 'teacher_ny_teaching_fellow', 'primary_focus_subject', 'primary_focus_area', 'secondary_focus_subject', 'secondary_focus_area', 'resource_type', 'poverty_level', 'grade_level', 'fulfillment_labor_materials', 'total_price_excluding_optional_s', 'total_price_including_optional_s', 'students_reached', 'eligible_double_your_impact_matc', 'eligible_almost_home_match', 'n_donations', 'sum_donation_to_project', 'sum_donation_optional_support', 'sum_donation_total', 'n_teacher_donations', 'n_corporate_match', 'n_honoree']
+{'t', 'f'}
+school_city                          object
+State                                object
+school_zip                          float64
+school_metro                         object
+school_district                      object
+school_county                        object
+school_charter                       object
+school_magnet                        object
+school_year_round                    object
+school_nlns                          object
+school_kipp                          object
+school_charter_ready_promise         object
+teacher_prefix                       object
+teacher_teach_for_america            object
+teacher_ny_teaching_fellow           object
+primary_focus_subject                object
+primary_focus_area                   object
+secondary_focus_subject              object
+secondary_focus_area                 object
+resource_type                        object
+poverty_level                        object
+grade_level                          object
+fulfillment_labor_materials         float64
+total_price_excluding_optional_s    float64
+total_price_including_optional_s    float64
+students_reached                    float64
+eligible_double_your_impact_matc     object
+eligible_almost_home_match           object
+n_donations                         float64
+sum_donation_to_project             float64
+sum_donation_optional_support       float64
+sum_donation_total                  float64
+n_teacher_donations                 float64
+n_corporate_match                   float64
+n_honoree                           float64
+dtype: object          school_city State  school_zip  ... n_teacher_donations n_corporate_match n_honoree
+1        Albuquerque    NM     87121.0  ...                 0.0               NaN       NaN
+3            Chicago    IL     60647.0  ...                 0.0               NaN       NaN
+4             Athens    GA     30605.0  ...                 0.0               NaN       NaN
+5       Philadelphia    PA     19148.0  ...                 0.0               NaN       NaN
+7       Brooklyn Ctr    MN     55430.0  ...                 0.0               NaN       NaN
+...              ...   ...         ...  ...                 ...               ...       ...
+620666     Fair Oaks    CA     95628.0  ...                 0.0               0.0       0.0
+620667     Pocatello    ID     83204.0  ...                 0.0               4.0       0.0
+620668        Austin    TX     78730.0  ...                 0.0               0.0       0.0
+620670     Jonesboro    GA     30236.0  ...                 0.0               0.0       1.0
+620671      Florence    SC     29501.0  ...                 0.0               NaN       NaN
+
+[434484 rows x 35 columns]
+{'t', 'f'}
+
+starting:	 autosklearn 	 0  fold	 4  core	 900  seconds
+
+
+fail in:	 id10_donations_p.sas7bdat
+Traceback (most recent call last):
+  File "/root/atoml/automl/runbench.py", line 163, in runbenchmark
+    biclassifier(prep,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
+  File "/root/atoml/automl/runbench.py", line 131, in biclassifier
+    automl = autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics)
+  File "/root/atoml/automl/runbench.py", line 78, in autoclf
+    automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/estimators.py", line 664, in fit
+    dataset_name=dataset_name,
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/estimators.py", line 399, in fit
+    load_models=True,
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/estimators.py", line 15, in _fit_automl
+    return automl.fit(load_models=load_models, **kwargs)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/automl.py", line 953, in fit
+    X, y = self._perform_input_checks(X, y)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/automl.py", line 885, in _perform_input_checks
+    X = self._check_X(X)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/automl.py", line 892, in _check_X
+    force_all_finite=False)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/sklearn/utils/validation.py", line 567, in check_array
+    array = array.astype(np.float64)
+ValueError: could not convert string to float: 'Albuquerque'
+11
+
+dataset:	 id11_college_abt_binary_p.sas7bdat
+
+metadata information:	 id11_college_abt_binary_meta.csv
+['bin_md_earn', 'DEBT_MDN', 'PAR_ED_PCT_MS', 'DEP_INC_PCT_LO', 'COUNT_NWNE_P6', 'COUNT_NWNE_P10', 'COUNT_WNE_P6', 'COUNT_WNE_P10', 'SATVRMID', 'UGDS', 'COSTT4_A', 'TUITIONFEE_IN', 'TUITIONFEE_OUT', 'RET_FT4', 'CDR3', 'INC_PCT_LO', 'MD_FAMINC', 'C100_4', 'CDR3_DENOM', 'SCH_DEG', 'PCTFLOAN', 'SATMTMID', 'UNITID', 'INSTNM', 'CITY', 'STABBR', 'ZIP', '_PartInd_', 'preddeg2', 'highdeg2', '_dmIndex_'] <class 'list'>
+['DEBT_MDN', 'PAR_ED_PCT_MS', 'DEP_INC_PCT_LO', 'COUNT_NWNE_P6', 'COUNT_NWNE_P10', 'COUNT_WNE_P6', 'COUNT_WNE_P10', 'SATVRMID', 'UGDS', 'COSTT4_A', 'TUITIONFEE_IN', 'TUITIONFEE_OUT', 'RET_FT4', 'CDR3', 'INC_PCT_LO', 'MD_FAMINC', 'C100_4', 'CDR3_DENOM', 'SCH_DEG', 'PCTFLOAN', 'SATMTMID', 'UNITID', 'INSTNM', 'CITY', 'STABBR', 'ZIP', 'preddeg2', 'highdeg2']
+{'HIGH', 'LOW'}
+DEBT_MDN          float64
+PAR_ED_PCT_MS     float64
+DEP_INC_PCT_LO    float64
+COUNT_NWNE_P6     float64
+COUNT_NWNE_P10    float64
+COUNT_WNE_P6      float64
+COUNT_WNE_P10     float64
+SATVRMID          float64
+UGDS              float64
+COSTT4_A          float64
+TUITIONFEE_IN     float64
+TUITIONFEE_OUT    float64
+RET_FT4           float64
+CDR3              float64
+INC_PCT_LO        float64
+MD_FAMINC         float64
+C100_4            float64
+CDR3_DENOM        float64
+SCH_DEG           float64
+PCTFLOAN          float64
+SATMTMID          float64
+UNITID            float64
+INSTNM             object
+CITY               object
+STABBR             object
+ZIP                object
+preddeg2           object
+highdeg2           object
+dtype: object       DEBT_MDN  PAR_ED_PCT_MS  DEP_INC_PCT_LO  ...    ZIP                                   preddeg2             highdeg2
+0       9500.0       0.052217        0.556300  ...  45840   Predominantly associates-degree granting     Associate degree
+1       7916.0            NaN        0.558824  ...  43616  Predominantly certificate-degree granting   Certificate degree
+2       9500.0       0.110565        0.627119  ...  78221  Predominantly certificate-degree granting   Certificate degree
+3      15500.0       0.038877        0.290976  ...  24541    Predominantly bachelors-degree granting      Graduate degree
+4       9833.0       0.038050        0.378641  ...  33625  Predominantly certificate-degree granting   Certificate degree
+...        ...            ...             ...  ...    ...                                        ...                  ...
+6133    6334.0       0.051208        0.663198  ...  33076                             Not classified  Non-degree-granting
+6134    6334.0       0.051208        0.663198  ...  33312                             Not classified  Non-degree-granting
+6135    6334.0       0.051208        0.663198  ...  33027                             Not classified  Non-degree-granting
+6136    6334.0       0.051208        0.663198  ...  33172                             Not classified  Non-degree-granting
+6137    6334.0       0.051208        0.663198  ...  33131                             Not classified  Non-degree-granting
+
+[6138 rows x 28 columns]
+{'HIGH', 'LOW'}
+
+starting:	 autosklearn 	 0  fold	 4  core	 900  seconds
+
+
+fail in:	 id11_college_abt_binary_p.sas7bdat
+Traceback (most recent call last):
+  File "/root/atoml/automl/runbench.py", line 163, in runbenchmark
+    biclassifier(prep,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
+  File "/root/atoml/automl/runbench.py", line 131, in biclassifier
+    automl = autoclf(framework,timeforjob,foldn,ncore,X_train,y_train,fitmetrics)
+  File "/root/atoml/automl/runbench.py", line 78, in autoclf
+    automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/estimators.py", line 664, in fit
+    dataset_name=dataset_name,
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/estimators.py", line 399, in fit
+    load_models=True,
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/estimators.py", line 15, in _fit_automl
+    return automl.fit(load_models=load_models, **kwargs)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/automl.py", line 953, in fit
+    X, y = self._perform_input_checks(X, y)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/automl.py", line 885, in _perform_input_checks
+    X = self._check_X(X)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/automl.py", line 892, in _check_X
+    force_all_finite=False)
+  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/sklearn/utils/validation.py", line 567, in check_array
+    array = array.astype(np.float64)
+ValueError: could not convert string to float: 'Brown Mackie College-Findlay'
+12
+
+dataset:	 id12_hmeq_p.sas7bdat
+
+metadata information:	 id12_hmeq_meta.csv
+['BAD', 'LOAN', 'MORTDUE', 'VALUE', 'REASON', 'JOB', 'YOJ', 'DEROG', 'DELINQ', 'CLAGE', 'NINQ', 'CLNO', 'DEBTINC', '_dmIndex_', '_PartInd_'] <class 'list'>
+['LOAN', 'MORTDUE', 'VALUE', 'REASON', 'JOB', 'YOJ', 'DEROG', 'DELINQ', 'CLAGE', 'NINQ', 'CLNO', 'DEBTINC']
+{0.0, 1.0}
+LOAN       float64
+MORTDUE    float64
+VALUE      float64
+REASON      object
+JOB         object
+YOJ        float64
+DEROG      float64
+DELINQ     float64
+CLAGE      float64
+NINQ       float64
+CLNO       float64
+DEBTINC    float64
+dtype: object          LOAN  MORTDUE     VALUE   REASON     JOB   YOJ  DEROG  DELINQ       CLAGE  NINQ  CLNO    DEBTINC
+1      1300.0  70053.0   68400.0  HomeImp   Other   7.0    0.0     2.0  121.833333   0.0  14.0        NaN
+3      1500.0      NaN       NaN      NaN     NaN   NaN    NaN     NaN         NaN   NaN   NaN        NaN
+4      1700.0  97800.0  112000.0  HomeImp  Office   3.0    0.0     0.0   93.333333   0.0  14.0        NaN
+5      1700.0  30548.0   40320.0  HomeImp   Other   9.0    0.0     0.0  101.466002   1.0   8.0  37.113614
+7      1800.0  28502.0   43034.0  HomeImp   Other  11.0    0.0     0.0   88.766030   0.0   8.0  36.884894
+...       ...      ...       ...      ...     ...   ...    ...     ...         ...   ...   ...        ...
+5953  88800.0  53307.0   94058.0  DebtCon   Other  16.0    0.0     0.0  218.304978   0.0  15.0  34.242465
+5956  89000.0  54576.0   92937.0  DebtCon   Other  16.0    0.0     0.0  208.692070   0.0  15.0  35.859971
+5957  89200.0  54045.0   92924.0  DebtCon   Other  15.0    0.0     0.0  212.279697   0.0  15.0  35.556590
+5958  89800.0  50370.0   91861.0  DebtCon   Other  14.0    0.0     0.0  213.892709   0.0  16.0  34.340882
+5959  89900.0  48811.0   88934.0  DebtCon   Other  15.0    0.0     0.0  219.601002   0.0  16.0  34.571519
+
+[4171 rows x 12 columns]
+{0.0, 1.0}
+
+starting:	 autosklearn 	 0  fold	 4  core	 900  seconds
+

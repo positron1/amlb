@@ -420,3 +420,56 @@ Time limit for a single run is higher than total time limit. Capping the limit f
 [WARNING] [2019-10-07 23:45:08,153:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
 [WARNING] [2019-10-07 23:45:10,157:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
 [WARNING] [2019-10-07 23:45:12,163:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+-1
+['/tmp/autosklearn_tmp_31774_6802/.auto-sklearn/ensembles/1791095845.0000000000.ensemble', '/tmp/autosklearn_tmp_31774_6802/.auto-sklearn/ensembles/1791095845.0000000001.ensemble', '/tmp/autosklearn_tmp_31774_6802/.auto-sklearn/ensembles/1791095845.0000000002.ensemble', '/tmp/autosklearn_tmp_31774_6802/.auto-sklearn/ensembles/1791095845.0000000003.ensemble', '/tmp/autosklearn_tmp_31774_6802/.auto-sklearn/ensembles/1791095845.0000000004.ensemble', '/tmp/autosklearn_tmp_31774_6802/.auto-sklearn/ensembles/1791095845.0000000005.ensemble', '/tmp/autosklearn_tmp_31774_6802/.auto-sklearn/ensembles/1791095845.0000000006.ensemble']
+{'data': 'id13_cust_cibc_sas_p.sas7bdat', 'shape': {'xtrain': (28051, 222), 'ytrain': (28051,), 'xtest': (12022, 222), 'ytest': (12022,)}, 'para': {'time': 900, 'fitmetrics': 'log_loss', 'refitmetrics': 'def', 'cores': '4', 'folds': '10', 'framework': 'autosklearn'}, 'timespend': 926.2755599021912, 'results': {'logloss': 0.03631491781492498, 'AUC': 0.9688851968923756, 'f1': 0.9446654611211573, 'ACC': 0.9872733322242555}}
+Finishing:	 autosklearn 	 10  fold	 4  core	 900  seconds
+
+
+starting:	 autosklearn 	 10  fold	 4  core	 900  seconds
+
+[ERROR] [2019-10-07 23:59:51,766:AutoML(2365658986):e832a826b0406c89d0521b0d608be9ae] Error creating dummy predictions: {'traceback': 'Traceback (most recent call last):\n  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/evaluation/__init__.py", line 30, in fit_predict_try_except_decorator\n    return ta(queue=queue, **kwargs)\n  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/evaluation/train_evaluator.py", line 806, in eval_cv\n    evaluator.fit_predict_and_loss()\n  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/evaluation/train_evaluator.py", line 250, in fit_predict_and_loss\n    final_call=True\n  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/evaluation/abstract_evaluator.py", line 236, in finish_up\n    train_pred, opt_pred, valid_pred, test_pred,\n  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/evaluation/abstract_evaluator.py", line 402, in file_output\n    Y_optimization_pred, \'ensemble\', seed, num_run\n  File "/root/anaconda3/envs/autosklearn/lib/python3.7/site-packages/autosklearn/util/backend.py", line 453, in save_predictions_as_npy\n    os.makedirs(output_dir)\n  File "/root/anaconda3/envs/autosklearn/lib/python3.7/os.py", line 221, in makedirs\n    mkdir(name, mode)\nFileExistsError: [Errno 17] File exists: \'/tmp/autosklearn_tmp_31774_8611/.auto-sklearn/predictions_ensemble\'\n', 'error': "FileExistsError(17, 'File exists')", 'configuration_origin': 'DUMMY'} 
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (896.553894)
+[WARNING] [2019-10-07 23:59:52,626:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-07 23:59:52,651:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (897.055631)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (896.599144)
+[WARNING] [2019-10-07 23:59:54,655:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-07 23:59:56,660:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-07 23:59:58,665:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:00,678:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:02,684:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:04,688:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:06,694:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:08,701:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:10,706:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:12,711:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:14,738:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:16,751:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:18,777:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:20,803:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:22,813:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:24,817:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:26,821:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:28,825:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:30,830:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:32,845:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:34,856:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:36,860:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:38,866:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:40,871:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:42,877:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:44,881:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:46,885:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:48,890:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:50,895:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:52,915:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:54,919:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:56,925:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:00:58,931:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:01:00,936:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:01:02,940:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:01:04,945:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:01:06,949:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:01:08,954:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!
+[WARNING] [2019-10-08 00:01:10,961:EnsembleBuilder(1791095845):e832a826b0406c89d0521b0d608be9ae] No models better than random - using Dummy Score!

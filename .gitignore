@@ -1,4 +1,5 @@
-./automl/__*
+./automl/__pycache__/*
+./automl/intervalTarget/results/*
 ./automl/results/*
 ./data/*
 data/*
