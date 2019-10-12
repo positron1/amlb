@@ -1,1 +1,0 @@
-{"data": "id7_kaggle_santander_p.sas7bdat", "para": {"time": 100, "fitmetrics": "log_loss", "refitmetrics": "def", "cores": "4", "folds": "10", "framework": "autosklearn"}, "timespend": 98.48542189598083, "results": {"logloss": 0.6931471805599453, "AUC": 0.5, "f1": 0.0, "ACC": 0.899591632636053}}

@@ -1,1 +1,0 @@
-{"data": "id13_cust_cibc_sas_p.sas7bdat", "para": {"time": 100, "fitmetrics": "log_loss", "refitmetrics": "def", "cores": "4", "folds": "10", "framework": "autosklearn"}, "timespend": 99.6550645828247, "results": {"logloss": 0.2975758573015851, "AUC": 0.9844560297269946, "f1": 0.9410949410949412, "ACC": 0.9858592580269506}}

@@ -1,1 +1,0 @@
-{"data": "id8_donor_raw_data2_p.sas7bdat", "para": {"time": 3600, "cores": 8, "folds": 10, "framework": "autosklearn"}, "results": {"logloss": 0.5914900803291908, "AUC": 0.513191098875889, "f1": 0.07604562737642585, "ACC": 0.7491397109428768}}

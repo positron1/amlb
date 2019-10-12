@@ -1,1 +1,0 @@
-{"data": "id5_kdd_sm_trn_upsell_p.sas7bdat", "para": {"time": 900, "fitmetrics": "AUC", "refitmetrics": "def", "cores": 4, "folds": 10, "framework": "autosklearn"}, "results": {"logloss": 0.24656255169324964, "AUC": 0.6844569565861609, "f1": 0.5116851168511685, "ACC": 0.9470666666666666}}

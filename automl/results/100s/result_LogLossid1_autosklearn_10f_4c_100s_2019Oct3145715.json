@@ -1,1 +1,0 @@
-{"data": "id11_college_abt_binary_p.sas7bdat", "para": {"time": 100, "fitmetrics": "log_loss", "refitmetrics": "def", "cores": "4", "folds": "10", "framework": "autosklearn"}, "timespend": 102.44078469276428, "results": {"logloss": 0.18676157293347248, "AUC": 0.8968858978349822, "f1": 0.9573770491803278, "ACC": 0.9356647970966677}}
