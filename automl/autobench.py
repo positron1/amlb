@@ -43,7 +43,7 @@ categorical_features =[]
 dirt = '/root/data/'
 task ='bt'
 if task=='bt':
-   datalist = glob.glob(dirt+"opentest/*sas7bdat")
+   datalist = glob.glob(dirt+"opentest/*sas7bdat*")
    metalist = glob.glob(dirt+"meta/*csv")
    datalist = remove_dirt(datalist,dirt+'/opentest/')
    metalist = remove_dirt(metalist,dirt+'/meta/')
@@ -88,7 +88,7 @@ for im,meta in enumerate(metalist):
     if myid[2:] in runlist:
       print(myid[2:])
       framework = 'autosklearn'
-      ncore = 15
+      ncore = 4
       dataset = datalist[im]# "uci_bank_marketing_pd"
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)
