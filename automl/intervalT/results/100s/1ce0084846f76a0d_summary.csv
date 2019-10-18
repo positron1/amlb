@@ -1,0 +1,2 @@
+Dataset_name,data_id,Folds,Run_id,date,R2,MSE,MAE1,MAE2,Time_limit,Timespend,Cores,Fitmetric,Framework,train_size,test_size
+uci_winequality_p,id7,0,_18114415,2019Oct18114415,0.4474263642284019,0.4176961549156666,0.4715302100384645,0.3512285852432253,100,96.141934633255,4,mean_squared_error,autosklearn,4548,1949,

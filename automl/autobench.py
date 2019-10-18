@@ -31,11 +31,8 @@ from runbench import *
 
 from DateTime import DateTime
 import time
-debugmode = False
-if debugmode:
-  pass
-else:
-  orig_stdout = sys.stdout
+debugmode = True# False
+orig_stdout = sys.stdout
 current_time = DateTime(time.time(), 'US/Eastern')
 
 numeric_features =[]
@@ -68,7 +65,6 @@ if not sys.warnoptions:
 runlist =['0','1','2','3','4','10','11','12','13','14']
 runlist =['12','13','14']
 runlist =['5','6','7','8','9']
-rep= 5 
 timelist = [900]
 foldlist = [0]
 
@@ -82,17 +78,16 @@ timestamp = str(current_time.year()) + str(current_time.aMonth())+ str(current_t
 runlist = ['9']
 rep= 1
 timelist = [3600]
+rep=5
+timelist = [900]
 foldlist = [0]
 runlist =['0','1','2','3','4','5','6','7']
 runlist =['0','1','2','3','4']
 runlist =['0','1','2','3','4','5','6','7']
 runlist =['8','9','10','11','12','13','14']
 
-if debugmode:
-  pass
-else:
-  logfile = open('results/log_'+str(len(runlist))+'dataset'+str(timelist[0])+str(foldlist[0])+"rep"+str(rep)+str(timestamp)+".txt",'w')
-  sys.stdout = logfile
+logfile = open('results/log_'+str(len(runlist))+'dataset'+str(timelist[0])+str(foldlist[0])+"rep"+str(rep)+str(timestamp)+".txt",'w')
+sys.stdout = logfile
 corelist =[4]
 for im,meta in enumerate(metalist):
     myid = meta.split('_')[0]
@@ -106,9 +101,7 @@ for im,meta in enumerate(metalist):
         runbenchmark(prep,dataset,framework,foldlist,corelist,timelist,dirt,meta,fitmetrics,rep,logfile,outputdir)
       except:
         print('Failed:\t',myid,dataset)
+        traceback.print_exc(file=sys.stdout)
         continue
-if debugmode:
-  pass
-else:   
-  sys.stdout = orig_stdout
-  logfile.close()
+sys.stdout = orig_stdout
+logfile.close()
