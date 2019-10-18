@@ -1,4 +1,4 @@
 automl/results/*
-automl/intervalTarget/__*
+automl/intervalT/__*
 automl/__*
-automl/intervalTarget/results/*
+automl/intervalT/results/*
