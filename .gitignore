@@ -1,4 +1,0 @@
-data/*
-automl/__pycache__/*
-automl/intervalTarget/results/*
-automl/results/*

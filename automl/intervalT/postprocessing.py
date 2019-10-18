@@ -13,7 +13,7 @@ def check(Datasetname,shapetrain,shapetest,para,timespend,results):
         return True
     return True
 
-def get_results_clf(dirt,key):
+def get_results_clf(dirt,date,key):
     plotfile = open(dirt+key+'_summary.csv','w')
     plotfile.write('Dataset_name,data_id,Folds,Run_id,date,Logloss,AUC,f1,ACC,Time_limit,Timespend,Cores,Fitmetric,Framework,train_size,test_size\n')
                    #time\tmetrix1\tmetrix2\tcore\tfold\tframework\tlogloss\tAUC\tf1\tACC\n')
@@ -23,7 +23,8 @@ def get_results_clf(dirt,key):
         auclist = []
         loglosslist = []
         acclist = []
-        datalist = glob.glob("result*"+key+"*")
+        datalist = glob.glob(dirt+"result*"+key+"*")
+        print(datalist)
         for dataresult in datalist:
             getname = True
             gettime = True
@@ -72,7 +73,7 @@ def get_results_clf(dirt,key):
     #output_json = json.load(open('C://Users/yozhuz/Documents/atoml/automl/results/1800s/id0_uci_bank_marketing_p.sas7bdat2019Aug3119815autosklearn.json'))
 
 
-def get_results_reg(dirt,key):
+def get_results_reg(dirt,date,key):
     #print(dirt,key,key[2:4])
     plotfile = open(dirt+key+'_summary.csv','w')
     plotfile.write('Dataset_name,data_id,Folds,Run_id,date,R2,MSE,MAE1,MAE2,Time_limit,Timespend,Cores,Fitmetric,Framework,train_size,test_size\n')
@@ -83,7 +84,8 @@ def get_results_reg(dirt,key):
         auclist = []
         loglosslist = []
         acclist = []
-        datalist = glob.glob(dirt+key+'json')
+        datalist = glob.glob(dirt+"result*"+key+"*json")
+        print(datalist)
         for dataresult in datalist:
             getname = True
             gettime = True
