@@ -1,0 +1,4 @@
+data/*
+automl/__pycache__/*
+automl/intervalT/results/*
+automl/results/*
