@@ -70,16 +70,16 @@ if not sys.warnoptions:
     warnings.simplefilter("ignore")
 runlist =['0','1','2','3','4','10','11','12','13','14']
 runlist =['12','13','14']
-runlist =['5','6','7','8','9']
 rep= 1 
-timelist = [3600]
+timelist = [900]
 foldlist = [0]
 
-prep = False
+prep = True 
 runlist = ['3']
 runlist = ['4']
 
 runlist =['4','5','6','7']
+runlist =['6','7']
 runlist =['0','1','2','3','4','5','6','7']
 timestamp = str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
         str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2]

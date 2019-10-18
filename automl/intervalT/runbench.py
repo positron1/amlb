@@ -80,9 +80,9 @@ def autoreg(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetric
            ml_memory_limit=20720*2,\
            per_run_time_limit=timeforjob)
         if len(feat_type)>0:
-            automl.fit(X_train, y_train,metric=fitmetrics,feat_type = feat_type)
+            automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics,feat_type = feat_type)
         else:
-            automl.fit(X_train, y_train)#,metric=fitmetrics)#,feat_type = feat_type)
+            automl.fit(X_train.copy(), y_train.copy())#,metric=fitmetrics)#,feat_type = feat_type)
 #        automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics,feat_type=feat_type)
 #        automl.refit(X_train.copy(), y_train.copy())#,feat_type=feat_type)#,metric=autosklearn.metrics.roc_auc)
     else:
@@ -219,7 +219,7 @@ def runbenchmark(prepb,dataset,framework,foldlist,ncore,timelist,dirt,meta,fitme
                     resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
                     str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
                     print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n',file=logfile)
-                    biclassifier(prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
+                    biclassifier(prepb,feat_type,resultsfile,X_train.copy(), y_train.copy(),X_test.copy(), y_test.copy(),dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
                     print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
     except:
         print("\nfail in:\t",dataset)
