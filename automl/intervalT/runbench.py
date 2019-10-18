@@ -76,7 +76,7 @@ def autoreg(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetric
            resampling_strategy_arguments={'train_size': float(5/7)},\
            ensemble_memory_limit=20720,\
            seed=1,n_jobs=ncore,\
-           delete_tmp_folder_after_terminate=False,\
+           delete_tmp_folder_after_terminate=True,\
            ml_memory_limit=20720*2,\
            per_run_time_limit=timeforjob)
         if len(feat_type)>0:
@@ -87,7 +87,7 @@ def autoreg(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetric
 #        automl.refit(X_train.copy(), y_train.copy())#,feat_type=feat_type)#,metric=autosklearn.metrics.roc_auc)
     else:
         automl = autosklearn.regression.AutoSklearnRegressor(time_left_for_this_task=timeforjob,\
-           delete_tmp_folder_after_terminate=False,\
+           delete_tmp_folder_after_terminate=True,\
            seed=1,\
            per_run_time_limit=timeforjob, \
            ensemble_memory_limit=20720,\
@@ -199,7 +199,7 @@ def testreg(X_train, y_train,X_test, y_test,feature_types):
     
 
 
-def runbenchmark(prepb,dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile):
+def runbenchmark(prepb,dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile,task_token):
     mylist = dataset.split("_")
     myid = mylist[0]
     feat_type = []
@@ -214,9 +214,9 @@ def runbenchmark(prepb,dataset,framework,foldlist,ncore,timelist,dirt,meta,fitme
 #        testreg(X_train, y_train,X_test, y_test,feat_type) 
         for timeforjob in timelist:
             for foldn in foldlist:
-                for _ in range(rep):
+                for rp in range(rep):
                     current_time = DateTime(time.time(), 'US/Eastern')
-                    resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
+                    resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_task_" +str(task_token)+'_rep'+str(rp)+'of'+str(rep)+ '_'+str(current_time.aMonth())+'_'+ str(current_time.day()) + \
                     str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
                     print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n',file=logfile)
                     biclassifier(prepb,feat_type,resultsfile,X_train.copy(), y_train.copy(),X_test.copy(), y_test.copy(),dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
