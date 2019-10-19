@@ -63,12 +63,20 @@ def autoprep(dirt,dataset,targetname):
         dirt = dataset
         # use the last one as target and print it out
     return nfeatures,cfeatures,target
-def autoclf(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
+def autoclf(metalearning,framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
+    if metalearning:
+        metan = 25
+        en_size = 50
+    else:
+        metan = 0
+        en_size = 1
     if foldn ==0:
         
         automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
            per_run_time_limit=timeforjob, \
            delete_tmp_folder_after_terminate=False,\
+           ensemble_size=en_size,\
+           initial_configurations_via_metalearning=metan,\
            seed=1,\
            ensemble_memory_limit=20720,\
            resampling_strategy='holdout',\
@@ -88,7 +96,9 @@ def autoclf(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetric
            ensemble_memory_limit=20720,\
            ml_memory_limit=20720*2,\
            resampling_strategy_arguments={'folds': int(foldn)},
-           resampling_strategy='cv',
+           resampling_strategy='cv',\
+           ensemble_size=en_size,\
+           initial_configurations_via_metalearning=metan,\
            n_jobs=ncore) 
         if len(feat_type)>0:
             automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics,feat_type = feat_type)
@@ -98,7 +108,7 @@ def autoclf(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetric
         automl.refit(X_train.copy(), y_train.copy())#,feat_type = feat_type)#,metric=autosklearn.metrics.roc_auc)
     return automl
 
-def get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend,prepb,outputdir):
+def get_run_info(metalearning,automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend,prepb,outputdir):
     runs = dict()
     runs['data']=str(dataset)
     runs['shape']=dict()
@@ -116,6 +126,7 @@ def get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfi
     runs['para']['framework']=str(framework)
     runs['timespend'] = timespend
     runs['results']=dict(metrics)
+    runs['metalearning']=metalearning
     print(runs)
     #jsonf = json.dumps(jsonpickle.encode(runs))
     jsonf = json.dumps(runs)
@@ -130,12 +141,12 @@ def save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob,outputdir)
        briefout.write(str(y)+'\t'+str(y_pred_prob[i])+'\n')
     briefout.close() 
 
-def biclassifier(prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics,outputdir):
+def biclassifier(metalearning,prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics,outputdir):
 
     shape = []
     shape = [X_train.shape, y_train.shape,X_test.shape, y_test.shape] 
     start = time.time()
-    automl = autoclf(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetrics) 
+    automl = autoclf(metalearning,framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetrics) 
     ###################################################################
     y_pred = automl.predict(X_test)
     y_pred_prob = automl.predict_proba(X_test)
@@ -143,12 +154,12 @@ def biclassifier(prepb,feat_type,resultsfile,X_train, y_train,X_test, y_test,dat
     timespend =float(end - start)
     save_prob(timeforjob,dataset,resultsfile,foldn,y_pred,y_pred_prob,outputdir)
     metrics = metric(y_test,y_pred,y_pred_prob)
-    get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend,prepb,outputdir)
+    get_run_info(metalearning,automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend,prepb,outputdir)
         
 def get_train_test(myid,X_train, y_train,X_test, y_test):
     print(myid,type(X_train), y_train,X_test, y_test,feat_type)
 
-def runbenchmark(prepb,dataset,framework,foldlist,corelist,timelist,dirt,meta,fitmetrics,rep,logfile,outputdir):
+def runbenchmark(metalearning,prepb,dataset,framework,foldlist,corelist,timelist,dirt,meta,fitmetrics,rep,logfile,outputdir):
     mylist = dataset.split("_")
     myid = mylist[0]
     feat_type = []
@@ -168,7 +179,7 @@ def runbenchmark(prepb,dataset,framework,foldlist,corelist,timelist,dirt,meta,fi
                     resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
                     str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
                     print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n',file=logfile)
-                    biclassifier(prepb,feat_type,resultsfile,X_train.copy(), y_train.copy(),X_test.copy(), y_test.copy(),dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics,outputdir)
+                    biclassifier(metalearning,prepb,feat_type,resultsfile,X_train.copy(), y_train.copy(),X_test.copy(), y_test.copy(),dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics,outputdir)
                     print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
     except:
         print("\nfail in:\t",dataset)

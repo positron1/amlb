@@ -76,19 +76,18 @@ runlist =['0','1','2','3','4']
 timestamp = str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
         str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2]
 runlist = ['9']
-rep= 1
-timelist = [3600]
 rep=5
 timelist = [900]
+rep= 1
+timelist = [3600]
 foldlist = [0]
-runlist =['0','1','2','3','4','5','6','7']
 runlist =['0','1','2','3','4']
 runlist =['0','1','2','3','4','5','6','7']
-runlist =['8','9','10','11','12','13','14']
-
+runlist =['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14']
+metalearning =False
 logfile = open('results/log_'+str(len(runlist))+'dataset'+str(timelist[0])+str(foldlist[0])+"rep"+str(rep)+str(timestamp)+".txt",'w')
 sys.stdout = logfile
-corelist =[4]
+corelist =[16]
 for im,meta in enumerate(metalist):
     myid = meta.split('_')[0]
     if myid[2:] in runlist:
@@ -98,7 +97,7 @@ for im,meta in enumerate(metalist):
       print("\ndataset:\t",dataset)
       print("\nmetadata information:\t",meta)
       try:
-        runbenchmark(prep,dataset,framework,foldlist,corelist,timelist,dirt,meta,fitmetrics,rep,logfile,outputdir)
+        runbenchmark(metalearning,prep,dataset,framework,foldlist,corelist,timelist,dirt,meta,fitmetrics,rep,logfile,outputdir)
       except:
         print('Failed:\t',myid,dataset)
         traceback.print_exc(file=sys.stdout)
