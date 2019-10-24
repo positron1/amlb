@@ -20,12 +20,16 @@ from sklearn.metrics import roc_auc_score,accuracy_score
 from sklearn.model_selection import cross_val_score
 ##################################################
 
+from DateTime import DateTime
+import secrets 
 import glob
 from sas7bdat import SAS7BDAT
 import os
 import sys,traceback
 import logging
 import optparse
+import time
+from collections import Counter
 
 if not sys.warnoptions:
     import warnings
@@ -148,9 +152,9 @@ def init(dirt,task,runlist,timelist,foldlist,rep,task_token):
     #   outputdir = outputdir+'binaryRareEvent/'
         dirt = dirt+'binaryRareEvent/'
 
-    print(csvdatalist)
-    print(sasdatalist)
-    print(metalist)
+    print('csv datalist\n',csvdatalist)
+    print('sas datalist\n',sasdatalist)
+    print('metadatalit\n',metalist)
     fitmetrics = autosklearn.metrics.log_loss
     sasdatalist = sorted(sasdatalist)
     csvdatalist = sorted(csvdatalist)

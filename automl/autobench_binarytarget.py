@@ -28,7 +28,9 @@ import logging
 import optparse
 from utils import *
 from runbench import *
+import secrets 
 
+from postprocessing import *
 from DateTime import DateTime
 import time
 from collections import Counter
@@ -50,10 +52,12 @@ if not sys.warnoptions:
 task = 'bt'  # interval target task
 prep = False  # Data preprocessing with meta data
 dirt = '/root/data/'  # dataset directory
+outputdir='./results/'
 task_token = secrets.token_hex(8)  # generate unique token for this run
 #################################################################################
 runlist = ['5', '7']  # dataset id #
 rep = 2  # repetition
+metalearning =True # default for autosklearn
 corelist = [16]
 foldlist = [0]  # 0: single validation, no cross validation
 timelist = [100]  # time limit for training in seconds
@@ -62,21 +66,19 @@ timelist = [100]  # time limit for training in seconds
 #################################################################################
 dirt, logfile, csvdatalist, sasdatalist, metalist, timestamp, fitmetrics = init(
     dirt, task, runlist, timelist, foldlist, rep, task_token)
-print(runlist)
-print("meta", metalist)
 metadataid = get_id(metalist)
 csvdataid = get_id(csvdatalist)
 sasdataid = get_id(sasdatalist)
-print('csvdataid', csvdataid)
-print('sasdataid', sasdataid)
-print(metadataid)
+print('csvdataid\n', csvdataid)
+print('sasdataid\n', sasdataid)
+print('metadataid\n', metadataid)
 
 if logmode:
     sys.stdout = logfile
 #################################################################################
 # runing ...
 #################################################################################
-print(datalist, metalist)
+print(sasdatalist, csvdatalist,metalist)
 
 for ind in runlist:
     if ind in csvdataid:
@@ -89,6 +91,7 @@ for ind in runlist:
     print(ind)
     framework = 'autosklearn'
     try:
+        #runbenchmark(prep,dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile,task_token)
         runbenchmark(metalearning, prep, dataset, framework, foldlist, corelist,
                      timelist, dirt, meta, fitmetrics, rep, logfile, outputdir)
     except:
