@@ -17,10 +17,9 @@ from DateTime import DateTime
 import time
 ##################################################################################
 ##################################################################################
-debugmode = True 
+logmode = True 
 if debugmode:
-  pass
-else:
+
   orig_stdout = sys.stdout
 current_time = DateTime(time.time(), 'US/Eastern')
 
@@ -40,9 +39,7 @@ timelist =[100] # time limit for training in seconds
 ############## Initial setup
 #################################################################################
 dirt,logfile,datalist,metalist,timestamp,fitmetrics = init(dirt,task,runlist,timelist,foldlist,rep,task_token)
-if debugmode:
-  pass
-else:
+if logmode:
   sys.stdout = logfile
 #################################################################################
 ########## runing ...
@@ -73,8 +70,6 @@ for lf,locfold in enumerate(timelist):
 #################################################################################
 ########## The End
 #################################################################################
-if debugmode:
-  pass
-else:   
+if logmode
   sys.stdout = orig_stdout
   logfile.close()

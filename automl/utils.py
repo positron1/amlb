@@ -30,6 +30,12 @@ import optparse
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
+def get_id(metalist):
+    idlist = []
+    for im, meta in enumerate(metalist):
+        myid = meta.split('_')[0]
+        idlist.append(str(myid[2:]))
+    return idlist
 
 def sas_to_csv(dirt,dataset):
     print("\n\nReading data from",dirt+dataset)
@@ -120,6 +126,40 @@ def prep(prepb,dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False
        feat_type = []
 #    ##########################################################
     return data,X,y,X_train, y_train,X_test, y_test,feat_type
+
+def init(dirt,task,runlist,timelist,foldlist,rep,task_token):
+    current_time = DateTime(time.time(), 'US/Eastern')
+    if task == 'bt':
+        csvdatalist = glob.glob(dirt+"binaryTarget/data/*sas7bdat.csv")
+        sasdatalist = glob.glob(dirt+"binaryTarget/data/*sas7bdat")
+        metalist = glob.glob(dirt+"binaryTarget/meta/*csv")
+        csvdatalist = remove_dirt(csvdatalist, dirt+'/binaryTarget/data/')
+        sasdatalist = remove_dirt(sasdatalist, dirt+'/binaryTarget/data/')
+        metalist = remove_dirt(metalist, dirt+'/binaryTarget/meta/')
+        dirt = dirt+'binaryTarget/'
+    #  outputdir = outputdir+'binaryTarget/'
+    elif task == 'bre':
+        sasdatalist = glob.glob(dirt+"binaryRareEvent/data/*sas7bdat")
+        csvdatalist = glob.glob(dirt+"binaryRareEvent/data/*sas7bdat.csv")
+        metalist = glob.glob(dirt+"binaryRareEvent/meta/*csv")
+        csvdatalist = remove_dirt(csvdatalist, dirt+'/binaryRareEvent/data/')
+        sasdatalist = remove_dirt(sasdatalist, dirt+'/binaryRareEvent/data/')
+        metalist = remove_dirt(metalist, dirt+'/binaryRareEvent/meta/')
+    #   outputdir = outputdir+'binaryRareEvent/'
+        dirt = dirt+'binaryRareEvent/'
+
+    print(csvdatalist)
+    print(sasdatalist)
+    print(metalist)
+    fitmetrics = autosklearn.metrics.log_loss
+    sasdatalist = sorted(sasdatalist)
+    csvdatalist = sorted(csvdatalist)
+    metalist = sorted(metalist)
+    
+    timestamp = str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
+            str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2]
+    logfile = open('results/log_'+str(len(runlist))+'dataset_'+str(timelist[0])+'s_'+str(foldlist[0])+"f_rep"+str(rep)+'_task_'+str(task_token)+".txt",'w')
+    return dirt,logfile,csvdatalist,sasdatalist,metalist,timestamp,fitmetrics
 
 def remove_dirt(dlist,dirt):
     for i,d in enumerate(sorted(dlist)):
