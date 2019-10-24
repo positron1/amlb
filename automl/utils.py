@@ -131,6 +131,16 @@ def prep(prepb,dataset,dirt,nfeatures,cfeatures,target,delim=',',indexdrop=False
 #    ##########################################################
     return data,X,y,X_train, y_train,X_test, y_test,feat_type
 
+def check_id(ind,csvdataid,sasdataid,metadataid):
+   if ind in csvdataid:
+        dataset = csvdatalist[csvdataid.index(ind)]
+    elif ind in sasdataid:
+        dataset = sasdatalist[sasdataid.index(ind)]
+    if ind in metadataid:
+        meta = metalist[metadataid.index(ind)]
+    print(ind)
+    return dataset,meta
+    
 def init(dirt,task,runlist,timelist,foldlist,rep,task_token):
     current_time = DateTime(time.time(), 'US/Eastern')
     if task == 'bt':

@@ -159,7 +159,7 @@ def biclassifier(metalearning,prepb,feat_type,resultsfile,X_train, y_train,X_tes
 def get_train_test(myid,X_train, y_train,X_test, y_test):
     print(myid,type(X_train), y_train,X_test, y_test,feat_type)
 
-def runbenchmark(metalearning,prepb,dataset,framework,foldlist,corelist,timelist,dirt,meta,fitmetrics,rep,logfile,outputdir):
+def runbenchmark(metalearning,prepb,dataset,framework,foldlist,corelist,timelist,dirt,meta,fitmetrics,rep,logfile,outputdir,task_token):
     mylist = dataset.split("_")
     myid = mylist[0]
     feat_type = []

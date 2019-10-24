@@ -47,6 +47,7 @@ if not sys.warnoptions:
 ##################################################################################
 ###             Inputs                                  #
 #################################################################################
+framework = 'autosklearn'
 task = 'bt'  # interval target task
 prep = False  # Data preprocessing with meta data
 dirt = '/root/data/'  # dataset directory
@@ -76,20 +77,11 @@ if logmode:
 #################################################################################
 # runing ...
 #################################################################################
-print(sasdatalist, csvdatalist, metalist)
+
 
 for ind in runlist:
-    if ind in csvdataid:
-        dataset = csvdatalist[csvdataid.index(ind)]
-    elif ind in sasdataid:
-        dataset = sasdatalist[sasdataid.index(ind)]
-
-    if ind in metadataid:
-        meta = metalist[metadataid.index(ind)]
-    print(ind)
-    framework = 'autosklearn'
+    dataset,meta=check_id(ind,csvdataid,sasdataid,metadataid)
     try:
-        # runbenchmark(prep,dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile,task_token)
         runbenchmark(metalearning, prep, dataset, framework, foldlist, corelist,
                      timelist, dirt, meta, fitmetrics, rep, logfile, outputdir,task_token)
     except:
