@@ -174,12 +174,16 @@ def runbenchmark(metalearning,prepb,dataset,framework,foldlist,corelist,timelist
         for timeforjob in timelist:
           for ncore in corelist:
             for foldn in foldlist:
-                for _ in range(rep):
+                for rp in range(rep):
                     current_time = DateTime(time.time(), 'US/Eastern')
-                    resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
+                    resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_task_" +str(task_token)+'_rep'+str(rp)+'of'+str(rep)+ '_'+str(current_time.aMonth())+'_'+ str(current_time.day()) + "_"+\
                     str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
+                    #resultsfile = myid+"_"+str(framework)+'_'+str(foldn)+'f_'+str(ncore)+"c_"+str(timeforjob)+"s_"+str(current_time.year()) + str(current_time.aMonth())+ str(current_time.day()) + \
+                   # str(current_time.h_24()) + str(current_time.minute())  + str(time.time())[:2] 
                     print("\nstarting:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n',file=logfile)
                     biclassifier(metalearning,prepb,feat_type,resultsfile,X_train.copy(), y_train.copy(),X_test.copy(), y_test.copy(),dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics,outputdir)
+                    #biclassifier(            prepb,feat_type,resultsfile,X_train.copy(), y_train.copy(),X_test.copy(), y_test.copy(),dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
+
                     print("Finishing:\t",framework,'\t',foldn,' fold\t',ncore,' core\t', timeforjob,' seconds\n')
     except:
         print("\nfail in:\t",dataset)

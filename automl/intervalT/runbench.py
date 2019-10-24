@@ -102,37 +102,7 @@ def autoreg(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetric
             
         automl.refit(X_train.copy(), y_train.copy())#,feat_type = feat_type)#,metric=autosklearn.metrics.roc_auc)
     return automl
-#
-#def autoclf(framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetrics):
-#    if foldn ==0:
-#        automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
-#           per_run_time_limit=timeforjob, \
-#           delete_tmp_folder_after_terminate=False,\
-#           seed=1,\
-#           ensemble_memory_limit=20720,\
-#           resampling_strategy='holdout',\
-#           ml_memory_limit=20720*2,\
-#           resampling_strategy_arguments={'train_size': float(5/7)},
-#           n_jobs=ncore)
-##        automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics,feat_type=feat_type)
-##        automl.refit(X_train.copy(), y_train.copy())#,feat_type=feat_type)#,metric=autosklearn.metrics.roc_auc)
-#    else:
-#        automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=timeforjob,\
-#           delete_tmp_folder_after_terminate=False,\
-#           seed=1,\
-#           per_run_time_limit=timeforjob, \
-#           ensemble_memory_limit=20720,\
-#           ml_memory_limit=20720*2,\
-#           resampling_strategy_arguments={'folds': int(foldn)},
-#           resampling_strategy='cv',
-#           n_jobs=ncore) 
-#    if len(feat_type)>0:
-#        automl.fit(X_train.copy(), y_train.copy(),metric=fitmetrics,feat_type = feat_type)
-#    else:
-#        automl.fit(X_train.copy(), y_train.copy())#,metric=fitmetrics)#,feat_type = feat_type)
-#        
-#    automl.refit(X_train.copy(), y_train.copy())#,feat_type = feat_type)#,metric=autosklearn.metrics.roc_auc)
-#    return automl
+
 
 def get_run_info(automl,dataset,shape,timeforjob,ncore,foldn,framework,resultsfile,fitmetrics,metrics,timespend,prepb):
     runs = dict()

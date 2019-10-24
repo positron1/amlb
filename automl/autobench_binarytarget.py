@@ -28,14 +28,12 @@ import logging
 import optparse
 from utils import *
 from runbench import *
-import secrets 
+import secrets
 
 from postprocessing import *
 from DateTime import DateTime
 import time
 from collections import Counter
-
-
 
 
 logmode = False
@@ -52,12 +50,12 @@ if not sys.warnoptions:
 task = 'bt'  # interval target task
 prep = False  # Data preprocessing with meta data
 dirt = '/root/data/'  # dataset directory
-outputdir='./results/'
+outputdir = './results/'
 task_token = secrets.token_hex(8)  # generate unique token for this run
 #################################################################################
 runlist = ['5', '7']  # dataset id #
 rep = 2  # repetition
-metalearning =True # default for autosklearn
+metalearning = True  # default for autosklearn
 corelist = [16]
 foldlist = [0]  # 0: single validation, no cross validation
 timelist = [100]  # time limit for training in seconds
@@ -78,7 +76,7 @@ if logmode:
 #################################################################################
 # runing ...
 #################################################################################
-print(sasdatalist, csvdatalist,metalist)
+print(sasdatalist, csvdatalist, metalist)
 
 for ind in runlist:
     if ind in csvdataid:
@@ -91,9 +89,9 @@ for ind in runlist:
     print(ind)
     framework = 'autosklearn'
     try:
-        #runbenchmark(prep,dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile,task_token)
+        # runbenchmark(prep,dataset,framework,foldlist,ncore,timelist,dirt,meta,fitmetrics,rep,logfile,task_token)
         runbenchmark(metalearning, prep, dataset, framework, foldlist, corelist,
-                     timelist, dirt, meta, fitmetrics, rep, logfile, outputdir)
+                     timelist, dirt, meta, fitmetrics, rep, logfile, outputdir,task_token)
     except:
         print('Failed:\t', ind)  # ,dataset)
         traceback.print_exc(file=sys.stdout)
