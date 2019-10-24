@@ -1,2 +1,2 @@
-sleep 2h
+sleep 70m
 python autobench.py 
