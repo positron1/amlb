@@ -36,7 +36,7 @@ import time
 from collections import Counter
 
 
-logmode = False
+logmode = True
 if logmode:
     orig_stdout = sys.stdout
 
