@@ -176,6 +176,7 @@ def init(dirt,task,runlist,timelist,foldlist,rep,task_token):
         sasdatalist = remove_dirt(sasdatalist, dirt+'/binaryTarget/data/')
         metalist = remove_dirt(metalist, dirt+'/binaryTarget/meta/')
         dirt = dirt+'binaryTarget/'
+        fitmetrics = autosklearn.metrics.log_loss
     #  outputdir = outputdir+'binaryTarget/'
     elif task == 'bre':
         sasdatalist = glob.glob(dirt+"binaryRareEvent/data/*sas7bdat")
@@ -186,11 +187,20 @@ def init(dirt,task,runlist,timelist,foldlist,rep,task_token):
         metalist = remove_dirt(metalist, dirt+'/binaryRareEvent/meta/')
     #   outputdir = outputdir+'binaryRareEvent/'
         dirt = dirt+'binaryRareEvent/'
+        fitmetrics = autosklearn.metrics.log_loss
+    elif task =='it':
+       sasdatalist = glob.glob(dirt+"intervalTarget/data/*sas7bdat")
+       csvdatalist = glob.glob(dirt+"intervalTarget/data/*sas7bdat.csv")
+       metalist = glob.glob(dirt+"intervalTarget/meta/*csv")
+       sasdatalist = remove_dirt(sasdatalist,dirt+'/intervalTarget/data/')
+       csvdatalist = remove_dirt(csvdatalist,dirt+'/intervalTarget/data/')
+       metalist = remove_dirt(metalist,dirt+'/intervalTarget/meta/')
+       dirt = dirt+'intervalTarget/'
+       fitmetrics = autosklearn.metrics.mean_squared_error
 
     print('csv datalist\n',csvdatalist)
     print('sas datalist\n',sasdatalist)
     print('metadatalit\n',metalist)
-    fitmetrics = autosklearn.metrics.log_loss
     sasdatalist = sorted(sasdatalist)
     csvdatalist = sorted(csvdatalist)
     metalist = sorted(metalist)

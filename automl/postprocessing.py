@@ -8,9 +8,6 @@ import os
 import json
 
 def check(Datasetname,shapetrain,shapetest,para,timespend,results):
-    if results['f1']==0:
-        print('f1-0')
-        return True
     return True
 
 def get_results_clf(dirt,date,key):

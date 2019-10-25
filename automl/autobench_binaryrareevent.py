@@ -36,7 +36,7 @@ dirt = '/root/data/'  # dataset directory
 outputdir = './results/'
 task_token = secrets.token_hex(8)  # generate unique token for this run
 #################################################################################
-runlist = ['5', '7']  # dataset id #
+runlist = ['1', '2']  # dataset id #
 rep = 2  # repetition
 metalearning = True  # default for autosklearn
 corelist = [16]
@@ -64,7 +64,7 @@ if logmode:
 for ind in runlist:
     dataset,meta= check_id(ind,csvdataid,csvdatalist,sasdataid,sasdatalist,metadataid,metalist)
     try:
-        runbenchmark(metalearning, prep, dataset, framework, foldlist, corelist,
+        runbenchmark(task,metalearning, prep, dataset, framework, foldlist, corelist,
                      timelist, dirt, meta, fitmetrics, rep, logfile, outputdir,task_token)
     except:
         print('Failed:\t', ind)  # ,dataset)

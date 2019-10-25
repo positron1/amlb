@@ -38,7 +38,7 @@ task_token = secrets.token_hex(8)  # generate unique token for this run
 runlist = ['5', '7']  # dataset id #
 rep = 2  # repetition
 metalearning = True  # default for autosklearn
-corelist = [16]
+corelist = [4]
 foldlist = [0]  # 0: single validation, no cross validation
 timelist = [100]  # time limit for training in seconds
 #################################################################################
@@ -63,7 +63,7 @@ if logmode:
 for ind in runlist:
     dataset,meta= check_id(ind,csvdataid,csvdatalist,sasdataid,sasdatalist,metadataid,metalist)
     try:
-        runbenchmark(metalearning, prep, dataset, framework, foldlist, corelist,
+        runbenchmark(task,metalearning, prep, dataset, framework, foldlist, corelist,
                      timelist, dirt, meta, fitmetrics, rep, logfile, outputdir,task_token)
     except:
         print('Failed:\t', ind)  # ,dataset)

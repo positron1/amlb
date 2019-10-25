@@ -22,11 +22,18 @@ Ensembling Automated Machine Learning Toolkits
 ### Any optional sections
 
 ## Install
-
-clone to local
-
+0. install anaconda or miniconda
+1. copy all content in the directory
+2. set up environment
+  $ conda env create -f autosklearn.yml
+3. activate environment: 
+  $ conda activate autosklearn
+4. check you data directectory is as defined in autobench_*py files
+5. test run
+  $ cd automl
+  $ bash run.sh
+#
 ```
-git clone https://github.com/zhuygln/atoml.git
 ```
 
 
