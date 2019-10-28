@@ -1,2 +1,7 @@
-./data/*
 data/*
+automl/__pycache__/*
+automl/intervalT/__pycache/*
+automl/intervalT/results/*
+automl/results/*
+automl/intervalT/__*
+automl/__*

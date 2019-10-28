@@ -1,1 +1,0 @@
-{"data": "id6_kdd_sm_trn_churn_p.sas7bdat", "para": {"time": 3600, "cores": 8, "folds": 5, "framework": "autosklearn"}, "results": {"logloss": 0.2551896409079658, "AUC": 0.5022305693847429, "f1": 0.009017132551848512, "ACC": 0.9267382174521699}}

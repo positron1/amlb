@@ -1,2 +1,3 @@
-sleep 2h
-python autobench3f.py 
+python autobench_binargytarget.py
+python autobench_binaryrareevent.py
+python autobench_intervaltarget.py

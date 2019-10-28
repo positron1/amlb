@@ -3,9 +3,11 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - _anaconda_depends=2019.03=py37_0
   - _ipyw_jlab_nb_ext_conf=0.1.0=py37_0
   - _libgcc_mutex=0.1=main
   - alabaster=0.7.12=py37_0
+  - anaconda=custom=py37_0
   - anaconda-client=1.7.2=py37_0
   - anaconda-navigator=1.9.2=py37_0
   - anaconda-project=0.8.2=py37_0
@@ -35,9 +37,9 @@ dependencies:
   - botocore=1.12.197=py_0
   - bottleneck=1.2.1=py37h035aef0_1
   - bzip2=1.0.6=h14c3975_5
-  - ca-certificates=2019.8.28=0
+  - ca-certificates=2019.5.15=1
   - cairo=1.14.12=h8948797_3
-  - certifi=2019.9.11=py37_0
+  - certifi=2019.6.16=py37_1
   - cffi=1.12.2=py37h2e261b9_1
   - chardet=3.0.4=py37_1
   - click=7.0=py37_0
@@ -112,7 +114,6 @@ dependencies:
   - jmespath=0.9.4=py_0
   - joblib=0.13.2=py37_0
   - jpeg=9b=h024ee3a_2
-  - jsonpickle=1.2=py_0
   - jsonschema=3.0.1=py37_0
   - jupyter=1.0.0=py37_7
   - jupyter_client=5.2.4=py37_0
@@ -142,6 +143,7 @@ dependencies:
   - libxcb=1.13=h1bed415_1
   - libxml2=2.9.9=he19cac6_0
   - libxslt=1.1.33=h7d1a2b0_0
+  - lightgbm=2.2.1=py37he6710b0_0
   - llvmlite=0.28.0=py37hd408876_0
   - locket=0.2.0=py37_1
   - lxml=4.3.2=py37hefd8a0e_0
@@ -176,7 +178,7 @@ dependencies:
   - numpydoc=0.8.0=py37_0
   - olefile=0.46=py37_0
   - openpyxl=2.6.1=py37_1
-  - openssl=1.1.1d=h7b6447c_2
+  - openssl=1.1.1c=h7b6447c_1
   - packaging=19.0=py37_0
   - pandoc=2.2.3.2=0
   - pandocfilters=1.4.2=py37_1
@@ -270,7 +272,6 @@ dependencies:
   - statsmodels=0.9.0=py37h035aef0_0
   - swig=3.0.12=h38cdd7d_3
   - sympy=1.3=py37_0
-  - tbb=2019.4=hfd86e86_0
   - tblib=1.3.2=py37_0
   - terminado=0.8.1=py37_1
   - testpath=0.4.2=py37_0
@@ -324,5 +325,5 @@ dependencies:
     - typing==3.7.4
     - xgboost==0.90
     - xmltodict==0.12.0
-prefix: /root/miniconda3/envs/autosklearn
+prefix: /root/anaconda3/envs/autosklearn
 
