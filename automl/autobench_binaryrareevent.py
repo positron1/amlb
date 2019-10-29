@@ -12,9 +12,10 @@ import optparse
 from utils import *
 from postprocessing import *
 from runbench import *
-import secrets 
+import secrets
 from DateTime import DateTime
 import time
+
 ##################################################################################
 ##################################################################################
 
@@ -24,19 +25,20 @@ if logmode:
 
 if not sys.warnoptions:
     import warnings
+
     warnings.simplefilter("ignore")
 
 ##################################################################################
 ###             Inputs                                  #
 #################################################################################
-framework = 'autosklearn'
-task = 'bre'  # interval target task
+framework = "autosklearn"
+task = "bre"  # interval target task
 prep = False  # Data preprocessing with meta data
-dirt = '/root/data/'  # dataset directory
-outputdir = './results/'
+dirt = "/root/data/"  # dataset directory
+outputdir = "./results/"
 task_token = secrets.token_hex(8)  # generate unique token for this run
 #################################################################################
-runlist = ['1', '2']  # dataset id #
+runlist = ["1", "2"]  # dataset id #
 rep = 2  # repetition
 metalearning = True  # default for autosklearn
 corelist = [16]
@@ -46,13 +48,14 @@ timelist = [100]  # time limit for training in seconds
 # Initial setup
 #################################################################################
 dirt, logfile, csvdatalist, sasdatalist, metalist, timestamp, fitmetrics = init(
-    dirt, task, runlist, timelist, foldlist, rep, task_token)
+    dirt, task, runlist, timelist, foldlist, rep, task_token
+)
 metadataid = get_id(metalist)
 csvdataid = get_id(csvdatalist)
 sasdataid = get_id(sasdatalist)
-print('csvdataid\n', csvdataid)
-print('sasdataid\n', sasdataid)
-print('metadataid\n', metadataid)
+print("csvdataid\n", csvdataid)
+print("sasdataid\n", sasdataid)
+print("metadataid\n", metadataid)
 
 if logmode:
     sys.stdout = logfile
@@ -62,21 +65,39 @@ if logmode:
 
 
 for ind in runlist:
-    dataset,meta= check_id(ind,csvdataid,csvdatalist,sasdataid,sasdatalist,metadataid,metalist)
+    dataset, meta = check_id(
+        ind, csvdataid, csvdatalist, sasdataid, sasdatalist, metadataid, metalist
+    )
     try:
-        runbenchmark(task,metalearning, prep, dataset, framework, foldlist, corelist,
-                     timelist, dirt, meta, fitmetrics, rep, logfile, outputdir,task_token)
+        runbenchmark(
+            task,
+            metalearning,
+            prep,
+            dataset,
+            framework,
+            foldlist,
+            corelist,
+            timelist,
+            dirt,
+            meta,
+            fitmetrics,
+            rep,
+            logfile,
+            outputdir,
+            task_token,
+        )
     except:
-        print('Failed:\t', ind)  # ,dataset)
+        print("Failed:\t", ind)  # ,dataset)
         traceback.print_exc(file=sys.stdout)
         continue
 #################################################################################
 # Summary of results
 #################################################################################
 for lf, locfold in enumerate(timelist):
-    ldirt = 'results/'+str(locfold)+'s/'
+    ldirt = "results/" + str(locfold) + "s/"
     dataname, auclist, loglosslist, acclist = get_results_clf(
-        ldirt, timestamp, task_token)
+        ldirt, timestamp, task_token
+    )
 
 if logmode:
     sys.stdout = orig_stdout
