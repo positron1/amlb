@@ -298,7 +298,7 @@ def save_prob(timeforjob, dataset, resultsfile, foldn, y_pred, y_pred_prob, outp
     )
     briefout.write("#ypred\typred_prob\n")
     for i, y in enumerate(y_pred):
-        briefout.write(str(y) + "\t" + str(y_pred) + "\n")
+        briefout.write(str(y) + "\t" + str(y_pred_prob[i]) + "\n")
     briefout.close()
 
 
