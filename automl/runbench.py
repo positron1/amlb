@@ -58,7 +58,7 @@ def metric(task,y_test,y_pred,y_pred_prob):
         metrics['MSE']=mean_squared_error(y_test,y_pred)
         metrics['MAE1']=mean_absolute_error(y_test,y_pred)
         metrics['MAE2']=median_absolute_error(y_test,y_pred)
-    elif task=='brt' or task=='bt':
+    elif task=='bre' or task=='bt':
         metrics['logloss']=log_loss(y_test,y_pred_prob)
         metrics['AUC']=roc_auc_score(y_test,y_pred)
         metrics['f1']=f1_score(y_test,y_pred)
@@ -205,6 +205,7 @@ def autoframe(task,metalearning,prepb,feat_type,resultsfile,X_train, y_train,X_t
     if task=='bt' or task =='bre':
         automl = autoclf(metalearning,framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetrics) 
         y_pred_prob = automl.predict_proba(X_test)
+        print(y_pred_prob)
     elif task=='it':
         automl = autoreg(metalearning,framework,feat_type,timeforjob,foldn,ncore,X_train,y_train,fitmetrics) 
         y_pred_prob =[]
