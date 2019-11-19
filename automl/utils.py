@@ -112,8 +112,7 @@ def partition_to_csv(dirt, dataset, dtrain, dvalidate, dtest):
     dvalidate.to_csv(
         dirt + dataset + "dvalid.csv", encoding="utf-8", index=False, header=True
     )
-
-def prep_nopart(
+""" def prep_nopart(
     prepb, dataset, dirt, nreject,nfeatures, cfeatures, target, delim=",", indexdrop=False
 ):
 # read from sas and get column name
@@ -193,7 +192,7 @@ def prep_nopart(
     X = 
     y = 
 
-"""     X = pddata.drop(col[:3], axis=1)
+    X = pddata.drop(col[:3], axis=1)
     X_train = pddata[pddata[col[1]] < 2].drop(col[:3], axis=1)
     X_test = pddata[pddata[col[1]] == 2].drop(col[:3], axis=1)
     y = pddata[col[2]]
@@ -205,7 +204,6 @@ def prep_nopart(
     X_train = X_train.astype("float32")
     print(X_train.dtypes, X_train)
     print(set(y_train))
- """
 
     if prepb:
         feat_type = ["Numerical"] * len(numeric_features) + ["Categorical"] * int(
@@ -214,7 +212,7 @@ def prep_nopart(
     else:
         feat_type = []
     #    ##########################################################
-    return data, X, y, X_train, y_train, X_test, y_test, feat_type   
+    return data, X, y, X_train, y_train, X_test, y_test, feat_type   """
 
 def prep(
     prepb, dataset, dirt, nfeatures, cfeatures, target, delim=",", indexdrop=False
@@ -309,7 +307,6 @@ def prep(
         feat_type = []
     #    ##########################################################
     return data, X, y, X_train, y_train, X_test, y_test, feat_type
-
 
 def check_id(ind, csvdataid, csvdatalist, sasdataid, sasdatalist, metadataid, metalist):
     if ind in csvdataid:
