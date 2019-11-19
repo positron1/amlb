@@ -400,13 +400,16 @@ def runbenchmark(
     mylist = dataset.split("_")
     myid = mylist[0]
     feat_type = []
+    # check if there is datafile in csv, if not load and convert it to csv, 
     if not os.path.exists(dirt + "data/" + dataset):
         load_partition(dirt + "data/", dataset)
     try:
+        # if there is meta info, read inputs and targets, if not, figure it out.
         if os.path.exists(dirt + "meta/" + meta):
             nfeatures, cfeatures, target = meta_info(dirt, meta)
         else:
             nfeatures, cfeatures, target = autoprep(dirt, dataset, targetname)
+        # get data to train/test
         data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
             prepb,
             dataset,

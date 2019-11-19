@@ -65,7 +65,7 @@ def unpart(dirt,dataset,index,target):
     #"_dmIndex_", "_PartInd_"]
     ######### Rename index to 
 
-    return len(train),len(test)
+    return train,test
 
 def get_id(metalist):
     idlist = []
@@ -113,6 +113,108 @@ def partition_to_csv(dirt, dataset, dtrain, dvalidate, dtest):
         dirt + dataset + "dvalid.csv", encoding="utf-8", index=False, header=True
     )
 
+def prep_nopart(
+    prepb, dataset, dirt, nreject,nfeatures, cfeatures, target, delim=",", indexdrop=False
+):
+# read from sas and get column name
+    df = sas_to_csv(dirt + "data/", dataset)
+    data = pd.read_csv(dirt + "data/" + dataset, delimiter=delim)  # panda.DataFrame
+    col = data.columns.values
+# get the list of numeric and categorical
+    print(set(data[target])) 
+        numeric_features = list(
+            set(data.select_dtypes(include=["number"]))
+            - set(index_features)
+            - set([target])
+        )
+        categorical_features = list(
+            set(data.select_dtypes(exclude=["number"]))
+            - set(index_features)
+            - set([target])
+        )
+# get rid of the missing target
+    data = data[data[target].notna()]
+# clean some format
+    data[categorical_features] = data[categorical_features].astype("str")
+    data[numeric_features] = data[numeric_features].astype("float32")
+    data[target] = data[target].astype("str")
+# check status
+    print(set(data[target]))
+    print(
+        "\nCheck numerical features:\t", numeric_features, data[numeric_features].dtypes
+    )
+    print(
+        "\nCheck catogorical features:\t",
+        categorical_features,
+        data[categorical_features].dtypes,
+    )
+    #### reorder the columns ######################
+    newcols = index_features + nreject+ [target] + numeric_features + categorical_features
+    print(newcols)
+    newdata = data[newcols]
+    print(newdata)
+    print(set(newdata[target]))
+    ###############################
+    index_transformer = Pipeline(
+        steps=[("imputer", SimpleImputer(strategy="constant", fill_value=-1))]
+    )
+    numeric_transformer = Pipeline(
+        steps=[("imputer", SimpleImputer(strategy="median"))]
+    )
+    y_transformer = Pipeline(steps=[("orden", OrdinalEncoder())])
+    categorical_transformer = Pipeline(steps=[("orden", OrdinalEncoder())])
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ("index", index_transformer, index_features),
+            ("y", y_transformer, [target]),
+            ("num", numeric_transformer, numeric_features),
+            ("cat", categorical_transformer, categorical_features),
+        ]
+    )
+    ############################################################
+    pdata = preprocessor.fit_transform(newdata)
+    pddata = pd.DataFrame(pdata)
+    col = pddata.columns.values
+    print(col)
+    ############ get partition and x y ############################################
+    df_target1= pddata[pddata[target=='1']]
+    df_target0= pddate[pddata[target=='0']]
+    train0, valid_test0 = train_test_split(df_target0, test_size=0.4)
+    train1, valid_test1 = train_test_split(df_target1, test_size=0.4)
+    valid0,test0 = train_test_split(valid_test0, test_size=0.25)
+    valid1,test1 = train_test_split(valid_test1, test_size=0.25)
+    train =pd.concat(pd.DataFrame(train0),pd.DataFrame(train1),pd.DataFrame(valid0),pd.DataFrame(valid1))
+    test = pd.concat(pd.DataFrame(test0),pd.DataFrame(test1))
+    ndrop = len(index_features)+len(nreject)
+    X_train = train.drop(col[:n])
+    X_test  = test
+    y_train = 
+    y_test  = 
+    X = 
+    y = 
+
+"""     X = pddata.drop(col[:3], axis=1)
+    X_train = pddata[pddata[col[1]] < 2].drop(col[:3], axis=1)
+    X_test = pddata[pddata[col[1]] == 2].drop(col[:3], axis=1)
+    y = pddata[col[2]]
+    y_train = pddata[pddata[col[1]] < 2][col[2]]
+    y_test = pddata[pddata[col[1]] == 2][col[2]]
+    y_test = y_test.astype("float32")
+    y_train = y_train.astype("float32")
+    X_test = X_test.astype("float32")
+    X_train = X_train.astype("float32")
+    print(X_train.dtypes, X_train)
+    print(set(y_train))
+ """
+
+    if prepb:
+        feat_type = ["Numerical"] * len(numeric_features) + ["Categorical"] * int(
+            len(col) - 3 - len(numeric_features)
+        )
+    else:
+        feat_type = []
+    #    ##########################################################
+    return data, X, y, X_train, y_train, X_test, y_test, feat_type   
 
 def prep(
     prepb, dataset, dirt, nfeatures, cfeatures, target, delim=",", indexdrop=False
@@ -185,7 +287,8 @@ def prep(
     col = pddata.columns.values
     print(col)
     X = pddata.drop(col[:3], axis=1)
-    # pd.DataFrame(X).to_csv('X_vanilla.csv')
+    # Drop up to 3? or 2?
+    print("drop columns",col[:2],col[:3])
     X_train = pddata[pddata[col[1]] < 2].drop(col[:3], axis=1)
     # pd.DataFrame(X).to_csv('X_vanilla.csv')
     X_test = pddata[pddata[col[1]] == 2].drop(col[:3], axis=1)
