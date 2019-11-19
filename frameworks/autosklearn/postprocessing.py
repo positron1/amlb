@@ -142,6 +142,7 @@ def get_results_reg(dirt, date, key):
     plotfile.close()
     return dataname, auclist, loglosslist, acclist
 
+
 if __name__ == "__main__":
     datadirt = "/root/data/"
     runlist = []

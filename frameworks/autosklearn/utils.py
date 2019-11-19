@@ -19,7 +19,6 @@ from sklearn.model_selection import KFold
 from sklearn.metrics import log_loss
 from sklearn.metrics import roc_auc_score, accuracy_score
 from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import train_test_split
 
 ##################################################
 
@@ -40,32 +39,6 @@ if not sys.warnoptions:
 
     warnings.simplefilter("ignore")
 
-##################
-# unpartitioned data
-# 1. check index and target
-# 2. random sampling within each target to get a partitioned data
-# 3. get column name and save to meta info file
-# 4. manually input meta 
-# 5. get to the standard code run
-######################
-def unpart(dirt,dataset,index,target):
-    with SAS7BDAT(dirt + dataset) as f:
-        df = f.to_data_frame()
-    print("\n\nData description:\n\n", df.describe())
-    cols = df.columns
-    df_target1= df[df[target=='1']]
-    df_target0= df[df[target=='0']]
-
-    train0, valid_test0 = train_test_split(df_target0, test_size=0.4)
-    train1, valid_test1 = train_test_split(df_target1, test_size=0.4)
-    valid0,test0 = train_test_split(valid_test0, test_size=0.25)
-    valid1,test1 = train_test_split(valid_test1, test_size=0.25)
-    train =pd.concat(pd.DataFrame(train0),pd.DataFrame(train1),pd.DataFrame(valid0),pd.DataFrame(valid1))
-    test = pd.concat(pd.DataFrame(test0),pd.DataFrame(test1))
-    #"_dmIndex_", "_PartInd_"]
-    ######### Rename index to 
-
-    return len(train),len(test)
 
 def get_id(metalist):
     idlist = []

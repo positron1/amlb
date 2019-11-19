@@ -1,0 +1,3 @@
+python autobench_binargytarget.py
+python autobench_binaryrareevent.py
+python autobench_intervaltarget.py
