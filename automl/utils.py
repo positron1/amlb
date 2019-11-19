@@ -112,7 +112,7 @@ def partition_to_csv(dirt, dataset, dtrain, dvalidate, dtest):
     dvalidate.to_csv(
         dirt + dataset + "dvalid.csv", encoding="utf-8", index=False, header=True
     )
-""" def prep_nopart(
+def prep_nopart(
     prepb, dataset, dirt, nreject,nfeatures, cfeatures, target, delim=",", indexdrop=False
 ):
 # read from sas and get column name
@@ -185,19 +185,19 @@ def partition_to_csv(dirt, dataset, dtrain, dvalidate, dtest):
     train =pd.concat(pd.DataFrame(train0),pd.DataFrame(train1),pd.DataFrame(valid0),pd.DataFrame(valid1))
     test = pd.concat(pd.DataFrame(test0),pd.DataFrame(test1))
     ndrop = len(index_features)+len(nreject)
-    X_train = train.drop(col[:n])
-    X_test  = test
-    y_train = 
-    y_test  = 
-    X = 
-    y = 
+    X_train = train.drop(col[:(ndrop+1),axis=1])
+    X_test  = test.drop(col[:(ndrop+1),axis=1])
+    y_train = train[col[ndrop]]
+    y_test  = test[col[ndrop]]
+    X = pd.concat(X_train,X_test)
+    y = pd.concat(y_train,y_test)
 
-    X = pddata.drop(col[:3], axis=1)
-    X_train = pddata[pddata[col[1]] < 2].drop(col[:3], axis=1)
-    X_test = pddata[pddata[col[1]] == 2].drop(col[:3], axis=1)
-    y = pddata[col[2]]
-    y_train = pddata[pddata[col[1]] < 2][col[2]]
-    y_test = pddata[pddata[col[1]] == 2][col[2]]
+    # X = pddata.drop(col[:3], axis=1)
+    # X_train = pddata[pddata[col[1]] < 2].drop(col[:3], axis=1)
+    # X_test = pddata[pddata[col[1]] == 2].drop(col[:3], axis=1)
+    # y = pddata[col[2]]
+    # y_train = pddata[pddata[col[1]] < 2][col[2]]
+    # y_test = pddata[pddata[col[1]] == 2][col[2]]
     y_test = y_test.astype("float32")
     y_train = y_train.astype("float32")
     X_test = X_test.astype("float32")
@@ -212,7 +212,7 @@ def partition_to_csv(dirt, dataset, dtrain, dvalidate, dtest):
     else:
         feat_type = []
     #    ##########################################################
-    return data, X, y, X_train, y_train, X_test, y_test, feat_type   """
+    return data, X, y, X_train, y_train, X_test, y_test, feat_type   
 
 def prep(
     prepb, dataset, dirt, nfeatures, cfeatures, target, delim=",", indexdrop=False

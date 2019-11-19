@@ -410,7 +410,8 @@ def runbenchmark(
         else:
             nfeatures, cfeatures, target = autoprep(dirt, dataset, targetname)
         # get data to train/test
-        data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
+        try:
+            data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
             prepb,
             dataset,
             dirt,
@@ -418,8 +419,10 @@ def runbenchmark(
             cfeatures,
             target,
             delim=",",
-            indexdrop=False,
-        )
+            indexdrop=False,)
+        except:
+            nreject = ['Blind_Make','Blind_Model','Blind_Submodel']
+            data, X, y, X_train, y_train, X_test, y_test, feat_type = prep_nopart(prepb, dataset, dirt, nreject,nfeatures, cfeatures, target, delim=",", indexdrop=False)
         for timeforjob in timelist:
             for ncore in corelist:
                 for foldn in foldlist:
