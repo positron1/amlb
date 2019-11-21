@@ -81,7 +81,7 @@ def sas_to_csv(dirt, dataset):
         df = f.to_data_frame()
     print("\n\nData description:\n\n", df.describe())
     cols = df.columns
-    df.to_csv(dirt + dataset, encoding="utf-8", index=False, header=True)
+    df.to_csv(dirt + dataset+'.csv', encoding="utf-8", index=False, header=True)
     print("\n\nCheck column\n\n", cols)
     return df
 
@@ -90,7 +90,7 @@ def load_partition(dirt, dataset):
 
     df = sas_to_csv(dirt, dataset)
     # last column _PartInd_ for train-1/validation-2/test-0/
-    cols = df.columns
+    col = df.columns
     df._PartInd_.astype(int)
     dtrain = df.loc[df[col[1]] == 1]
     dvalidate = df.loc[df[col[1]] == 0]
@@ -113,24 +113,26 @@ def partition_to_csv(dirt, dataset, dtrain, dvalidate, dtest):
         dirt + dataset + "dvalid.csv", encoding="utf-8", index=False, header=True
     )
 def prep_nopart(
-    prepb, dataset, dirt, nreject,nfeatures, cfeatures, target, delim=",", indexdrop=False
+    prepb, dataset, dirt, index_features,nreject, nfeatures,cfeatures,inputs,target, delim=",", indexdrop=False
 ):
 # read from sas and get column name
-    df = sas_to_csv(dirt + "data/", dataset)
-    data = pd.read_csv(dirt + "data/" + dataset, delimiter=delim)  # panda.DataFrame
+    #df = sas_to_csv(dirt + "data/", dataset)
+    if dataset[-3:]=='csv':
+        data = pd.read_csv(dirt + "data/" + dataset, delimiter=delim)  # panda.DataFrame
+    else:
+        data = pd.read_csv(dirt + "data/" + dataset+'.csv', delimiter=delim)  # panda.DataFrame
     col = data.columns.values
+    inputs = col
 # get the list of numeric and categorical
     print(set(data[target])) 
-        numeric_features = list(
-            set(data.select_dtypes(include=["number"]))
-            - set(index_features)
-            - set([target])
-        )
-        categorical_features = list(
-            set(data.select_dtypes(exclude=["number"]))
-            - set(index_features)
-            - set([target])
-        )
+    if prepb:
+        # list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
+        numeric_features = nfeatures
+        # list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
+        categorical_features = cfeatures
+    else:
+        numeric_features = list(set(inputs) & (set(data.select_dtypes(include=["number"]))-set(nreject)-set(index_features)-set([target])))
+        categorical_features = list(set(inputs) & (set(data.select_dtypes(exclude=["number"]))-set(nreject)-set(index_features)-set([target])))
 # get rid of the missing target
     data = data[data[target].notna()]
 # clean some format
@@ -176,8 +178,8 @@ def prep_nopart(
     col = pddata.columns.values
     print(col)
     ############ get partition and x y ############################################
-    df_target1= pddata[pddata[target=='1']]
-    df_target0= pddate[pddata[target=='0']]
+    df_target1= pddata[pddata[target==1.0]]
+    df_target0= pddate[pddata[target==0.0]]
     train0, valid_test0 = train_test_split(df_target0, test_size=0.4)
     train1, valid_test1 = train_test_split(df_target1, test_size=0.4)
     valid0,test0 = train_test_split(valid_test0, test_size=0.25)
@@ -185,8 +187,8 @@ def prep_nopart(
     train =pd.concat(pd.DataFrame(train0),pd.DataFrame(train1),pd.DataFrame(valid0),pd.DataFrame(valid1))
     test = pd.concat(pd.DataFrame(test0),pd.DataFrame(test1))
     ndrop = len(index_features)+len(nreject)
-    X_train = train.drop(col[:(ndrop+1),axis=1])
-    X_test  = test.drop(col[:(ndrop+1),axis=1])
+    X_train = train.drop(col[:(ndrop+1)],axis=1)
+    X_test  = test.drop(col[:(ndrop+1)],axis=1)
     y_train = train[col[ndrop]]
     y_test  = test[col[ndrop]]
     X = pd.concat(X_train,X_test)
@@ -215,14 +217,14 @@ def prep_nopart(
     return data, X, y, X_train, y_train, X_test, y_test, feat_type   
 
 def prep(
-    prepb, dataset, dirt, nfeatures, cfeatures, target, delim=",", indexdrop=False
+    prepb, dataset, dirt, nfeatures, cfeatures,inputs, target, delim=",", indexdrop=False
 ):
     index_features = ["_dmIndex_", "_PartInd_"]
     try:
         data = pd.read_csv(dirt + "data/" + dataset, delimiter=delim)  # panda.DataFrame
     except:
         df = sas_to_csv(dirt + "data/", dataset)
-        data = pd.read_csv(dirt + "data/" + dataset, delimiter=delim)  # panda.DataFrame
+        data = pd.read_csv(dirt + "data/" + dataset+'.csv', delimiter=delim)  # panda.DataFrame
     col = data.columns.values
     print(col)
 
@@ -234,16 +236,19 @@ def prep(
         # list(set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target]))
         categorical_features = cfeatures
     else:
-        numeric_features = list(
-            set(data.select_dtypes(include=["number"]))
-            - set(index_features)
-            - set([target])
-        )
-        categorical_features = list(
-            set(data.select_dtypes(exclude=["number"]))
-            - set(index_features)
-            - set([target])
-        )
+        numeric_features = list(set(inputs) & (set(data.select_dtypes(include=["number"]))-set(index_features)-set([target])))
+        categorical_features = list(set(inputs) & (set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target])))
+
+        #numeric_features = list(
+        #    set(data.select_dtypes(include=["number"]))
+        #    - set(index_features)
+        #    - set([target])
+        #)
+        #categorical_features = list(
+        #    set(data.select_dtypes(exclude=["number"]))
+        #    - set(index_features)
+        #    - set([target])
+        #)
     data = data[data[target].notna()]
     data[categorical_features] = data[categorical_features].astype("str")
     data[numeric_features] = data[numeric_features].astype("float32")
@@ -311,11 +316,14 @@ def prep(
 def check_id(ind, csvdataid, csvdatalist, sasdataid, sasdatalist, metadataid, metalist):
     if ind in csvdataid:
         dataset = csvdatalist[csvdataid.index(ind)]
+        print("using csv data",ind)
     elif ind in sasdataid:
         dataset = sasdatalist[sasdataid.index(ind)]
+        print("using sas data(convert to csv)",ind)
     if ind in metadataid:
         meta = metalist[metadataid.index(ind)]
-    print(ind)
+    else:
+        meta = '0'
     return dataset, meta
 
 
@@ -389,16 +397,18 @@ def remove_dirt(dlist, dirt):
     return dlist
 
 
-def meta_info(dirt, meta):
+def meta_info(dirt, meta,prepb):
     dmeta = pd.read_csv(dirt + "meta/" + meta)
     target = dmeta[dmeta["ROLE"] == "TARGET"]
     targetname = target["NAME"].tolist()[0]
     inputs = dmeta[dmeta["ROLE"] == "INPUT"]
-    cinputs = inputs[inputs["type"] == "C"]
-    cinputname = cinputs["NAME"].tolist()
-    ninputs = inputs[inputs["type"] == "N"]
-    ninputname = ninputs["NAME"].tolist()
-    return ninputname, cinputname, targetname
+    if prepb:
+        cinputs = inputs[inputs["type"] == "C"]
+        cinputname = cinputs["NAME"].tolist()
+        ninputs = inputs[inputs["type"] == "N"]
+        ninputname = ninputs["NAME"].tolist()
+        return ninputname, cinputname, targetname
+    return inputs,targetname
 
 
 if __name__ == "__main__":

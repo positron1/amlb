@@ -399,30 +399,48 @@ def runbenchmark(
 ):
     mylist = dataset.split("_")
     myid = mylist[0]
+    print('\n',myid,'\n')
     feat_type = []
     # check if there is datafile in csv, if not load and convert it to csv, 
-    if not os.path.exists(dirt + "data/" + dataset):
+    if dataset[-4:]!='.csv':
+        print('no csv, convert from sas data to ',dirt + "data/" + dataset+'.csv')
         load_partition(dirt + "data/", dataset)
     try:
         # if there is meta info, read inputs and targets, if not, figure it out.
         if os.path.exists(dirt + "meta/" + meta):
-            nfeatures, cfeatures, target = meta_info(dirt, meta)
-        else:
-            nfeatures, cfeatures, target = autoprep(dirt, dataset, targetname)
-        # get data to train/test
-        try:
-            data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
-            prepb,
-            dataset,
-            dirt,
-            nfeatures,
-            cfeatures,
-            target,
-            delim=",",
-            indexdrop=False,)
-        except:
+            if prepb:
+                nfeatures, cfeatures, target = meta_info(dirt, meta,prepb)
+            # get data to train/test
+                data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
+                prepb,
+                dataset,
+                dirt,
+                nfeatures,
+                cfeatures,
+                target,
+                delim=",",
+                indexdrop=False,)
+            else:
+                inputs,target = meta_info(dirt, meta,prepb)
+            # get data to train/test
+                data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
+                prepb,
+                dataset,
+                dirt,
+                [],
+                [],
+                inputs,
+                target,
+                delim=",",
+                indexdrop=False,)
+        elif myid=='id16':
             nreject = ['Blind_Make','Blind_Model','Blind_Submodel']
-            data, X, y, X_train, y_train, X_test, y_test, feat_type = prep_nopart(prepb, dataset, dirt, nreject,nfeatures, cfeatures, target, delim=",", indexdrop=False)
+            target = 'Claim_Flag'
+            index_features=['Account_ID']
+            data, X, y, X_train, y_train, X_test, y_test, feat_type = prep_nopart(prepb, dataset, dirt, index_features,nreject,[],[],[],target, delim=",", indexdrop=False)
+        else:
+            print("Error")
+            sys.exit()
         for timeforjob in timelist:
             for ncore in corelist:
                 for foldn in foldlist:

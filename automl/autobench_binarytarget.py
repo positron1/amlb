@@ -35,7 +35,7 @@ dirt = '/home/yozhuz/data/'  # dataset directory
 outputdir = './results/'
 task_token = secrets.token_hex(8)  # generate unique token for this run
 #################################################################################
-runlist = ['5', '7']  # dataset id #
+runlist = ['14']  # dataset id #
 rep = 2  # repetition
 metalearning = True  # default for autosklearn
 corelist = [4]
