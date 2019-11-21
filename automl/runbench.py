@@ -68,16 +68,16 @@ def savemodel(timeforjob, resultfile, automl):
 
 def metric(task, y_test, y_pred, y_pred_prob):
     metrics = dict()
-    if task=='it':
-        metrics['r2']=r2_score(y_test,y_pred)
-        metrics['MSE']=mean_squared_error(y_test,y_pred)
-        metrics['MAE1']=mean_absolute_error(y_test,y_pred)
-        metrics['MAE2']=median_absolute_error(y_test,y_pred)
-    elif task=='bre' or task=='bt':
-        metrics['logloss']=log_loss(y_test,y_pred_prob)
-        metrics['AUC']=roc_auc_score(y_test,y_pred)
-        metrics['f1']=f1_score(y_test,y_pred)
-        metrics['ACC']=accuracy_score(y_test,y_pred)
+    if task == 'it':
+        metrics['r2'] = r2_score(y_test, y_pred)
+        metrics['MSE'] = mean_squared_error(y_test, y_pred)
+        metrics['MAE1'] = mean_absolute_error(y_test, y_pred)
+        metrics['MAE2'] = median_absolute_error(y_test, y_pred)
+    elif task == 'bre' or task == 'bt':
+        metrics['logloss'] = log_loss(y_test, y_pred_prob)
+        metrics['AUC'] = roc_auc_score(y_test, y_pred)
+        metrics['f1'] = f1_score(y_test, y_pred)
+        metrics['ACC'] = accuracy_score(y_test, y_pred)
     return metrics
 
 
@@ -356,7 +356,8 @@ def autoframe(
     y_pred = automl.predict(X_test)
     end = time.time()
     timespend = float(end - start)
-    save_prob(timeforjob, dataset, resultsfile, foldn, y_pred, y_pred_prob, outputdir)
+    save_prob(timeforjob, dataset, resultsfile,
+              foldn, y_pred, y_pred_prob, outputdir)
     metrics = metric(task, y_test, y_pred, y_pred_prob)
     get_run_info(
         metalearning,
@@ -399,45 +400,47 @@ def runbenchmark(
 ):
     mylist = dataset.split("_")
     myid = mylist[0]
-    print('\n',myid,'\n')
+    print('\n', myid, '\n')
     feat_type = []
-    # check if there is datafile in csv, if not load and convert it to csv, 
-    if dataset[-4:]!='.csv':
-        print('no csv, convert from sas data to ',dirt + "data/" + dataset+'.csv')
+    # check if there is datafile in csv, if not load and convert it to csv,
+    if dataset[-4:] != '.csv':
+        print('no csv, convert from sas data to ',
+              dirt + "data/" + dataset+'.csv')
         load_partition(dirt + "data/", dataset)
     try:
         # if there is meta info, read inputs and targets, if not, figure it out.
         if os.path.exists(dirt + "meta/" + meta):
             if prepb:
-                nfeatures, cfeatures, target = meta_info(dirt, meta,prepb)
+                nfeatures, cfeatures, target = meta_info(dirt, meta, prepb)
             # get data to train/test
                 data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
-                prepb,
-                dataset,
-                dirt,
-                nfeatures,
-                cfeatures,
-                target,
-                delim=",",
-                indexdrop=False,)
+                    prepb,
+                    dataset,
+                    dirt,
+                    nfeatures,
+                    cfeatures,
+                    target,
+                    delim=",",
+                    indexdrop=False,)
             else:
-                inputs,target = meta_info(dirt, meta,prepb)
+                inputs, target = meta_info(dirt, meta, prepb)
             # get data to train/test
                 data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
-                prepb,
-                dataset,
-                dirt,
-                [],
-                [],
-                inputs,
-                target,
-                delim=",",
-                indexdrop=False,)
-        elif myid=='id16':
-            nreject = ['Blind_Make','Blind_Model','Blind_Submodel']
+                    prepb,
+                    dataset,
+                    dirt,
+                    [],
+                    [],
+                    inputs,
+                    target,
+                    delim=",",
+                    indexdrop=False,)
+        elif myid == 'id16':
+            nreject = ['Blind_Make', 'Blind_Model', 'Blind_Submodel']
             target = 'Claim_Flag'
-            index_features=['Account_ID']
-            data, X, y, X_train, y_train, X_test, y_test, feat_type = prep_nopart(prepb, dataset, dirt, index_features,nreject,[],[],[],target, delim=",", indexdrop=False)
+            index_features = ['Account_ID']
+            data, X, y, X_train, y_train, X_test, y_test, feat_type = prep_nopart(
+                prepb, dataset, dirt, index_features, nreject, [], [], [], target, delim=",", indexdrop=False)
         else:
             print("Error")
             sys.exit()
@@ -521,4 +524,3 @@ def runbenchmark(
     except:
         print("\nfail in:\t", dataset)
         traceback.print_exc(file=sys.stdout)
-
