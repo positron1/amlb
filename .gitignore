@@ -1,7 +1,29 @@
-data/*
-automl/__pycache__/*
-automl/intervalT/__pycache/*
-automl/intervalT/results/*
-automl/results/*
-automl/intervalT/__*
-automl/__*
+# Blacklist files/folders in same directory as the .gitignore file
+/*
+
+# Whitelist our source files
+!/doc/
+!/frameworks/
+!/util/
+!/gradle/
+!/src/
+!/.gitignore
+!/.gitattributes
+!/build.gradle
+!/gradle.properties
+!/gradlew
+!/gradlew.bat
+!/README.md
+!/settings.gradle
+
+# Blacklist things created by the build, tools or OS
+**/__pycache__
+
+# subproject build directories
+/saspackage/build/
+
+# Some common file extensions we should ignore
+/src/**/*~
+/src/**/*.swp
+/src/**/*.bak
+/src/**/*.log
