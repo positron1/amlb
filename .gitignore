@@ -15,6 +15,7 @@
 !/gradlew.bat
 !/README.md
 !/settings.gradle
+!/results
 
 # Blacklist things created by the build, tools or OS
 **/__pycache__
