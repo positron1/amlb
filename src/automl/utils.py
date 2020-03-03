@@ -354,11 +354,11 @@ def init(dirt, task, runlist, timelist, foldlist, rep, task_token):
         sasdatalist = glob.glob(dirt + "binaryTarget/*sas7bdat")
         metalist = glob.glob(dirt + "binaryTarget/meta/*csv")
         csvdatalist = remove_dirt(csvdatalist, dirt + "/binaryTarget/")
-        csvdatalist = [i[:-12] for i in csvdatalist]
+        csvdatalist = [i[:-13] for i in csvdatalist]
         sasdatalist = remove_dirt(sasdatalist, dirt + "/binaryTarget/")
-        sasdatalist = [i[:-8] for i in sasdatalist]
+        sasdatalist = [i[:-9] for i in sasdatalist]
         metalist = remove_dirt(metalist, dirt + "/binaryTarget/meta/")
-        metalist =  [i[:-4] for i in metalist]
+        metalist =  [i[:-5] for i in metalist]
         dirt = dirt + "binaryTarget/"
         fitmetrics = autosklearn.metrics.log_loss
     #  outputdir = outputdir+'binaryTarget/'
