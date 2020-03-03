@@ -350,15 +350,13 @@ def check_id(ind, csvdataid, csvdatalist, sasdataid, sasdatalist, metadataid, me
 def init(dirt, task, runlist, timelist, foldlist, rep, task_token):
     current_time = DateTime(time.time(), "US/Eastern")
     if task == "bt":
-        csvdatalist = glob.glob(dirt + "binaryTarget/*sas7bdat.csv")
+        taskname = 'binaryTarget'
+        csvdatalist = glob.glob(dirt + taskname+"/*sas7bdat.csv")
         sasdatalist = glob.glob(dirt + "binaryTarget/*sas7bdat")
         metalist = glob.glob(dirt + "binaryTarget/meta/*csv")
         csvdatalist = remove_dirt(csvdatalist, dirt + "/binaryTarget/")
-        csvdatalist = [i[:-13] for i in csvdatalist]
         sasdatalist = remove_dirt(sasdatalist, dirt + "/binaryTarget/")
-        sasdatalist = [i[:-9] for i in sasdatalist]
         metalist = remove_dirt(metalist, dirt + "/binaryTarget/meta/")
-        metalist =  [i[:-5] for i in metalist]
         dirt = dirt + "binaryTarget/"
         fitmetrics = autosklearn.metrics.log_loss
     #  outputdir = outputdir+'binaryTarget/'
@@ -381,7 +379,9 @@ def init(dirt, task, runlist, timelist, foldlist, rep, task_token):
         metalist = remove_dirt(metalist, dirt + "/intervalTarget/meta/")
         dirt = dirt + "intervalTarget/"
         fitmetrics = autosklearn.metrics.mean_squared_error
-
+    csvdatalist = [i[:-13] for i in csvdatalist]
+    sasdatalist = [i[:-9] for i in sasdatalist]
+    metalist =  [i[:-5] for i in metalist]
     print("csv datalist\n", csvdatalist)
     print("sas datalist\n", sasdatalist)
     print("metadatalit\n", metalist)
