@@ -66,7 +66,7 @@ for dataname in runnamelist:
         runbenchmark(task,metalearning, prep, dataset, framework, foldlist, corelist,
                      timelist, dirt, meta, fitmetrics, rep, logfile, outputdir,task_token)
     except:
-        print('Failed:\t', ind)  # ,dataset)
+        print('Failed:\t', dataname)  # ,dataset)
         traceback.print_exc(file=sys.stdout)
         continue
 #################################################################################
