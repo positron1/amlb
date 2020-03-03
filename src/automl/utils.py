@@ -350,31 +350,31 @@ def check_id(ind, csvdataid, csvdatalist, sasdataid, sasdatalist, metadataid, me
 def init(dirt, task, runlist, timelist, foldlist, rep, task_token):
     current_time = DateTime(time.time(), "US/Eastern")
     if task == "bt":
-        csvdatalist = glob.glob(dirt + "binaryTarget/data/*sas7bdat.csv")
-        sasdatalist = glob.glob(dirt + "binaryTarget/data/*sas7bdat")
+        csvdatalist = glob.glob(dirt + "binaryTarget/*sas7bdat.csv")
+        sasdatalist = glob.glob(dirt + "binaryTarget/*sas7bdat")
         metalist = glob.glob(dirt + "binaryTarget/meta/*csv")
-        csvdatalist = remove_dirt(csvdatalist, dirt + "/binaryTarget/data/")
-        sasdatalist = remove_dirt(sasdatalist, dirt + "/binaryTarget/data/")
+        csvdatalist = remove_dirt(csvdatalist, dirt + "/binaryTarget/")
+        sasdatalist = remove_dirt(sasdatalist, dirt + "/binaryTarget/")
         metalist = remove_dirt(metalist, dirt + "/binaryTarget/meta/")
         dirt = dirt + "binaryTarget/"
         fitmetrics = autosklearn.metrics.log_loss
     #  outputdir = outputdir+'binaryTarget/'
     elif task == "bre":
-        sasdatalist = glob.glob(dirt + "binaryRareEvent/data/*sas7bdat")
-        csvdatalist = glob.glob(dirt + "binaryRareEvent/data/*sas7bdat.csv")
+        sasdatalist = glob.glob(dirt + "binaryRareEvent/*sas7bdat")
+        csvdatalist = glob.glob(dirt + "binaryRareEvent/*sas7bdat.csv")
         metalist = glob.glob(dirt + "binaryRareEvent/meta/*csv")
-        csvdatalist = remove_dirt(csvdatalist, dirt + "/binaryRareEvent/data/")
-        sasdatalist = remove_dirt(sasdatalist, dirt + "/binaryRareEvent/data/")
+        csvdatalist = remove_dirt(csvdatalist, dirt + "/binaryRareEvent/")
+        sasdatalist = remove_dirt(sasdatalist, dirt + "/binaryRareEvent/")
         metalist = remove_dirt(metalist, dirt + "/binaryRareEvent/meta/")
         #   outputdir = outputdir+'binaryRareEvent/'
         dirt = dirt + "binaryRareEvent/"
         fitmetrics = autosklearn.metrics.log_loss
     elif task == "it":
-        sasdatalist = glob.glob(dirt + "intervalTarget/data/*sas7bdat")
-        csvdatalist = glob.glob(dirt + "intervalTarget/data/*sas7bdat.csv")
+        sasdatalist = glob.glob(dirt + "intervalTarget/*sas7bdat")
+        csvdatalist = glob.glob(dirt + "intervalTarget/*sas7bdat.csv")
         metalist = glob.glob(dirt + "intervalTarget/meta/*csv")
-        sasdatalist = remove_dirt(sasdatalist, dirt + "/intervalTarget/data/")
-        csvdatalist = remove_dirt(csvdatalist, dirt + "/intervalTarget/data/")
+        sasdatalist = remove_dirt(sasdatalist, dirt + "/intervalTarget/")
+        csvdatalist = remove_dirt(csvdatalist, dirt + "/intervalTarget/")
         metalist = remove_dirt(metalist, dirt + "/intervalTarget/meta/")
         dirt = dirt + "intervalTarget/"
         fitmetrics = autosklearn.metrics.mean_squared_error
