@@ -332,6 +332,15 @@ def prep(
     #    ##########################################################
     return data, X, y, X_train, y_train, X_test, y_test, feat_type
 
+def check_dataset(dataname, csvdatalist, sasdatalist, metalist):
+    if len(csvdatalist)==0:
+        if len(sasdatalist)>0:
+            dataset = dataname
+    if dataname in metalist:
+        meta = dataname
+    else:
+        meta = '0'
+    return dataset, meta
 
 def check_id(ind, csvdataid, csvdatalist, sasdataid, sasdatalist, metadataid, metalist):
     if ind in csvdataid:

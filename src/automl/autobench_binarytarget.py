@@ -61,7 +61,7 @@ if logmode:
 
 
 for ind in runlist:
-    dataset,meta= check_id(ind,csvdataid,csvdatalist,sasdataid,sasdatalist,metadataid,metalist)
+    dataset,meta=check_dataset(dataname, csvdatalist, sasdatalist, metalist)#: check_id(ind,csvdataid,csvdatalist,sasdataid,sasdatalist,metadataid,metalist)
     try:
         runbenchmark(task,metalearning, prep, dataset, framework, foldlist, corelist,
                      timelist, dirt, meta, fitmetrics, rep, logfile, outputdir,task_token)
