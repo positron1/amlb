@@ -81,7 +81,7 @@ def get_id(metalist):
 
 def sas_to_csv(dirt, dataset):
     print("\n\nReading data from", dirt + dataset)
-    with SAS7BDAT(dirt + dataset) as f:
+    with SAS7BDAT(dirt + dataset+'.sas7bdat') as f:
         df = f.to_data_frame()
     print("\n\nData description:\n\n", df.describe())
     cols = df.columns
