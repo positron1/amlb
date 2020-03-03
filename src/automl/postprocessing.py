@@ -13,6 +13,10 @@ def check(Datasetname, shapetrain, shapetest, para, timespend, results):
 
 
 def get_results_clf(dirt, date, key):
+    # Create target Directory if don't exist
+    if not os.path.exists(dirt):
+        os.mkdir(dirt)
+        print("Directory " , dirt ,  " Newly Created ")
     plotfile = open(dirt + key + "_summary.csv", "w")
     plotfile.write(
         "Dataset_name,data_id,Folds,Run_id,date,Logloss,AUC,f1,ACC,Time_limit,Timespend,Cores,Fitmetric,Framework,train_size,test_size\n"
