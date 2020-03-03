@@ -31,7 +31,7 @@ if not sys.warnoptions:
 framework = 'autosklearn'
 task = 'bt'  # interval target task
 prep = False  # Data preprocessing with meta data
-dirt = '/home/yozhuz/data/'  # dataset directory
+dirt = '../../data/'  # dataset directory
 outputdir = './results/'
 task_token = secrets.token_hex(8)  # generate unique token for this run
 #################################################################################
