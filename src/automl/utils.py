@@ -76,7 +76,8 @@ def get_id(metalist):
     for im, meta in enumerate(metalist):
         myid = meta.split("_")[0]
         idlist.append(str(myid[2:]))
-    return idlist
+    return metalist
+    #return idlist
 
 
 def sas_to_csv(dirt, dataset):
