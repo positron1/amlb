@@ -406,6 +406,8 @@ def runbenchmark(
     #     print('no csv, convert from sas data to ',
     #           dirt  + dataset+'.csv')
     load_partition(dirt, dataset)
+    print(dirt + "temp_metadata/" + meta+'.csv')
+
     try:
         # if there is meta info, read inputs and targets, if not, figure it out.
         if os.path.exists(dirt + "temp_metadata/" + meta+'.csv') or os.path.exists(dirt + "temp_metadata/" + meta[:-2]+'.csv'):
