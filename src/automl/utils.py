@@ -340,11 +340,8 @@ def check_dataname(dataname):
 
 def check_dataset(dataname, csvdatalist, sasdatalist, metalist):
     print(dataname)
-    # if len(csvdatalist)==0:
-    #     if len(sasdatalist)>0:
-    dataset = check_dataname(dataname)
-
-    if dataset in metalist:
+    dataset = dataname
+    if dataset in metalist or dataset[:-2] in metalist:
         meta = dataset
     else:
         meta = '0'
