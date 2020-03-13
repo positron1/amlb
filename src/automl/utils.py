@@ -334,6 +334,7 @@ def prep(
     return data, X, y, X_train, y_train, X_test, y_test, feat_type
 
 def check_dataset(dataname, csvdatalist, sasdatalist, metalist):
+    print()
     if len(csvdatalist)==0:
         if len(sasdatalist)>0:
             dataset = dataname
@@ -374,9 +375,9 @@ def init(dirt, task, runlist, timelist, foldlist, rep, task_token):
     csvdatalist = remove_dirt(csvdatalist, dirt + "/"+taskname+"/")
     sasdatalist = remove_dirt(sasdatalist, dirt + "/"+taskname+"/")
     metalist = remove_dirt(metalist, dirt +"/tmp_metadata/")
-    csvdatalist = [i[:-6] for i in csvdatalist]
+    csvdatalist = [i[:-4] for i in csvdatalist]
     sasdatalist = [i[:-9] for i in sasdatalist]
-    metalist =  [i[:-9] for i in metalist]
+    metalist =  [i[:-7] for i in metalist]
     print("working dirt\t",dirt)
     print("csv datalist\n", csvdatalist)
     print("sas datalist\n", sasdatalist)
