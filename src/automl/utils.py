@@ -378,6 +378,7 @@ def init(dirt, task, runlist, timelist, foldlist, rep, task_token):
     csvdatalist = [i[:-13] for i in csvdatalist]
     sasdatalist = [i[:-9] for i in sasdatalist]
     metalist =  [i[:-5] for i in metalist]
+    print("working dirt\t",dirt)
     print("csv datalist\n", csvdatalist)
     print("sas datalist\n", sasdatalist)
     print("metadatalit\n", metalist)
