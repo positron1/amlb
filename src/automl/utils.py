@@ -370,7 +370,7 @@ def init(dirt, task, runlist, timelist, foldlist, rep, task_token):
         fitmetrics = autosklearn.metrics.mean_squared_error
     csvdatalist = glob.glob(dirt + taskname+"/*sas7bdat.csv")
     sasdatalist = glob.glob(dirt + taskname+"/*sas7bdat")
-    metalist = glob.glob(dirt +"/tmp_metadata/*csv")
+    metalist = glob.glob(dirt +"/tmp_metadata/*meta.csv")
     csvdatalist = remove_dirt(csvdatalist, dirt + "/"+taskname+"/")
     sasdatalist = remove_dirt(sasdatalist, dirt + "/"+taskname+"/")
     metalist = remove_dirt(metalist, dirt +"/tmp_metadata/")
