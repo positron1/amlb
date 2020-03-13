@@ -410,7 +410,7 @@ def runbenchmark(
     print(dirt + "temp_metadata/" + meta+'.csv')
     try:
         # if there is meta info, read inputs and targets, if not, figure it out.
-        if os.path.exists(dirt + "temp_metadata/" + meta+'.csv'):
+        if os.path.exists("/root/data/temp_metadata/" + meta+'.csv'):
             print(dirt + "temp_metadata/" + meta+'.csv')
             if prepb:
                 nfeatures, cfeatures, target = meta_info(dirt, meta, prepb)
