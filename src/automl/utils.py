@@ -377,7 +377,7 @@ def init(dirt, task, runlist, timelist, foldlist, rep, task_token):
     metalist = remove_dirt(metalist, dirt +"/tmp_metadata/")
     csvdatalist = [i[:-4] for i in csvdatalist]
     sasdatalist = [i[:-9] for i in sasdatalist]
-    metalist =  [i[:-7] for i in metalist]
+    metalist =  [i[:-9] for i in metalist]
     print("working dirt\t",dirt)
     print("csv datalist\n", csvdatalist)
     print("sas datalist\n", sasdatalist)
