@@ -334,7 +334,7 @@ def prep(
     return data, X, y, X_train, y_train, X_test, y_test, feat_type
 
 def check_dataset(dataname, csvdatalist, sasdatalist, metalist):
-    print()
+    print(dataname)
     if len(csvdatalist)==0:
         if len(sasdatalist)>0:
             dataset = dataname
