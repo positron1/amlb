@@ -335,9 +335,9 @@ def prep(
 
 def check_dataset(dataname, csvdatalist, sasdatalist, metalist):
     print(dataname)
-    if len(csvdatalist)==0:
-        if len(sasdatalist)>0:
-            dataset = dataname
+    # if len(csvdatalist)==0:
+    #     if len(sasdatalist)>0:
+    dataset = dataname
     if dataname in metalist:
         meta = dataname
     else:
