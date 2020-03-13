@@ -80,7 +80,6 @@ def metric(task, y_test, y_pred, y_pred_prob):
         metrics['ACC'] = accuracy_score(y_test, y_pred)
     return metrics
 
-
 def autoprep(dirt, dataset, targetname):
     if targetname:
         targetname = dataset

@@ -235,6 +235,7 @@ def prep(
     prepb, dataset, dirt, nfeatures, cfeatures, inputs, target, delim=",", indexdrop=False
 ):
     index_features = ["_dmIndex_", "_PartInd_"]
+    
     try:
         data = pd.read_csv(dirt + "data/" + dataset,
                            delimiter=delim)  # panda.DataFrame
@@ -333,13 +334,18 @@ def prep(
     #    ##########################################################
     return data, X, y, X_train, y_train, X_test, y_test, feat_type
 
+def check_dataname(dataname):
+    if dataname[-2:]=='_p':
+        return dataname[:-2]
+
 def check_dataset(dataname, csvdatalist, sasdatalist, metalist):
     print(dataname)
     # if len(csvdatalist)==0:
     #     if len(sasdatalist)>0:
-    dataset = dataname
-    if dataname in metalist:
-        meta = dataname
+    dataset = check_dataname(dataname)
+
+    if dataset in metalist:
+        meta = dataset
     else:
         meta = '0'
     return dataset, meta
