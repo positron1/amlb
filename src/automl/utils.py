@@ -334,10 +334,6 @@ def prep(
     #    ##########################################################
     return data, X, y, X_train, y_train, X_test, y_test, feat_type
 
-def check_dataname(dataname):
-    if dataname[-2:]=='_p':
-        return dataname[:-2]
-
 def check_dataset(dataname, csvdatalist, sasdatalist, metalist):
     print(dataname)
     dataset = dataname
@@ -421,6 +417,7 @@ def remove_dirt(dlist, dirt):
 
 
 def meta_info(dirt, meta, prepb):
+    if meta[-2:]=='_p': meta=meta[:-2]
     dmeta = pd.read_csv(dirt + "/tmp_metadata/" + meta)
     target = dmeta[dmeta["ROLE"] == "TARGET"]
     targetname = target["NAME"].tolist()[0]
