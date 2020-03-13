@@ -416,7 +416,7 @@ def remove_dirt(dlist, dirt):
 
 
 def meta_info(dirt, meta, prepb):
-    dmeta = pd.read_csv(dirt + "meta/" + meta)
+    dmeta = pd.read_csv(dirt + "/tmp_metadata/" + meta)
     target = dmeta[dmeta["ROLE"] == "TARGET"]
     targetname = target["NAME"].tolist()[0]
     inputs = dmeta[dmeta["ROLE"] == "INPUT"]
@@ -433,7 +433,7 @@ if __name__ == "__main__":
     datadirt = "/root/data/"
 
     datalist = glob.glob(datadirt + "opentest/*sas7bdat")
-    metalist = glob.glob(datadirt + "meta/*csv")
+    metalist = glob.glob(datadirt + "/tmp_metadata/*csv")
     framework = "autosklearn"
     datasetn = "bankmarketing"
     foldn = 0
@@ -445,7 +445,7 @@ if __name__ == "__main__":
     numeric_features = []
     categorical_features = []
     datalist = remove_dirt(datalist, dirt + "/opentest/")
-    metalist = remove_dirt(metalist, dirt + "/meta/")
+    metalist = remove_dirt(metalist, dirt + "//tmp_metadata//")
     print(datalist, metalist)
     for im, meta in enumerate(metalist[3:]):
         print(meta)
