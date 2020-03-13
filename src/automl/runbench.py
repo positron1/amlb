@@ -407,6 +407,7 @@ def runbenchmark(
     #           dirt  + dataset+'.csv')
     load_partition(dirt, dataset)
     print(dirt + "temp_metadata/" + meta+'.csv')
+    print(dirt + "temp_metadata/" + meta[:-2]+'.csv')
 
     try:
         # if there is meta info, read inputs and targets, if not, figure it out.
