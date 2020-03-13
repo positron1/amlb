@@ -403,13 +403,14 @@ def runbenchmark(
     print('\n', myid, '\n')
     feat_type = []
     # check if there is datafile in csv, if not load and convert it to csv,
-    if dataset[-4:] != '.csv':
-        print('no csv, convert from sas data to ',
-              dirt  + dataset+'.csv')
-        load_partition(dirt, dataset)
+    # if dataset[-4:] != '.csv':
+    #     print('no csv, convert from sas data to ',
+    #           dirt  + dataset+'.csv')
+    load_partition(dirt, dataset)
     try:
         # if there is meta info, read inputs and targets, if not, figure it out.
         if os.path.exists(dirt + "temp_metadata/" + meta+'.csv'):
+            print(dirt + "temp_metadata/" + meta+'.csv')
             if prepb:
                 nfeatures, cfeatures, target = meta_info(dirt, meta, prepb)
             # get data to train/test
