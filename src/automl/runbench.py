@@ -408,11 +408,11 @@ def runbenchmark(
     #           dirt  + dataset+'.csv')
     load_partition(dirt+'/'+taskname+'/', dataset)
     if meta[-2:]=='_p': meta =meta[:-2]
-    print(dirt + "tmp_metadata/" + meta+'.csv')
+    print(dirt + "tmp_metadata/" + meta+'_meta.csv')
     try:
         # if there is meta info, read inputs and targets, if not, figure it out.
-        if os.path.exists(dirt+"/tmp_metadata/" + meta+'.csv'):
-            print(dirt + "tmp_metadata/" + meta+'.csv')
+        if os.path.exists(dirt+"/tmp_metadata/" + meta+'_meta.csv'):
+            print(dirt + "tmp_metadata/" + meta+'_meta.csv')
             if prepb:
                 nfeatures, cfeatures, target = meta_info(dirt, meta, prepb)
             # get data to train/test

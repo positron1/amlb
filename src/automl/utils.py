@@ -418,7 +418,7 @@ def remove_dirt(dlist, dirt):
 def meta_info(dirt, meta, prepb):
     print(meta)
     if meta[-2:]=='_p': meta=meta[:-2]
-    dmeta = pd.read_csv(dirt + "/tmp_metadata/" + meta)
+    dmeta = pd.read_csv(dirt + "/tmp_metadata/" + meta+'_meta.csv')
     target = dmeta[dmeta["ROLE"] == "TARGET"]
     targetname = target["NAME"].tolist()[0]
     inputs = dmeta[dmeta["ROLE"] == "INPUT"]
