@@ -44,8 +44,9 @@ timelist = [100]  # time limit for training in seconds
 #################################################################################
 # Initial setup
 #################################################################################
-dirt, logfile, csvdatalist, sasdatalist, metalist, timestamp, fitmetrics = init(
-    dirt, task, runlist, timelist, foldlist, rep, task_token)
+dirt,taskname,logfile, csvdatalist, sasdatalist, metalist, timestamp, fitmetrics = init(
+    dirt, task, runlist, timelist, foldlist, rep, task_token
+)
 metadataid = get_id(metalist)
 csvdataid = get_id(csvdatalist)
 sasdataid = get_id(sasdatalist)
