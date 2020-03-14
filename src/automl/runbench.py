@@ -432,7 +432,7 @@ def runbenchmark(
                 data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
                     prepb,
                     dataset,
-                    taskname
+                    taskname,
                     dirt,
                     [],
                     [],
