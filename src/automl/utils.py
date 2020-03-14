@@ -237,7 +237,7 @@ def prep(
     index_features = ["_dmIndex_", "_PartInd_"]
     
     try:
-        data = pd.read_csv(dirt + '/'+taskname+'/' + dataset,
+        data = pd.read_csv(dirt + '/'+taskname+'/' + dataset+'.csv',
                            delimiter=delim)  # panda.DataFrame
     except:
         df = sas_to_csv(dirt + '/'+taskname+'/', dataset)
