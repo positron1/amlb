@@ -382,6 +382,7 @@ def get_train_test(myid, X_train, y_train, X_test, y_test):
 
 def runbenchmark(
     task,
+    taskname,
     metalearning,
     prepb,
     dataset,
@@ -410,7 +411,7 @@ def runbenchmark(
     print(dirt + "temp_metadata/" + meta+'.csv')
     try:
         # if there is meta info, read inputs and targets, if not, figure it out.
-        if os.path.exists("/root/data/temp_metadata/" + meta+'.csv'):
+        if os.path.exists(dirt+"/temp_metadata/" + meta+'.csv'):
             print(dirt + "temp_metadata/" + meta+'.csv')
             if prepb:
                 nfeatures, cfeatures, target = meta_info(dirt, meta, prepb)
@@ -418,6 +419,7 @@ def runbenchmark(
                 data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
                     prepb,
                     dataset,
+                    taskname,
                     dirt,
                     nfeatures,
                     cfeatures,
@@ -430,6 +432,7 @@ def runbenchmark(
                 data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
                     prepb,
                     dataset,
+                    taskname
                     dirt,
                     [],
                     [],
@@ -442,7 +445,7 @@ def runbenchmark(
             target = 'Claim_Flag'
             index_features = ['Account_ID']
             data, X, y, X_train, y_train, X_test, y_test, feat_type = prep_nopart(
-                prepb, dataset, dirt, index_features, nreject, [], [], [], target, delim=",", indexdrop=False)
+                prepb, dataset, taskname,dirt, index_features, nreject, [], [], [], target, delim=",", indexdrop=False)
         else:
             print("Error")
             sys.exit()

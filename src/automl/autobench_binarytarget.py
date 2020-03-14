@@ -63,6 +63,7 @@ runnamelist = sasdatalist[0:2]
 for dataname in runnamelist:
     dataset,meta=check_dataset(dataname, csvdatalist, sasdatalist, metalist)#: check_id(ind,csvdataid,csvdatalist,sasdataid,sasdatalist,metadataid,metalist)
     try:
+        print(task)
         runbenchmark(task,metalearning, prep, dataset, framework, foldlist, corelist,
                      timelist, dirt, meta, fitmetrics, rep, logfile, outputdir,task_token)
     except:

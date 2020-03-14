@@ -121,15 +121,15 @@ def partition_to_csv(dirt, dataset, dtrain, dvalidate, dtest):
 
 
 def prep_nopart(
-    prepb, dataset, dirt, index_features, nreject, nfeatures, cfeatures, inputs, target, delim=",", indexdrop=False
+    prepb, dataset, taskname,dirt, index_features, nreject, nfeatures, cfeatures, inputs, target, delim=",", indexdrop=False
 ):
     # read from sas and get column name
     #df = sas_to_csv(dirt + "data/", dataset)
     if dataset[-3:] == 'csv':
-        data = pd.read_csv(dirt + "data/" + dataset,
+        data = pd.read_csv(dirt + '/'+taskname+'/' + dataset,
                            delimiter=delim)  # panda.DataFrame
     else:
-        data = pd.read_csv(dirt + "data/" + dataset+'.csv',
+        data = pd.read_csv(dirt +'/'+taskname+'/' + dataset+'.csv',
                            delimiter=delim)  # panda.DataFrame
     col = data.columns.values
     inputs = col
@@ -232,16 +232,16 @@ def prep_nopart(
 
 
 def prep(
-    prepb, dataset, dirt, nfeatures, cfeatures, inputs, target, delim=",", indexdrop=False
+    prepb, dataset,taskname, dirt, nfeatures, cfeatures, inputs, target, delim=",", indexdrop=False
 ):
     index_features = ["_dmIndex_", "_PartInd_"]
     
     try:
-        data = pd.read_csv(dirt + "data/" + dataset,
+        data = pd.read_csv(dirt + '/'+taskname+'/' + dataset,
                            delimiter=delim)  # panda.DataFrame
     except:
-        df = sas_to_csv(dirt + "data/", dataset)
-        data = pd.read_csv(dirt + "data/" + dataset+'.csv',
+        df = sas_to_csv(dirt + '/'+taskname+'/', dataset)
+        data = pd.read_csv(dirt +'/'+taskname+'/' + dataset+'.csv',
                            delimiter=delim)  # panda.DataFrame
     col = data.columns.values
     print(col)
@@ -406,8 +406,7 @@ def init(dirt, task, runlist, timelist, foldlist, rep, task_token):
         + ".txt",
         "w",
     )
-    dirt = dirt + taskname+"/"
-    return dirt, logfile, csvdatalist, sasdatalist, metalist, timestamp, fitmetrics
+    return dirt, taskname,logfile, csvdatalist, sasdatalist, metalist, timestamp, fitmetrics,
 
 
 def remove_dirt(dlist, dirt):
