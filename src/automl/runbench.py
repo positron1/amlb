@@ -406,7 +406,7 @@ def runbenchmark(
     # if dataset[-4:] != '.csv':
     #     print('no csv, convert from sas data to ',
     #           dirt  + dataset+'.csv')
-    load_partition(dirt, dataset)
+    load_partition(dirt+'/'+taskname+'/', dataset)
     if meta[-2:]=='_p': meta =meta[:-2]
     print(dirt + "temp_metadata/" + meta+'.csv')
     try:
