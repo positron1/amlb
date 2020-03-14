@@ -248,6 +248,7 @@ def prep(
 
     data = data.astype({"_PartInd_": "int"})
     print(set(data[target]))
+    print(inputs)
     if prepb:
         # list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
         numeric_features = nfeatures
