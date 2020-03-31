@@ -1,6 +1,6 @@
 # Blacklist files/folders in same directory as the .gitignore file
 /*
-
+/src/automl/results/*
 # Whitelist our source files
 !/doc/
 !/frameworks/
