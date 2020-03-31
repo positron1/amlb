@@ -1,12 +1,4 @@
-# Ensembling Automated Machine Learning Frameworks
-
-Learn, test, and benchmark -- get best automl frameworks in one. 
-
-[![license](https://img.shields.io/github/license/zhuygln/atoml)](LICENSE)
-
-> Learn, test, and benchmark -- get best automl frameworks in one. 
-
-Ensembling Automated Machine Learning Toolkits
+# Automated Machine Learning Benchmark
 
 ## Table of Contents
 
@@ -19,26 +11,28 @@ Ensembling Automated Machine Learning Toolkits
 
 ## Background
 
+This repo is a suite of automated machine learn(autoML) frameworks in python. It provides benchmarking with open source autoML frameworks.
+
 ### Any optional sections
 
 ## Install
 
-0. install anaconda or miniconda
-1. copy all content in the directory
-2. set up environment
+- Install anaconda or miniconda
+
+- Copy/clone all content in this repo
+- Set up environment with yml file
+  $ cd framework
   $ conda env create -f autosklearn.yml
-3. activate environment: 
-  $ conda activate autosklearn
-4. check you data directectory is as defined in autobench_*py files
-5. test run
+- activate environment:
+  \$ conda activate autosklearn
+- check you data directectory is as defined in autobench\_\*py files
+- test run
   $ cd automl
   $ bash run.sh
 
-
 ## Usage
+
 ### Input and output files
-list of input: 
-autobench_intervaltarget.py
 
 ### Examples of run open source automated machine learning frameworks
 
@@ -46,7 +40,7 @@ autobench_intervaltarget.py
 
 ### Automated benchmarking with selected frameoworks/datasets
 
-### 
+###
 
 Note: The `license` badge image link at the top of this file should be updated with the correct `:user` and `:repo`.
 
@@ -58,18 +52,8 @@ Note: The `license` badge image link at the top of this file should be updated w
 
 ## More optional sections
 
-## Learning Notes
-
-See [Machine Learning Basics](doc/mlbasics.md)!
-
 ## Contributing
 
 See [the contributing file](CONTRIBUTING.md)!
 
-
 ### Any optional sections
-
-## License
-
-[MIT](LICENSE)  © zhuygln
-
