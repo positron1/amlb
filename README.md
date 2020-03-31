@@ -23,16 +23,24 @@ This repo is a suite of automated machine learn(autoML) frameworks in python. It
 - Set up environment with yml file
 
 ```
-$ cd framework
+$ cd framework/
 $ conda env create -f autosklearn.yml
 ```
 
 - activate environment:
-  \$ conda activate autosklearn
-- check you data directectory is as defined in autobench\_\*py files
+
+```
+$ conda activate autosklearn
+
+```
+
+- check you data directectory is as defined in src/automl/autobench.py files
 - test run
-  $ cd automl
-  $ bash run.sh
+
+```
+$ cd automl
+$ bash run.sh
+```
 
 ## Usage
 
