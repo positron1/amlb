@@ -237,7 +237,7 @@ def prep(
     index_features = ["_dmIndex_", "_PartInd_"]
     
     try:
-        data = pd.read_csv(dirt + '/'+taskname+'/' + dataset,
+        data = pd.read_csv(dirt + '/'+taskname+'/' + dataset+'.csv',
                            delimiter=delim)  # panda.DataFrame
     except:
         df = sas_to_csv(dirt + '/'+taskname+'/', dataset)
@@ -252,6 +252,7 @@ def prep(
     print("inputs",inputs)
     index_features =[i.upper() for i in index_features]
     target = target.upper() 
+    print(inputs)
     if prepb:
         # list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
         numeric_features = nfeatures
