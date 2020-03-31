@@ -12,6 +12,7 @@
 ## Background
 
 This repo is a suite of automated machine learn(autoML) frameworks in python. It provides benchmarking with open source autoML frameworks.
+Caution: due to some of the package compatiablity, this suite is only tested in linux system. It may work with windows linux subsystem, but not verified.
 
 ### Any optional sections
 
