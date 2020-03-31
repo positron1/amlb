@@ -243,11 +243,15 @@ def prep(
         df = sas_to_csv(dirt + '/'+taskname+'/', dataset)
         data = pd.read_csv(dirt +'/'+taskname+'/' + dataset+'.csv',
                            delimiter=delim)  # panda.DataFrame
+    data = data.astype({"_PartInd_": "int"})
     col = data.columns.values
     print(col)
-
-    data = data.astype({"_PartInd_": "int"})
+    data=data.rename(str.upper, axis='columns') 
+    print(col)
     print(set(data[target]))
+    print("inputs",inputs)
+    index_features =[i.upper() for i in index_features]
+    target = target.upper() 
     if prepb:
         # list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
         numeric_features = nfeatures
@@ -420,14 +424,16 @@ def meta_info(dirt, meta, prepb):
     if meta[-2:]=='_p': meta=meta[:-2]
     dmeta = pd.read_csv(dirt + "/tmp_metadata/" + meta+'_meta.csv')
     target = dmeta[dmeta["ROLE"] == "TARGET"]
-    targetname = target["NAME"].tolist()[0]
+    targetname = target["UNAME"].tolist()[0]
     inputs = dmeta[dmeta["ROLE"] == "INPUT"]
     if prepb:
         cinputs = inputs[inputs["type"] == "C"]
-        cinputname = cinputs["NAME"].tolist()
+        cinputname = cinputs["UNAME"].tolist()
         ninputs = inputs[inputs["type"] == "N"]
-        ninputname = ninputs["NAME"].tolist()
+        ninputname = ninputs["UNAME"].tolist()
         return ninputname, cinputname, targetname
+    inputs = inputs["UNAME"].tolist()
+    print("meta_info: inputs\n",inputs)
     return inputs, targetname
 
 

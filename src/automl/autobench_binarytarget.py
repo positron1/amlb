@@ -39,9 +39,9 @@ task_token = secrets.token_hex(8)  # generate unique token for this run
 runlist = ["14"]  # dataset id #
 rep = 2  # repetition
 metalearning = True  # default for autosklearn
-corelist = [4]
+corelist = [8]
 foldlist = [0]  # 0: single validation, no cross validation
-timelist = [100]  # time limit for training in seconds
+timelist = [900]  # time limit for training in seconds
 #################################################################################
 # Initial setup
 #################################################################################
@@ -61,7 +61,7 @@ if logmode:
 # runing ...
 #################################################################################
 
-runnamelist = sasdatalist[0:2]
+runnamelist = sasdatalist
 for dataname in runnamelist:
     dataset, meta = check_dataset(
         dataname, csvdatalist, sasdatalist, metalist

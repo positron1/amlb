@@ -1,0 +1,48 @@
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
+
+starting:	 autosklearn 	 0  fold	 8  core	 900  seconds
+
