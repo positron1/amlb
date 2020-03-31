@@ -22,9 +22,9 @@ This repo is a suite of automated machine learn(autoML) frameworks in python. It
 - Copy/clone all content in this repo
 - Set up environment with yml file
 
-''' $ cd framework
-  $ conda env create -f autosklearn.yml
-'''
+```$ cd framework
+$ conda env create -f autosklearn.yml
+```
 
 - activate environment:
   \$ conda activate autosklearn
