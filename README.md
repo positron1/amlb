@@ -17,7 +17,7 @@ This repo is a suite of automated machine learn(autoML) frameworks in python. It
 
 ## Install
 
-- Install anaconda or miniconda
+- Install anaconda or miniconda: (#https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html)
 
 - Copy/clone all content in this repo
 - Set up environment with yml file
