@@ -12,23 +12,36 @@
 ## Background
 
 This repo is a suite of automated machine learn(autoML) frameworks in python. It provides benchmarking with open source autoML frameworks.
+Caution: due to some of the package compatiablity, this suite is only tested in linux system. It may work with windows linux subsystem, but not verified.
 
 ### Any optional sections
 
 ## Install
 
-- Install anaconda or miniconda
+- Install anaconda or miniconda [here]:(https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html)
 
-- Copy/clone all content in this repo
-- Set up environment with yml file
-  $ cd framework
-  $ conda env create -f autosklearn.yml
-- activate environment:
-  \$ conda activate autosklearn
-- check you data directectory is as defined in autobench\_\*py files
+- Copy/clone all content in this [repo](https://gitlab.sas.com/yozhuz/automation_benchmark)
+- Set up environment with yml file as in [here]: (https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)
+
+```
+$ cd framework/
+$ conda env create -f autosklearn.yml
+```
+
+- Activate python environment with conda:
+
+```
+$ conda activate autosklearn
+
+```
+
+- Check you data directectory is as defined in src/automl/autobench.py files
 - test run
-  $ cd automl
-  $ bash run.sh
+
+```
+$ cd automl
+$ bash run.sh
+```
 
 ## Usage
 
