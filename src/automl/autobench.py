@@ -1,20 +1,11 @@
 ##################################################################################
-########## Author: Yonglin Zhu
+# Author: Yonglin Zhu
 ########## Email: zhuygln@gmail.com
 ##################################################################################
-import json
-import jsonpickle
-from sas7bdat import SAS7BDAT
-import os
-import sys
-import logging
-import optparse
 from utils import *
 from postprocessing import *
 from runbench import *
-import secrets
-from DateTime import DateTime
-import time
+from sklearn.metrics import roc_auc_score, accuracy_score
 
 ##################################################################################
 logmode = False
@@ -37,7 +28,7 @@ outputdir = "./results/"
 task_token = secrets.token_hex(8)  # generate unique token for this run
 #################################################################################
 runlist = ["14"]  # dataset id #
-rep = 2  # repetition
+rep = 5  # repetition
 metalearning = True  # default for autosklearn
 corelist = [8]
 foldlist = [0]  # 0: single validation, no cross validation
@@ -52,8 +43,11 @@ metadataid = get_id(metalist)
 csvdataid = get_id(csvdatalist)
 sasdataid = get_id(sasdatalist)
 print("csvdataid\n", csvdataid)
+print("csvdataid\n", len(csvdataid))
 print("sasdataid\n", sasdataid)
+print("sasdataid\n", len(sasdataid))
 print("metadataid\n", metadataid)
+print("metadataid\n", len(metadataid))
 
 if logmode:
     sys.stdout = logfile

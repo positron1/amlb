@@ -1,28 +1,24 @@
-import autosklearn.classification
-import sklearn.model_selection
-import sklearn.datasets
-import sklearn.metrics
 
-# Read in data
-import pandas as pd
-import numpy as np
-from scipy.sparse import coo_matrix, vstack
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn import preprocessing
-from sklearn.model_selection import KFold
-from sklearn.metrics import log_loss
-from sklearn.metrics import roc_auc_score, accuracy_score
-from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
-
-##################################################
-
+from sklearn.model_selection import cross_val_score
+from sklearn.metrics import roc_auc_score, accuracy_score
+from sklearn.metrics import log_loss
+from sklearn.model_selection import KFold
+from sklearn import preprocessing
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
+from sklearn.preprocessing import StandardScaler
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from scipy.sparse import coo_matrix, vstack
+import numpy as np
+import pandas as pd
+import sklearn.metrics
+import sklearn.datasets
+import sklearn.model_selection
+import autosklearn.classification
 from DateTime import DateTime
 import secrets
 import glob
@@ -34,11 +30,17 @@ import logging
 import optparse
 import time
 from collections import Counter
-
+import json
+import jsonpickle
 if not sys.warnoptions:
     import warnings
 
     warnings.simplefilter("ignore")
+
+
+""" # Read in data
+
+##################################################
 
 ##################
 # unpartitioned data
@@ -68,7 +70,7 @@ def unpart(dirt, dataset, index, target):
     # "_dmIndex_", "_PartInd_"]
     # Rename index to
 
-    return train, test
+    return train, test """
 
 
 def get_id(metalist):
@@ -77,7 +79,7 @@ def get_id(metalist):
         myid = meta.split("_")[0]
         idlist.append(str(myid[2:]))
     return metalist
-    #return idlist
+    # return idlist
 
 
 def sas_to_csv(dirt, dataset):
@@ -95,7 +97,7 @@ def sas_to_csv(dirt, dataset):
 def load_partition(dirt, dataset):
 
     df = sas_to_csv(dirt, dataset)
-    # last column _PartInd_ for train-1/validation-2/test-0/
+    # last column _PartInd_ for train-1/validation-0/test-2/
     col = df.columns
     df._PartInd_.astype(int)
     dtrain = df.loc[df[col[1]] == 1]
@@ -120,20 +122,21 @@ def partition_to_csv(dirt, dataset, dtrain, dvalidate, dtest):
     )
 
 
-def prep_nopart(
-    prepb, dataset, taskname,dirt, index_features, nreject, nfeatures, cfeatures, inputs, target, delim=",", indexdrop=False
-):
+def prep_nopart(prepb, dataset, taskname, dirt, index_features, nreject, nfeatures, cfeatures, inputs, target, delim=",", part_ratio=[0.6, 0.2, 0.2], indexdrop=False):
     # read from sas and get column name
     #df = sas_to_csv(dirt + "data/", dataset)
+    train_ratio = part_ratio[0]
+    valid_ratio = part_ratio[1]
+    test_ratio = part_ratio[2]
     if dataset[-3:] == 'csv':
         data = pd.read_csv(dirt + '/'+taskname+'/' + dataset,
                            delimiter=delim)  # panda.DataFrame
     else:
-        data = pd.read_csv(dirt +'/'+taskname+'/' + dataset+'.csv',
+        data = pd.read_csv(dirt + '/'+taskname+'/' + dataset+'.csv',
                            delimiter=delim)  # panda.DataFrame
     col = data.columns.values
     inputs = col
-# get the list of numeric and categorical
+    # get the list of numeric and categorical
     print(set(data[target]))
     if prepb:
         # list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
@@ -145,13 +148,13 @@ def prep_nopart(
             include=["number"]))-set(nreject)-set(index_features)-set([target])))
         categorical_features = list(set(inputs) & (set(data.select_dtypes(
             exclude=["number"]))-set(nreject)-set(index_features)-set([target])))
-# get rid of the missing target
+    # get rid of the missing target
     data = data[data[target].notna()]
-# clean some format
+    # clean some format
     data[categorical_features] = data[categorical_features].astype("str")
     data[numeric_features] = data[numeric_features].astype("float32")
     data[target] = data[target].astype("str")
-# check status
+    # check status
     print(set(data[target]))
     print(
         "\nCheck numerical features:\t", numeric_features, data[numeric_features].dtypes
@@ -231,27 +234,25 @@ def prep_nopart(
     return data, X, y, X_train, y_train, X_test, y_test, feat_type
 
 
-def prep(
-    prepb, dataset,taskname, dirt, nfeatures, cfeatures, inputs, target, delim=",", indexdrop=False
-):
+def prep(prepb, dataset, taskname, dirt, nfeatures, cfeatures, inputs, target, delim=",", indexdrop=False):
     index_features = ["_dmIndex_", "_PartInd_"]
-    
+
     try:
         data = pd.read_csv(dirt + '/'+taskname+'/' + dataset+'.csv',
                            delimiter=delim)  # panda.DataFrame
     except:
         df = sas_to_csv(dirt + '/'+taskname+'/', dataset)
-        data = pd.read_csv(dirt +'/'+taskname+'/' + dataset+'.csv',
+        data = pd.read_csv(dirt + '/'+taskname+'/' + dataset+'.csv',
                            delimiter=delim)  # panda.DataFrame
     data = data.astype({"_PartInd_": "int"})
     col = data.columns.values
     print(col)
-    data=data.rename(str.upper, axis='columns') 
+    data = data.rename(str.upper, axis='columns')
     print(col)
     print(set(data[target]))
-    print("inputs",inputs)
-    index_features =[i.upper() for i in index_features]
-    target = target.upper() 
+    print("inputs", inputs)
+    index_features = [i.upper() for i in index_features]
+    target = target.upper()
     print(inputs)
     if prepb:
         # list(set(data.select_dtypes(include=["number"]))-set(index_features)-set([target]))
@@ -339,6 +340,7 @@ def prep(
     #    ##########################################################
     return data, X, y, X_train, y_train, X_test, y_test, feat_type
 
+
 def check_dataset(dataname, csvdatalist, sasdatalist, metalist):
     print(dataname)
     dataset = dataname
@@ -347,6 +349,7 @@ def check_dataset(dataname, csvdatalist, sasdatalist, metalist):
     else:
         meta = '0'
     return dataset, meta
+
 
 def check_id(ind, csvdataid, csvdatalist, sasdataid, sasdatalist, metadataid, metalist):
     if ind in csvdataid:
@@ -362,27 +365,30 @@ def check_id(ind, csvdataid, csvdatalist, sasdataid, sasdatalist, metadataid, me
     return dataset, meta
 
 
-def init(dirt, task, runlist, timelist, foldlist, rep, task_token):
+def init(dirt, task, runlist, timelist, foldlist, rep, task_token, fitmetrics=False):
     current_time = DateTime(time.time(), "US/Eastern")
     if task == "bt":
         taskname = 'binaryTarget'
-        fitmetrics = autosklearn.metrics.log_loss
+        if not fitmetrics:
+            fitmetrics = autosklearn.metrics.log_loss
     elif task == "bre":
         taskname = 'binaryRareEvent'
-        fitmetrics = autosklearn.metrics.log_loss
+        if not fitmetrics:
+            fitmetrics = autosklearn.metrics.log_loss
     elif task == "it":
         taskname = 'intervalTarget'
-        fitmetrics = autosklearn.metrics.mean_squared_error
+        if not fitmetrics:
+            fitmetrics = autosklearn.metrics.mean_squared_error
     csvdatalist = glob.glob(dirt + taskname+"/*.csv")
     sasdatalist = glob.glob(dirt + taskname+"/*sas7bdat")
-    metalist = glob.glob(dirt +"/tmp_metadata/*meta.csv")
+    metalist = glob.glob(dirt + "/tmp_metadata/*meta.csv")
     csvdatalist = remove_dirt(csvdatalist, dirt + "/"+taskname+"/")
     sasdatalist = remove_dirt(sasdatalist, dirt + "/"+taskname+"/")
-    metalist = remove_dirt(metalist, dirt +"/tmp_metadata/")
+    metalist = remove_dirt(metalist, dirt + "/tmp_metadata/")
     csvdatalist = [i[:-4] for i in csvdatalist]
     sasdatalist = [i[:-9] for i in sasdatalist]
-    metalist =  [i[:-9] for i in metalist]
-    print("working dirt\t",dirt)
+    metalist = [i[:-9] for i in metalist]
+    print("working dirt\t", dirt)
     print("csv datalist\n", csvdatalist)
     print("sas datalist\n", sasdatalist)
     print("metadatalit\n", metalist)
@@ -411,7 +417,7 @@ def init(dirt, task, runlist, timelist, foldlist, rep, task_token):
         + ".txt",
         "w",
     )
-    return dirt, taskname,logfile, csvdatalist, sasdatalist, metalist, timestamp, fitmetrics,
+    return dirt, taskname, logfile, csvdatalist, sasdatalist, metalist, timestamp, fitmetrics,
 
 
 def remove_dirt(dlist, dirt):
@@ -422,7 +428,8 @@ def remove_dirt(dlist, dirt):
 
 def meta_info(dirt, meta, prepb):
     print(meta)
-    if meta[-2:]=='_p': meta=meta[:-2]
+    if meta[-2:] == '_p':
+        meta = meta[:-2]
     dmeta = pd.read_csv(dirt + "/tmp_metadata/" + meta+'_meta.csv')
     target = dmeta[dmeta["ROLE"] == "TARGET"]
     targetname = target["UNAME"].tolist()[0]
@@ -434,7 +441,7 @@ def meta_info(dirt, meta, prepb):
         ninputname = ninputs["UNAME"].tolist()
         return ninputname, cinputname, targetname
     inputs = inputs["UNAME"].tolist()
-    print("meta_info: inputs\n",inputs)
+    print("meta_info: inputs\n", inputs)
     return inputs, targetname
 
 

@@ -16,7 +16,7 @@ def get_results_clf(dirt, date, key):
     # Create target Directory if don't exist
     if not os.path.exists(dirt):
         os.mkdir(dirt)
-        print("Directory " , dirt ,  " Newly Created ")
+        print("Directory ", dirt,  " Newly Created ")
     plotfile = open(dirt + key + "_summary.csv", "w")
     plotfile.write(
         "Dataset_name,data_id,Folds,Run_id,date,Logloss,AUC,f1,ACC,Time_limit,Timespend,Cores,Fitmetric,Framework,train_size,test_size\n"
@@ -60,7 +60,8 @@ def get_results_clf(dirt, date, key):
                 plotfile.write(str(data_id) + ",")
                 plotfile.write(str(para["folds"]) + ",")
                 plotfile.write(
-                    str(resultfile[1][7:] + "_" + resultfile[-1].split(".")[0]) + ","
+                    str(resultfile[1][7:] + "_" +
+                        resultfile[-1].split(".")[0]) + ","
                 )
                 plotfile.write(str(date) + ",")
                 plotfile.write(str(results["logloss"]) + ",")
@@ -122,12 +123,14 @@ def get_results_reg(dirt, date, key):
                 if k == "results":
                     results = v
                 print(k, v)
-            if True:  # check(Datasetname,shapetrain,shapetest,para,timespend,results):
+            # check(Datasetname,shapetrain,shapetest,para,timespend,results):
+            if True:
                 plotfile.write(str(Datasetname) + ",")
                 plotfile.write(str(data_id) + ",")
                 plotfile.write(str(para["folds"]) + ",")
                 plotfile.write(
-                    str(resultfile[1][7:] + "_" + resultfile[-1].split(".")[0]) + ","
+                    str(resultfile[1][7:] + "_" +
+                        resultfile[-1].split(".")[0]) + ","
                 )
                 plotfile.write(str(date) + ",")
                 plotfile.write(str(results["r2"]) + ",")
@@ -146,13 +149,14 @@ def get_results_reg(dirt, date, key):
     plotfile.close()
     return dataname, auclist, loglosslist, acclist
 
+
 if __name__ == "__main__":
     datadirt = "/root/data/"
     runlist = []
     rep = 1
     foldlist = []
     task = task_token
-    outputdir = "./results/"  #'/run/user/yozhuz/automl/results/'
+    outputdir = "./results/"  # '/run/user/yozhuz/automl/results/'
     task = "bt"
     timelist = [900]
     for lf, locfold in enumerate(timelist):
@@ -161,4 +165,3 @@ if __name__ == "__main__":
         # plot_result(title,dataname,loglosslist,key,lf,fig,ax,ik)
         # plt.legend(loc='upper center',ncol=3,fontsize=12,shadow=True)
     # plt.savefig(title+locfold+'.png',dpi=700)
-

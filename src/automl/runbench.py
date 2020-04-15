@@ -1,8 +1,6 @@
 import autosklearn.classification
 import autosklearn.regression
-import sklearn.model_selection
 import sklearn.datasets
-import sklearn.metrics
 
 ###### Read in data
 import pandas as pd
@@ -11,38 +9,22 @@ from scipy.sparse import coo_matrix, vstack
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score, KFold
 from sklearn import preprocessing
-from sklearn.model_selection import KFold
-from sklearn.metrics import roc_auc_score, accuracy_score, log_loss, f1_score
 from sklearn.metrics import (
     r2_score,
     mean_squared_error,
     mean_absolute_error,
     median_absolute_error,
+    roc_auc_score,
+    accuracy_score,
+    log_loss,
+    f1_score,
 )
-from sklearn.model_selection import cross_val_score
-
-##################################################
-import json
-import jsonpickle
-
-from sas7bdat import SAS7BDAT
-import pandas as pd
-import os
-import sys
-import logging
-import optparse
 from utils import *
-
-from DateTime import DateTime
-import time
-import time
-
-
+##################################################
 if not sys.warnoptions:
     import warnings
 
@@ -79,6 +61,7 @@ def metric(task, y_test, y_pred, y_pred_prob):
         metrics['f1'] = f1_score(y_test, y_pred)
         metrics['ACC'] = accuracy_score(y_test, y_pred)
     return metrics
+
 
 def autoprep(dirt, dataset, targetname):
     if targetname:
@@ -407,7 +390,8 @@ def runbenchmark(
     #     print('no csv, convert from sas data to ',
     #           dirt  + dataset+'.csv')
     #load_partition(dirt+'/'+taskname+'/', dataset)
-    if meta[-2:]=='_p': meta =meta[:-2]
+    if meta[-2:] == '_p':
+        meta = meta[:-2]
     print(dirt + "tmp_metadata/" + meta+'_meta.csv')
     try:
         # if there is meta info, read inputs and targets, if not, figure it out.
@@ -445,7 +429,7 @@ def runbenchmark(
             target = 'Claim_Flag'
             index_features = ['Account_ID']
             data, X, y, X_train, y_train, X_test, y_test, feat_type = prep_nopart(
-                prepb, dataset, taskname,dirt, index_features, nreject, [], [], [], target, delim=",", indexdrop=False)
+                prepb, dataset, taskname, dirt, index_features, nreject, [], [], [], target, delim=",", indexdrop=False)
         else:
             print("Error")
             sys.exit()
