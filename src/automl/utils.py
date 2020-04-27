@@ -265,16 +265,6 @@ def prep(prepb, dataset, taskname, dirt, nfeatures, cfeatures, inputs, target, d
         categorical_features = list(set(inputs) & (
             set(data.select_dtypes(exclude=["number"]))-set(index_features)-set([target])))
 
-        # numeric_features = list(
-        #    set(data.select_dtypes(include=["number"]))
-        #    - set(index_features)
-        #    - set([target])
-        # )
-        # categorical_features = list(
-        #    set(data.select_dtypes(exclude=["number"]))
-        #    - set(index_features)
-        #    - set([target])
-        # )
     data = data[data[target].notna()]
     data[categorical_features] = data[categorical_features].astype("str")
     data[numeric_features] = data[numeric_features].astype("float32")

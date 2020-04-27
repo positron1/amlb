@@ -28,7 +28,7 @@ outputdir = "./results/"
 task_token = secrets.token_hex(8)  # generate unique token for this run
 #################################################################################
 runlist = ["14"]  # dataset id #
-rep = 5  # repetition
+rep = 5 # repetition
 metalearning = True  # default for autosklearn
 corelist = [8]
 foldlist = [0]  # 0: single validation, no cross validation

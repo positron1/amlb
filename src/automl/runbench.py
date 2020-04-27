@@ -381,9 +381,12 @@ def runbenchmark(
     outputdir,
     task_token,
 ):
-    mylist = dataset.split("_")
-    myid = mylist[0]
-    print('\n', myid, '\n')
+    print("\n\ndataset\t",dataset)
+    if str(dataset[-2:]) == '_p':
+        myid = dataset[:-2]
+    else:
+        myid = dataset
+    print('\nmyid:\t', myid, '\n')
     feat_type = []
     # check if there is datafile in csv, if not load and convert it to csv,
     # if dataset[-4:] != '.csv':
@@ -399,7 +402,7 @@ def runbenchmark(
             print(dirt + "tmp_metadata/" + meta+'_meta.csv')
             if prepb:
                 nfeatures, cfeatures, target = meta_info(dirt, meta, prepb)
-            # get data to train/test
+                # get data to train/test
                 data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
                     prepb,
                     dataset,
@@ -412,7 +415,7 @@ def runbenchmark(
                     indexdrop=False,)
             else:
                 inputs, target = meta_info(dirt, meta, prepb)
-            # get data to train/test
+                # get data to train/test
                 data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
                     prepb,
                     dataset,
