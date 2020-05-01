@@ -1,6 +1,8 @@
 import autosklearn.classification
 import autosklearn.regression
 import sklearn.datasets
+from tpot import TPOTClassifier
+from tpot import TPOTRegressor
 
 ###### Read in data
 import pandas as pd
@@ -249,7 +251,7 @@ def get_run_info(
     runs["results"] = dict(metrics)
     runs["metalearning"] = metalearning
     print(runs)
-    # jsonf = json.dumps(jsonpickle.encode(runs))
+    #    tpot = json.dumps(jsonpickle.encode(runs))
     jsonf = json.dumps(runs)
     f = open(
         outputdir
@@ -308,39 +310,59 @@ def autoframe(
     shape = []
     shape = [X_train.shape, y_train.shape, X_test.shape, y_test.shape]
     start = time.time()
-    if task == "bt" or task == "bre":
-        automl = autoclf(
-            metalearning,
-            framework,
-            feat_type,
-            timeforjob,
-            foldn,
-            ncore,
-            X_train,
-            y_train,
-            fitmetrics,
-        )
-        y_pred_prob = automl.predict_proba(X_test)
-    elif task == "it":
-        automl = autoreg(
-            metalearning,
-            framework,
-            feat_type,
-            timeforjob,
-            foldn,
-            ncore,
-            X_train,
-            y_train,
-            fitmetrics,
-        )
-        y_pred_prob = []
-    ###################################################################
-    y_pred = automl.predict(X_test)
+    if framework == 'autosklearn':
+        if task == "bt" or task == "bre":
+            automl = autoclf(
+                metalearning,
+                framework,
+                feat_type,
+                timeforjob,
+                foldn,
+                ncore,
+                X_train,
+                y_train,
+                fitmetrics,
+            )
+            y_pred_prob = automl.predict_proba(X_test)
+        elif task == "it":
+            automl = autoreg(
+                metalearning,
+                framework,
+                feat_type,
+                timeforjob,
+                foldn,
+                ncore,
+                X_train,
+                y_train,
+                fitmetrics,
+            )
+            y_pred_prob = []
+        y_pred = automl.predict(X_test)
+
+        ###################################################################
+    elif framework == 'tpot':
+        if task == "bt" or task == "bre":
+            tpot = TPOTClassifier(
+                max_time_mins=10, max_eval_time_mins=0.04, verbosity=2)
+            tpot.fit(X_train, y_train)
+            y_pred_prob = tpot.predict_prob(X_test)
+        elif task == "it":
+            tpot = TPOTRegressor(
+                generations=5, population_size=50, verbosity=2)
+            y_pred_prob = []
+
+        y_pred = tpot.predict(X_test)
+
+    print(tpot.score(X_test, y_test))
+
     end = time.time()
     timespend = float(end - start)
+    ###################################################################
+    ###################################################################
     save_prob(timeforjob, dataset, resultsfile,
               foldn, y_pred, y_pred_prob, outputdir)
     metrics = metric(task, y_test, y_pred, y_pred_prob)
+    print(dataset)
     get_run_info(
         metalearning,
         automl,
@@ -359,8 +381,51 @@ def autoframe(
     )
 
 
-def get_train_test(myid, X_train, y_train, X_test, y_test):
-    print(myid, type(X_train), y_train, X_test, y_test, feat_type)
+# def get_train_test(myid, X_train, y_train, X_test, y_test):
+#     print(myid, type(X_train), y_train, X_test, y_test, feat_type)
+
+
+def shortname(dirt, dataset, meta):
+    print("\n\ndataset\t", dataset)
+    if str(dataset[-2:]) == '_p':
+        myid = dataset[:-2]
+    else:
+        myid = dataset
+    print('\nmyid:\t', myid, '\n')
+
+    if meta[-2:] == '_p':
+        meta = meta[:-2]
+    print(dirt + "tmp_metadata/" + meta+'_meta.csv')
+    return dataset, meta, myid
+
+
+def preprocessing(dirt, meta, prepb, dataset, taskname):
+        # if there is meta info, read inputs and targets, if not, figure it out.
+    if os.path.exists(dirt+"/tmp_metadata/" + meta+'_meta.csv'):
+        print("\nMETA data file at:\t" + "tmp_metadata/" + meta+'_meta.csv')
+        if prepb:
+            nfeatures, cfeatures, target = meta_info(dirt, meta, prepb)
+            inputs = nfeatures+cfeatures
+        else:
+            inputs, target = meta_info(dirt, meta, prepb)
+            nfeatures = []
+            cfeatures = []
+
+        data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
+            prepb,
+            dataset,
+            taskname,
+            dirt,
+            nfeatures,
+            cfeatures,
+            inputs,
+            target,
+            delim=",",
+            indexdrop=False,)
+    else:
+        print("Error")
+        sys.exit()
+    return data, X, y, X_train, y_train, X_test, y_test, feat_type
 
 
 def runbenchmark(
@@ -381,61 +446,12 @@ def runbenchmark(
     outputdir,
     task_token,
 ):
-    print("\n\ndataset\t",dataset)
-    if str(dataset[-2:]) == '_p':
-        myid = dataset[:-2]
-    else:
-        myid = dataset
-    print('\nmyid:\t', myid, '\n')
+    dataset, meta, myid = shortname(dirt, dataset, meta)
     feat_type = []
-    # check if there is datafile in csv, if not load and convert it to csv,
-    # if dataset[-4:] != '.csv':
-    #     print('no csv, convert from sas data to ',
-    #           dirt  + dataset+'.csv')
-    #load_partition(dirt+'/'+taskname+'/', dataset)
-    if meta[-2:] == '_p':
-        meta = meta[:-2]
-    print(dirt + "tmp_metadata/" + meta+'_meta.csv')
+
     try:
-        # if there is meta info, read inputs and targets, if not, figure it out.
-        if os.path.exists(dirt+"/tmp_metadata/" + meta+'_meta.csv'):
-            print(dirt + "tmp_metadata/" + meta+'_meta.csv')
-            if prepb:
-                nfeatures, cfeatures, target = meta_info(dirt, meta, prepb)
-                # get data to train/test
-                data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
-                    prepb,
-                    dataset,
-                    taskname,
-                    dirt,
-                    nfeatures,
-                    cfeatures,
-                    target,
-                    delim=",",
-                    indexdrop=False,)
-            else:
-                inputs, target = meta_info(dirt, meta, prepb)
-                # get data to train/test
-                data, X, y, X_train, y_train, X_test, y_test, feat_type = prep(
-                    prepb,
-                    dataset,
-                    taskname,
-                    dirt,
-                    [],
-                    [],
-                    inputs,
-                    target,
-                    delim=",",
-                    indexdrop=False,)
-        elif myid == 'id16':
-            nreject = ['Blind_Make', 'Blind_Model', 'Blind_Submodel']
-            target = 'Claim_Flag'
-            index_features = ['Account_ID']
-            data, X, y, X_train, y_train, X_test, y_test, feat_type = prep_nopart(
-                prepb, dataset, taskname, dirt, index_features, nreject, [], [], [], target, delim=",", indexdrop=False)
-        else:
-            print("Error")
-            sys.exit()
+        data, X, y, X_train, y_train, X_test, y_test, feat_type = preprocessing(
+            dirt, meta, prepb, dataset, taskname)
         for timeforjob in timelist:
             for ncore in corelist:
                 for foldn in foldlist:
@@ -500,7 +516,6 @@ def runbenchmark(
                             fitmetrics,
                             outputdir,
                         )
-                        # autoframe(            prepb,feat_type,resultsfile,X_train.copy(), y_train.copy(),X_test.copy(), y_test.copy(),dataset,framework,foldn,ncore,timeforjob,dirt,meta,fitmetrics)
 
                         print(
                             "Finishing:\t",

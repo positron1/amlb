@@ -43,8 +43,8 @@ def get_results_clf(dirt, date, key):
             col = True
             for k, v in outjson.items():
                 if k == "data":
-                    Datasetname = sep.join(v.split("_")[1:-1]) + "_p"
-                    data_id = v.split("_")[0]
+                    Datasetname = v  # sep.join(v.split("_")[1:-1]) + "_p"
+                    data_id = v
                 if k == "shape":
                     shapetrain = v["ytrain"]
                     shapetest = v["ytest"]
@@ -111,8 +111,10 @@ def get_results_reg(dirt, date, key):
             col = True
             for k, v in outjson.items():
                 if k == "data":
+                    #Datasetname = sep.join(v.split("_")[1:-1]) + "_p"
+                    #data_id = v.split("_")[0]
                     Datasetname = sep.join(v.split("_")[1:-1]) + "_p"
-                    data_id = v.split("_")[0]
+                    data_id = v
                 if k == "shape":
                     shapetrain = v["ytrain"]
                     shapetest = v["ytest"]
