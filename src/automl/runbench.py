@@ -218,7 +218,7 @@ def autoclf(
 
 def get_run_info(
     metalearning,
-    automl,
+    # automl,
     dataset,
     shape,
     timeforjob,
@@ -231,6 +231,7 @@ def get_run_info(
     timespend,
     prepb,
     outputdir,
+    target,
 ):
     runs = dict()
     runs["data"] = str(dataset)
@@ -250,6 +251,7 @@ def get_run_info(
     runs["timespend"] = timespend
     runs["results"] = dict(metrics)
     runs["metalearning"] = metalearning
+    runs["targetname"] = target
     print(runs)
     #    tpot = json.dumps(jsonpickle.encode(runs))
     jsonf = json.dumps(runs)
@@ -263,7 +265,7 @@ def get_run_info(
         + ".json",
         "w",
     )
-    savemodel(timeforjob, resultsfile, automl)
+    #savemodel(timeforjob, resultsfile, automl)
     f.write(jsonf)
     f.close()
 
@@ -305,6 +307,7 @@ def autoframe(
     meta,
     fitmetrics,
     outputdir,
+    target,
 ):
 
     shape = []
@@ -345,7 +348,7 @@ def autoframe(
             tpot = TPOTClassifier(
                 max_time_mins=10, max_eval_time_mins=0.04, verbosity=2)
             tpot.fit(X_train, y_train)
-            y_pred_prob = tpot.predict_prob(X_test)
+            y_pred_prob = tpot.predict_proba(X_test)
         elif task == "it":
             tpot = TPOTRegressor(
                 generations=5, population_size=50, verbosity=2)
@@ -378,6 +381,7 @@ def autoframe(
         timespend,
         prepb,
         outputdir,
+        target,
     )
 
 
@@ -425,7 +429,7 @@ def preprocessing(dirt, meta, prepb, dataset, taskname):
     else:
         print("Error")
         sys.exit()
-    return data, X, y, X_train, y_train, X_test, y_test, feat_type
+    return data, X, y, X_train, y_train, X_test, y_test, feat_type, target
 
 
 def runbenchmark(
@@ -450,7 +454,7 @@ def runbenchmark(
     feat_type = []
 
     try:
-        data, X, y, X_train, y_train, X_test, y_test, feat_type = preprocessing(
+        data, X, y, X_train, y_train, X_test, y_test, feat_type, target = preprocessing(
             dirt, meta, prepb, dataset, taskname)
         for timeforjob in timelist:
             for ncore in corelist:
@@ -515,6 +519,7 @@ def runbenchmark(
                             meta,
                             fitmetrics,
                             outputdir,
+                            target,
                         )
 
                         print(

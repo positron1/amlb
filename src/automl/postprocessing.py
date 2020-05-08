@@ -12,12 +12,12 @@ def check(Datasetname, shapetrain, shapetest, para, timespend, results):
     return True
 
 
-def get_results_clf(dirt, date, key):
+def get_results_clf(dirt, date, task_token):
     # Create target Directory if don't exist
     if not os.path.exists(dirt):
         os.mkdir(dirt)
         print("Directory ", dirt,  " Newly Created ")
-    plotfile = open(dirt + key + "_summary.csv", "w")
+    plotfile = open(dirt + task_token + "_summary.csv", "w")
     plotfile.write(
         "Dataset_name,data_id,Folds,Run_id,date,Logloss,AUC,f1,ACC,Time_limit,Timespend,Cores,Fitmetric,Framework,train_size,test_size\n"
     )
@@ -28,7 +28,7 @@ def get_results_clf(dirt, date, key):
         auclist = []
         loglosslist = []
         acclist = []
-        datalist = glob.glob(dirt + "result*" + key + "*")
+        datalist = glob.glob(dirt + "result*" + task_token + "*")
         print(datalist)
         for dataresult in datalist:
             getname = True
@@ -54,6 +54,8 @@ def get_results_clf(dirt, date, key):
                     timespend = v
                 if k == "results":
                     results = v
+                if k == "targetname":
+                    target = v
                 print(k, v)
             if check(Datasetname, shapetrain, shapetest, para, timespend, results):
                 plotfile.write(str(Datasetname) + ",")
@@ -83,9 +85,72 @@ def get_results_clf(dirt, date, key):
     # output_json = json.load(open('C://Users/yozhuz/Documents/atoml/automl/results/1800s/id0_uci_bank_marketing_p.sas7bdat2019Aug3119815autosklearn.json'))
 
 
-def get_results_reg(dirt, date, key):
-    # print(dirt,key,key[2:4])
-    plotfile = open(dirt + key + "_summary.csv", "w")
+def compile_results(dirt, date, task_token, taskname):
+    # Create target Directory if don't exist
+    if not os.path.exists(dirt):
+        os.mkdir(dirt)
+        print("Directory ", dirt,  " Newly Created ")
+    bm_results = open(dirt + task_token + "_benchmark.csv", "w")
+    bm_results.write(
+        "ASE,BEST,MODEL,DATASET,DATETIME,DURATION,ERROR,MCLL,MLPA,FOLDER,MODELING,MODE,SAMPLING_ENABLED,SUITE,SUITE_TYPE,TAG,TARGET,NOTE\n")
+    dataname = []
+    auclist = []
+    loglosslist = []
+    acclist = []
+    datalist = glob.glob(dirt + "result*" + task_token + "*")
+    print(datalist)
+    for dataresult in datalist:
+        getname = True
+        gettime = True
+        temp = []
+        resultfile = dataresult.split("_")
+        print(resultfile)
+        outjson = json.load(open(dataresult))
+        resultdf = pd.DataFrame()
+        print(outjson)
+        col = True
+        for k, v in outjson.items():
+            if k == "data":
+                Datasetname = v  # sep.join(v.split("_")[1:-1]) + "_p"
+                data_id = v
+            if k == "shape":
+                shapetrain = v["ytrain"]
+                shapetest = v["ytest"]
+            if k == "para":
+                para = v
+            if k == "timespend":
+                timespend = v
+            if k == "results":
+                results = v
+            if k == "targetname":
+                target = v
+            print(k, v)
+        if check(Datasetname, shapetrain, shapetest, para, timespend, results):
+            # "ASE,BEST_MODEL,DATASET,DATETIME,DURATION,ERROR,MCLL,MLPA,FOLDER,MODELING,MODE,SAMPLING_ENABLED,SUITE,SUITE_TYPE,TAG,TARGET,NOTE\n")
+            bm_results.write(",,")
+            bm_results.write(Datasetname+",")
+            bm_results.write(str(date) + ",")
+            bm_results.write(str(timespend) + ",")
+            bm_results.write(",")
+            bm_results.write(str(results["logloss"]) + ",")  # MCLL
+            bm_results.write(",")  # write to the udrive di
+            bm_results.write(",")
+            bm_results.write(",")
+            bm_results.write(str(taskname)+",")
+            bm_results.write(",")
+            bm_results.write(str(para["framework"])+"_" +
+                             str(para["fitmetrics"])+"_"+str(date)+",")
+            try:
+                bm_results.write(str(target)+",")
+            except:
+                continue
+            bm_results.write(str(task_token)+"\n")
+    bm_results.close
+
+
+def get_results_reg(dirt, date, task_token):
+    # print(dirt,task_token,task_token[2:4])
+    plotfile = open(dirt + task_token + "_summary.csv", "w")
     plotfile.write(
         "Dataset_name,data_id,Folds,Run_id,date,R2,MSE,MAE1,MAE2,Time_limit,Timespend,Cores,Fitmetric,Framework,train_size,test_size\n"
     )
@@ -96,7 +161,7 @@ def get_results_reg(dirt, date, key):
         auclist = []
         loglosslist = []
         acclist = []
-        datalist = glob.glob(dirt + "result*" + key + "*json")
+        datalist = glob.glob(dirt + "result*" + task_token + "*json")
         print(datalist)
         for dataresult in datalist:
             getname = True
@@ -111,8 +176,8 @@ def get_results_reg(dirt, date, key):
             col = True
             for k, v in outjson.items():
                 if k == "data":
-                    #Datasetname = sep.join(v.split("_")[1:-1]) + "_p"
-                    #data_id = v.split("_")[0]
+                    # Datasetname = sep.join(v.split("_")[1:-1]) + "_p"
+                    # data_id = v.split("_")[0]
                     Datasetname = sep.join(v.split("_")[1:-1]) + "_p"
                     data_id = v
                 if k == "shape":
@@ -164,6 +229,6 @@ if __name__ == "__main__":
     for lf, locfold in enumerate(timelist):
         ldirt = dirt + locfold + "s/"
         dataname, auclist, loglosslist, acclist = get_results_reg(ldirt, task)
-        # plot_result(title,dataname,loglosslist,key,lf,fig,ax,ik)
+        # plot_result(title,dataname,loglosslist,task_token,lf,fig,ax,ik)
         # plt.legend(loc='upper center',ncol=3,fontsize=12,shadow=True)
     # plt.savefig(title+locfold+'.png',dpi=700)

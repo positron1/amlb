@@ -29,7 +29,7 @@ outputdir = "./results/"
 task_token = secrets.token_hex(8)  # generate unique token for this run
 #################################################################################
 runlist = ["14"]  # dataset id #
-rep = 1 # repetition
+rep = 1  # repetition
 metalearning = True  # default for autosklearn
 corelist = [1]
 foldlist = [0]  # 0: single validation, no cross validation
@@ -93,7 +93,9 @@ for lf, locfold in enumerate(timelist):
     dataname, auclist, loglosslist, acclist = get_results_clf(
         ldirt, timestamp, task_token
     )
-
+    dataname, auclist, loglosslist, acclist = compile_results(
+        ldirt, timestamp, task_token, taskname
+    )
 if logmode:
     sys.stdout = orig_stdout
     logfile.close()
