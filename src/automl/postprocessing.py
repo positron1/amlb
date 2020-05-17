@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import glob
 import os
 import json
+from datetime import datetime
 
 
 def check(Datasetname, shapetrain, shapetest, para, timespend, results):
@@ -92,7 +93,7 @@ def compile_results(dirt, date, task_token, taskname):
         print("Directory ", dirt,  " Newly Created ")
     bm_results = open(dirt + task_token + "_benchmark.csv", "w")
     bm_results.write(
-        "ASE,BEST,MODEL,DATASET,DATETIME,DURATION,ERROR,MCLL,MLPA,FOLDER,MODELING,MODE,SAMPLING_ENABLED,SUITE,SUITE_TYPE,TAG,TARGET,NOTE\n")
+        "ASE,BEST_MODEL,DATASET,DATETIME,DURATION,ERROR,MCLL,MLPA_FOLDER,MODELING_MODE,SAMPLING_ENABLED,SUITE,SUITE_TYPE,TAG,TARGET,NOTE\n")
     dataname = []
     auclist = []
     loglosslist = []
@@ -126,22 +127,24 @@ def compile_results(dirt, date, task_token, taskname):
                 target = v
             print(k, v)
         if check(Datasetname, shapetrain, shapetest, para, timespend, results):
-            # "ASE,BEST_MODEL,DATASET,DATETIME,DURATION,ERROR,MCLL,MLPA,FOLDER,MODELING,MODE,SAMPLING_ENABLED,SUITE,SUITE_TYPE,TAG,TARGET,NOTE\n")
-            bm_results.write(",,")
-            bm_results.write(Datasetname+",")
-            bm_results.write(str(date) + ",")
-            bm_results.write(str(timespend) + ",")
-            bm_results.write(",")
+            #        "ASE,BEST_MODEL,DATASET,DATETIME,DURATION,ERROR,MCLL,MLPA_FOLDER,MODELING_MODE,SAMPLING_ENABLED,SUITE,SUITE_TYPE,TAG,TARGET,NOTE\n")
+
+            bm_results.write(",,")  # "ASE,BEST_MODEL,
+            bm_results.write(Datasetname+",")  # DATASET,
+            date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            bm_results.write(str(date) + ",")  # DATETIME,
+            bm_results.write(str(timespend) + ",")  # DURATION
+            bm_results.write(",")  # ,ERROR,
             bm_results.write(str(results["logloss"]) + ",")  # MCLL
-            bm_results.write(",")  # write to the udrive di
-            bm_results.write(",")
-            bm_results.write(",")
-            bm_results.write(str(taskname)+",")
-            bm_results.write(",")
-            bm_results.write(str(para["framework"])+"_" +
+            bm_results.write(",")  # MLPA_FOLDER,
+            bm_results.write(",")  # MODELING_MODE
+            bm_results.write(",")  # SAMPLING_ENABLED
+            bm_results.write(str(taskname)+",")  # SUITE
+            bm_results.write(",")  # SUITE_TYPE
+            bm_results.write(str(para["framework"])+"_" +  # TAG
                              str(para["fitmetrics"])+"_"+str(date)+",")
             try:
-                bm_results.write(str(target)+",")
+                bm_results.write(str(target)+",")  # TARGET
             except:
                 continue
             bm_results.write(str(task_token)+"\n")

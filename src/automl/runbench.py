@@ -276,7 +276,7 @@ def save_prob(timeforjob, dataset, resultsfile, foldn, y_pred, y_pred_prob, outp
         + "/"
         + str(timeforjob)
         + "s/"
-        + dataset
+        #+ dataset
         + resultsfile
         + str(foldn)
         + "fresult.csv",
@@ -346,7 +346,7 @@ def autoframe(
     elif framework == 'tpot':
         if task == "bt" or task == "bre":
             tpot = TPOTClassifier(
-                max_time_mins=10, max_eval_time_mins=0.04, verbosity=2)
+                max_time_mins=int(timeforjob/60), max_eval_time_mins=float(timeforjob/100), n_jobs=ncore, verbosity=2)
             tpot.fit(X_train, y_train)
             y_pred_prob = tpot.predict_proba(X_test)
         elif task == "it":
@@ -355,8 +355,7 @@ def autoframe(
             y_pred_prob = []
 
         y_pred = tpot.predict(X_test)
-
-    print(tpot.score(X_test, y_test))
+        print(tpot.score(X_test, y_test))
 
     end = time.time()
     timespend = float(end - start)
@@ -368,7 +367,7 @@ def autoframe(
     print(dataset)
     get_run_info(
         metalearning,
-        automl,
+        #        automl,
         dataset,
         shape,
         timeforjob,

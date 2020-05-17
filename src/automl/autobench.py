@@ -21,7 +21,10 @@ if not sys.warnoptions:
 ###             Inputs                                  #
 #################################################################################
 framework = "autosklearn"
+metalearning = True  # default for autosklearn
+
 framework = "tpot"
+metalearning = False
 task = "bt"  # interval target task
 prep = False  # Data preprocessing with meta data
 dirt = "/root/data/"  # dataset directory
@@ -29,11 +32,10 @@ outputdir = "./results/"
 task_token = secrets.token_hex(8)  # generate unique token for this run
 #################################################################################
 runlist = ["14"]  # dataset id #
-rep = 1  # repetition
-metalearning = True  # default for autosklearn
+rep = 5  # repetition
 corelist = [1]
 foldlist = [0]  # 0: single validation, no cross validation
-timelist = [100]  # time limit for training in seconds
+timelist = [900]  # time limit for training in seconds
 #################################################################################
 # Initial setup
 #################################################################################
@@ -93,7 +95,7 @@ for lf, locfold in enumerate(timelist):
     dataname, auclist, loglosslist, acclist = get_results_clf(
         ldirt, timestamp, task_token
     )
-    dataname, auclist, loglosslist, acclist = compile_results(
+    compile_results(
         ldirt, timestamp, task_token, taskname
     )
 if logmode:
