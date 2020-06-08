@@ -151,6 +151,18 @@ def compile_results(dirt, date, task_token, taskname):
     bm_results.close
 
 
+def benchmark_summary(dirt, task_token='fcf92eb58214f5e1'):
+    udriveyz = '/net/ge.unx.sas.com/vol/vol110/u11/yozhuz/'
+
+    df = pd.read_csv(dirt + task_token + "_benchmark.csv")
+    print('benchmark_summary')
+    print(df.describe())
+    dfsum = df.groupby("DATASET").mean()
+    print(dfsum.columns.values)
+    dfsum.to_csv(udriveyz+'/data/auto_benchmark_results/' +
+                 task_token + "_sumbenchmark.csv", encoding='utf-8')
+
+
 def get_results_reg(dirt, date, task_token):
     # print(dirt,task_token,task_token[2:4])
     plotfile = open(dirt + task_token + "_summary.csv", "w")

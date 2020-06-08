@@ -16,6 +16,8 @@ if not sys.warnoptions:
     import warnings
 
     warnings.simplefilter("ignore")
+import os
+
 
 ##################################################################################
 ###             Inputs                                  #
@@ -32,10 +34,10 @@ outputdir = "./results/"
 task_token = secrets.token_hex(8)  # generate unique token for this run
 #################################################################################
 runlist = ["14"]  # dataset id #
-rep = 5  # repetition
+rep = 2  # repetition
 corelist = [1]
 foldlist = [0]  # 0: single validation, no cross validation
-timelist = [900]  # time limit for training in seconds
+timelist = [3600]  # time limit for training in seconds
 #################################################################################
 # Initial setup
 #################################################################################
