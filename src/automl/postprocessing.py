@@ -1,8 +1,6 @@
 import pandas as pd
 import glob
 import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
 import glob
 import os
 import json
@@ -91,7 +89,8 @@ def compile_results(dirt, date, task_token, taskname):
     if not os.path.exists(dirt):
         os.mkdir(dirt)
         print("Directory ", dirt,  " Newly Created ")
-    bm_results = open(dirt + task_token + "_benchmark.csv", "w")
+    osbenchmarkfile = dirt + '/opensource_benchmark' + task_token + ".csv"
+    bm_results = open(osbenchmarkfile, "w")
     bm_results.write(
         "ASE,BEST_MODEL,DATASET,DATETIME,DURATION,ERROR,MCLL,MLPA_FOLDER,MODELING_MODE,SAMPLING_ENABLED,SUITE,SUITE_TYPE,TAG,TARGET,NOTE\n")
     dataname = []
@@ -149,18 +148,18 @@ def compile_results(dirt, date, task_token, taskname):
                 continue
             bm_results.write(str(task_token)+"\n")
     bm_results.close
+    return osbenchmarkfile
 
+# def benchmark_summary(dirt, task_token='fcf92eb58214f5e1'):
+#     udriveyz = '/net/ge.unx.sas.com/vol/vol110/u11/yozhuz/'
 
-def benchmark_summary(dirt, task_token='fcf92eb58214f5e1'):
-    udriveyz = '/net/ge.unx.sas.com/vol/vol110/u11/yozhuz/'
-
-    df = pd.read_csv(dirt + task_token + "_benchmark.csv")
-    print('benchmark_summary')
-    print(df.describe())
-    dfsum = df.groupby("DATASET").mean()
-    print(dfsum.columns.values)
-    dfsum.to_csv(udriveyz+'/data/auto_benchmark_results/' +
-                 task_token + "_sumbenchmark.csv", encoding='utf-8')
+#     df = pd.read_csv(dirt + task_token + "_benchmark.csv")
+#     print('benchmark_summary')
+#     print(df.describe())
+#     dfsum = df.groupby("DATASET").mean()
+#     print(dfsum.columns.values)
+#     dfsum.to_csv(udriveyz+'/data/auto_benchmark_results/opensource_benchmark_' +
+#                  task_token + ".csv", encoding='utf-8')
 
 
 def get_results_reg(dirt, date, task_token):

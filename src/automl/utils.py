@@ -71,7 +71,25 @@ def unpart(dirt, dataset, index, target):
     # Rename index to
 
     return train, test """
+def check_dataset(dataname, csvdatalist, sasdatalist, metalist):
+    """ Check if metadata exists
 
+    Args:
+        dataname ([string]): [dataset name]
+        csvdatalist ([list]): [list of dataset names in csv format]
+        sasdatalist ([list]): [list of dataset names in sas7bdat format]
+        metalist ([list]): [list metadata files]
+
+    Returns:
+        [str]: [dataset name and its metadata name]
+    """
+    print(dataname)
+    dataset = dataname
+    if dataset in metalist or dataset[:-2] in metalist:
+        meta = dataset
+    else:
+        meta = '0'
+    return dataset, meta
 
 def get_id(metalist):
     idlist = []
@@ -330,15 +348,6 @@ def prep(prepb, dataset, taskname, dirt, nfeatures, cfeatures, inputs, target, d
     #    ##########################################################
     return data, X, y, X_train, y_train, X_test, y_test, feat_type
 
-
-def check_dataset(dataname, csvdatalist, sasdatalist, metalist):
-    print(dataname)
-    dataset = dataname
-    if dataset in metalist or dataset[:-2] in metalist:
-        meta = dataset
-    else:
-        meta = '0'
-    return dataset, meta
 
 
 def check_id(ind, csvdataid, csvdatalist, sasdataid, sasdatalist, metadataid, metalist):

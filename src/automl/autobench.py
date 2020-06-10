@@ -6,6 +6,7 @@ from utils import *
 from postprocessing import *
 from runbench import *
 from sklearn.metrics import roc_auc_score, accuracy_score
+from util_lib import *
 
 ##################################################################################
 logmode = False
@@ -19,14 +20,16 @@ if not sys.warnoptions:
 import os
 
 
+ssh = createSSHClient(server, port, user, password)
+scp = SCPClient(ssh.get_transport())
 ##################################################################################
 ###             Inputs                                  #
 #################################################################################
-framework = "autosklearn"
-metalearning = True  # default for autosklearn
 
 framework = "tpot"
 metalearning = False
+framework = "autosklearn"
+metalearning = True  # default for autosklearn
 task = "bt"  # interval target task
 prep = False  # Data preprocessing with meta data
 dirt = "/root/data/"  # dataset directory
@@ -92,14 +95,21 @@ for dataname in runnamelist:
 #################################################################################
 # Summary of results
 #################################################################################
+
+
+
+
 for lf, locfold in enumerate(timelist):
     ldirt = "results/" + str(locfold) + "s/"
     dataname, auclist, loglosslist, acclist = get_results_clf(
         ldirt, timestamp, task_token
     )
-    compile_results(
+    benchmark_results = compile_results(
         ldirt, timestamp, task_token, taskname
     )
+    scp.put(benchmark_results,'/nfs/rdcx200/ifs/EM_data/All_Users/ramyne/dataForBenchmarking/auto_benchmark_results/opensource_benchmark_'
+            +task_token+'.csv')
+
 if logmode:
     sys.stdout = orig_stdout
     logfile.close()
