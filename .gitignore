@@ -24,6 +24,7 @@
 /saspackage/build/
 
 # Some common file extensions we should ignore
+/src/**/*pyc
 /src/**/*~
 /src/**/*.swp
 /src/**/*.bak

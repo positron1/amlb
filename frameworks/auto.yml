@@ -1,4 +1,4 @@
-name: sklearn
+name: auto 
 channels:
   - conda-forge
   - defaults
@@ -326,5 +326,5 @@ dependencies:
     - typing==3.7.4
     - xgboost==0.90
     - xmltodict==0.12.0
-prefix: /root/anaconda3/envs/sklearn
+prefix: /home/yozhuz/miniconda3/envs/auto
 
