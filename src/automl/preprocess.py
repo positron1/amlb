@@ -1,23 +1,39 @@
 
-
+import numpy as np
+import pandas as pd
 import sklearn.metrics
 import glob
+from sas7bdat import SAS7BDAT
+
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
+from sklearn.preprocessing import StandardScaler
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
+import autosklearn.classification
+
+from sklearn.compose import ColumnTransformer
+import time
+
+from DateTime import DateTime
+import secrets
 
 class benchmark_task():
 
-    def __init__(self,dirt,task_type,timelimt,foldn,rep):
+    def __init__(self,dirt,task_type,timelimit,foldn,rep):
         self.path = dirt
-        self.taskname,self.fitmetrics = get_task_fitmetrics(task_type)
-        self.logfile = logging()
-        self.csvlist = get_datalist_csv()
-        self.saslist = get_datalist_sas()
-        self.metalist = get_metadatalist()
-        self.timestamp = get_time()
-        self.timelimit = timelimt
+        self.task_type = task_type
+        self.timelimit = timelimit
         self.foldn = foldn
-        self.task_token = secrets.token_hex(8)  # generate unique token for this task
+        self.rep = rep
+        self.task_token = secrets.token_hex(8)
+        self.get_datalist_csv()
+        self.get_datalist_sas()
+        self.get_metadatalist()
+        self.get_time()
+        self.get_task_fitmetrics()
+        self.logging()# generate unique token for this task
 
-    def get_task_fitmetrics(self,task_type):
+    def get_task_fitmetrics(self,fitmetrics=False):
         """ Get Task Type and fit metrics
 
         Args:
@@ -27,19 +43,19 @@ class benchmark_task():
             [string,string]: [taskname,fimetrics]
         """
 
-        if task_type == "bt":
-            taskname = 'binaryTarget'
+        if self.task_type == "bt":
+            self.taskname = "binaryTarget"
             if not fitmetrics:
                 fitmetrics = autosklearn.metrics.log_loss
-        elif task_type == "bre":
-            taskname = 'binaryRareEvent'
+        elif self.task_type == "bre":
+            self.taskname = "binaryRareEvent"
             if not fitmetrics:
                 fitmetrics = autosklearn.metrics.log_loss
-        elif task_type == "it":
-            taskname = 'intervalTarget'
+        elif self.task_type == "it":
+            self.taskname = "intervalTarget"
             if not fitmetrics:
                 fitmetrics = autosklearn.metrics.mean_squared_error
-        return taskname,fitmetrics
+        self.fitmetrics = fitmetrics
 
     def get_datalist_csv(self):
         """ Get Data Files in CSV Formats
@@ -49,7 +65,7 @@ class benchmark_task():
         """
         csvdatalist = glob.glob(self.path + self.taskname+"/*.csv")
         csvdatalist = [i[:-4] for i in csvdatalist]
-        return sorted(csvdatalist)
+        self.csvlist = sorted(csvdatalist)
 
 
     def get_datalist_sas(self):
@@ -60,7 +76,7 @@ class benchmark_task():
         """
         sasdatalist = glob.glob(self.path + self.taskname+"/*sas7bdat")
         sasdatalist = [i[:-9] for i in sasdatalist]
-        return sorted(sasdatalist)
+        self.saslist = sorted(sasdatalist)
 
     def get_metadatalist(self):
         """ Get Metadata file
@@ -70,7 +86,7 @@ class benchmark_task():
         """
         metalist = glob.glob(self.path + "/tmp_metadata/*meta.csv")
         metalist = [i[:-9] for i in metalist]
-        return sorted(metalist)
+        self.metalist =  sorted(metalist)
 
     def get_time(self):
         """ Get timestamp at the initiation of task
@@ -79,7 +95,7 @@ class benchmark_task():
             [string]: [time at task initiation]
         """
         current_time = DateTime(time.time(), "US/Eastern")
-        timestamp = (
+        self.timestamp = (
             str(current_time.year())
             + str(current_time.aMonth())
             + str(current_time.day())
@@ -87,7 +103,6 @@ class benchmark_task():
             + str(current_time.minute())
             + str(time.time())[:2]
         )
-        return timestamp
 
     def logging(self):
         """ Logging information
@@ -99,29 +114,15 @@ class benchmark_task():
         print("csv datalist\n", self.csvlist)
         print("sas datalist\n", self.saslist)
         print("metadatalit\n", self.metalist)
-
-        return "results/log_"
-            + "dataset_"
-            + str(self.timelimt)
-            + "s_"
-            + str(self.foldn)
-            + "f_rep"
-            + str(self.rep)
-            + "_task_"
-            + str(self.task_token)
-            + ".txt")
-
-
+        self.logfile = "results/log_" + "dataset_" + str(self.timelimit) + "s_" + str(self.foldn) + "f_rep" + str(self.rep) + "_task_" + str(self.task_token)+ ".txt"
 class task_preprocess(benchmark_task):
     def __init__(self,dirt,dataname,metalist,prepb,task_type,timelimit,foldn,rep):
         self.dataname = dataname
         self.path = dirt
         self.metalist = metalist
         self.prepb = prepb
-        super().__init__(dirt,task_type,timelimt,foldn,rep)
+        super().__init__(dirt,task_type,timelimit,foldn,rep)
         self.check_metadata()
-
-
 
     def check_metadata(self):
         """ Check if metadata exists
@@ -146,9 +147,9 @@ class task_preprocess(benchmark_task):
         """
         print("\n\ndataset\t", self.dataname)
         if str(self.dataname[-2:]) == '_p':
-            myid = dataname[:-2]
+            myid = self.dataname[:-2]
         else:
-            myid = dataname
+            myid = self.dataname
         print('\nmyid:\t', myid, '\n')
 
         if self.meta[-2:] == '_p':
@@ -167,7 +168,7 @@ class task_preprocess(benchmark_task):
         target = dmeta[dmeta["ROLE"] == "TARGET"]
         targetname = target["UNAME"].tolist()[0]
         inputs = dmeta[dmeta["ROLE"] == "INPUT"]
-        if prepb:
+        if self.prepb:
             cinputs = inputs[inputs["type"] == "C"]
             self.cinputname = cinputs["UNAME"].tolist()
             ninputs = inputs[inputs["type"] == "N"]
@@ -181,28 +182,38 @@ class task_preprocess(benchmark_task):
         print("meta_info: inputs\n", inputs)
         self.target = targetname
 
-
     def data_prep(self, delim=",", indexdrop=False):
             # if there is meta info, read inputs and targets, if not, figure it out.
         if len(self.meta)>0:
             self.get_shortname()
             print("\nMETA data file at:\t" + "tmp_metadata/" + self.meta+'_meta.csv')
             self.get_meta_info()
-
             data = self.read_data_csv()
-            data = self.data_index(data)
-            self.data_feature_target(data)
-            data, X, y, X_train, y_train, X_test, y_test, feat_type = self.data_transform()
+            data, X, y, X_train, y_train, X_test, y_test, feat_type = self.data_transform(data)
             return data, X, y, X_train, y_train, X_test, y_test, feat_type
+
+    def sas_to_csv(self):
+        print("\n\nReading data from", self.path + self.taskname+'/' + self.dataname)
+        with SAS7BDAT(self.path + self.taskname+'/'+ self.dataname +'.sas7bdat') as f:
+            df = f.to_data_frame()
+        print("\n\nData description:\n\n", df.describe())
+
+        return df
 
     def read_data_csv(self):
             try:
                 data = pd.read_csv(self.path + '/' + self.taskname +'/' + self.dataname+'.csv',
                                    delimiter=delim)  # panda.DataFrame
             except:
-                df = sas_to_csv(self.path + '/' + self.taskname+'/', self.dataname)
-                data = pd.read_csv(self.path + '/' + self.taskname+'/' + self.dataname+'.csv',
-                                   delimiter=delim)  # panda.DataFrame
+                df = self.sas_to_csv()
+                cols = df.columns
+                print("\n\nCheck column\n\n", cols)
+                data = self.data_index(df)
+                data = self.data_feature_target(data)
+                data.to_csv(self.path + self.taskname +'/' + self.dataname +'.csv', encoding="utf-8",
+                          index=False, header=True)
+                # data = pd.read_csv(self.path + '/' + self.taskname+'/' + self.dataname+'.csv',
+                #                    delimiter=delim)  # panda.DataFrame
             return data
 
     def data_index(self,data):
@@ -213,11 +224,10 @@ class task_preprocess(benchmark_task):
             print(col)
             print(set(data[self.target]))
             print("inputs", self.inputs)
+            self.target = self.target.upper()
             return data
 
-
-    def data_feature_target(self):
-            self.target = self.target.upper()
+    def data_feature_target(self,data):
             print(self.inputs)
             index_features = ["_dmIndex_", "_PartInd_"]
             self.index_features = [i.upper() for i in index_features]
@@ -240,7 +250,9 @@ class task_preprocess(benchmark_task):
                 self.cinputname,
                 data[self.cinputname].dtypes,
             )
-    def data_transform(self):
+            return data
+
+    def data_transform(self,data):
 
             ###############################
             index_transformer = Pipeline(
@@ -285,9 +297,8 @@ class task_preprocess(benchmark_task):
             print(X_train.dtypes, X_train)
             print(set(y_train))
             ninputcols = len(self.ninputname)
-            if prepb:
+            if self.prepb:
                 feat_type = ["Numerical"] * ninputcols + ["Categorical"] * int(len(col) - 3 - ninputcols)
-                )
             else:
                 feat_type = []
             #    ##########################################################

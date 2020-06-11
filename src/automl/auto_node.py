@@ -1,14 +1,21 @@
-class autoframe():
-    def __init__(self, timelist, corelist, foldlist,):
+from preprocess import *
+class autoframe(object,task_preprocess):
+    def __init__(self, metalearning, framework, timeforjob, ncore, rp, rep, timelist, corelist, foldlist,):
+        self.metalearning = metalearning
+        self.framwork = framework
+        self.task_token = task_preprocess.task_token
+        self.timeforjob = timeforjob
+        self.foldn = task_preprocess.foldn
+        self.ncore = ncore
 
     def resultsfile(self):
         current_time = DateTime(time.time(), "US/Eastern")
         resultsfile = (
             myid
             + "_"
-            + str(framework)
+            + str(self.framework)
             + "_"
-            + str(foldn)
+            + str(self.foldn)
             + "f_"
             + str(ncore)
             + "c_"
@@ -40,10 +47,13 @@ class autoframe():
             " core\t",
             timeforjob,
             " seconds\n",
-            file=logfile,
+            file=task_preprocess.logfile,
         )
 
     def autoframe(self):
+        data, X, y, X_train, y_train, X_test, y_test, feat_type = task_preprocess.data_prep()
+        self.task_type = task_preprocess.task_type
+
         shape = []
         shape = [X_train.shape, y_train.shape, X_test.shape, y_test.shape]
         start = time.time()
@@ -213,3 +223,74 @@ class autoframe():
         #savemodel(timeforjob, resultsfile, automl)
         f.write(jsonf)
         f.close()
+
+
+    def autoclf(
+        metalearning,
+        framework,
+        feat_type,
+        timeforjob,
+        foldn,
+        ncore,
+        X_train,
+        y_train,
+        fitmetrics,
+    ):
+        if metalearning:
+            metan = 25
+            en_size = 50
+        else:
+            metan = 0
+            en_size = 1
+        print("meta learning\t", metalearning, en_size, metan)
+        if foldn == 0:
+            automl = autosklearn.classification.AutoSklearnClassifier(
+                time_left_for_this_task=timeforjob,
+                per_run_time_limit=timeforjob,
+                delete_tmp_folder_after_terminate=True,
+                ensemble_size=en_size,
+                initial_configurations_via_metalearning=metan,
+                seed=1,
+                ensemble_memory_limit=20720,
+                resampling_strategy="holdout",
+                ml_memory_limit=20720 * 2,
+                resampling_strategy_arguments={"train_size": float(5 / 7)},
+                n_jobs=ncore,
+            )
+            if len(feat_type) > 0:
+                automl.fit(
+                    X_train.copy(), y_train.copy(), metric=fitmetrics, feat_type=feat_type
+                )
+            else:
+                automl.fit(
+                    X_train.copy(), y_train.copy(), metric=fitmetrics
+                )  # ,feat_type = feat_type)
+
+        else:
+            automl = autosklearn.classification.AutoSklearnClassifier(
+                time_left_for_this_task=timeforjob,
+                delete_tmp_folder_after_terminate=True,
+                seed=1,
+                per_run_time_limit=timeforjob,
+                ensemble_memory_limit=20720,
+                ml_memory_limit=20720 * 2,
+                resampling_strategy_arguments={"folds": int(foldn)},
+                resampling_strategy="cv",
+                ensemble_size=en_size,
+                initial_configurations_via_metalearning=metan,
+                n_jobs=ncore,
+            )
+            if len(feat_type) > 0:
+                automl.fit(
+                    X_train.copy(), y_train.copy(), metric=fitmetrics, feat_type=feat_type
+                )
+            else:
+                automl.fit(
+                    X_train.copy(), y_train.copy(), metric=fitmetrics
+                )  # ,feat_type = feat_type)
+
+            automl.refit(
+                X_train.copy(), y_train.copy()
+            )  # ,feat_type = feat_type)#,metric=autosklearn.metrics.roc_auc)
+        return automl
+

@@ -130,7 +130,7 @@ def compile_results(dirt, date, task_token, taskname):
 
             bm_results.write(",,")  # "ASE,BEST_MODEL,
             bm_results.write(Datasetname+",")  # DATASET,
-            date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            date = datetime.now().strftime("%H:%M:%S")
             bm_results.write(str(date) + ",")  # DATETIME,
             bm_results.write(str(timespend) + ",")  # DURATION
             bm_results.write(",")  # ,ERROR,
@@ -141,12 +141,12 @@ def compile_results(dirt, date, task_token, taskname):
             bm_results.write(str(taskname)+",")  # SUITE
             bm_results.write(",")  # SUITE_TYPE
             bm_results.write(str(para["framework"])+"_" +  # TAG
-                             str(para["fitmetrics"])+"_"+str(date)+",")
+                             str(para["fitmetrics"])+"_"+str(task_token)+",")
             try:
                 bm_results.write(str(target)+",")  # TARGET
             except:
                 continue
-            bm_results.write(str(task_token)+"\n")
+            bm_results.write(str(datetime.now().strftime("%Y-%m-%d"))+"\n")
     bm_results.close
     return osbenchmarkfile
 

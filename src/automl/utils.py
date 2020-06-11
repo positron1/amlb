@@ -213,7 +213,7 @@ def prep_nopart(prepb, dataset, taskname, dirt, index_features, nreject, nfeatur
     print(col)
     ############ get partition and x y ############################################
     df_target1 = pddata[pddata[target == 1.0]]
-    df_target0 = pddate[pddata[target == 0.0]]
+    df_target0 = pddata[pddata[target == 0.0]]
     train0, valid_test0 = train_test_split(df_target0, test_size=0.4)
     train1, valid_test1 = train_test_split(df_target1, test_size=0.4)
     valid0, test0 = train_test_split(valid_test0, test_size=0.25)
@@ -467,7 +467,7 @@ if __name__ == "__main__":
         dataset = datalist[3:][im]  # "uci_bank_marketing_pd"
         print(dataset)
         load_partition(dirt + "opentest/", dataset)
-        nfeatures, cfeatures, target = meta_info(dirt, meta)
+        nfeatures, cfeatures, target = meta_info(dirt, meta,prepb)
         try:
             data, X, y, X_train, y_train, X_test, y_test = prep(
                 dataset, dirt, nfeatures, cfeatures, target, delim=",", indexdrop=False
