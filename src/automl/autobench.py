@@ -25,11 +25,11 @@ scp = SCPClient(ssh.get_transport())
 ##################################################################################
 ###             Inputs                                  #
 #################################################################################
-
 framework = "autosklearn"
 metalearning = True  # default for autosklearn
 framework = "tpot"
 metalearning = False
+
 task = "bt"  # interval target task
 prep = False  # Data preprocessing with meta data
 dirt = "/root/data/"  # dataset directory

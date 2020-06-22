@@ -1,5 +1,5 @@
 import sys
-import getpass 
+import getpass
 
 import paramiko
 from scp import SCPClient

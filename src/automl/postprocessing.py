@@ -86,12 +86,27 @@ def get_results_clf(dirt, date, task_token):
 
 def compile_results(dirt, date, task_token, taskname):
     # Create target Directory if don't exist
+# DATASET=          // data set name (str)
+# TARGET=           // target variable name (str)
+# SUITE=            // binaryTarget, intervalTarget, nominalTarget, binaryRareEvent (str)
+# AUTOML_MODE=      // MLPA-Std, MLPA-Enh, AUTOSKLEARN, TPOT (str)
+# AUTOML_TIME=      // run time in mts specified by user (int)
+# AUTOML_CRITERIA=  // Type of loss (MCLL, ASE etc)
+# RUN_TAG=          // Tag for the run
+# RUN_STATISTIC=    // MCLL or ASE statistic (float)
+# RUN_MSG='NONE'    // short error msg (str)
+# RUN_DATETIME=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+#                   // run time (str) in format 2020-05-22 18:45:33
+# RUN_DURATION=     // run duration in mts
+# NUMOBS            // size of the test partition
+# RUN_MODEL     // name of the winning model
+
     if not os.path.exists(dirt):
         os.mkdir(dirt)
         print("Directory ", dirt,  " Newly Created ")
     osbenchmarkfile = dirt + '/opensource_benchmark' + task_token + ".csv"
     bm_results = open(osbenchmarkfile, "w")
-    bm_results.write(
+    bm_results.write("DATASET,TARGET,SUITE,AUTOML_MODE,AUTOML_TIME,AUTOML_CRITERIA,RUN_TAG,RUN_STATISTIC,RUN_MSG,RUN_DATETIME,RUN_DURATION,NUMOBS,RUN_MODEL"
         "ASE,BEST_MODEL,DATASET,DATETIME,DURATION,ERROR,MCLL,MLPA_FOLDER,MODELING_MODE,SAMPLING_ENABLED,SUITE,SUITE_TYPE,TAG,TARGET,NOTE\n")
     dataname = []
     auclist = []
@@ -130,7 +145,7 @@ def compile_results(dirt, date, task_token, taskname):
 
             bm_results.write(",,")  # "ASE,BEST_MODEL,
             bm_results.write(Datasetname+",")  # DATASET,
-            date = datetime.now().strftime("%H:%M:%S")
+            date = datetime.now().strftime(("%Y-%m-%d %H:%M:%S")
             bm_results.write(str(date) + ",")  # DATETIME,
             bm_results.write(str(timespend) + ",")  # DURATION
             bm_results.write(",")  # ,ERROR,
@@ -150,16 +165,19 @@ def compile_results(dirt, date, task_token, taskname):
     bm_results.close
     return osbenchmarkfile
 
-# def benchmark_summary(dirt, task_token='fcf92eb58214f5e1'):
-#     udriveyz = '/net/ge.unx.sas.com/vol/vol110/u11/yozhuz/'
 
-#     df = pd.read_csv(dirt + task_token + "_benchmark.csv")
-#     print('benchmark_summary')
-#     print(df.describe())
-#     dfsum = df.groupby("DATASET").mean()
-#     print(dfsum.columns.values)
-#     dfsum.to_csv(udriveyz+'/data/auto_benchmark_results/opensource_benchmark_' +
-#                  task_token + ".csv", encoding='utf-8')
+def result_summary(dirt, date, task_token, taskname):
+    osbenchmarkfile = dirt + '/opensource_benchmark' + task_token + ".csv"
+    sum_results = pd.read_csv(osbenchmarkfile, sep=',')
+    print(sum_results)
+            #        "ASE,BEST_MODEL,DATASET,DATETIME,DURATION,ERROR,MCLL,MLPA_FOLDER,MODELING_MODE,SAMPLING_ENABLED,SUITE,SUITE_TYPE,TAG,TARGET,NOTE\n")
+    group_results = sum_results.groupby(['DATASET']).agg({'TARGET':'first','SUITE':'first','AUTOML_MODE':'first','AUTOML_TIME':'first','AUTOML_CRITERIA':'first','RUN_TAG':'first','RUN_STATISTIC':'RUN_MSG':'first','RUN_DATETIME':'first','RUN_DURATION':'mean'})
+    #,'ERROR':'first','MCLL':'mean','MLPA_FOLDER':'first','MODELING_MODE':'first','SAMPLING_ENABLED':'first','SUITE':'first','SUITE_TYPE':'first','TAG':'first','TARGET':'first','NOTE':'first'})
+    print(group_results)
+    try:
+        group_results.to_csv(dirt + '/opensource_benchmark.csv', mode='a', header=False, index=False)
+    except:
+        group_results.to_csv(dirt + '/opensource_benchmark.csv', index=False)
 
 
 def get_results_reg(dirt, date, task_token):
