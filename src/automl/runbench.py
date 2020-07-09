@@ -304,6 +304,7 @@ def get_run_info(
         runs["models"] = get_fensemble(automl.get_models_with_weights())
         print(runs["models"])
     elif framework == 'tpot':
+        print("fitted_pipeline_",automl.fitted_pipeline_)
         runs["models"] = automl.fitted_pipeline_.tolist()
     print(runs)
     #    tpot = json.dumps(jsonpickle.encode(runs))
@@ -399,7 +400,7 @@ def autoframe(
     elif framework == 'tpot':
         if task == "bt" or task == "bre":
             tpot = TPOTClassifier(
-                max_time_mins=int(timeforjob/6), max_eval_time_mins=float(timeforjob/10), n_jobs=ncore, verbosity=2)
+                max_time_mins=int(timeforjob/60), max_eval_time_mins=float(timeforjob/60), n_jobs=ncore, verbosity=2)
             tpot.fit(X_train, y_train)
             y_pred_prob = tpot.predict_proba(X_test)
         elif task == "it":

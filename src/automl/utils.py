@@ -41,8 +41,6 @@ if not sys.warnoptions:
 
     warnings.simplefilter("ignore")
 
-from passwd import *
-
 def createSSHClient(server, port, user, password):
     client = paramiko.SSHClient()
     client.load_system_host_keys()

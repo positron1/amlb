@@ -19,9 +19,15 @@ if not sys.warnoptions:
 
     warnings.simplefilter("ignore")
 
+wremote=False
 
-ssh = createSSHClient(server, port, user, password)
-scp = SCPClient(ssh.get_transport())
+if wremote:
+    try:
+        from passwd import *
+    except:
+        user, password = getinfo()
+    ssh = createSSHClient(server, port, user, password)
+    scp = SCPClient(ssh.get_transport())
 ##################################################################################
 ###             Inputs                                  #
 #################################################################################
@@ -33,7 +39,7 @@ framework = "tpot"
 metalearning = False
 task = "bt"  # interval target task
 prep = False  # Data preprocessing with meta data
-dirt = "/root/data/"  # dataset directory
+dirt = "/home/xyz/data/"  # dataset directory
 outputdir = "./results/"
 task_token = secrets.token_hex(8)  # generate unique token for this run
 #################################################################################
@@ -107,7 +113,8 @@ for lf, locfold in enumerate(timelist):
     compile_results(
         ldirt, task_token, taskname
     )
-    scp.put(ldirt + 'opensource_benchmark.csv',
+    if wremote:
+        scp.put(ldirt + 'opensource_benchmark.csv',
             '/nfs/rdcx200/ifs/EM_data/All_Users/ramyne/dataForBenchmarking/auto_benchmark_results/opensource_benchmark.csv')
 
 if logmode:
