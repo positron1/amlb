@@ -1,3 +1,4 @@
+import serialize_sk as sr
 import autosklearn.classification
 import autosklearn.regression
 import sklearn.datasets
@@ -25,6 +26,10 @@ from sklearn.metrics import (
     log_loss,
     f1_score,
 )
+from sklearn.externals import joblib
+import pickle
+import re
+
 from utils import *
 ##################################################
 if not sys.warnoptions:
@@ -44,8 +49,9 @@ def savemodel(timeforjob, resultfile, automl):
     resultfileout = open(
         "results/" + str(timeforjob) + "s/finalmodels" + resultfile, "w"
     )
+    resultfileout.write("show_models")
     resultfileout.write(str(automl.show_models()))
-    # resultfileout.write(str(automl.sprint_statistics()))
+    resultfileout.write("\ncv_results\n")
     resultfileout.write(str(automl.cv_results_))
     resultfileout.close()
 
@@ -216,9 +222,51 @@ def autoclf(
     return automl
 
 
+def get_pipe(pipe_str):
+    try:
+        outer = re.compile("\(.+\)")
+        m = outer.search(pipe_str)
+        print(m)
+        innerre = re.compile("\{(.+)},{(.+)\}")
+        regex = r"\{(.*?)\}"
+        matches = re.finditer(regex, m.group(), re.MULTILINE | re.DOTALL)
+        fm = 'Dummy Classifier'
+        for match in matches:
+            print("\n")
+            x = eval("{" + match.group(1) + "}")
+            print(x)
+            try:
+                fm = x['classifier:__choice__']
+            except:
+                pass
+    except:
+        m = pipe_str[pipe_str.find('('):-1]
+        print(m)
+        matches = m.split('}')[0][2:]
+        print(matches)
+        fm = 'Dummy Classifier'
+        x = eval("{" + matches + "}")
+        print(x)
+        try:
+            fm = x['classifier:__choice__']
+        except:
+            pass
+    return fm
+
+
+def get_fensemble(fmodel):
+    fensemble = dict()
+    print(fmodel)
+    for i, n in enumerate(fmodel):
+        f, c = n
+        print(str(f), str(c))
+        fensemble[get_pipe(str(c))+str(i)] = float(f)
+    return fensemble
+
+
 def get_run_info(
     metalearning,
-    # automl,
+    automl,
     dataset,
     shape,
     timeforjob,
@@ -252,6 +300,11 @@ def get_run_info(
     runs["results"] = dict(metrics)
     runs["metalearning"] = metalearning
     runs["targetname"] = target
+    if framework == 'autosklearn':
+        runs["models"] = get_fensemble(automl.get_models_with_weights())
+        print(runs["models"])
+    elif framework == 'tpot':
+        runs["models"] = automl.fitted_pipeline_.tolist()
     print(runs)
     #    tpot = json.dumps(jsonpickle.encode(runs))
     jsonf = json.dumps(runs)
@@ -353,6 +406,7 @@ def autoframe(
             tpot = TPOTRegressor(
                 generations=5, population_size=50, verbosity=2)
             y_pred_prob = []
+        automl = tpot
 
         y_pred = tpot.predict(X_test)
         print(tpot.score(X_test, y_test))
@@ -367,7 +421,7 @@ def autoframe(
     print(dataset)
     get_run_info(
         metalearning,
-        #        automl,
+        automl,
         dataset,
         shape,
         timeforjob,
@@ -382,10 +436,6 @@ def autoframe(
         outputdir,
         target,
     )
-
-
-# def get_train_test(myid, X_train, y_train, X_test, y_test):
-#     print(myid, type(X_train), y_train, X_test, y_test, feat_type)
 
 
 def shortname(dirt, dataset, meta):

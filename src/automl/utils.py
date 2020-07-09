@@ -1,4 +1,9 @@
 
+from scp import SCPClient
+import sys
+sys.path.append("../../../")
+import paramiko
+import getpass
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
 from sklearn.metrics import roc_auc_score, accuracy_score
@@ -24,7 +29,6 @@ import secrets
 import glob
 from sas7bdat import SAS7BDAT
 import os
-import sys
 import traceback
 import logging
 import optparse
@@ -36,10 +40,8 @@ if not sys.warnoptions:
     import warnings
 
     warnings.simplefilter("ignore")
-import getpass
 
-import paramiko
-from scp import SCPClient
+from passwd import *
 
 def createSSHClient(server, port, user, password):
     client = paramiko.SSHClient()
@@ -50,14 +52,14 @@ def createSSHClient(server, port, user, password):
 
 
 def getinfo():
-    user=input("input user name:")
-    password=getpass.getpass(prompt='Password: ', stream=None)
-    return user,password
+    user = input("input user name:")
+    password = getpass.getpass(prompt='Password: ', stream=None)
+    return user, password
 
-server='lnxlgn.fyi.sas.com'
-port=22
-#if __name__ == "__main__":
-user,password = getinfo()
+
+server = 'lnxlgn.fyi.sas.com'
+port = 22
+# if __name__ == "__main__":
 
 
 
@@ -94,6 +96,8 @@ def unpart(dirt, dataset, index, target):
     # Rename index to
 
     return train, test """
+
+
 def check_dataset(dataname, csvdatalist, sasdatalist, metalist):
     """ Check if metadata exists
 
@@ -113,6 +117,7 @@ def check_dataset(dataname, csvdatalist, sasdatalist, metalist):
     else:
         meta = '0'
     return dataset, meta
+
 
 def get_id(metalist):
     idlist = []
@@ -372,7 +377,6 @@ def prep(prepb, dataset, taskname, dirt, nfeatures, cfeatures, inputs, target, d
     return data, X, y, X_train, y_train, X_test, y_test, feat_type
 
 
-
 def check_id(ind, csvdataid, csvdatalist, sasdataid, sasdatalist, metadataid, metalist):
     if ind in csvdataid:
         dataset = csvdatalist[csvdataid.index(ind)]
@@ -490,7 +494,7 @@ if __name__ == "__main__":
         dataset = datalist[3:][im]  # "uci_bank_marketing_pd"
         print(dataset)
         load_partition(dirt + "opentest/", dataset)
-        nfeatures, cfeatures, target = meta_info(dirt, meta,prepb)
+        nfeatures, cfeatures, target = meta_info(dirt, meta, prepb)
         try:
             data, X, y, X_train, y_train, X_test, y_test = prep(
                 dataset, dirt, nfeatures, cfeatures, target, delim=",", indexdrop=False
