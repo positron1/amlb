@@ -1,3 +1,4 @@
+from numpy.lib.twodim_base import mask_indices
 import serialize_sk as sr
 import autosklearn.classification
 import autosklearn.regression
@@ -302,13 +303,16 @@ def get_run_info(
     runs["targetname"] = target
     if framework == 'autosklearn':
         runs["models"] = get_fensemble(automl.get_models_with_weights())
-        print(runs["models"])
+
     elif framework == 'tpot':
-        print("fitted_pipeline_", automl.fitted_pipeline_)
-        runs["models"] = automl.fitted_pipeline_.tolist()
-    print(runs)
-    #    tpot = json.dumps(jsonpickle.encode(runs))
+        print("pareto_front_fitted_pipeline_",automl.pareto_front_fitted_pipelines_)
+        print("fitted_pipeline_",automl.fitted_pipeline_)
+        runs["models"] = automl.fitted_pipeline_.steps[-1][0]
+
     jsonf = json.dumps(runs)
+    print(runs)
+
+    #    tpot = 
     f = open(
         outputdir
         + "/"

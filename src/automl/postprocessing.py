@@ -201,22 +201,37 @@ def compile_results(dirt, task_token, taskname, date=''):
     print("sum_results")
 
     print(sum_results.head())
-    #sum_results.astype({''})
-    group_results = sum_results.groupby(['DATASET'], as_index=False).agg({'TARGET': 'first', 'SUITE': 'first', 'AUTOML_MODE': 'first', 'AUTOML_TIME': 'first', 'AUTOML_CRITERIA': 'first',
-                                                                                       'RUN_TAG': 'first', 'RUN_STATISTIC': 'mean', 'RUN_MSG': 'first', 'RUN_DATETIME': 'first', 'RUN_DURATION': 'mean', 'NUMOBS': 'first', 'RUN_MODEL': 'first'})
-    # ,'ERROR':'first','MCLL':'mean','MLPA_FOLDER':'first','MODELING_MODE':'first','SAMPLING_ENABLED':'first','SUITE':'first','SUITE_TYPE':'first','TAG':'first','TARGET':'first','NOTE':'first'})
-    print("\nAppending results\n")
-    print(group_results)
-    if os.path.exists('results/opensource_benchmark.csv'):
-
-        group_results.to_csv(dirt + '/opensource_benchmark.csv',
-                             mode='a', header=False, index=False)
-    else:
+    datasetlist = sum_results['DATASET'].drop_duplicates()
+    print("datasetlist\n",datasetlist)
+    if not os.path.exists('results/opensource_benchmark.csv'):
         gresults = open(dirt + '/opensource_benchmark.csv', "w")
         gresults.write("DATASET,TARGET,SUITE,AUTOML_MODE,AUTOML_TIME,AUTOML_CRITERIA,RUN_TAG,RUN_STATISTIC,RUN_MSG,RUN_DATETIME,RUN_DURATION,NUMOBS,RUN_MODEL\n")
         print("new opensource_benchmark file")
-        group_results.to_csv(dirt + '/opensource_benchmark.csv',
-                             mode='a', header=True, index=False)
+    print(datasetlist.values.tolist())
+    for i,d in enumerate(datasetlist):
+        print(i,d)
+        print(sum_results.columns.values)
+        print("dataset subset\n",sum_results[sum_results["DATASET"]==str(d)])
+        print(sum_results[sum_results['DATASET']==str(d)].columns.values)
+        df = sum_results[sum_results['DATASET']==str(d)].sort_values(by='RUN_STATISTIC')
+        df = df.groupby(['DATASET'], as_index=False).agg({'TARGET': 'first', 'SUITE': 'first', 'AUTOML_MODE': 'first', 'AUTOML_TIME': 'first', 'AUTOML_CRITERIA': 'first',
+                                                                                       'RUN_TAG': 'first', 'RUN_STATISTIC': 'first', 'RUN_MSG': 'first', 'RUN_DATETIME': 'first', 'RUN_DURATION': 'first', 'NUMOBS': 'first', 'RUN_MODEL': 'first'})
+        print("\nAppending results\n",df)
+
+        df.to_csv(dirt + '/opensource_benchmark.csv', mode='a', header=True, index=False)
+    #sum_results.astype({''})
+    # group_results = sum_results.groupby(['DATASET'], as_index=False).agg({'TARGET': 'first', 'SUITE': 'first', 'AUTOML_MODE': 'first', 'AUTOML_TIME': 'first', 'AUTOML_CRITERIA': 'first',
+    #                                                                                    'RUN_TAG': 'first', 'RUN_STATISTIC': 'mean', 'RUN_MSG': 'first', 'RUN_DATETIME': 'first', 'RUN_DURATION': 'mean', 'NUMOBS': 'first', 'RUN_MODEL': 'first'})
+    # # ,'ERROR':'first','MCLL':'mean','MLPA_FOLDER':'first','MODELING_MODE':'first','SAMPLING_ENABLED':'first','SUITE':'first','SUITE_TYPE':'first','TAG':'first','TARGET':'first','NOTE':'first'})
+    # print(group_results)
+    # if os.path.exists('results/opensource_benchmark.csv'):
+
+    #     group_results.to_csv(dirt + '/opensource_benchmark.csv',
+    #                          mode='a', header=False, index=False)
+    # else:
+
+    #     group_results.to_csv(dirt + '/opensource_benchmark.csv',
+    #                          mode='a', header=True, index=False)
 
 
 

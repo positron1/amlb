@@ -403,22 +403,29 @@ def init(dirt, task, runlist, timelist, foldlist, rep, task_token, fitmetrics=Fa
         taskname = 'intervalTarget'
         if not fitmetrics:
             fitmetrics = autosklearn.metrics.mean_squared_error
-    csvdatalist = glob.glob(dirt + taskname+"/*.csv")
-    sasdatalist = glob.glob(dirt + taskname+"/*sas7bdat")
-    metalist = glob.glob(dirt + "/tmp_metadata/*meta.csv")
-    csvdatalist = remove_dirt(csvdatalist, dirt + "/"+taskname+"/")
+    sasdatalist = sorted(glob.glob(dirt + taskname+"/*sas7bdat"), key=os.path.getsize)
+    print(sasdatalist)
     sasdatalist = remove_dirt(sasdatalist, dirt + "/"+taskname+"/")
-    metalist = remove_dirt(metalist, dirt + "/tmp_metadata/")
-    csvdatalist = [i[:-4] for i in csvdatalist]
+    print(sasdatalist)
     sasdatalist = [i[:-9] for i in sasdatalist]
+    print("sas datalist\n", sasdatalist)
+    #sasdatalist = sorted(sasdatalist)
+
+
+
+    csvdatalist = sorted(glob.glob(dirt + taskname+"/*.csv"),key=os.path.getsize)
+    csvdatalist = remove_dirt(csvdatalist, dirt + "/"+taskname+"/")
+    csvdatalist = [i[:-4] for i in csvdatalist]
+    print("csv datalist\n", csvdatalist)
+    #csvdatalist = sorted(csvdatalist)
+
+    #glob.glob(dirt + taskname+"/*sas7bdat")
+    metalist = glob.glob(dirt + "/tmp_metadata/*meta.csv")
+    metalist = remove_dirt(metalist, dirt + "/tmp_metadata/")
     metalist = [i[:-9] for i in metalist]
     print("working dirt\t", dirt)
-    print("csv datalist\n", csvdatalist)
-    print("sas datalist\n", sasdatalist)
     print("metadatalit\n", metalist)
-    sasdatalist = sorted(sasdatalist)
-    csvdatalist = sorted(csvdatalist)
-    metalist = sorted(metalist)
+    #metalist = sorted(metalist)
     timestamp = (
         str(current_time.year())
         + str(current_time.aMonth())
@@ -445,7 +452,7 @@ def init(dirt, task, runlist, timelist, foldlist, rep, task_token, fitmetrics=Fa
 
 
 def remove_dirt(dlist, dirt):
-    for i, d in enumerate(sorted(dlist)):
+    for i, d in enumerate(dlist):
         dlist[i] = os.path.relpath(d, dirt)
     return dlist
 
