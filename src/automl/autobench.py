@@ -3,6 +3,8 @@
 ########## Email: zhuygln@gmail.com
 ##################################################################################
 import os
+
+from scipy.sparse import test
 from utils import *
 from postprocessing import *
 from runbench import *
@@ -20,6 +22,7 @@ if not sys.warnoptions:
     warnings.simplefilter("ignore")
 
 wremote=False
+testmode = True# False
 
 if wremote:
     try:
@@ -47,13 +50,14 @@ runlist = ["14"]  # dataset id #
 rep = 2  # repetition
 corelist = [1]
 foldlist = [0]  # 0: single validation, no cross validation
-timelist = [100]  # time limit for training in seconds
+timelist = [900]  # time limit for training in seconds
 #################################################################################
 # Initial setup
 #################################################################################
 dirt, taskname, logfile, csvdatalist, sasdatalist, metalist, timestamp, fitmetrics = init(
     dirt, task, runlist, timelist, foldlist, rep, task_token
 )
+print(sasdatalist)
 metadataid = get_id(metalist)
 csvdataid = get_id(csvdatalist)
 sasdataid = get_id(sasdatalist)
@@ -69,9 +73,10 @@ if logmode:
 #################################################################################
 # runing ...
 #################################################################################
-
-runnamelist = sasdatalist
-
+if testmode:
+    runnamelist = [sasdatalist[0]]
+else:
+    runnamelist = sasdatalist
 for dataname in runnamelist:
     dataset, meta = check_dataset(
         dataname, csvdatalist, sasdatalist, metalist
