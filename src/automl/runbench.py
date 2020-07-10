@@ -304,7 +304,7 @@ def get_run_info(
         runs["models"] = get_fensemble(automl.get_models_with_weights())
         print(runs["models"])
     elif framework == 'tpot':
-        print("fitted_pipeline_",automl.fitted_pipeline_)
+        print("fitted_pipeline_", automl.fitted_pipeline_)
         runs["models"] = automl.fitted_pipeline_.tolist()
     print(runs)
     #    tpot = json.dumps(jsonpickle.encode(runs))
@@ -325,6 +325,9 @@ def get_run_info(
 
 
 def save_prob(timeforjob, dataset, resultsfile, foldn, y_pred, y_pred_prob, outputdir):
+    if not os.path.exists(dirt):
+        os.mkdir(dirt)
+        print("Directory ", dirt,  " Newly Created ")
     briefout = open(
         outputdir
         + "/"
